@@ -1,6 +1,13 @@
-#include <iostream>
+#include "affichageconsole.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    // test affichage, remplacer condition par false pour desactiver test
+    if (true)
+    {
+        Jeu j;
+        AffichageConsole a(&j);
+        while (true)
+            a.afficher();
+    }
 }
