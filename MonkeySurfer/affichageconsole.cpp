@@ -9,6 +9,18 @@ AffichageConsole::AffichageConsole(Jeu *j) : Affichage(j) {
     for (int i = 0; i < NB_LIANES; i++) {
         int multiple_offset = i - (NB_LIANES / 2);
         _xlianes[i] = milieu + (ECART_LIANES * multiple_offset);
+
+        // Position des feuilles des lianes
+        if (i % 2 == 0) {
+            _feuilles[i][0] = { _xlianes[i] - 1, 5 };
+            _feuilles[i][1] = { _xlianes[i] + 1, 11 };
+            _feuilles[i][2] = { _xlianes[i] - 1, 19 };
+        }
+        else {
+            _feuilles[i][0] = { _xlianes[i] + 1, 4 };
+            _feuilles[i][1] = { _xlianes[i] - 1, 12 };
+            _feuilles[i][2] = { _xlianes[i] + 1, 18 };
+        }
     }
 }
 
@@ -45,9 +57,18 @@ void AffichageConsole::afficherArrierePlan() {
 }
 
 void AffichageConsole::afficherLianes() {
-    for (int i = 0; i < NB_LIANES; i++)
+    for (int i = 0; i < NB_LIANES; i++) {
+        // Lianes
         for (int y = 0; y < NB_LIGNES; y++)
             _img[_xlianes[i]][y] = 'l';
+    
+        // Feuilles
+        for (int f = 0; f < 3; f++) {
+            int fx = _feuilles[i][f].x;
+            int fy = _feuilles[i][f].y;
+            _img[fx][fy] = '~';
+        }
+    }
 }
 
 void AffichageConsole::afficherJoueur() {

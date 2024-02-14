@@ -13,6 +13,12 @@
 #define ECART_LIANES 6
 #define FPS 60 // Images par seconde (Frames per second)
 
+// Ceci est soit temporaire, soit ce sera bougé dans un autre fichier
+struct Coord {
+    int x;
+    int y;
+};
+
 class AffichageConsole : public Affichage
 {
 public:
@@ -38,6 +44,7 @@ private:
 
     // Lianes
     int _xlianes[NB_LIANES]; // Emplacement colonne des lianes
+    Coord _feuilles[NB_LIANES][3]; // Des feuilles accrochées aux lianes pour points bonus esthétique
 
     // UI
     std::string _score; // Texte pour afficher le score
