@@ -39,6 +39,7 @@ public:
     void afficherMenu();
     void afficherMenuSkin();
     void afficherAide();
+    void afficherLoading();
 
     void modifierSkin(int val);
 private:

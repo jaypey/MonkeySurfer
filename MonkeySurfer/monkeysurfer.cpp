@@ -8,10 +8,20 @@ int main()
     {
         Jeu j;
         AffichageConsole a(&j);
+
         a.afficherMenu();
         unsigned char c;
         while ((c = _getch()) != '4') {
             if (c == '1') {
+
+                auto start = std::chrono::steady_clock::now();
+                while (true) {
+                    a.afficherLoading();
+                    auto current = std::chrono::steady_clock::now();
+                    auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(current - start);
+                    if (elapsed.count() >= 2) break;
+                }
+
                 while (true) a.afficherJeu();
             }
             else if (c == '2') {

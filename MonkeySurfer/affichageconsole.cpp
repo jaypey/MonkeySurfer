@@ -104,6 +104,36 @@ void AffichageConsole::afficherAide() {
     printMatriceChar();
 }
 
+void AffichageConsole::afficherLoading() {
+    attendreProchaineImage();
+
+    const int TAILLE_X = 14;
+    const int TAILLE_Y = 8;
+    const int velX = 0;
+    const int velY = 1;
+
+    static int spdX = 2;
+    static int spdY = 0;
+    static int posX = 0;
+    static int posY = 5;
+
+    spdX += velX;
+    spdY += velY;
+
+    if (posX + spdX > NB_COLS - TAILLE_X || posX + spdX < 0) spdX = -spdX;
+    else posX += spdX;
+
+    if (posY + spdY > NB_LIGNES - TAILLE_Y || posY + spdY < 0) spdY = -spdY;
+    else posY += spdY;
+
+    afficherArrierePlan();
+    afficherContour();
+    afficherFichier("monkey.txt", posX, posY);
+    afficherTexte("Chargement...", 25, 3);
+
+    printMatriceChar();
+}
+
 void AffichageConsole::modifierSkin(int val) {
     _indexSkin = (_indexSkin + val) % NB_SKINS;
     if (_indexSkin < 0) _indexSkin += NB_SKINS;
