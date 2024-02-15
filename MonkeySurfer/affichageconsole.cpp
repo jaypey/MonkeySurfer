@@ -33,9 +33,10 @@ void AffichageConsole::afficherMenu() {
     afficherArrierePlan();
     afficherContour();
     afficherFichier("artMenu.txt", 13, 2);
-    afficherTexte("1. Jouer", 25, 16);
-    afficherTexte("2. Skins", 25, 18);
-    afficherTexte("3. Quitter", 25, 20);
+    afficherTexte("1. Jouer", 25, 15);
+    afficherTexte("2. Skins", 25, 17);
+    afficherTexte("3. Aide", 25, 19);
+    afficherTexte("4. Quitter", 25, 21);
 
     // Print à la console
     printMatriceChar();
@@ -69,6 +70,34 @@ void AffichageConsole::afficherMenuSkin() {
 
     afficherTexte("Appuyer sur les fleches pour choisir un skin", 7, 21);
     afficherTexte("Appuyer sur 'q' pour quitter", 15, 22);
+
+    // Print à la console
+    printMatriceChar();
+}
+
+void AffichageConsole::afficherAide() {
+    attendreProchaineImage();
+
+    // Remplissage des informations dans la matrice de char
+    afficherArrierePlan();
+    afficherContour();
+
+    // Affichage du tutoriel
+    std::string explicationSinge = " : Represente le singe (le joueur).";
+    explicationSinge.insert(explicationSinge.begin(), _skins[_indexSkin].getId());
+
+    afficherTexte(explicationSinge, 3, 3);
+
+    afficherTexte("# : Les obstacles, le singe doit les eviter!", 3, 5);
+
+    afficherTexte("B : Les bananes, ramassez les pour accumuler des points!", 3, 7);
+
+    afficherTexte("Appuyer sur les fleches pour sauter de liane en liane.", 3, 9);
+
+    afficherTexte("Une apparence differente peut etre choisie pour le singe", 3, 11);
+    afficherTexte("dans le menu de skins, accessible par le menu principal.", 3, 12);
+
+    afficherTexte("Appuyer sur 'q' pour revenir au menu.", 12, 21);
 
     // Print à la console
     printMatriceChar();

@@ -10,7 +10,7 @@ int main()
         AffichageConsole a(&j);
         a.afficherMenu();
         unsigned char c;
-        while ((c = _getch()) != '3') {
+        while ((c = _getch()) != '4') {
             if (c == '1') {
                 while (true) a.afficherJeu();
             }
@@ -24,6 +24,10 @@ int main()
                     else if (c == 80)   a.modifierSkin(3);  // DOWN
                     a.afficherMenuSkin();
                 }
+            }
+            else if (c == '3') {
+                 a.afficherAide();
+                 while ((c = _getch()) != 'q');
             }
             a.afficherMenu();
         }

@@ -38,6 +38,7 @@ public:
     void afficherJeu();
     void afficherMenu();
     void afficherMenuSkin();
+    void afficherAide();
 
     void modifierSkin(int val);
 private:
