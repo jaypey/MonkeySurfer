@@ -1,4 +1,5 @@
 #include "affichageconsole.h"
+#include <conio.h>
 
 int main()
 {
@@ -8,8 +9,14 @@ int main()
         Jeu j;
         AffichageConsole a(&j);
         a.afficherMenu();
-        system("pause & cls");
-        while (true)
-            a.afficherJeu();
+        char c;
+        while ((c = _getch()) != '3') {
+            if (c == '1') {
+                while (true) a.afficherJeu();
+            }
+            else if (c == '2') {
+                // TODO - menu skins
+            }
+        }
     }
 }
