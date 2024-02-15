@@ -105,20 +105,28 @@ void AffichageConsole::afficherAide() {
 }
 
 void AffichageConsole::afficherLoading() {
+    // Gros monkey qui bondit sur l'écran
+    // Le code ci-dessous simule un monkey avec des physiques
+    // qui bondit de gauche à droite & vice-versa, avec velocite
+    // et vitesse pour déterminer la vitesse de chute
+
     attendreProchaineImage();
 
     const int TAILLE_X = 14;
     const int TAILLE_Y = 8;
-    const int velX = 0;
-    const int velY = 1;
+    const int VEL_X = 0;
+    const int VEL_Y = 1;
 
+    // "static" veut dire qu'à chaque appel de la fonction, les variables
+    // gardent les mêmes valeurs qu'elles avaient à la fin de l'exécution
+    // de l'appel de la fonction précédent
     static int spdX = 2;
     static int spdY = 0;
     static int posX = 0;
     static int posY = 5;
 
-    spdX += velX;
-    spdY += velY;
+    spdX += VEL_X;
+    spdY += VEL_Y;
 
     if (posX + spdX > NB_COLS - TAILLE_X || posX + spdX < 0) spdX = -spdX;
     else posX += spdX;
@@ -129,7 +137,7 @@ void AffichageConsole::afficherLoading() {
     afficherArrierePlan();
     afficherContour();
     afficherFichier("monkey.txt", posX, posY);
-    afficherTexte("Chargement...", 25, 3);
+    afficherTexte("Chargement...", 25, 2);
 
     printMatriceChar();
 }
