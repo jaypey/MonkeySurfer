@@ -3,6 +3,7 @@
 AffichageConsole::AffichageConsole(Jeu *j) : Affichage(j) {
     _lastfrm = std::chrono::steady_clock::now();
     initialiserLianes();
+    initialiserSkins();
     afficherArrierePlan();
 }
 
@@ -17,6 +18,7 @@ void AffichageConsole::afficherJeu() {
     afficherJoueur();
     afficherItems();
     afficherObstacles();
+    afficherContour();
     afficherIU();
 
     // Print à la console
@@ -27,11 +29,45 @@ void AffichageConsole::afficherMenu() {
     attendreProchaineImage();
 
     // Remplissage des informations dans la matrice de char
+    afficherArrierePlan();
     afficherContour();
     afficherFichier("artMenu.txt", 13, 2);
     afficherTexte("1. Jouer", 25, 16);
     afficherTexte("2. Skins", 25, 18);
     afficherTexte("3. Quitter", 25, 20);
+
+    // Print à la console
+    printMatriceChar();
+}
+
+void AffichageConsole::afficherMenuSkin() {
+    attendreProchaineImage();
+
+    // Remplissage des informations dans la matrice de char
+    afficherArrierePlan();
+    afficherContour();
+
+    // Affichage de la shop
+    for (int rangee = 0; rangee < 3; rangee++)
+        for (int col = 0; col < 3; col++) {
+            int index = rangee + col * 3;
+
+            std::string apparence;
+            apparence += _skins[index].getId();
+
+            const char* fichier = (_indexSkin == index)
+                                ? "showcaseSkinSelect.txt"
+                                : "showcaseSkin.txt";
+            afficherFichier(fichier, 8 + rangee * 17, 2 + col * 6);
+            afficherTexte(apparence, 12 + rangee * 17, 4 + col * 6);
+        }
+
+    std::string apparenceCourante = "Skin choisi : ";
+    apparenceCourante += _skins[_indexSkin].getId();
+    afficherTexte(apparenceCourante, 22, 20);
+
+    afficherTexte("Appuyer sur les fleches pour choisir un skin", 7, 21);
+    afficherTexte("Appuyer sur 'q' pour quitter", 15, 22);
 
     // Print à la console
     printMatriceChar();
@@ -57,6 +93,12 @@ void AffichageConsole::initialiserLianes() {
             _feuilles[i][2] = { _xlianes[i] + 1, 18 };
         }
     }
+}
+
+void AffichageConsole::initialiserSkins() {
+    char apparence[9] = { 'M', '#', 'W', 'O', 'X', 'T', 'U', 'A', '8' };
+    for (int i = 0; i < 9; i++)
+        _skins[i].setId(apparence[i]);
 }
 
 void AffichageConsole::afficherArrierePlan() {
@@ -109,8 +151,6 @@ void AffichageConsole::afficherObstacles() {
 }
 
 void AffichageConsole::afficherIU() {
-    afficherContour();
-
     // Vider l'espace pour afficher le texte clairement
     for (int i = 1; i < NB_COLS - 1; i++) {
         _img[i][NB_LIGNES - 2] = ' ';

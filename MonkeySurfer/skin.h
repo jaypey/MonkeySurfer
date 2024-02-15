@@ -5,9 +5,12 @@
 
 class Skin {
 public:
+    Skin();
     Skin(char, const char *);
     ~Skin();
 
+    void setId(char id);
+    void setFile(const char* file);
     char getId();
     const char *getFile();
 private:

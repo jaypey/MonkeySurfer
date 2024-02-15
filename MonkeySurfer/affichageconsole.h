@@ -31,10 +31,12 @@ public:
     // Affichage à la console (cout)
     void afficherJeu();
     void afficherMenu();
+    void afficherMenuSkin();
 
 private:
     // Fonctions d'initialisation du jeu
     void initialiserLianes();
+    void initialiserSkins();
 
     // Mise à jour de la matrice de char
     void afficherArrierePlan();
@@ -68,6 +70,10 @@ private:
 
     // UI
     std::string _score; // Texte pour afficher le score
+
+    // Skin
+    int _indexSkin = 0;
+    Skin _skins[9];
 };
 
 #endif // !AFFICHAGECONSOLE_H

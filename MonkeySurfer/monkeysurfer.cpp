@@ -15,8 +15,10 @@ int main()
                 while (true) a.afficherJeu();
             }
             else if (c == '2') {
-                // TODO - menu skins
+                a.afficherMenuSkin();
+                while ((c = _getch()) != 'q');
             }
+            a.afficherMenu();
         }
     }
 }
