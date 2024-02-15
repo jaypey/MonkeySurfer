@@ -32,7 +32,8 @@ void AffichageConsole::afficherMenu() {
     // Remplissage des informations dans la matrice de char
     afficherArrierePlan();
     afficherContour();
-    afficherFichier("artMenu.txt", 13, 2);
+    afficherFichier("artMenu.txt", 5, 2);
+    afficherFichier("monkey.txt", 43, 4);
     afficherTexte("1. Jouer", 25, 15);
     afficherTexte("2. Skins", 25, 17);
     afficherTexte("3. Aide", 25, 19);

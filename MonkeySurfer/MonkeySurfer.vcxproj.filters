@@ -100,5 +100,8 @@
     <Text Include="showcaseSkinSelect.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="monkey.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

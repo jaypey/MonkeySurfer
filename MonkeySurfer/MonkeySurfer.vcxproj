@@ -168,6 +168,7 @@
   <ItemGroup>
     <Text Include="artMenu.txt" />
     <Text Include="gameOver.txt" />
+    <Text Include="monkey.txt" />
     <Text Include="showcaseSkin.txt" />
     <Text Include="showcaseSkinSelect.txt" />
   </ItemGroup>
