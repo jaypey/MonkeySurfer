@@ -2,6 +2,7 @@
 #define AFFICHAGECONSOLE_H
 
 #include <chrono>
+#include <fstream>
 #include <iostream>
 #include <string>
 #include "affichage.h"
@@ -44,12 +45,14 @@ private:
     void afficherIU();
     void afficherContour(); // Non hérité
     void afficherTexte(const std::string& s, int x, int y); // Non hérité
+    void afficherFichier(const char* nom, int x, int y);
 
     // Fonctions "helper" pour l'affichage à la console
     void printMatriceChar();
 
     // Lié au FPS
     bool peutAfficherProchaineImage(); // Attendre que l'image précédente aie finie de s'afficher, vitesse d'affichage limitée par le FPS
+    void attendreProchaineImage(); // Attend que "peutAfficherProchaineImage" soit true
 
 private:
     // Affichage

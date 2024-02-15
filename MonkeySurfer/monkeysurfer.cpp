@@ -7,6 +7,8 @@ int main()
     {
         Jeu j;
         AffichageConsole a(&j);
+        a.afficherMenu();
+        system("pause & cls");
         while (true)
             a.afficherJeu();
     }

@@ -9,8 +9,7 @@ AffichageConsole::AffichageConsole(Jeu *j) : Affichage(j) {
 AffichageConsole::~AffichageConsole() {}
 
 void AffichageConsole::afficherJeu() {
-    while (!peutAfficherProchaineImage()); // Attendre de pouvoir afficher la prochaine image
-    _lastfrm = std::chrono::steady_clock::now(); // Update du temps de la dernière image
+    attendreProchaineImage();
 
     // Remplissage des informations dans la matrice de char
     afficherArrierePlan();
@@ -25,7 +24,17 @@ void AffichageConsole::afficherJeu() {
 }
 
 void AffichageConsole::afficherMenu() {
+    attendreProchaineImage();
 
+    // Remplissage des informations dans la matrice de char
+    afficherContour();
+    afficherFichier("artMenu.txt", 13, 2);
+    afficherTexte("1. Jouer", 25, 16);
+    afficherTexte("2. Skins", 25, 18);
+    afficherTexte("3. Quitter", 25, 20);
+
+    // Print à la console
+    printMatriceChar();
 }
 
 void AffichageConsole::initialiserLianes() {
@@ -117,7 +126,6 @@ void AffichageConsole::afficherContour() {
     // Coutour zone de jeu + UI
     for (int i = 0; i < NB_COLS; i++) {
         _img[i][0] = '-';
-        _img[i][NB_LIGNES - 3] = '=';
         _img[i][NB_LIGNES - 1] = '-';
     }
     for (int i = 1; i < NB_LIGNES - 1; i++) {
@@ -129,6 +137,14 @@ void AffichageConsole::afficherContour() {
 void AffichageConsole::afficherTexte(const std::string& s, int x, int y) {
     for (int i = 0; i < s.size() && x + i < NB_COLS; i++)
         _img[x + i][y] = s[i];
+}
+
+void AffichageConsole::afficherFichier(const char* nom, int x, int y) {
+    std::ifstream fichier(nom);
+    std::string texte;
+
+    while (std::getline(fichier, texte) && y < NB_LIGNES)
+        afficherTexte(texte, x, y++);
 }
 
 void AffichageConsole::printMatriceChar() {
@@ -148,4 +164,9 @@ bool AffichageConsole::peutAfficherProchaineImage() {
     auto now = std::chrono::steady_clock::now();
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _lastfrm);
     return elapsed.count() > _DURFRM; // S'assure que suffisamment de temps s'est écoulé depuis le dernier affichage (durée basée sur le FPS)
+}
+
+void AffichageConsole::attendreProchaineImage() {
+    while (!peutAfficherProchaineImage()); // Attendre de pouvoir afficher la prochaine image
+    _lastfrm = std::chrono::steady_clock::now(); // Update du temps de la dernière image
 }
