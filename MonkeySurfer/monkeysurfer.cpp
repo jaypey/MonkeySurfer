@@ -19,9 +19,9 @@ int main()
                 while ((c = _getch()) != 'q') {
                     if (c == 224) c = _getch(); // Les caractères spéciaux émettent deux char (224, code de flèche)
                     if (c == 75)        a.modifierSkin(-1); // LEFT
-                    else if (c == 72)   a.modifierSkin(-3);  // UP
+                    else if (c == 72)   a.modifierSkin(-3); // UP
                     else if (c == 77)   a.modifierSkin(1);  // RIGHT
-                    else if (c == 80)   a.modifierSkin(3); // DOWN
+                    else if (c == 80)   a.modifierSkin(3);  // DOWN
                     a.afficherMenuSkin();
                 }
             }

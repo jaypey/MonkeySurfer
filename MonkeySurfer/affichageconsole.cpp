@@ -20,6 +20,7 @@ void AffichageConsole::afficherJeu() {
     afficherObstacles();
     afficherContour();
     afficherIU();
+    afficherGameOver();
 
     // Print à la console
     printMatriceChar();
@@ -163,6 +164,10 @@ void AffichageConsole::afficherIU() {
     // Afficher le texte pour le score
     _score = "Score : " + std::to_string(28 /*_jeu->getScore()*/);
     afficherTexte(_score, 2, NB_LIGNES - 2);
+}
+
+void AffichageConsole::afficherGameOver() {
+    afficherFichier("gameOver.txt", 3, 4);
 }
 
 void AffichageConsole::afficherContour() {

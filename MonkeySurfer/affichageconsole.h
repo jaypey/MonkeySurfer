@@ -52,6 +52,7 @@ private:
     void afficherItems();
     void afficherObstacles();
     void afficherIU();
+    void afficherGameOver();
     void afficherContour(); // Non hérité
     void afficherTexte(const std::string& s, int x, int y); // Non hérité
     void afficherFichier(const char* nom, int x, int y); // Non hérité

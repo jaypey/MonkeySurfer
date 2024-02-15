@@ -18,6 +18,7 @@ protected:
     virtual void afficherItems() = 0;
     virtual void afficherObstacles() = 0;
     virtual void afficherIU() = 0; // IU = Interface usager (Ex. nb de points, etc.)
+    virtual void afficherGameOver() = 0;
 
     Jeu *_jeu;
 };
