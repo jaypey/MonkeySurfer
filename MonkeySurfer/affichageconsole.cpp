@@ -50,7 +50,7 @@ void AffichageConsole::afficherMenuSkin() {
     // Affichage de la shop
     for (int rangee = 0; rangee < 3; rangee++)
         for (int col = 0; col < 3; col++) {
-            int index = rangee + col * 3;
+            int index = col + rangee * 3;
 
             std::string apparence;
             apparence += _skins[index].getId();
@@ -58,8 +58,8 @@ void AffichageConsole::afficherMenuSkin() {
             const char* fichier = (_indexSkin == index)
                                 ? "showcaseSkinSelect.txt"
                                 : "showcaseSkin.txt";
-            afficherFichier(fichier, 8 + rangee * 17, 2 + col * 6);
-            afficherTexte(apparence, 12 + rangee * 17, 4 + col * 6);
+            afficherFichier(fichier, 8 + col * ECART_COL_SKINS, 2 + rangee * ECART_RANGEE_SKINS);
+            afficherTexte(apparence, 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS);
         }
 
     std::string apparenceCourante = "Skin choisi : ";
@@ -71,6 +71,11 @@ void AffichageConsole::afficherMenuSkin() {
 
     // Print à la console
     printMatriceChar();
+}
+
+void AffichageConsole::modifierSkin(int val) {
+    _indexSkin = (_indexSkin + val) % NB_SKINS;
+    if (_indexSkin < 0) _indexSkin += NB_SKINS;
 }
 
 void AffichageConsole::initialiserLianes() {
@@ -124,11 +129,9 @@ void AffichageConsole::afficherLianes() {
 
 void AffichageConsole::afficherJoueur() {
     // Test - à faire pour de vrai plus tard
-    Skin s('M', "C:/monkey.jpeg");
-
     static int x = _xlianes[0];
     static int d = 1;
-    _img[x][15] = s.getId(); // monkey
+    _img[x][15] = _skins[_indexSkin].getId(); // monkey
     x += d;
     if (x == _xlianes[NB_LIANES - 1])
         d = -1;

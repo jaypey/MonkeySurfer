@@ -6,7 +6,7 @@
 class Skin {
 public:
     Skin();
-    Skin(char, const char *);
+    Skin(char id, const char * file);
     ~Skin();
 
     void setId(char id);

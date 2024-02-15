@@ -13,8 +13,14 @@
 #define NB_LIGNES 25
 
 #define NB_LIANES 5
-#define ECART_LIANES 6
-#define FPS 60 // Images par seconde (Frames per second)
+#define ECART_LIANES 10
+
+#define ECART_COL_SKINS 17
+#define ECART_RANGEE_SKINS 6
+
+#define NB_SKINS 9 // TEMPORAIRE PROBABLEMENT
+
+#define FPS 15 // Images par seconde (Frames per second)
 
 // Ceci est soit temporaire, soit ce sera bougé dans un autre fichier
 struct Coord {
@@ -33,6 +39,7 @@ public:
     void afficherMenu();
     void afficherMenuSkin();
 
+    void modifierSkin(int val);
 private:
     // Fonctions d'initialisation du jeu
     void initialiserLianes();
@@ -47,7 +54,7 @@ private:
     void afficherIU();
     void afficherContour(); // Non hérité
     void afficherTexte(const std::string& s, int x, int y); // Non hérité
-    void afficherFichier(const char* nom, int x, int y);
+    void afficherFichier(const char* nom, int x, int y); // Non hérité
 
     // Fonctions "helper" pour l'affichage à la console
     void printMatriceChar();
@@ -73,7 +80,7 @@ private:
 
     // Skin
     int _indexSkin = 0;
-    Skin _skins[9];
+    Skin _skins[NB_SKINS];
 };
 
 #endif // !AFFICHAGECONSOLE_H

@@ -2,7 +2,7 @@
 
 Skin::Skin() : _id(' ') {}
 
-Skin::Skin(char c, const char *f) : _id(c), _file(f) {}
+Skin::Skin(char id, const char *file) : _id(id), _file(file) {}
 
 Skin::~Skin() {}
 
