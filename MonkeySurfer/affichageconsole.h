@@ -6,7 +6,9 @@
 #include <string>
 #include "affichage.h"
 
-#define NB_COLS 41
+#include "skin.h" // TODO - enlever ce include quand d'autres fichiers l'auront déjà include
+
+#define NB_COLS 61
 #define NB_LIGNES 25
 
 #define NB_LIANES 5
@@ -25,15 +27,30 @@ public:
     AffichageConsole(Jeu *);
     ~AffichageConsole();
 
-    void afficher();
+    // Affichage à la console (cout)
+    void afficherJeu();
+    void afficherMenu();
+
+private:
+    // Fonctions d'initialisation du jeu
+    void initialiserLianes();
+
+    // Mise à jour de la matrice de char
     void afficherArrierePlan();
     void afficherLianes();
     void afficherJoueur();
     void afficherItems();
     void afficherObstacles();
     void afficherIU();
+    void afficherContour(); // Non hérité
+    void afficherTexte(const std::string& s, int x, int y); // Non hérité
 
+    // Fonctions "helper" pour l'affichage à la console
+    void printMatriceChar();
+
+    // Lié au FPS
     bool peutAfficherProchaineImage(); // Attendre que l'image précédente aie finie de s'afficher, vitesse d'affichage limitée par le FPS
+
 private:
     // Affichage
     char _img[NB_COLS][NB_LIGNES]; // Informations de l'image à imprimer à la console

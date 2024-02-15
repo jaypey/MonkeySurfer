@@ -2,10 +2,36 @@
 
 AffichageConsole::AffichageConsole(Jeu *j) : Affichage(j) {
     _lastfrm = std::chrono::steady_clock::now();
+    initialiserLianes();
     afficherArrierePlan();
+}
+
+AffichageConsole::~AffichageConsole() {}
+
+void AffichageConsole::afficherJeu() {
+    while (!peutAfficherProchaineImage()); // Attendre de pouvoir afficher la prochaine image
+    _lastfrm = std::chrono::steady_clock::now(); // Update du temps de la dernière image
+
+    // Remplissage des informations dans la matrice de char
+    afficherArrierePlan();
+    afficherLianes();
+    afficherJoueur();
+    afficherItems();
+    afficherObstacles();
+    afficherIU();
+
+    // Print à la console
+    printMatriceChar();
+}
+
+void AffichageConsole::afficherMenu() {
+
+}
+
+void AffichageConsole::initialiserLianes() {
+    int milieu = NB_COLS / 2;
 
     // Positionnement des lianes, centré dans la zone de jeu
-    int milieu = NB_COLS / 2;
     for (int i = 0; i < NB_LIANES; i++) {
         int multiple_offset = i - (NB_LIANES / 2);
         _xlianes[i] = milieu + (ECART_LIANES * multiple_offset);
@@ -22,32 +48,6 @@ AffichageConsole::AffichageConsole(Jeu *j) : Affichage(j) {
             _feuilles[i][2] = { _xlianes[i] + 1, 18 };
         }
     }
-}
-
-AffichageConsole::~AffichageConsole() {}
-
-void AffichageConsole::afficher() {
-    while (!peutAfficherProchaineImage()); // Attendre de pouvoir afficher la prochaine image
-    _lastfrm = std::chrono::steady_clock::now(); // Update du temps de la dernière image
-
-    // Remplissage des informations dans la matrice de char
-    afficherArrierePlan();
-    afficherLianes();
-    afficherJoueur();
-    afficherItems();
-    afficherObstacles();
-    afficherIU();
-
-    // Transposition des informations de la matrice de char dans une seule std::string pour tout imprimer
-    // à la console d'un seul coup avec un seul appel de std::cout (very fast)
-    _output.clear(); // Supprime le contenu de l'ancienne image
-    std::cout << "\x1b[0;0H"; // Curseur position (0, 0) - ANSI escape sequence
-    for (int y = 0; y < NB_LIGNES; y++) {
-        for (int x = 0; x < NB_COLS; x++)
-            _output += _img[x][y];
-        _output += '\n';
-    }
-    std::cout << _output; // Imprime l'image à la console
 }
 
 void AffichageConsole::afficherArrierePlan() {
@@ -73,9 +73,11 @@ void AffichageConsole::afficherLianes() {
 
 void AffichageConsole::afficherJoueur() {
     // Test - à faire pour de vrai plus tard
+    Skin s('M', "C:/monkey.jpeg");
+
     static int x = _xlianes[0];
     static int d = 1;
-    _img[x][15] = 'M'; // monkey
+    _img[x][15] = s.getId(); // monkey
     x += d;
     if (x == _xlianes[NB_LIANES - 1])
         d = -1;
@@ -98,25 +100,48 @@ void AffichageConsole::afficherObstacles() {
 }
 
 void AffichageConsole::afficherIU() {
+    afficherContour();
+
+    // Vider l'espace pour afficher le texte clairement
+    for (int i = 1; i < NB_COLS - 1; i++) {
+        _img[i][NB_LIGNES - 2] = ' ';
+        _img[i][NB_LIGNES - 3] = '=';
+    }
+
+    // Afficher le texte pour le score
+    _score = "Score : " + std::to_string(28 /*_jeu->getScore()*/);
+    afficherTexte(_score, 2, NB_LIGNES - 2);
+}
+
+void AffichageConsole::afficherContour() {
     // Coutour zone de jeu + UI
     for (int i = 0; i < NB_COLS; i++) {
         _img[i][0] = '-';
-        _img[i][NB_LIGNES - 3] = '-';
+        _img[i][NB_LIGNES - 3] = '=';
         _img[i][NB_LIGNES - 1] = '-';
     }
     for (int i = 1; i < NB_LIGNES - 1; i++) {
         _img[0][i] = '|';
         _img[NB_COLS - 1][i] = '|';
     }
+}
 
-    // Vider l'espace pour afficher le texte clairement
-    for (int i = 1; i < NB_COLS - 1; i++)
-        _img[i][NB_LIGNES - 2] = ' ';
+void AffichageConsole::afficherTexte(const std::string& s, int x, int y) {
+    for (int i = 0; i < s.size() && x + i < NB_COLS; i++)
+        _img[x + i][y] = s[i];
+}
 
-    // Afficher le texte pour le score
-    _score = "Score : " + std::to_string(28 /*_jeu->getScore()*/);
-    for (int i = 0; i < _score.size(); i++)
-        _img[i + 2][NB_LIGNES - 2] = _score[i];
+void AffichageConsole::printMatriceChar() {
+    // Transposition des informations de la matrice de char dans une seule std::string pour tout imprimer
+    // à la console d'un seul coup avec un seul appel de std::cout (very fast)
+    _output.clear(); // Supprime le contenu de l'ancienne image dans la std::string
+    std::cout << "\x1b[0;0H"; // Curseur position (0, 0) - ANSI escape sequence
+    for (int y = 0; y < NB_LIGNES; y++) {
+        for (int x = 0; x < NB_COLS; x++)
+            _output += _img[x][y];
+        _output += '\n';
+    }
+    std::cout << _output; // Imprime l'image à la console
 }
 
 bool AffichageConsole::peutAfficherProchaineImage() {

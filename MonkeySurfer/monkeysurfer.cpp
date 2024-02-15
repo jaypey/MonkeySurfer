@@ -8,6 +8,6 @@ int main()
         Jeu j;
         AffichageConsole a(&j);
         while (true)
-            a.afficher();
+            a.afficherJeu();
     }
 }
