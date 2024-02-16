@@ -128,10 +128,10 @@ void AffichageConsole::afficherLoading() {
     spdX += VEL_X;
     spdY += VEL_Y;
 
-    if (posX + spdX > NB_COLS - TAILLE_X || posX + spdX < 0) spdX = -spdX;
+    if (posX + spdX > NB_COLS - TAILLE_X - 1 || posX + spdX < 1) spdX = -spdX;
     else posX += spdX;
 
-    if (posY + spdY > NB_LIGNES - TAILLE_Y || posY + spdY < 0) spdY = -spdY;
+    if (posY + spdY > NB_LIGNES - TAILLE_Y - 1 || posY + spdY < 1) spdY = -spdY;
     else posY += spdY;
 
     afficherArrierePlan();

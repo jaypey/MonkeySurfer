@@ -19,7 +19,7 @@ int main()
                     a.afficherLoading();
                     auto current = std::chrono::steady_clock::now();
                     auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(current - start);
-                    if (elapsed.count() >= 2) break;
+                    if (elapsed.count() >= 3) break;
                 }
 
                 while (true) a.afficherJeu();
