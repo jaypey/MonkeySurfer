@@ -22,7 +22,11 @@ int main()
                     if (elapsed.count() >= 3) break;
                 }
 
-                while (true) a.afficherJeu();
+                while (true) {
+                    a.afficherJeu();
+                    if (_kbhit() && (c = _getch()) == 'q')
+                        break;
+                }
             }
             else if (c == '2') {
                 a.afficherMenuSkin();

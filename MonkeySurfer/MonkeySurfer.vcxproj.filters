@@ -103,5 +103,8 @@
     <Text Include="monkey.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="retryText.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

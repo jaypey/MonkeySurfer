@@ -236,6 +236,7 @@ void AffichageConsole::afficherIU() {
 
 void AffichageConsole::afficherGameOver() {
     afficherFichier("gameOver.txt", 3, 4);
+    afficherFichier("retryText.txt", 7, 18);
 }
 
 void AffichageConsole::afficherContour() {
