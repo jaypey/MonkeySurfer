@@ -1,14 +1,13 @@
-#ifndef ALEATOIRE_H
-#define ALEATOIRE_H
+#ifndef RANDOMGENERATOR_H
+#define RANDOMGENERATOR_H
 
-class Aleatoire
+#include <iostream>
+#include <string>
+
+class RandomGenerator
 {
 public:
-	Aleatoire();
-	~Aleatoire();
-
-private:
-
+    int random(int borneinf, int bornesup, int muons);
 };
 
-#endif // !ALEATOIRE_H
+#endif

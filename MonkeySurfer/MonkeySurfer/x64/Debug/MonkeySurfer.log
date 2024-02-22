@@ -1,0 +1,15 @@
+﻿  affichage.cpp
+  affichageconsole.cpp
+  aleatoire.cpp
+  banane.cpp
+  bouclier.cpp
+  collectible.cpp
+  jeu.cpp
+  joueur.cpp
+  menu.cpp
+  monkeysurfer.cpp
+  obstacle.cpp
+  piece.cpp
+  skin.cpp
+  Generating Code...
+  MonkeySurfer.vcxproj -> C:\prog\C++\MONKEY_SURFER\MonkeySurfer\MonkeySurfer\x64\Debug\MonkeySurfer.exe
