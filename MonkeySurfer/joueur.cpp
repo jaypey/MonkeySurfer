@@ -25,4 +25,5 @@ void Joueur::ramasserPiece(){
 
 void Joueur::conteurPointage(){
     
+
 }

@@ -1,0 +1,14 @@
+﻿  affichage.cpp
+  affichageconsole.cpp
+  aleatoire.cpp
+  banane.cpp
+  bouclier.cpp
+  collectible.cpp
+  jeu.cpp
+  joueur.cpp
+  monkeysurfer.cpp
+C:\Users\mjgag\OneDrive - USherbrooke\Ecole\S2\APP3\Jo\MonkeySurfer\MonkeySurfer\joueur.cpp(8,14): warning C4552: '-': result of expression not used
+  obstacle.cpp
+  piece.cpp
+  Generating Code...
+  MonkeySurfer.vcxproj -> C:\Users\mjgag\OneDrive - USherbrooke\Ecole\S2\APP3\Jo\MonkeySurfer\MonkeySurfer\x64\Debug\MonkeySurfer.exe

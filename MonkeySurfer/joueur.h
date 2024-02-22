@@ -18,8 +18,8 @@ public:
 	
 private:
 
-	int pieces;
-	int Score;
+	int nbPieces;
+	int score;
 	int nbObjets;
 };
 
