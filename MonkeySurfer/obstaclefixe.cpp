@@ -2,16 +2,20 @@
 
 ObstacleFixe::ObstacleFixe()
 {
+	setPosition({generateur.random(1, 5, 981910), HAUTEUR_GENERATION});
 }
 
 ObstacleFixe::~ObstacleFixe()
 {
 }
 
-void ObstacleFixe::collisionAvecJoueur()
+bool ObstacleFixe::collisionAvecJoueur(Coordonnee p_joueur)
 {
-	//fonction appelé lors de la collision
-	//bloque le joueur?
+	if (p_joueur == getPosition())
+	{
+		return true;
+	}
+	return false;
 }
 
 void ObstacleFixe::afficherInfo() const

@@ -8,7 +8,7 @@ public:
 	ObstacleFixe();
 	~ObstacleFixe();
 
-	void collisionAvecJoueur();
+	bool collisionAvecJoueur(Coordonnee p_joueur);
 	void afficherInfo() const;
 };
 
