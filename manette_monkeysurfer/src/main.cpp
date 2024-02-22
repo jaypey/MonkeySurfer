@@ -1,5 +1,4 @@
 #include <ArduinoJson.h>
-#include "json.hpp"
 #include "accelerometre.cpp"
 
 JsonDocument doc;

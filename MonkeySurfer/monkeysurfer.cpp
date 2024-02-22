@@ -6,7 +6,7 @@ int main()
 {
 	try {
 		asio::io_context io_context;
-		asio::serial_port serial(io_context, "COM5");
+		asio::serial_port serial(io_context, "COM4");
 
 		serial.set_option(asio::serial_port_base::baud_rate(9600));
 
