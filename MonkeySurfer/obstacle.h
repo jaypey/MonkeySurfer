@@ -1,13 +1,16 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
 
-class Obstacle
+#include "elementjeu.h"
+
+class Obstacle : public ElementJeu
 {
 public:
 	Obstacle();
-	~Obstacle();
+	virtual ~Obstacle();
 
-private:
+	virtual void collisionAvecJoueur() = 0;
+	virtual void afficherInfo() const = 0;
 
 };
 
