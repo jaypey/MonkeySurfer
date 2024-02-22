@@ -1,6 +1,6 @@
 #include "affichageconsole.h"
 
-AffichageConsole::AffichageConsole(Jeu *j) : Affichage(j) {
+AffichageConsole::AffichageConsole(Jeu *j, Menu *m) : Affichage(j, m) {
     _lastfrm = std::chrono::steady_clock::now();
     initialiserLianes();
     initialiserSkins();
@@ -29,7 +29,17 @@ void AffichageConsole::afficherJeu() {
 void AffichageConsole::afficherMenu() {
     attendreProchaineImage();
 
-    // Remplissage des informations dans la matrice de char
+    switch (_menu->getEtat()) {
+        case Menu::EtatMenu::PRINCIPAL: afficherMenuPrincipal(); break;
+        case Menu::EtatMenu::SKINS: afficherMenuSkin(); break;
+        case Menu::EtatMenu::AIDE: afficherAide(); break;
+        case Menu::EtatMenu::CHARGEMENT: afficherLoading(); break;
+    }
+
+    printMatriceChar();
+}
+
+void AffichageConsole::afficherMenuPrincipal() {
     afficherArrierePlan();
     afficherContour();
     afficherFichier("artMenu.txt", 5, 2);
@@ -38,14 +48,9 @@ void AffichageConsole::afficherMenu() {
     afficherTexte("2. Skins", 25, 17);
     afficherTexte("3. Aide", 25, 19);
     afficherTexte("4. Quitter", 25, 21);
-
-    // Print à la console
-    printMatriceChar();
 }
 
 void AffichageConsole::afficherMenuSkin() {
-    attendreProchaineImage();
-
     // Remplissage des informations dans la matrice de char
     afficherArrierePlan();
     afficherContour();
@@ -58,7 +63,7 @@ void AffichageConsole::afficherMenuSkin() {
             std::string apparence;
             apparence += _skins[index].getId();
 
-            const char* fichier = (_indexSkin == index)
+            const char* fichier = (_menu->getIndexSkin() == index)
                                 ? "showcaseSkinSelect.txt"
                                 : "showcaseSkin.txt";
             afficherFichier(fichier, 8 + col * ECART_COL_SKINS, 2 + rangee * ECART_RANGEE_SKINS);
@@ -66,26 +71,21 @@ void AffichageConsole::afficherMenuSkin() {
         }
 
     std::string apparenceCourante = "Skin choisi : ";
-    apparenceCourante += _skins[_indexSkin].getId();
+    apparenceCourante += _skins[_menu->getIndexSkin()].getId();
     afficherTexte(apparenceCourante, 22, 20);
 
     afficherTexte("Appuyer sur les fleches pour choisir un skin", 7, 21);
     afficherTexte("Appuyer sur 'q' pour quitter", 15, 22);
-
-    // Print à la console
-    printMatriceChar();
 }
 
 void AffichageConsole::afficherAide() {
-    attendreProchaineImage();
-
     // Remplissage des informations dans la matrice de char
     afficherArrierePlan();
     afficherContour();
 
     // Affichage du tutoriel
     std::string explicationSinge = " : Represente le singe (le joueur).";
-    explicationSinge.insert(explicationSinge.begin(), _skins[_indexSkin].getId());
+    explicationSinge.insert(explicationSinge.begin(), _skins[_menu->getIndexSkin()].getId());
 
     afficherTexte(explicationSinge, 3, 3);
 
@@ -99,9 +99,6 @@ void AffichageConsole::afficherAide() {
     afficherTexte("dans le menu de skins, accessible par le menu principal.", 3, 12);
 
     afficherTexte("Appuyer sur 'q' pour revenir au menu.", 12, 21);
-
-    // Print à la console
-    printMatriceChar();
 }
 
 void AffichageConsole::afficherLoading() {
@@ -109,8 +106,6 @@ void AffichageConsole::afficherLoading() {
     // Le code ci-dessous simule un monkey avec des physiques
     // qui bondit de gauche à droite & vice-versa, avec velocite
     // et vitesse pour déterminer la vitesse de chute
-
-    attendreProchaineImage();
 
     const int TAILLE_X = 14;
     const int TAILLE_Y = 8;
@@ -138,13 +133,6 @@ void AffichageConsole::afficherLoading() {
     afficherContour();
     afficherFichier("monkey.txt", posX, posY);
     afficherTexte("Chargement...", 25, 2);
-
-    printMatriceChar();
-}
-
-void AffichageConsole::modifierSkin(int val) {
-    _indexSkin = (_indexSkin + val) % NB_SKINS;
-    if (_indexSkin < 0) _indexSkin += NB_SKINS;
 }
 
 void AffichageConsole::initialiserLianes() {
@@ -200,7 +188,7 @@ void AffichageConsole::afficherJoueur() {
     // Test - à faire pour de vrai plus tard
     static int x = _xlianes[0];
     static int d = 1;
-    _img[x][15] = _skins[_indexSkin].getId(); // monkey
+    _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
     x += d;
     if (x == _xlianes[NB_LIANES - 1])
         d = -1;

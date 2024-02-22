@@ -18,9 +18,7 @@
 #define ECART_COL_SKINS 17
 #define ECART_RANGEE_SKINS 6
 
-#define NB_SKINS 9 // TEMPORAIRE PROBABLEMENT
-
-#define FPS 15 // Images par seconde (Frames per second)
+#define FPS 60 // Images par seconde (Frames per second)
 
 // Ceci est soit temporaire, soit ce sera bougé dans un autre fichier
 struct Coord {
@@ -31,18 +29,19 @@ struct Coord {
 class AffichageConsole : public Affichage
 {
 public:
-    AffichageConsole(Jeu *);
+    AffichageConsole(Jeu *j, Menu *m);
     ~AffichageConsole();
 
     // Affichage à la console (cout)
     void afficherJeu();
     void afficherMenu();
+private:
+    // Affichage menu;
+    void afficherMenuPrincipal();
     void afficherMenuSkin();
     void afficherAide();
     void afficherLoading();
 
-    void modifierSkin(int val);
-private:
     // Fonctions d'initialisation du jeu
     void initialiserLianes();
     void initialiserSkins();
@@ -82,7 +81,6 @@ private:
     std::string _score; // Texte pour afficher le score
 
     // Skin
-    int _indexSkin = 0;
     Skin _skins[NB_SKINS];
 };
 

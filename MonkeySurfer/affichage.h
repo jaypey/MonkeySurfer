@@ -2,11 +2,12 @@
 #define AFFICHAGE_H
 
 #include "jeu.h"
+#include "menu.h"
 
 class Affichage
 {
 public:
-    Affichage(Jeu *);
+    Affichage(Jeu *j, Menu *m);
     virtual ~Affichage();
 
     virtual void afficherJeu() = 0;
@@ -21,6 +22,7 @@ protected:
     virtual void afficherGameOver() = 0;
 
     Jeu *_jeu;
+    Menu *_menu;
 };
 
 #endif // !AFFICHAGE_H
