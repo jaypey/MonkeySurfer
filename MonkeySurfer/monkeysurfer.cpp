@@ -1,13 +1,23 @@
-#include <iostream>
-#include "aleatoire.h"
+#include "affichageconsole.h"
+#include <conio.h>
 
 int main()
 {
-    RandomGenerator randomnbr;
-    for (int i=0; i<100; i++)
-    {
-        std::cout << randomnbr.random(10, 45, 1545652657) << std::endl;
+    Jeu j;
+    Menu m;
+    AffichageConsole a(&j, &m);
+
+    while (m.getEtat() != Menu::EtatMenu::QUITTER) {
+        if (m.getEtat() == Menu::EtatMenu::JEU) {
+            a.afficherJeu();
+            if (_kbhit() && _getch() == 'q') {
+                m.setEtat(Menu::EtatMenu::PRINCIPAL);
+                continue;
+            }
+        }
+        else {
+            m.update();
+            a.afficherMenu();
+        }
     }
-
-
 }
