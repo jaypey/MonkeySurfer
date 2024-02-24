@@ -7,8 +7,12 @@ public:
 	Joueur();
 	~Joueur();
 
+
+
 	int getPiece();
 	int getScore();
+
+	double position();
 
 	void ramasserPiece();
 	void conteurPointage();

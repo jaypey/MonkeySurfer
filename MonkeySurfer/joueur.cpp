@@ -2,7 +2,7 @@
 #include <algorithm>
 
 
-Joueur:: Joueur(){
+Joueur::Joueur(){
     score = 0;
     nbPieces = 0;
     nbObjets - 0;
@@ -25,5 +25,22 @@ void Joueur::ramasserPiece(){
 
 void Joueur::conteurPointage(){
     
+
+}
+
+void Joueur::ajouterInventaire(){
+}
+
+
+
+void Joueur::echangerInventaire() {
+
+}
+
+double Joueur::position() {
+
+}
+
+void Joueur::useObjet() {
 
 }

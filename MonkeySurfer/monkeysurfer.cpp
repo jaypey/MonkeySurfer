@@ -1,12 +1,12 @@
 #include <iostream>
-
-int main()
-{
-    // high_resolution_clock example
 #include <iostream>
 #include <ctime>
 #include <ratio>
 #include <chrono>
+int main()
+{
+    // high_resolution_clock example
+
 
   using namespace std::chrono;
 
