@@ -7,7 +7,7 @@ class Projectile : public Obstacle
 public:
 	Projectile();
 	~Projectile();
-	void collisionAvecJoueur();
+	bool collisionAvecJoueur(Coordonnee p_joueur);
 	void tombe();
 	void afficherInfo() const;
 };

@@ -8,8 +8,9 @@ Projectile::~Projectile()
 {
 }
 
-void Projectile::collisionAvecJoueur()
+bool Projectile::collisionAvecJoueur(Coordonnee p_joueur)
 {
+    return false;
 }
 
 void Projectile::tombe()
