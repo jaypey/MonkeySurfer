@@ -1,7 +1,7 @@
 #ifndef BANANE_H
 #define BANANE_H
 
-class Banane
+class Banane : Collectible
 {
 public:
 	Banane();

@@ -3,7 +3,8 @@
 
 int main()
 {
-    Jeu j;
+    Joueur p1;
+    Jeu j(&p1);
     Menu m;
     AffichageConsole a(&j, &m);
 

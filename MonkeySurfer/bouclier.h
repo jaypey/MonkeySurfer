@@ -1,7 +1,7 @@
 #ifndef BOUCLIER_H
 #define BOUCLIER_H
 
-class Bouclier
+class Bouclier : Collectible
 {
 public:
 	Bouclier();
