@@ -24,7 +24,7 @@ int Joueur::getScore(){
 
 void Joueur::ramasserPiece(){
     nbPieces += 1;
-    score +=10 // A revoir si on conserve
+    score += 10; // A revoir si on conserve
 }
 
 void Joueur::compteurPointage(){
