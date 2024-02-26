@@ -1,14 +1,16 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-class Piece
+#include "collectible.h"
+
+class Piece : public ElementJeu
 {
 public:
 	Piece();
 	~Piece();
 
-private:
-
+	void appliquerEffet(Joueur& joueur);
+	void afficherInfo() const;
 };
 
 #endif // !PIECE_H

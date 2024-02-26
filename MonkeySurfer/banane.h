@@ -1,13 +1,17 @@
 #ifndef BANANE_H
 #define BANANE_H
 
-class Banane
+#include "collectible.h"
+
+class Banane : public Collectible
 {
 public:
 	Banane();
 	~Banane();
 
-private:
+	void stocker(Joueur& joueur);
+	void appliquerEffet(Joueur& joueur);
+	void afficherInfo() const;
 
 };
 

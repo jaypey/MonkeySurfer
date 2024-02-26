@@ -48,6 +48,18 @@
     <ClCompile Include="aleatoire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="elementjeu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="elementaleatoire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="obstaclefixe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="skin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,6 +96,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="aleatoire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="elementjeu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="elementaleatoire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="obstaclefixe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="skin.h">

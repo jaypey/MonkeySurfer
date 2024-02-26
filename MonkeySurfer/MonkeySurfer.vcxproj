@@ -145,12 +145,16 @@
     <ClCompile Include="banane.cpp" />
     <ClCompile Include="bouclier.cpp" />
     <ClCompile Include="collectible.cpp" />
+    <ClCompile Include="elementaleatoire.cpp" />
+    <ClCompile Include="elementjeu.cpp" />
     <ClCompile Include="jeu.cpp" />
     <ClCompile Include="joueur.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="monkeysurfer.cpp" />
     <ClCompile Include="obstacle.cpp" />
+    <ClCompile Include="obstaclefixe.cpp" />
     <ClCompile Include="piece.cpp" />
+    <ClCompile Include="projectile.cpp" />
     <ClCompile Include="skin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -160,11 +164,15 @@
     <ClInclude Include="banane.h" />
     <ClInclude Include="bouclier.h" />
     <ClInclude Include="collectible.h" />
+    <ClInclude Include="elementaleatoire.h" />
+    <ClInclude Include="elementjeu.h" />
     <ClInclude Include="jeu.h" />
     <ClInclude Include="joueur.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="obstacle.h" />
+    <ClInclude Include="obstaclefixe.h" />
     <ClInclude Include="piece.h" />
+    <ClInclude Include="projectile.h" />
     <ClInclude Include="skin.h" />
   </ItemGroup>
   <ItemGroup>
