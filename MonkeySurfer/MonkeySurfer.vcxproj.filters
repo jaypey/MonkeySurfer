@@ -60,6 +60,12 @@
     <ClCompile Include="projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="skin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jeu.h">
@@ -104,5 +110,31 @@
     <ClInclude Include="projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="skin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="gameOver.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="artMenu.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="showcaseSkin.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="showcaseSkinSelect.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="monkey.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="retryText.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

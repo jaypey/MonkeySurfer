@@ -5,7 +5,7 @@ Bouclier::Bouclier()
 	setID(BOUCLIER);
 	
 	RandomGenerator rand;
-	setDuree(rand.random(10, 15, 2543312));
+	setDuree((float)rand.random(10, 15, 2543312));
 }
 
 Bouclier::~Bouclier()

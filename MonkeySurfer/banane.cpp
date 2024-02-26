@@ -5,7 +5,7 @@ Banane::Banane()
 	setID(BANANE);
 
 	RandomGenerator rand;
-	setDuree(rand.random(5, 9, 1951132));
+	setDuree((float)rand.random(5, 9, 1951132));
 }
 
 Banane::~Banane()

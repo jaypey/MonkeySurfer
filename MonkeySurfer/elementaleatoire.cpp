@@ -55,4 +55,6 @@ Obstacle* GenerateurItem::getRandomObstacle()
 	{
 		return new ObstacleFixe;
 	}
+
+	return nullptr;
 }
