@@ -18,7 +18,7 @@
 #define ECART_COL_SKINS 17
 #define ECART_RANGEE_SKINS 6
 
-#define FPS 60 // Images par seconde (Frames per second)
+#define FPS 30 // Images par seconde (Frames per second)
 
 // Ceci est soit temporaire, soit ce sera bougé dans un autre fichier
 struct Coord {

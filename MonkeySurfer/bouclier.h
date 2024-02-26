@@ -1,14 +1,16 @@
 #ifndef BOUCLIER_H
 #define BOUCLIER_H
+#include "collectible.h"
 
-class Bouclier : Collectible
+class Bouclier : public Collectible
 {
 public:
 	Bouclier();
 	~Bouclier();
 
-private:
-
+	void stocker(Joueur& joueur);
+	void appliquerEffet(Joueur& joueur);
+	void afficherInfo() const;
 };
 
 #endif // !BOUCLIER_H
