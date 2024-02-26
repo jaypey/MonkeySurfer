@@ -54,15 +54,11 @@ double Joueur::position() {
 
 }
 
-void Joueur::useObjet(int idObj) {
-    //Sais pas trop comment renvoyer l'id objet, ca va ou dans le code apres?
-    if (inventaire[0] != -1) { //Si inventaire pas vide
-        if (inventaire[1] != -1) { //si 2e objet, reviens a la pos 0
-            inventaire[0] = inventaire[1];
-            inventaire[1] = -1;
-        }
-        else { //si juste un obj, utilise
-            inventaire[0] == -1; //vide la position 0
-        }
-    }
+int Joueur::useObjet(int idObj) {
+    
+    int usedObj = inventaire[0];
+    inventaire[0] = inventaire[1];
+    inventaire[1] = -1;
+
+    return usedObj;
 }
