@@ -15,10 +15,10 @@ public:
 	~Jeu();
 
 	void debuterPartie();
+	Coordonnee getPositionJoueur();
+	bool isGameOver();
 
 	std::vector<ElementJeu*> getElements() const;
-	std::vector<Obstacle*> getObstacles() const;
-	std::vector<Collectible*> getItems() const;
 private:
 	void updateJeu();
 	void updateJoueur();

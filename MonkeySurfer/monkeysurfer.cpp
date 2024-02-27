@@ -12,6 +12,7 @@ int main()
 
     while (m.getEtat() != Menu::EtatMenu::QUITTER) {
         if (m.getEtat() == Menu::EtatMenu::JEU) {
+            j.debuterPartie();
             a.afficherJeu();
             if (_kbhit() && _getch() == 'q') {
                 m.setEtat(Menu::EtatMenu::PRINCIPAL);

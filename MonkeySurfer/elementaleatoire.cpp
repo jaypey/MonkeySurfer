@@ -48,7 +48,8 @@ Obstacle* GenerateurItem::getRandomObstacle()
 
 	if (valeurAleatoire == 0)
 	{
-		return new Projectile;
+		/*return new Projectile;*/
+		return new ObstacleFixe; //Temporaire
 	}
 
 	else if (valeurAleatoire == 1)

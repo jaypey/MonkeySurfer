@@ -17,14 +17,19 @@ void Jeu::debuterPartie()
 	_mainThread = std::thread(&Jeu::updateJeu, this);
 }
 
-std::vector<Obstacle*> Jeu::getObstacles() const
+Coordonnee Jeu::getPositionJoueur()
 {
-	return _obstacles;
+	return _joueur->getPosition();
 }
 
-std::vector<Collectible*> Jeu::getItems() const
+bool Jeu::isGameOver()
 {
-	return _items;
+	return _gameOver;
+}
+
+std::vector<ElementJeu*> Jeu::getElements() const
+{
+	return _elements;
 }
 
 void Jeu::updateJeu()
@@ -45,24 +50,30 @@ void Jeu::updateJeu()
 void Jeu::updateJoueur()
 {
 	char c = _getch();
-	//if (c == 75)        _joueur->coordonee; // LEFT
-	//else if (c == 77)   _joueur->coordonee;  // RIGHT
+	Coordonnee courante = _joueur->getPosition();
+	if (c == 224) c = _getch();
+	if (c == 75) { //LEFT
+		if (courante.x > 0) {
+			courante.x++;
+			_joueur->setPosition(courante);
+
+		}
+	}
+	else if (c == 77) { //RIGHT
+		if (courante.x <= 3) {
+			courante.x--;
+			_joueur->setPosition(courante);
+		}
+	}
 
 }
 
 void Jeu::validerCollision()
 {
-	for (int i = 0; i < _obstacles.size(); i++)
+
+	for (int i = 0; i < _elements.size(); i++)
 	{
-		if (_obstacles[i]->getPosition() == _joueur->getPosition()) {
-			_gameOver = true;
-			return;
-		}
-	}
-	for (int i = 0; i < _items.size(); i++)
-	{
-		if (_items[i]->getPosition() == _joueur->getPosition()) {
-			/*_joueur->inventaire */ //Ajouter l'objet dans l'inventaire
+		if (_elements[i]->getPosition() == _joueur->getPosition()) {
 			return;
 		}
 	}
@@ -72,25 +83,16 @@ void Jeu::avancerCase()
 {
 	Coordonnee courant;
 
-	for (int i = 0; i < _obstacles.size(); i++)
+	for (int i = 0; i < _elements.size(); i++)
 	{
-		courant = _obstacles[i]->getPosition();
+		courant = _elements[i]->getPosition();
 		courant.y--;
 		if (courant.y - 1 < 0)
 		{
-			_obstacles.erase(_obstacles.begin() + i);
+			_elements.erase(_elements.begin() + i);
 		}
-		_obstacles[i]->setPosition(courant);
+		_elements[i]->setPosition(courant);
 	}
-	for (int i = 0; i < _items.size(); i++)
-	{
-		courant = _items[i]->getPosition();
-		if (courant.y-1 < 0)
-		{
-			_items.erase(_items.begin() + i);
-		}
-		courant.y--;
-		_items[i]->setPosition(courant);
-	}
-	_generateur.getRandomObstacle();
+	
+	_elements.push_back(_generateur.getRandomObstacle());
 }

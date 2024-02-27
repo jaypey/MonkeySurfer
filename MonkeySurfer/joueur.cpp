@@ -2,6 +2,7 @@
 
 Joueur::Joueur()
 {
+	position = { 2, 15 };
 }
 
 Joueur::~Joueur()

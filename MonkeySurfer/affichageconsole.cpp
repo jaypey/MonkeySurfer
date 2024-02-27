@@ -20,7 +20,9 @@ void AffichageConsole::afficherJeu() {
     afficherObstacles();
     afficherContour();
     afficherIU();
-    afficherGameOver();
+    if (_jeu->isGameOver()) {
+        afficherGameOver();
+    }
 
     // Print à la console
     printMatriceChar();
@@ -185,22 +187,18 @@ void AffichageConsole::afficherLianes() {
 }
 
 void AffichageConsole::afficherJoueur() {
-    // Test - à faire pour de vrai plus tard
-    static int x = _xlianes[0];
-    static int d = 1;
+    Coordonnee positionCourante = _jeu->getPositionJoueur();
+    int x = _xlianes[positionCourante.x];
     _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
-    x += d;
-    if (x == _xlianes[NB_LIANES - 1])
-        d = -1;
-    if (x == _xlianes[0])
-        d = 1;
 }
 
 void AffichageConsole::afficherItems() {
-    /* PSEUDO-CODE
-    for (int i = 0; i < _jeu->items().taille(); i++)
-        _img[_jeu->items()[i].x()][_jeu->items()[i].y()];
-    */
+    ElementJeu* elementCourant;
+    for (int i = 0; i < _jeu->getElements().size(); i++) {
+        elementCourant = _jeu->getElements()[i];
+        _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = 'X';
+    }
+    
 }
 
 void AffichageConsole::afficherObstacles() {
