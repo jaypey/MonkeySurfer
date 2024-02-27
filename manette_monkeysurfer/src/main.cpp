@@ -29,12 +29,30 @@ void setup()
 void loop() 
 {
     StaticJsonDocument<64> doc;
-    // Créer une instance de la classe Accelerometre
-    Accelerometre pololo;
+    
+    Accelerometre accelerometre;
+    Joystick joystick;
+    Bouton bouton1;
+    Bouton bouton2;
+    Bouton bouton3;
+    Bouton bouton4;
 
-    // Appeler la fonction shake avec l'argument 'x'
-    int resultat = pololo.shake('z');
-    doc["shake"] = resultat;
+ 
+    int resultataccelerometre = accelerometre.shake('z');
+    int resultatjoystick = joystick.;
+    int resultatbouton1 = bouton1.;
+    int resultatbouton2 = bouton2.;
+    int resultatbouton3 = bouton3.;
+    int resultatbouton4 = bouton4.;
+
+    doc["shake"] = resultataccelerometre;
+    doc["joystick"] = resultatjoystick;
+    doc["bouton1"] = resultatbouton1;
+    doc["bouton2"] = resultatbouton2;
+    doc["bouton3"] = resultatbouton3;
+    doc["bouton4"] = resultatbouton4;
+
+
 
     // Sérialisez l'objet JSON
     String jsonStr;
