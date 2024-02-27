@@ -51,7 +51,6 @@ private:
     void afficherLianes();
     void afficherJoueur();
     void afficherItems();
-    void afficherObstacles();
     void afficherIU();
     void afficherGameOver();
     void afficherContour(); // Non hérité

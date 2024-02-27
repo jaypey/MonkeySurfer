@@ -12,7 +12,7 @@
 #define BOUCLIER			3
 #define PIECE				4
 
-#define HAUTEUR_GENERATION	11
+#define HAUTEUR_GENERATION	25
 
 class ElementJeu
 {

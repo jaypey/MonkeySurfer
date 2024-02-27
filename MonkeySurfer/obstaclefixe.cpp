@@ -2,7 +2,8 @@
 
 ObstacleFixe::ObstacleFixe()
 {
-	setPosition({generateur.random(1, 5, 981910), HAUTEUR_GENERATION});
+	setID(OBSTACLE_FIXE);
+	setPosition({generateur.random(0, 4, rand() % 1000), 0});
 }
 
 ObstacleFixe::~ObstacleFixe()

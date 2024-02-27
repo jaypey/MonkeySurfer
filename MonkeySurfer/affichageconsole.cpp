@@ -17,10 +17,11 @@ void AffichageConsole::afficherJeu() {
     afficherLianes();
     afficherJoueur();
     afficherItems();
-    afficherObstacles();
     afficherContour();
     afficherIU();
-    afficherGameOver();
+    if (_jeu->isGameOver()) {
+        afficherGameOver();
+    }
 
     // Print à la console
     printMatriceChar();
@@ -185,29 +186,25 @@ void AffichageConsole::afficherLianes() {
 }
 
 void AffichageConsole::afficherJoueur() {
-    // Test - à faire pour de vrai plus tard
-    static int x = _xlianes[0];
-    static int d = 1;
+    Coordonnee positionCourante = _jeu->getPositionJoueur();
+    int x = _xlianes[positionCourante.x];
     _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
-    x += d;
-    if (x == _xlianes[NB_LIANES - 1])
-        d = -1;
-    if (x == _xlianes[0])
-        d = 1;
 }
 
 void AffichageConsole::afficherItems() {
-    /* PSEUDO-CODE
-    for (int i = 0; i < _jeu->items().taille(); i++)
-        _img[_jeu->items()[i].x()][_jeu->items()[i].y()];
-    */
-}
-
-void AffichageConsole::afficherObstacles() {
-    /* PSEUDO-CODE
-    for (int i = 0; i < _jeu->obstacles().taille(); i++)
-        _img[_jeu->obstacles()[i].x()][_jeu->obstacles()[i].y()];
-    */
+    ElementJeu* elementCourant;
+    for (int i = 0; i < _jeu->getElements().size(); i++) {
+        elementCourant = _jeu->getElements()[i];
+        if (elementCourant->getID() == OBSTACLE_FIXE) //Éventuellement trouver une manière plus élégante
+        {
+            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = 'X';
+        }
+        else
+        {
+            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = '$';
+        }
+    }
+    
 }
 
 void AffichageConsole::afficherIU() {
@@ -218,7 +215,7 @@ void AffichageConsole::afficherIU() {
     }
 
     // Afficher le texte pour le score
-    _score = "Score : " + std::to_string(28 /*_jeu->getScore()*/);
+    _score = "Score : " + std::to_string(_jeu->getPointageJoueur()) + " Pieces : " + std::to_string(_jeu->getPiecesJoueur());
     afficherTexte(_score, 2, NB_LIGNES - 2);
 }
 

@@ -17,13 +17,13 @@ public:
 	bool echangerInventaire();
 	int useObjet(int idObj);
 
-	Coordonnee getPosition()const;
-	void setPosition(const Coordonnee& pos);
+	Coordonnee getPosition() const;
+	void setPosition(const Coordonnee &pos);
 	bool up();
 	bool down();
 	bool Right();
 	bool Left();
-	
+
 private:
 	Coordonnee position;
 	int nbPieces;
