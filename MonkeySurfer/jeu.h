@@ -4,6 +4,7 @@
 #include "piece.h"
 #include "collectible.h"
 #include <thread>
+#include "elementaleatoire.h"
 #ifndef JEU_H
 #define JEU_H
 
@@ -15,8 +16,9 @@ public:
 
 	void debuterPartie();
 
-	std::vector<Obstacle> getObstacles() const;
-	std::vector<Collectible> getItems() const;
+	std::vector<ElementJeu*> getElements() const;
+	std::vector<Obstacle*> getObstacles() const;
+	std::vector<Collectible*> getItems() const;
 private:
 	void updateJeu();
 	void updateJoueur();
@@ -26,8 +28,8 @@ private:
 	std::chrono::steady_clock::time_point _lastUpdate;
 	
 	Joueur* _joueur; //Ajuster pour multijoueur éventuellement
-	std::vector<Obstacle> _obstacles;
-	std::vector<Collectible> _items;
+	GenerateurItem _generateur;
+	std::vector<ElementJeu*> _elements;
 	std::thread _mainThread;
 	bool _gameOver;
 	int _vitesse;

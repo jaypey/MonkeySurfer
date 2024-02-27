@@ -1,5 +1,7 @@
 #include "affichageconsole.h"
 #include <conio.h>
+#include "joueur.h"
+#include "jeu.h"
 
 int main()
 {

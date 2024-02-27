@@ -1,3 +1,4 @@
+#include "coordonnee.h"
 #ifndef JOUEUR_H
 #define JOUEUR_H
 
@@ -7,8 +8,10 @@ public:
 	Joueur();
 	~Joueur();
 
+	Coordonnee getPosition();
+	void setPosition(Coordonnee);
 private:
-
+	Coordonnee position;
 };
 
 #endif // !JOUEUR_H
