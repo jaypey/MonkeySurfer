@@ -2,28 +2,30 @@
 #define JOUEUR_H
 
 #include <chrono>
+#include "coordonnee.h"
 
 class Joueur
 {
 public:
 	Joueur();
 	~Joueur();
-
-
-
 	int getPiece();
 	int getScore();
-
-	double position();
-
 	void ramasserPiece();
 	void compteurPointage();
-	void ajouterInventaire(int idObj);
-	void echangerInventaire();
-	void useObjet(int idObj);
+	bool ajouterInventaire(int idObj);
+	bool echangerInventaire();
+	int useObjet(int idObj);
+
+	Coordonnee getPosition()const;
+	void setPosition(const Coordonnee& pos);
+	bool up();
+	bool down();
+	bool Right();
+	bool Left();
 	
 private:
-
+	Coordonnee position;
 	int nbPieces;
 	int score;
 	int nbObjets;
