@@ -10,7 +10,7 @@ Joueur::Joueur()
     inventaire[1] = -1;
 
     position.x = 2;
-    position.y = 2;
+    position.y = 15;
     lastUpdate = std::chrono::steady_clock::now(); // moment dernier update pour score, initialiser
 }
 
@@ -46,7 +46,7 @@ void Joueur::compteurPointage()
     if (duree >= 1)
     {
 
-        score += duree * 10; // 10 points par seconde ecoulee
+        score += (int)duree * 10; // 10 points par seconde ecoulee
         lastUpdate = maintenant;
     }
 }
@@ -61,7 +61,7 @@ bool Joueur::ajouterInventaire(int idObj)
     }
     else if (inventaire[1] == -1)
     {
-        inventaire[1] == idObj; // Objet ajoute a la pos 1 de l'inventaire
+        inventaire[1] = idObj; // Objet ajoute a la pos 1 de l'inventaire
         return true;
     }
     return false;
@@ -117,7 +117,7 @@ bool Joueur::down()
 
 bool Joueur::Right()
 {
-    if (position.x > 4)
+    if (position.x >= 4)
     {
 
         return false;

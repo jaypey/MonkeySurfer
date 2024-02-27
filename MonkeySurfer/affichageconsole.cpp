@@ -17,7 +17,6 @@ void AffichageConsole::afficherJeu() {
     afficherLianes();
     afficherJoueur();
     afficherItems();
-    afficherObstacles();
     afficherContour();
     afficherIU();
     if (_jeu->isGameOver()) {
@@ -196,16 +195,16 @@ void AffichageConsole::afficherItems() {
     ElementJeu* elementCourant;
     for (int i = 0; i < _jeu->getElements().size(); i++) {
         elementCourant = _jeu->getElements()[i];
-        _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = 'X';
+        if (elementCourant->getID() == OBSTACLE_FIXE) //Éventuellement trouver une manière plus élégante
+        {
+            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = 'X';
+        }
+        else
+        {
+            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = '$';
+        }
     }
     
-}
-
-void AffichageConsole::afficherObstacles() {
-    /* PSEUDO-CODE
-    for (int i = 0; i < _jeu->obstacles().taille(); i++)
-        _img[_jeu->obstacles()[i].x()][_jeu->obstacles()[i].y()];
-    */
 }
 
 void AffichageConsole::afficherIU() {
@@ -216,7 +215,7 @@ void AffichageConsole::afficherIU() {
     }
 
     // Afficher le texte pour le score
-    _score = "Score : " + std::to_string(28 /*_jeu->getScore()*/);
+    _score = "Score : " + std::to_string(_jeu->getPointageJoueur()) + " Pieces : " + std::to_string(_jeu->getPiecesJoueur());
     afficherTexte(_score, 2, NB_LIGNES - 2);
 }
 

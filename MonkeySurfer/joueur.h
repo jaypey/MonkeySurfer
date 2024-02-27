@@ -1,4 +1,3 @@
-#include "coordonnee.h"
 #ifndef JOUEUR_H
 #define JOUEUR_H
 

@@ -1,12 +1,9 @@
-#include "joueur.h"
-#include <queue>
-#include "obstacle.h"
-#include "piece.h"
-#include "collectible.h"
-#include <thread>
-#include "elementaleatoire.h"
 #ifndef JEU_H
 #define JEU_H
+#include <vector>
+#include "elementaleatoire.h"
+#include "joueur.h"
+
 
 class Jeu
 {
@@ -17,6 +14,10 @@ public:
 	void debuterPartie();
 	Coordonnee getPositionJoueur();
 	bool isGameOver();
+	bool isStarted();
+	int getPointageJoueur();
+	int getPiecesJoueur();
+	void restartJeu(Joueur* j);
 
 	std::vector<ElementJeu*> getElements() const;
 private:
@@ -30,9 +31,9 @@ private:
 	Joueur* _joueur; //Ajuster pour multijoueur éventuellement
 	GenerateurItem _generateur;
 	std::vector<ElementJeu*> _elements;
-	std::thread _mainThread;
 	bool _gameOver;
 	int _vitesse;
+	bool _isStarted;
 };
 
 #endif // !JEU_H
