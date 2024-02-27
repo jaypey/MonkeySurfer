@@ -42,7 +42,7 @@ void Joueur::compteurPointage(){
 
     if (duree >= 1) {
 
-        score += duree * 10;  //10 points par seconde ecoulee
+        score += (int)duree * 10;  //10 points par seconde ecoulee
         lastUpdate = maintenant;
     }
 }
@@ -55,7 +55,7 @@ bool Joueur::ajouterInventaire(int idObj){
         return true;
     }
     else if (inventaire[1] == -1) {
-        inventaire[1] == idObj;        //Objet ajoute a la pos 1 de l'inventaire
+        inventaire[1] = idObj;        //Objet ajoute a la pos 1 de l'inventaire
         return true; 
     }
     return false;

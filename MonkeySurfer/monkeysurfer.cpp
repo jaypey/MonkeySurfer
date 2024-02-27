@@ -20,3 +20,4 @@ int main()
             a.afficherMenu();
         }
     }
+}
