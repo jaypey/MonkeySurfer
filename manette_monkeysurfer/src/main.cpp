@@ -4,7 +4,10 @@
 #include "bargraph.h"
 #include "bargraph.cpp"
 #include <LiquidCrystal.h>
-//rouge 23, jaune 25, vert 27, rouge1 22, rouge2 24, rouge3 26, jaune1 28, jaune2 30, jaune3 32, jaune4 34, vert1 36, vert2 38, vert3 40
+#include <ArduinoJson.h>
+#include "accelerometre.cpp"
+
+JsonDocument doc;
 
 del rouge(23);
 del jaune(25);
@@ -20,12 +23,26 @@ void setup()
   lebargraph.instancier(22, 24, 26, 28, 30, 32, 34, 36, 38, 40);
   ecran.begin(16, 2);
   ecran.print("Vous etes mort!");
+  Serial.begin(9600);
 }
 
 void loop() 
 {
-  lebargraph.joie();
-  rouge.allumer();
-  jaune.allumer();
-  vert.allumer();
+    StaticJsonDocument<64> doc;
+    // Créer une instance de la classe Accelerometre
+    Accelerometre pololo;
+
+    // Appeler la fonction shake avec l'argument 'x'
+    int resultat = pololo.shake('z');
+    doc["shake"] = resultat;
+
+    // Sérialisez l'objet JSON
+    String jsonStr;
+    serializeJson(doc, jsonStr);
+
+    // Faire autre chose avec le résultat si nécessaire
+    Serial.println(resultat);
+
+    // Attendre un peu avant de recommencer
+    delay(200);
 }
