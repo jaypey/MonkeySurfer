@@ -12,6 +12,7 @@ int main()
     js.readSerial();
     while (!(_kbhit() && (c = _getch()) == 'q')) {
         js.readSerial();
+        js.writeSerial("ALLO");
         js.printData();
     }
 

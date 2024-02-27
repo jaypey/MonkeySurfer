@@ -41,7 +41,7 @@ void JsonSerial::writeSerial(const char* json) {
 		return;
 	}
 
-	// todo
+	_serial->write_some(asio::buffer(json, sizeof(json)));
 }
 
 void JsonSerial::printData() {
