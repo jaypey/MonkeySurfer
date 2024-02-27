@@ -28,5 +28,3 @@ int main()
             a.afficherMenu();
         }
     }
-
-}
