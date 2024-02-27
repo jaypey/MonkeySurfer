@@ -47,11 +47,11 @@ void loop()
     StaticJsonDocument<64> docverspc;
     
     Accelerometre accelerometre;
-    Joystick joystick;
+    /*Joystick joystick;
     Bouton bouton1;
     Bouton bouton2;
     Bouton bouton3;
-    Bouton bouton4;
+    Bouton bouton4;*/
 
  
     int resultataccelerometre = accelerometre.shake('z');
