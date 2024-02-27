@@ -105,7 +105,7 @@ void loop()
         Bargraph8 = docversarduino["Bargraph8"];
         Bargraph9 = docversarduino["Bargraph9"];
         Bargraph10 = docversarduino["Bargraph10"];
-        LCD = docversarduino["LED1"];
+        LCD = docversarduino["LCD"];
         MoteurVibrant = docversarduino["MoteurVibrant"];
       
     }
