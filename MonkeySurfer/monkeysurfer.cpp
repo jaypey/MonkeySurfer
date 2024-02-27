@@ -1,4 +1,3 @@
-
 #include "affichageconsole.h"
 #include <conio.h>
 
@@ -21,5 +20,3 @@ int main()
             a.afficherMenu();
         }
     }
-
-}
