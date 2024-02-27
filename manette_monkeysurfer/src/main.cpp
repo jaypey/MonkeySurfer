@@ -28,7 +28,7 @@ int Bargraph8 = 0;
 int Bargraph9 = 0;
 int Bargraph10 = 0;
 int MoteurVibrant = 0;
-char LCD = [];
+char* LCD = "";
 
 
 void setup() 
