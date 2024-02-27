@@ -17,15 +17,21 @@ LiquidCrystal ecran(39, 37, 35, 33, 31, 29);
 
 void setup() 
 {
-  rouge.instancier();
-  jaune.instancier();
-  vert.instancier();
-  lebargraph.instancier(22, 24, 26, 28, 30, 32, 34, 36, 38, 40);
-  ecran.begin(16, 2);
-  ecran.print("Vous etes mort!");
+  // rouge.instancier();
+  // jaune.instancier();
+  // vert.instancier();
+  // lebargraph.instancier(22, 24, 26, 28, 30, 32, 34, 36, 38, 40);
+  // ecran.begin(16, 2);
+  // ecran.print("Vous etes mort!");
   Serial.begin(9600);
 }
 
+void loop() {
+  Serial.print("bonjour\n");
+  delay(200);
+}
+
+/*
 void loop() 
 {
     StaticJsonDocument<64> doc;
@@ -46,3 +52,4 @@ void loop()
     // Attendre un peu avant de recommencer
     delay(200);
 }
+*/
