@@ -39,9 +39,12 @@ void Joueur::compteurPointage(){
 
     auto maintenant = std::chrono::steady_clock::now();
     auto duree = std::chrono::duration_cast<std::chrono::seconds>(maintenant - lastUpdate).count();
-    score += duree * 10;  //10 points par seconde ecoulee
-    lastUpdate = maintenant;
 
+    if (duree >= 1) {
+
+        score += duree * 10;  //10 points par seconde ecoulee
+        lastUpdate = maintenant;
+    }
 }
 
 bool Joueur::ajouterInventaire(int idObj){
