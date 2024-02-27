@@ -1,3 +1,4 @@
+
 #include "affichageconsole.h"
 #include <conio.h>
 #include "joueur.h"
@@ -24,4 +25,5 @@ int main()
             a.afficherMenu();
         }
     }
+
 }
