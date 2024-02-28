@@ -15,6 +15,8 @@ JsonSerial::JsonSerial() {
     _ndx = 0;
 
     _writeAvailable = false;
+    _lastWrite = std::chrono::steady_clock::now();
+    _elapsed = std::chrono::milliseconds(0);
 }
 
 JsonSerial::~JsonSerial() {
@@ -25,6 +27,11 @@ JsonSerial::~JsonSerial() {
 }
 
 void JsonSerial::openSerialPort(const char* port) {
+    if (_serial && _serial->is_open()) {
+        std::cerr << "Port serial deja ouvert." << std::endl;
+        return;
+    }
+
     try {
         _context = new asio::io_context;
         _work = new asio::io_context::work(*_context);
@@ -37,7 +44,34 @@ void JsonSerial::openSerialPort(const char* port) {
         _writeAvailable = true;
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        std::cerr << "Erreur: " << e.what() << std::endl;
+    }
+}
+
+void JsonSerial::setJson() {
+    _sendJson["score"] = 123;
+    _sendJson["bouclierTempsRestantMs"] = 1500;
+    _sendJson["powerUpTempsRestantMs"] = 600;
+}
+
+void JsonSerial::sendJson() {
+    _now = std::chrono::steady_clock::now();
+    _elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(_now - _lastWrite);
+    if (_elapsed.count() >= WRITE_MAX_ELAPSED_TIME_MS) {
+        _jstr = _sendJson.dump();
+        _jstr.insert(0, 1, '>');
+        _jstr.append(1, '<');
+        writeSerial(_jstr.c_str());
+
+        _lastWrite = std::chrono::steady_clock::now();
+    }
+
+}
+
+void JsonSerial::recvJson() {
+    readSerial();
+    if (msgAvailable()) {
+        printData();
     }
 }
 
@@ -88,7 +122,7 @@ void JsonSerial::readSerial() {
     }
 }
 
-void JsonSerial::writeSerial(const char* json) {
+void JsonSerial::writeSerial(const char* data) {
     if (!_serial || !_serial->is_open()) {
         std::cerr << "Aucune donnee ne peut etre ecrite, le port serial doit etre ouvert." << std::endl;
         return;
@@ -97,7 +131,7 @@ void JsonSerial::writeSerial(const char* json) {
     if (_writeAvailable) {
         _writeAvailable = false;
 
-        _serial->async_write_some(asio::buffer(json, std::strlen(json)),
+        _serial->async_write_some(asio::buffer(data, std::strlen(data)),
             [this](const asio::error_code& error, size_t bytesTransferred) {
                 _writeAvailable = true;
                 if (error)
@@ -112,5 +146,5 @@ bool JsonSerial::msgAvailable() {
 
 void JsonSerial::printData() {
     std::cout << _msg << std::endl;
-    _newData = false; // temp
+    _newData = false;
 }

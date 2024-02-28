@@ -10,6 +10,7 @@
 #define JSON_DATA_SIZE 1024
 #define START_MARKER '>'
 #define END_MARKER '<'
+#define WRITE_MAX_ELAPSED_TIME_MS 200
 
 class JsonSerial {
 public:
@@ -17,13 +18,17 @@ public:
     ~JsonSerial();
 
     void openSerialPort(const char* port);
-    void readSerial();
-    void writeSerial(const char* json);
 
-    bool msgAvailable();
-    
-    void printData();
+    void setJson();
+    void sendJson();
+    void recvJson();
 private:
+    // SERIAL
+    void readSerial();
+    void writeSerial(const char* data);
+    bool msgAvailable();
+    void printData();
+
     asio::io_context::work* _work;
     asio::io_context* _context;
     asio::serial_port* _serial;
@@ -38,6 +43,14 @@ private:
     int _ndx; // index d'ecriture des donnees dans _msg
 
     bool _writeAvailable;
+    std::string _jstr; // string dans lequel le dump du contenu du doc json est fait
+    std::chrono::steady_clock::time_point _lastWrite;
+    std::chrono::steady_clock::time_point _now;
+    std::chrono::milliseconds _elapsed;
+
+    // JSON
+    nlohmann::json _sendJson;
+    nlohmann::json _recvJson;
 };
 
 #endif // JSONSERIAL_H!
