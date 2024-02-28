@@ -6,18 +6,25 @@
 int main()
 {
     JsonSerial js;
-    const char* str = ">{\"test\": 2}<";
+    const char* str = ">{\"btnAppuye\": true}<";
+
+    auto begin = std::chrono::steady_clock::now();
 
     js.openSerialPort("COM5");
 
     while (true) {
-        js.writeSerial(str);
-
-        js.readSerial();
-        if (js.bytesAvailable()) {
-            js.printData();
+        // Ecriture
+        auto now = std::chrono::steady_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin);
+        if (elapsed.count() >= 200) {
+            js.writeSerial(str);
+            begin = std::chrono::steady_clock::now();
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        // Lecture
+        js.readSerial();
+        if (js.msgAvailable()) {
+            js.printData();
+        }
     }
 }

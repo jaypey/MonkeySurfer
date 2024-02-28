@@ -59,15 +59,17 @@ void send() {
 
   DeserializationError error = deserializeJson(doc, data);
 
-  Serial.print("Received: ");
-  Serial.println(data);
+  Serial.print("JUNK>Received: ");
+  Serial.print(data);
+  Serial.println("\n<");
 
   if (error) {
-    Serial.print("deserialize() failed: ");
-    Serial.println(error.c_str());
+    Serial.print(">deserialize() failed: ");
+    Serial.print(error.c_str());
+    Serial.println("<");
   }
   else {
-    Serial.println("Data received successfully");
+    Serial.println(">Data received successfully<");
   }
 
   newData = false;

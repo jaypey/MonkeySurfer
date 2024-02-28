@@ -6,11 +6,15 @@ JsonSerial::JsonSerial() {
     _serial = nullptr;
     _contextThread = nullptr;
 
-    _data[0] = '\0';
+    _serialData[0] = '\0';
+    _msg[0] = '\0';
 
     _readAvailable = false;
+    _receivingMsg = false;
+    _newData = false;
+    _ndx = 0;
+
     _writeAvailable = false;
-    _bytesAvailable = 0;
 }
 
 JsonSerial::~JsonSerial() {
@@ -43,16 +47,43 @@ void JsonSerial::readSerial() {
         return;
     }
 
-    if (_readAvailable) {
+    if (_readAvailable && !_newData) {
         _readAvailable = false;
 
-        _serial->async_read_some(asio::buffer(_data, sizeof(_data)),
+        _serial->async_read_some(asio::buffer(_serialData, sizeof(_serialData)),
             [this](const asio::error_code& error, size_t bytesTransferred) {
-                _readAvailable = true;
-                if (!error)
-                    _bytesAvailable += bytesTransferred;
-                else
+                if (error) {
                     std::cerr << "Erreur readSerial: " << error.message() << std::endl;
+                    return;
+                }
+
+                for (int i = 0; i < bytesTransferred;) {
+                    if (_newData)
+                        continue; // On stop la lecture tant qu'un nouveau message peut etre lu
+
+                    if (_receivingMsg) {
+                        if (_serialData[i] != END_MARKER) {
+                            _msg[_ndx] = _serialData[i];
+                            _ndx++;
+                            if (_ndx >= JSON_DATA_SIZE) {
+                                _ndx = JSON_DATA_SIZE - 1;
+                            }
+                        }
+                        else {
+                            _msg[_ndx] = '\0';
+                            _receivingMsg = false;
+                            _ndx = 0;
+                            _newData = true;
+                        }
+                    }
+                    else if (_serialData[i] == START_MARKER) {
+                        _receivingMsg = true;
+                    }
+
+                    i++;
+                }
+
+                _readAvailable = true;
             });
     }
 }
@@ -68,9 +99,6 @@ void JsonSerial::writeSerial(const char* json) {
 
         _serial->async_write_some(asio::buffer(json, std::strlen(json)),
             [this](const asio::error_code& error, size_t bytesTransferred) {
-                if (bytesTransferred < 13) {
-                    std::cout << "PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM " << std::endl;
-                }
                 _writeAvailable = true;
                 if (error)
                     std::cerr << "Erreur writeSerial: " << error.message() << std::endl;
@@ -78,11 +106,11 @@ void JsonSerial::writeSerial(const char* json) {
     }
 }
 
-size_t JsonSerial::bytesAvailable() {
-    return _bytesAvailable;
+bool JsonSerial::msgAvailable() {
+    return _newData;
 }
 
 void JsonSerial::printData() {
-    std::cout.write(_data, _bytesAvailable);
-    _bytesAvailable = 0;
+    std::cout << _msg << std::endl;
+    _newData = false; // temp
 }
