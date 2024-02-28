@@ -59,8 +59,8 @@ void JsonSerial::sendJson() {
     _elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(_now - _lastWrite);
     if (_elapsed.count() >= WRITE_MAX_ELAPSED_TIME_MS) {
         _jstr = _sendJson.dump();
-        _jstr.insert(0, 1, '>');
-        _jstr.append(1, '<');
+        _jstr.insert(0, 1, START_MARKER);
+        _jstr.append(1, END_MARKER);
         writeSerial(_jstr.c_str());
 
         _lastWrite = std::chrono::steady_clock::now();
