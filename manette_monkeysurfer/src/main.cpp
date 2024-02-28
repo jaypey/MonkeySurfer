@@ -1,55 +1,74 @@
 #include <Arduino.h>
-#include "del.h"
-#include "del.cpp"
-#include "bargraph.h"
-#include "bargraph.cpp"
-#include <LiquidCrystal.h>
 #include <ArduinoJson.h>
-#include "accelerometre.cpp"
 
-JsonDocument doc;
+#define START_MARKER '>'
+#define END_MARKER '<'
+#define MAX_DATA_SIZE 1024
 
-del rouge(23);
-del jaune(25);
-del vert(27);
-bargraph lebargraph;
-LiquidCrystal ecran(39, 37, 35, 33, 31, 29);
+char data[MAX_DATA_SIZE];
+int ndx = 0;
+bool recvInProgress = false;
+bool newData = false;
 
-void setup() 
+void recv();
+void send();
+
+void setup()
 {
-  // rouge.instancier();
-  // jaune.instancier();
-  // vert.instancier();
-  // lebargraph.instancier(22, 24, 26, 28, 30, 32, 34, 36, 38, 40);
-  // ecran.begin(16, 2);
-  // ecran.print("Vous etes mort!");
   Serial.begin(9600);
 }
 
 void loop() {
-  Serial.print("bonjour\n");
-  delay(200);
+  recv();
+  send();
 }
 
-/*
-void loop() 
-{
-    StaticJsonDocument<64> doc;
-    // Créer une instance de la classe Accelerometre
-    Accelerometre pololo;
+void recv() {
+  char rc;
 
-    // Appeler la fonction shake avec l'argument 'x'
-    int resultat = pololo.shake('z');
-    doc["shake"] = resultat;
+  while (Serial.available() > 0 && newData == false) {
+    rc = Serial.read();
 
-    // Sérialisez l'objet JSON
-    String jsonStr;
-    serializeJson(doc, jsonStr);
-
-    // Faire autre chose avec le résultat si nécessaire
-    Serial.println(resultat);
-
-    // Attendre un peu avant de recommencer
-    delay(200);
+    if (recvInProgress == true) {
+      if (rc != END_MARKER) {
+        data[ndx] = rc;
+        ndx++;
+        if (ndx >= MAX_DATA_SIZE) {
+          ndx = MAX_DATA_SIZE - 1;
+        }
+      }
+      else {
+        data[ndx] = '\0';
+        recvInProgress = false;
+        ndx = 0;
+        newData = true;
+      }
+    }
+    else if (rc == START_MARKER) {
+      recvInProgress = true;
+    }
+  }
 }
-*/
+
+void send() {
+  if (newData == false)
+    return;
+
+  StaticJsonDocument<500> doc;
+  JsonVariant parse_msg;
+
+  DeserializationError error = deserializeJson(doc, data);
+
+  Serial.print("Received: ");
+  Serial.println(data);
+
+  if (error) {
+    Serial.print("deserialize() failed: ");
+    Serial.println(error.c_str());
+  }
+  else {
+    Serial.println("Data received successfully");
+  }
+
+  newData = false;
+}

@@ -6,31 +6,18 @@
 int main()
 {
     JsonSerial js;
-    char c;
+    const char* str = ">{\"test\": 2}<";
 
     js.openSerialPort("COM5");
-    js.readSerial();
-    while (!(_kbhit() && (c = _getch()) == 'q')) {
+
+    while (true) {
+        js.writeSerial(str);
+
         js.readSerial();
-        js.writeSerial("ALLO");
-        js.printData();
+        if (js.bytesAvailable()) {
+            js.printData();
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
-
-    //Jeu j;
-    //Menu m;
-    //AffichageConsole a(&j, &m);
-
-    //while (m.getEtat() != Menu::EtatMenu::QUITTER) {
-    //    if (m.getEtat() == Menu::EtatMenu::JEU) {
-    //        a.afficherJeu();
-    //        if (_kbhit() && _getch() == 'q') {
-    //            m.setEtat(Menu::EtatMenu::PRINCIPAL);
-    //            continue;
-    //        }
-    //    }
-    //    else {
-    //        m.update();
-    //        a.afficherMenu();
-    //    }
-    //}
 }
