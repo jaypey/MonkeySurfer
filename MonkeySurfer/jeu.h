@@ -20,6 +20,7 @@ public:
 	void restartJeu(Joueur* j);
 
 	std::vector<ElementJeu*> getElements() const;
+	std::chrono::steady_clock::time_point getLastUpdate();
 private:
 	void updateJeu();
 	void updateJoueur();

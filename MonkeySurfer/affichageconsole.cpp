@@ -2,6 +2,7 @@
 
 AffichageConsole::AffichageConsole(Jeu *j, Menu *m) : Affichage(j, m) {
     _lastfrm = std::chrono::steady_clock::now();
+    _lastupdate = std::chrono::steady_clock::now();
     initialiserLianes();
     initialiserSkins();
     afficherArrierePlan();
@@ -11,6 +12,8 @@ AffichageConsole::~AffichageConsole() {}
 
 void AffichageConsole::afficherJeu() {
     attendreProchaineImage();
+
+    updateDeco();
 
     // Remplissage des informations dans la matrice de char
     afficherArrierePlan();
@@ -247,6 +250,17 @@ void AffichageConsole::afficherFichier(const char* nom, int x, int y) {
 
     while (std::getline(fichier, texte) && y < NB_LIGNES)
         afficherTexte(texte, x, y++);
+}
+
+void AffichageConsole::updateDeco() {
+    //auto now = std::chrono::steady_clock::now();
+    //auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _lastupdate);
+    if (_lastupdate < _jeu->getLastUpdate()) {
+        for (int x = 0; x < NB_LIANES; x++)
+            for (int f = 0; f < 3; f++)
+                _feuilles[x][f].y = (_feuilles[x][f].y + 1) % 23;
+        _lastupdate = _jeu->getLastUpdate();
+    }
 }
 
 void AffichageConsole::printMatriceChar() {

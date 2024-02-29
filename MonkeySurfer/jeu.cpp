@@ -56,6 +56,10 @@ std::vector<ElementJeu*> Jeu::getElements() const
 	return _elements;
 }
 
+std::chrono::steady_clock::time_point Jeu::getLastUpdate() {
+	return _lastUpdate;
+}
+
 void Jeu::updateJeu()
 {
 	if (!_gameOver)

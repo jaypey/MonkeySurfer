@@ -129,11 +129,8 @@ bool Joueur::Right()
 
 bool Joueur::Left()
 {
-    if (position.x < 0)
-    {
-
+    if (position.x <= 0)
         return false;
-    }
 
     position.x -= 1;
     return true;
