@@ -62,8 +62,12 @@ void JsonSerial::sendJson() {
 
     // test
     nlohmann::json j;
-    j["score"] = 123;
-    j["bouclier"] = true;
+    j["delR"] = true;
+    j["delJ"] = true;
+    j["delV"] = true;
+    j["bar"] = true;
+    j["lcd"] = "bonjour";
+    j["motvib"] = true;
 
     send(j.dump().c_str());
 }

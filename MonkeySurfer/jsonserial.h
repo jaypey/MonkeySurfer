@@ -41,7 +41,7 @@ private:
     bool _recvInProgress;
     bool _readingMsg;
     bool _newData;
-    int _ndx; // read index
+    int _ndx; // read index (ecriture dans _msg)
 
     bool _sendInProgress;
 

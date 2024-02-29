@@ -10,7 +10,7 @@ int main()
     js.openSerialPort("COM4");
 
     Joueur* p1 = new Joueur();
-    Jeu j(p1);
+    Jeu j(p1, &js);
     Menu m;
     AffichageConsole a(&j, &m);
 
@@ -36,4 +36,6 @@ int main()
             a.afficherMenu();
         }
     }
+
+    exit(0);
 }
