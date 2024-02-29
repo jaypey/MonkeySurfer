@@ -150,6 +150,7 @@
     <ClCompile Include="elementjeu.cpp" />
     <ClCompile Include="jeu.cpp" />
     <ClCompile Include="joueur.cpp" />
+    <ClCompile Include="jsonserial.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="monkeysurfer.cpp" />
     <ClCompile Include="obstacle.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="elementjeu.h" />
     <ClInclude Include="jeu.h" />
     <ClInclude Include="joueur.h" />
+    <ClInclude Include="jsonserial.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="obstacle.h" />
     <ClInclude Include="obstaclefixe.h" />
