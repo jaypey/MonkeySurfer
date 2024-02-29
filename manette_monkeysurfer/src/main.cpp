@@ -1,11 +1,12 @@
 #include <Arduino.h>
 #include "del.h"
-#include "del.cpp"
 #include "bargraph.h"
-#include "bargraph.cpp"
+#include "accelerometre.h"
 #include <LiquidCrystal.h>
 #include <ArduinoJson.h>
-#include "accelerometre.cpp"
+#include "bouton.h"
+#include "moteurvibrant.h"
+#include "joystick.h"
 
 JsonDocument doc;
 
@@ -28,7 +29,7 @@ void setup()
 
 void loop() 
 {
-    StaticJsonDocument<64> doc;
+    /*StaticJsonDocument<64> doc;
     // Créer une instance de la classe Accelerometre
     Accelerometre pololo;
 
@@ -44,5 +45,10 @@ void loop()
     Serial.println(resultat);
 
     // Attendre un peu avant de recommencer
-    delay(200);
+    delay(200);*/
+  Joystick joystick;
+  Bouton boutons;
+  MoteurVibrant moteurVibrant;
+
+
 }
