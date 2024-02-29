@@ -20,7 +20,12 @@ void JsonSerial::recvJson() {
     return;
 
   StaticJsonDocument<JSON_BUFFER_SIZE> doc;
-  deserializeJson(doc, _msg);
+  DeserializationError error = deserializeJson(doc, _msg);
+
+  if (error) {
+    _newData = false; // donnees invalides, on l'ecrase
+    return;
+  }
 
   // LED
   if (doc["delR"] == true) _info->delR->allumer(); else _info->delR->eteindre();
@@ -61,9 +66,9 @@ void JsonSerial::sendJson() {
   doc["joyX"] = (int) _info->joy->lireDirectionX();
   doc["joyY"] = (int) _info->joy->lireDirectionY();
 
-  Serial.print('>');
+  Serial.print(">");
   serializeJson(doc, Serial);
-  Serial.print('<');
+  Serial.print("<\n");
 }
 
 void JsonSerial::recv() {

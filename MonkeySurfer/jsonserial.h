@@ -23,6 +23,8 @@ public:
     void recvJson();
     void sendJson();
 
+    void recvPrint();
+
     bool boutonAppuye(int indexBtn);
 private:
     void recv();

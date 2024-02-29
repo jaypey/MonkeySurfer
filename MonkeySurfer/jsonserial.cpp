@@ -55,10 +55,12 @@ void JsonSerial::recvJson() {
 }
 
 void JsonSerial::sendJson() {
+    // Delai d'envoi
     auto now = std::chrono::steady_clock::now();
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _lastsend);
     if (elapsed.count() < SEND_DELAY)
         return;
+    _lastsend = std::chrono::steady_clock::now();
 
     // test
     nlohmann::json j;
@@ -69,7 +71,18 @@ void JsonSerial::sendJson() {
     j["lcd"] = "bonjour";
     j["motvib"] = true;
 
-    send(j.dump().c_str());
+    std::string msg = START_MARKER + j.dump() + END_MARKER;
+
+    send(msg.c_str());
+}
+
+void JsonSerial::recvPrint() {
+    recv();
+
+    if (_newData) {
+        std::cout << _msg << std::endl;
+        _newData = false;
+    }
 }
 
 bool JsonSerial::boutonAppuye(int indexBtn) {
