@@ -2,12 +2,13 @@
 #include <conio.h>
 #include "affichageconsole.h"
 
-Jeu::Jeu(Joueur* j)
+Jeu::Jeu(Joueur* j, JsonSerial* js)
 {
 	_joueur = j;
 	_vitesse = 1000;
 	_isStarted = false;
 	_gameOver = false;
+	_jsonserial = js;
 }
 
 Jeu::~Jeu() {}
@@ -79,20 +80,24 @@ void Jeu::updateJeu()
 
 void Jeu::updateJoueur()
 {
-	Coordonnee courante = _joueur->getPosition();
-	if (!_kbhit())
-	{
-		return;
-	}
-	char c = _getch();
-	if (c == 224) c = _getch();
-	if (c == 75) {
+	// MANETTE
+	if (_jsonserial->boutonAppuye(0))
 		_joueur->Left();
-	}
-	else if (c == 77) {
+	if (_jsonserial->boutonAppuye(1))
 		_joueur->Right();
-	}
 
+	// CLAVIER
+	if (_kbhit())
+	{
+		char c = _getch();
+		if (c == 224) c = _getch();
+		if (c == 75) {
+			_joueur->Left();
+		}
+		else if (c == 77) {
+			_joueur->Right();
+		}
+	}
 }
 
 void Jeu::validerCollision()

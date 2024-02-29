@@ -3,12 +3,12 @@
 
 #include <Arduino.h>
 
-class del
+class Del
 {
     public:
-        del();
-        del (int sapin);
-        ~del();
+        Del();
+        Del (int sapin);
+        ~Del();
         void setpin(int sapin);
         int getpin();
         void instancier();

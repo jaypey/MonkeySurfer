@@ -3,12 +3,13 @@
 #include <vector>
 #include "elementaleatoire.h"
 #include "joueur.h"
+#include "jsonserial.h"
 
 
 class Jeu
 {
 public:
-	Jeu(Joueur*);
+	Jeu(Joueur*, JsonSerial*);
 	~Jeu();
 
 	void debuterPartie();
@@ -35,6 +36,8 @@ private:
 	bool _gameOver;
 	int _vitesse;
 	bool _isStarted;
+
+	JsonSerial* _jsonserial; // pour les commandes de manette
 };
 
 #endif // !JEU_H
