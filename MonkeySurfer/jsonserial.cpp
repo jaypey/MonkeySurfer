@@ -69,19 +69,17 @@ void JsonSerial::sendJson() {
 }
 
 bool JsonSerial::boutonAppuye(int indexBtn) {
-    if (1 > indexBtn || 4 < indexBtn) {
+    if (0 > indexBtn || 3 < indexBtn) {
         std::cerr << "Mauvais index de bouton, fonction \"JsonSerial::boutonAppuye(int indexBtn)\"." << std::endl;
         return false;
     }
 
-    std::string cleBtn = "btn" + std::to_string(indexBtn);
-
-    if (!_json.contains(cleBtn)) {
-        std::cerr << "La cle " << cleBtn << " ne se retrouve pas dans le document json." << std::endl;
+    if (!_json.contains("btn")) {
+        std::cerr << "La cle \"btn\" ne se retrouve pas dans le document json." << std::endl;
         return false;
     }
 
-    return _json[cleBtn] == true;
+    return _json["btn"][indexBtn] == true;
 }
 
 void JsonSerial::recv() {
