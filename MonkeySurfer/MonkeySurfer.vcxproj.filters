@@ -69,6 +69,9 @@
     <ClCompile Include="jsonserial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="networking.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jeu.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="jsonserial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="networking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

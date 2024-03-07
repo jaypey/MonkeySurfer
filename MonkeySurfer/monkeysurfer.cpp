@@ -3,6 +3,7 @@
 #include "menu.h"
 #include "affichageconsole.h"
 #include "jsonserial.h"
+#include "enet/enet.h"
 
 int main()
 {
