@@ -104,11 +104,29 @@ void Jeu::validerCollision()
 			switch (_elements[i]->getID())
 			{
 			case OBSTACLE_FIXE:
-				_gameOver = true;
+				if (_joueur->getEtatBouclier())
+				{
+					_elements.erase(_elements.begin() + i);//Détruit l'obstacle
+					_joueur->changerEtatBouclier(false);   //Désactive le bouclier
+				}
+				else
+				{
+					_gameOver = true;
+				}
 				break;
 			case PIECE:
 				_joueur->ramasserPiece();
 				_elements.erase(_elements.begin() + i);
+				break;
+			case BOUCLIER:
+				_joueur->ajouterInventaire(_elements[i]->getID());
+				_elements.erase(_elements.begin() + i);
+				break;
+			case BANANE:
+				_joueur->ajouterInventaire(_elements[i]->getID());
+				_elements.erase(_elements.begin() + i);
+				break;
+
 			default:
 				break;
 			}

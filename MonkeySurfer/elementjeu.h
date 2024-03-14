@@ -11,6 +11,8 @@
 #define BANANE				2
 #define BOUCLIER			3
 #define PIECE				4
+#define HARPIE				5
+#define SERPENT				6
 
 #define HAUTEUR_GENERATION	25
 

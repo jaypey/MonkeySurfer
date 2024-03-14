@@ -14,12 +14,12 @@ Bouclier::~Bouclier()
 
 void Bouclier::stocker(Joueur& joueur)
 {
-	//ajouter un bouclier dans l'inventaire du joueur
+	joueur.ajouterInventaire(getID());
 }
 
 void Bouclier::appliquerEffet(Joueur& joueur)
 {
-	//activer le bouclier pendant x secondes (var duree) dans la classe joueur
+	joueur.changerEtatBouclier(true);
 }
 
 void Bouclier::afficherInfo() const

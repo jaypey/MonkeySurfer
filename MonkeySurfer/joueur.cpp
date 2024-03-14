@@ -5,6 +5,9 @@ Joueur::Joueur()
     score = 0;
     nbPieces = 0;
     nbObjets = 0;
+    bouclierActif = false;
+    effetBanane = false;
+    immobilise = false;
 
     inventaire[0] = -1; // Tableau objets initialement vide
     inventaire[1] = -1;
@@ -91,6 +94,55 @@ int Joueur::useObjet(int idObj)
     return usedObj; // retourne lobjet a la position 0, qui est lobjet utilise
 }
 
+void Joueur::switchEtatBouclier()
+{
+    if (bouclierActif)
+    {
+        bouclierActif = false;
+    }
+    else
+    {
+        bouclierActif = true;
+    }
+}
+
+void Joueur::setEtatBouclier(bool etat)
+{
+    bouclierActif = etat;
+}
+
+bool Joueur::getEtatBouclier()
+{
+    return bouclierActif;
+}
+
+void Joueur::switchEtatEffetBanane()
+{
+    if (effetBanane)
+    {
+        effetBanane = false;
+    }
+    else
+    {
+        effetBanane = true;
+    }
+}
+
+void Joueur::setEtatEffetBanane(bool etat)
+{
+    effetBanane = etat;
+}
+
+bool Joueur::getEtatEffetBanane()
+{
+    return effetBanane;
+}
+
+void Joueur::immobiliser(bool etat)
+{
+    immobilise = etat;
+}
+
 bool Joueur::up()
 {
     if (position.y > 4)
@@ -119,20 +171,31 @@ bool Joueur::Right()
 {
     if (position.x >= 4)
     {
-
         return false;
     }
-
     position.x += 1;
+
+    if (getEtatEffetBanane() && position.x < 4)
+    {
+        position.x += 1;
+    }
+
     return true;
 }
 
 bool Joueur::Left()
 {
-    if (position.x <= 0)
+    if (position.x <= 0) 
+    {
         return false;
-
+    }
     position.x -= 1;
+
+    if (getEtatEffetBanane() && position.x > 0)
+    {
+        position.x -= 1;
+    }
+    
     return true;
 }
 

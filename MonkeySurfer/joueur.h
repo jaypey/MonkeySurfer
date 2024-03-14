@@ -16,6 +16,16 @@ public:
 	bool ajouterInventaire(int idObj);
 	bool echangerInventaire();
 	int useObjet(int idObj);
+	
+	void switchEtatBouclier();
+	void setEtatBouclier(bool etat);
+	bool getEtatBouclier();
+
+	void switchEtatEffetBanane();
+	void setEtatEffetBanane(bool etat);
+	bool getEtatEffetBanane();
+
+	void immobiliser(bool etat);
 
 	Coordonnee getPosition() const;
 	void setPosition(const Coordonnee &pos);
@@ -26,6 +36,10 @@ public:
 
 private:
 	Coordonnee position;
+	bool bouclierActif;
+	bool effetBanane;
+	bool immobilise;
+
 	int nbPieces;
 	int score;
 	int nbObjets;
