@@ -19,16 +19,17 @@ int Serpent::getHp()
 	return hp;
 }
 
-void Serpent::recoitCoup()
+void Serpent::recoitCoup(Joueur& p_joueur)
 {
 	hp--;
 	if (hp <= 0)
 	{
-		mourir();
+		mourir(p_joueur);
 	}
 }
 
-void Serpent::mourir()
+void Serpent::mourir(Joueur& p_joueur)
 {
+	p_joueur.immobiliser(false);
 	//this->~Serpent();
 }
