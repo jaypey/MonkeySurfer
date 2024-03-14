@@ -38,5 +38,4 @@ class Joystick {
         Direction lireDirectionY();
 };
 
-
 #endif //JOYSTICK_H

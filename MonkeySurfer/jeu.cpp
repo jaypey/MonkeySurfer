@@ -61,6 +61,10 @@ std::chrono::steady_clock::time_point Jeu::getLastUpdate() {
 	return _lastUpdate;
 }
 
+JsonSerial* Jeu::getJsonSerial() {
+	return _jsonserial;
+}
+
 void Jeu::updateJeu()
 {
 	if (!_gameOver)
@@ -81,10 +85,14 @@ void Jeu::updateJeu()
 void Jeu::updateJoueur()
 {
 	// MANETTE
-	if (_jsonserial->boutonAppuye(0))
-		_joueur->Left();
-	if (_jsonserial->boutonAppuye(1))
-		_joueur->Right();
+	if (_jsonserial->boutonAppuye(2)) {
+		if (_jsonserial->directionJoystickX() == GAUCHE) {
+			_joueur->Left();
+		}
+		else if (_jsonserial->directionJoystickX() == DROITE) {
+			_joueur->Right();
+		}
+	}
 
 	// CLAVIER
 	if (_kbhit())

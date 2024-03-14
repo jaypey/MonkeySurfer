@@ -9,7 +9,7 @@ Bouton::Bouton()
     
     // Configuration des broches des boutons en entrée avec une résistance de pull-up activée
     for (int i = 0; i < 4; ++i) {
-        pinMode(pinBtn[i], INPUT_PULLUP);
+        pinMode(pinBtn[i], INPUT);
     }
 }
 
@@ -22,11 +22,11 @@ Bouton::Bouton(uint8_t p_pinBtn1, uint8_t p_pinBtn2, uint8_t p_pinBtn3, uint8_t 
     
     // Configuration des broches des boutons en entrée avec une résistance de pull-up activée
     for (int i = 0; i < 4; ++i) {
-        pinMode(pinBtn[i], INPUT_PULLUP);
+        pinMode(pinBtn[i], INPUT);
     }
 }
 
 bool Bouton::lireBouton(int i)
 {
-    return digitalRead(pinBtn[i]);
+    return !digitalRead(pinBtn[i]);
 }

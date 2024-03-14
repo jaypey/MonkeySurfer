@@ -99,6 +99,15 @@ bool JsonSerial::boutonAppuye(int indexBtn) {
     return _json["btn"][indexBtn] == true;
 }
 
+Direction JsonSerial::directionJoystickX() {
+    if (!_json.contains("joyX")) {
+        std::cerr << "La cle \"joyX\" ne se retrouve pas dans le document json." << std::endl;
+        return NEUTRE;
+    }
+
+    return (Direction)_json["joyX"];
+}
+
 void JsonSerial::recv() {
     if (!_recvInProgress) {
         _recvInProgress = true;

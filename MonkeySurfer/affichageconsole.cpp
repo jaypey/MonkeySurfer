@@ -192,6 +192,12 @@ void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
     int x = _xlianes[positionCourante.x];
     _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
+
+    // Fleche direction de saut
+    if (_jeu->getJsonSerial()->directionJoystickX() == DROITE)
+        _img[x + 1][15] = '>';
+    else if (_jeu->getJsonSerial()->directionJoystickX() == GAUCHE)
+        _img[x - 1][15] = '<';
 }
 
 void AffichageConsole::afficherItems() {

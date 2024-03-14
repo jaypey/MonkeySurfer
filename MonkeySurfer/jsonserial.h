@@ -6,6 +6,7 @@
 #include <iostream>
 #include <json.hpp>
 #include <thread>
+#include "direction.h"
 
 #define BAUD_RATE 112500
 #define START_MARKER '>'
@@ -26,6 +27,7 @@ public:
     void recvPrint();
 
     bool boutonAppuye(int indexBtn);
+    Direction directionJoystickX();
 private:
     void recv();
     void send(const char* msg);

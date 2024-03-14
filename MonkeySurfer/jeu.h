@@ -22,6 +22,7 @@ public:
 
 	std::vector<ElementJeu*> getElements() const;
 	std::chrono::steady_clock::time_point getLastUpdate();
+	JsonSerial* getJsonSerial();
 private:
 	void updateJeu();
 	void updateJoueur();

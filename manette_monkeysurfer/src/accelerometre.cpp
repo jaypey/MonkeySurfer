@@ -63,11 +63,11 @@ bool Accelerometre::shake(char axe)
     {
         if ((detection('x') > 300 )|| (detection('x') < -400))
         {
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
      if ((axe == 'Y') || (axe == 'y'))
@@ -75,11 +75,11 @@ bool Accelerometre::shake(char axe)
         
         if ((detection('y') > 200)|| (detection('y') < 200))
         {
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
      if ((axe == 'Z') || (axe == 'z'))
@@ -87,11 +87,11 @@ bool Accelerometre::shake(char axe)
         
         if ((detection('z') > 1700)|| (detection('z') < 500))
         {
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
 }

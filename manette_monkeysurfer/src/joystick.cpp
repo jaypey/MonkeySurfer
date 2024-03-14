@@ -16,15 +16,12 @@ Direction Joystick::lireDirectionX()
 {
     // Lecture de la valeur de l'axe X du joystick
     int valeurX = analogRead(pinX);
-    
-    // Retourner "Gauche" si la valeur est inférieure à 350, sinon "Droite"
-    if (valeurX < THRESHOLD_LEFT) {
-        return GAUCHE;
-    } 
-    else if (valeurX > THRESHOLD_RIGHT)
-    {
+
+    // Retourner "Gauche" si la valeur est supérieur à 350, sinon "Droite"
+    if (valeurX < THRESHOLD_LEFT)
         return DROITE;
-    }
+    else if (valeurX > THRESHOLD_RIGHT)
+        return GAUCHE;
     return NEUTRE;
 }
 
@@ -34,12 +31,9 @@ Direction Joystick::lireDirectionY()
     int valeurY = analogRead(pinY);
     
     // Retourner "Gauche" si la valeur est inférieure à 350, sinon "Droite"
-    if (valeurY < THRESHOLD_DOWN) {
+    if (valeurY < THRESHOLD_DOWN)
         return BAS;
-    } 
     else if (valeurY > THRESHOLD_UP)
-    {
         return HAUT;
-    }
     return NEUTRE;
 }
