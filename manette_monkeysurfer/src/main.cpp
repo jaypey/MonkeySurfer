@@ -9,7 +9,7 @@ Del delJ(45);
 Del delV(47);
 Joystick joy(A4, A5);
 LiquidCrystal lcd(39, 37, 35, 33, 31, 29);
-MoteurVibrant motvib;
+MoteurVibrant motvib(9);
 
 InfoComposantes info;
 JsonSerial js(&info);

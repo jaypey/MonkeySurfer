@@ -11,7 +11,7 @@ int main()
 
     Joueur* p1 = new Joueur();
     Jeu j(p1, &js);
-    Menu m;
+    Menu m(&js);
     AffichageConsole a(&j, &m);
 
     while (m.getEtat() != Menu::EtatMenu::QUITTER) {

@@ -182,6 +182,11 @@ void Jeu::updatePause() {
 }
 
 void Jeu::updateGameOver() {
+	// MANETTE
+	if (_jsonserial->boutonAppuye(1))
+		_isQuitting = true;
+
+	// CLAVIER
 	if (_kbhit()) {
 		char c = _getch();
 		if (c == 'q') {

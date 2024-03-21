@@ -47,14 +47,16 @@ void AffichageConsole::afficherMenu() {
 }
 
 void AffichageConsole::afficherMenuPrincipal() {
+    int cm = _menu->getChoixMenu();
+
     afficherArrierePlan();
     afficherContour();
     afficherFichier("artMenu.txt", 5, 2);
     afficherFichier("monkey.txt", 43, 4);
-    afficherTexte("1. Jouer", 25, 15);
-    afficherTexte("2. Skins", 25, 17);
-    afficherTexte("3. Aide", 25, 19);
-    afficherTexte("4. Quitter", 25, 21);
+    afficherTexte("1. Jouer", 25, 15, (cm == 0));
+    afficherTexte("2. Skins", 25, 17, (cm == 1));
+    afficherTexte("3. Aide", 25, 19, (cm == 2));
+    afficherTexte("4. Quitter", 25, 21, (cm == 3));
 }
 
 void AffichageConsole::afficherMenuSkin() {
