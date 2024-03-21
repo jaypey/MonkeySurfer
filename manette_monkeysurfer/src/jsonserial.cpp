@@ -66,9 +66,15 @@ void JsonSerial::sendJson() {
   doc["acc"] = _info->acc->shake('Z');
 
   // JOYSTICK
-  doc["joyX"] = (int) _info->joy->lireDirectionX();
-  doc["joyY"] = (int) _info->joy->lireDirectionY();
+  JoystickState jstate = _info->joy->getStateX();
+  doc["joyX"]["dir"] = (int) jstate.direction;
+  doc["joyX"]["appuye"] = jstate.appuye;
 
+  jstate = _info->joy->getStateY();
+  doc["joyY"]["dir"] = (int) jstate.direction;
+  doc["joyY"]["appuye"] = jstate.appuye;
+
+  // ENVOI DU MESSAGE
   Serial.print(">");
   serializeJson(doc, Serial);
   Serial.print("<\n");

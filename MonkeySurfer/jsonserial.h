@@ -28,7 +28,11 @@ public:
 
     bool boutonAppuye(int indexBtn);
     bool boutonMaintenu(int indexBtn);
-    Direction directionJoystickX();
+    Direction joystickMaintenuX();
+    Direction joystickMaintenuY();
+    bool joystickAppuyeX();
+    bool joystickAppuyeY();
+    bool accShake();
 private:
     void recv();
     void send(const char* msg);

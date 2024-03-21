@@ -23,13 +23,14 @@ int main()
         if (m.getEtat() == Menu::EtatMenu::JEU) {
             j.debuterPartie();
             a.afficherJeu();
-            if (_kbhit() && _getch() == 'q') {
+            if (j.isQuitting()) {
                 m.setEtat(Menu::EtatMenu::PRINCIPAL);
                 delete p1;
                 p1 = new Joueur();
                 j.restartJeu(p1);
-                continue;
             }
+
+            std::cout << "Etat accelerometre: " << js.accShake();
         }
         else {
             m.update();

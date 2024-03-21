@@ -9,6 +9,10 @@ Jeu::Jeu(Joueur* j, JsonSerial* js)
 	_isStarted = false;
 	_gameOver = false;
 	_jsonserial = js;
+	_isQuitting = false;
+
+	_modePause = false;
+	_pauseOption = 0;
 }
 
 Jeu::~Jeu() {}
@@ -33,12 +37,23 @@ int Jeu::getPiecesJoueur()
 	return _joueur->getPiece();
 }
 
+int Jeu::getPauseOption() {
+	return _pauseOption;
+}
+
+void Jeu::setPause(bool pause) {
+	_modePause = pause;
+	_pauseOption = 0;
+}
+
 void Jeu::restartJeu(Joueur* j)
 {
 	_joueur = j;
 	_vitesse = 1000;
 	_isStarted = false;
 	_gameOver = false;
+	_modePause = false;
+	_isQuitting = false;
 	_elements.clear();
 }
 
@@ -50,6 +65,14 @@ bool Jeu::isGameOver()
 bool Jeu::isStarted()
 {
 	return _isStarted;
+}
+
+bool Jeu::isPaused() {
+	return _modePause;
+}
+
+bool Jeu::isQuitting() {
+	return _isQuitting;
 }
 
 std::vector<ElementJeu*> Jeu::getElements() const
@@ -67,7 +90,7 @@ JsonSerial* Jeu::getJsonSerial() {
 
 void Jeu::updateJeu()
 {
-	if (!_gameOver)
+	if (!_gameOver && !_modePause)
 	{
 		_vitesse = 1000 - (pow(_joueur->getScore(), 2) / 1000);
 		_joueur->compteurPointage();
@@ -80,18 +103,28 @@ void Jeu::updateJeu()
 			avancerCase();
 		}
 	}
+	else if (_modePause) {
+		updatePause();
+	}
+	else if (_gameOver) {
+		updateGameOver();
+	}
 }
 
 void Jeu::updateJoueur()
 {
 	// MANETTE
 	if (_jsonserial->boutonAppuye(2)) {
-		if (_jsonserial->directionJoystickX() == GAUCHE) {
+		if (_jsonserial->joystickMaintenuX() == GAUCHE) {
 			_joueur->Left();
 		}
-		else if (_jsonserial->directionJoystickX() == DROITE) {
+		else if (_jsonserial->joystickMaintenuX() == DROITE) {
 			_joueur->Right();
 		}
+	}
+
+	if (_jsonserial->boutonAppuye(1)) {
+		_modePause = true;
 	}
 
 	// CLAVIER
@@ -99,11 +132,60 @@ void Jeu::updateJoueur()
 	{
 		char c = _getch();
 		if (c == 224) c = _getch();
-		if (c == 75) {
+		if (c == 75) { // Fleche gauche
 			_joueur->Left();
 		}
-		else if (c == 77) {
+		else if (c == 77) { // Fleche droite
 			_joueur->Right();
+		}
+		else if (c == 'p') {
+			_modePause = true;
+		}
+	}
+}
+
+void Jeu::updatePause() {
+	// MANETTE
+	if (_jsonserial->boutonAppuye(1)) {
+		_modePause = false;
+	}
+	else if (_jsonserial->boutonAppuye(2)) {
+		if (_pauseOption == 0) {
+			_modePause = false;
+		}
+		else if (_pauseOption == 1) {
+			_isQuitting = true;
+		}
+	}
+
+	if (_jsonserial->joystickMaintenuY() == HAUT && _jsonserial->joystickAppuyeY()) {
+		_pauseOption--;
+		if (_pauseOption < 0)
+			_pauseOption = 1;
+	}
+	else if (_jsonserial->joystickMaintenuY() == BAS && _jsonserial->joystickAppuyeY()) {
+		_pauseOption++;
+		if (_pauseOption > 1)
+			_pauseOption = 0;
+	}
+
+	// CLAVIER
+	if (_kbhit()) {
+		char c = _getch();
+		if (c == '1') {
+			_modePause = false;
+		}
+		else if (c == '2') {
+			_isQuitting = true;
+		}
+	}
+}
+
+void Jeu::updateGameOver() {
+	if (_kbhit()) {
+		char c = _getch();
+		if (c == 'q') {
+			_isQuitting = true;
 		}
 	}
 }

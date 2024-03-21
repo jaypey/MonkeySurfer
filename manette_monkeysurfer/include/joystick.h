@@ -16,16 +16,23 @@ enum Direction {
     GAUCHE
 };
 
+struct JoystickState {
+    Direction direction;
+    bool appuye; // Pas le bouton du joystick, juste le moment de changement de direction
+};
+
 class Joystick {
     private:
-        uint8_t pinX; // Broche analogique pour l'axe X
-        uint8_t pinY; // Broche analogique pour l'axe Y
+        uint8_t _pinX; // Broche analogique pour l'axe X
+        uint8_t _pinY; // Broche analogique pour l'axe Y
 
         const int THRESHOLD_LEFT = 350;
         const int THRESHOLD_RIGHT = 650;
         const int THRESHOLD_DOWN = 350;
         const int THRESHOLD_UP = 650;
-    
+
+        Direction _lastDirectionX;
+        Direction _lastDirectionY;
     public:
         Joystick();
         // Constructeur prenant les broches des axes X et Y en paramètre
@@ -36,6 +43,10 @@ class Joystick {
     
         // Fonction pour lire la direction de l'axe Y du joystick
         Direction lireDirectionY();
+
+        // Maintenu/appuye
+        JoystickState getStateX();
+        JoystickState getStateY();
 };
 
 #endif //JOYSTICK_H

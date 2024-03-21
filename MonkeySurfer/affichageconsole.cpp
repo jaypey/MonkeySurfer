@@ -25,6 +25,9 @@ void AffichageConsole::afficherJeu() {
     if (_jeu->isGameOver()) {
         afficherGameOver();
     }
+    else if (_jeu->isPaused()) {
+        afficherPause();
+    }
 
     // Print à la console
     printMatriceChar();
@@ -194,9 +197,9 @@ void AffichageConsole::afficherJoueur() {
     _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
 
     // Fleche direction de saut
-    if (_jeu->getJsonSerial()->directionJoystickX() == DROITE)
+    if (_jeu->getJsonSerial()->joystickMaintenuX() == DROITE)
         _img[x + 1][15] = '>';
-    else if (_jeu->getJsonSerial()->directionJoystickX() == GAUCHE)
+    else if (_jeu->getJsonSerial()->joystickMaintenuX() == GAUCHE)
         _img[x - 1][15] = '<';
 }
 
@@ -233,6 +236,14 @@ void AffichageConsole::afficherGameOver() {
     afficherFichier("retryText.txt", 7, 18);
 }
 
+void AffichageConsole::afficherPause() {
+    int po = _jeu->getPauseOption();
+
+    afficherFichier("pause.txt", 4, 4);
+    afficherTexte("1. Continuer", 25, 13, (po == 0));
+    afficherTexte("2. Retourner au menu", 21, 15, (po == 1));
+}
+
 void AffichageConsole::afficherContour() {
     // Coutour zone de jeu + UI
     for (int i = 0; i < NB_COLS; i++) {
@@ -245,7 +256,12 @@ void AffichageConsole::afficherContour() {
     }
 }
 
-void AffichageConsole::afficherTexte(const std::string& s, int x, int y) {
+void AffichageConsole::afficherTexte(std::string s, int x, int y, bool selected) {
+    if (selected) {
+        s = "> " + s + " <";
+        x -= 2;
+    }
+
     for (int i = 0; i < s.size() && x + i < NB_COLS; i++)
         _img[x + i][y] = s[i];
 }

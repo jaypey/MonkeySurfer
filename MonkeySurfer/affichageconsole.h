@@ -46,8 +46,9 @@ private:
     void afficherItems();
     void afficherIU();
     void afficherGameOver();
+    void afficherPause();
     void afficherContour(); // Non herite
-    void afficherTexte(const std::string& s, int x, int y); // Non herite
+    void afficherTexte(std::string s, int x, int y, bool selected = false); // Non herite
     void afficherFichier(const char* nom, int x, int y); // Non herite
 
     // Mise à jour de la déco (feuilles)
