@@ -12,14 +12,20 @@ Banane::~Banane()
 {
 }
 
+void Banane::collision(Joueur& _joueur)
+{
+	stocker(_joueur);
+}
+
 void Banane::stocker(Joueur& joueur)
 {
-	//ajoute une banane dans l'inventairedu joueur
+	joueur.ajouterInventaire(this);
 }
 
 void Banane::appliquerEffet(Joueur& joueur)
 {
-	//active la possibilité pendant x secondes (var duree) du double saut chez le joueur
+	joueur.setEtatEffetBanane(true);
+	lastUpdateBanane = std::chrono::steady_clock::now();
 }
 
 void Banane::afficherInfo() const

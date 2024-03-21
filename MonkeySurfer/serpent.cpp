@@ -9,6 +9,11 @@ Serpent::~Serpent()
 {
 }
 
+void Serpent::collision(Joueur& _joueur)
+{
+	attraperJoueur(_joueur);
+}
+
 void Serpent::attraperJoueur(Joueur& p_joueur)
 {
 	p_joueur.immobiliser(true);

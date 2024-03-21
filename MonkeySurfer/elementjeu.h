@@ -22,6 +22,7 @@ public:
 	ElementJeu();
 	virtual ~ElementJeu();
 
+	virtual void collision(Joueur& _joueur) = 0;
 	virtual void afficherInfo() const = 0;
 
 	int getID();

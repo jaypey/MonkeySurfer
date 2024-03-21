@@ -10,13 +10,17 @@ ObstacleFixe::~ObstacleFixe()
 {
 }
 
-bool ObstacleFixe::collisionAvecJoueur(Coordonnee p_joueur)
+
+void ObstacleFixe::collision(Joueur& _joueur)
 {
-	if (p_joueur == getPosition())
+	if (_joueur.getEtatBouclier())
 	{
-		return true;
+		_joueur.setEtatBouclier(false);   //Désactive le bouclier
 	}
-	return false;
+	else
+	{
+		_joueur.isDead();
+	}
 }
 
 void ObstacleFixe::afficherInfo() const

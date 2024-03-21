@@ -12,6 +12,7 @@ public:
 	~HarpieFeroce();
 	void deplacement();
 	int getDirection();
+	virtual void collision(Joueur& _joueur);
 
 private:
 	int direction;

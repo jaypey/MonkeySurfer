@@ -101,35 +101,38 @@ void Jeu::validerCollision()
 	for (int i = 0; i < _elements.size(); i++)
 	{
 		if (_elements[i]->getPosition() == _joueur->getPosition()) {
-			switch (_elements[i]->getID())
-			{
-			case OBSTACLE_FIXE:
-				if (_joueur->getEtatBouclier())
-				{
-					_elements.erase(_elements.begin() + i);//Détruit l'obstacle
-					_joueur->changerEtatBouclier(false);   //Désactive le bouclier
-				}
-				else
-				{
-					_gameOver = true;
-				}
-				break;
-			case PIECE:
-				_joueur->ramasserPiece();
-				_elements.erase(_elements.begin() + i);
-				break;
-			case BOUCLIER:
-				_joueur->ajouterInventaire(_elements[i]->getID());
-				_elements.erase(_elements.begin() + i);
-				break;
-			case BANANE:
-				_joueur->ajouterInventaire(_elements[i]->getID());
-				_elements.erase(_elements.begin() + i);
-				break;
+			_elements[i]->collision(*_joueur);
+			_elements.erase(_elements.begin() + i);
+			
+			//switch (_elements[i]->getID())
+			//{
+			//case OBSTACLE_FIXE:
+			//	if (_joueur->getEtatBouclier())
+			//	{
+			//		_elements.erase(_elements.begin() + i);//Détruit l'obstacle
+			//		_joueur->setEtatBouclier(false);   //Désactive le bouclier
+			//	}
+			//	else
+			//	{
+			//		_gameOver = true;
+			//	}
+			//	break;
+			//case PIECE:
+			//	_joueur->ramasserPiece();
+			//	_elements.erase(_elements.begin() + i);
+			//	break;
+			//case BOUCLIER:
+			//	_joueur->ajouterInventaire(_elements[i]);
+			//	_elements.erase(_elements.begin() + i);
+			//	break;
+			//case BANANE:
+			//	_joueur->ajouterInventaire(_elements[i]->getID());
+			//	_elements.erase(_elements.begin() + i);
+			//	break;
 
-			default:
-				break;
-			}
+			//default:
+			//	break;
+			//}
 			return;
 		}
 	}

@@ -1,5 +1,6 @@
 #include "bouclier.h"
 
+
 Bouclier::Bouclier()
 {
 	setID(BOUCLIER);
@@ -12,14 +13,20 @@ Bouclier::~Bouclier()
 {
 }
 
+void Bouclier::collision(Joueur& _joueur)
+{
+	stocker(_joueur);
+}
+
 void Bouclier::stocker(Joueur& joueur)
 {
-	joueur.ajouterInventaire(getID());
+	joueur.ajouterInventaire(this);
 }
 
 void Bouclier::appliquerEffet(Joueur& joueur)
 {
-	joueur.changerEtatBouclier(true);
+	joueur.setEtatBouclier(true);
+	lastUpdateBouclier = std::chrono::steady_clock::now();
 }
 
 void Bouclier::afficherInfo() const

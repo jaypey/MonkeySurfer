@@ -10,9 +10,14 @@ Piece::~Piece()
 {
 }
 
+void Piece::collision(Joueur& _joueur)
+{
+	appliquerEffet(_joueur);
+}
+
 void Piece::appliquerEffet(Joueur& joueur)
 {
-	//ajouter une piece au joueur
+	joueur.ramasserPiece();
 }
 
 void Piece::afficherInfo() const

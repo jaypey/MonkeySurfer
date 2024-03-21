@@ -39,3 +39,15 @@ int HarpieFeroce::getDirection()
 {
 	return direction;
 }
+
+void HarpieFeroce::collision(Joueur& _joueur)
+{
+	if (_joueur.getEtatBouclier())
+	{
+		_joueur.setEtatBouclier(false);   //Désactive le bouclier
+	}
+	else
+	{
+		_joueur.isDead();
+	}
+}

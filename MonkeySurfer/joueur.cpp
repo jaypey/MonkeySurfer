@@ -8,9 +8,7 @@ Joueur::Joueur()
     bouclierActif = false;
     effetBanane = false;
     immobilise = false;
-
-    inventaire[0] = -1; // Tableau objets initialement vide
-    inventaire[1] = -1;
+    enVie = true;
 
     position.x = 2;
     position.y = 15;
@@ -54,17 +52,17 @@ void Joueur::compteurPointage()
     }
 }
 
-bool Joueur::ajouterInventaire(int idObj)
+bool Joueur::ajouterInventaire(Collectible* powerUp)
 {
 
-    if (inventaire[0] == -1)
+    if (nbObjets == 0)
     {
-        inventaire[0] = idObj; // objet ajoute a la pos 0 de l'inventaire
+        inventaire[nbObjets++] = powerUp; // objet ajoute a la pos 0 de l'inventaire
         return true;
     }
-    else if (inventaire[1] == -1)
+    else if (nbObjets == 1)
     {
-        inventaire[1] = idObj; // Objet ajoute a la pos 1 de l'inventaire
+        inventaire[nbObjets++] = powerUp; // Objet ajoute a la pos 1 de l'inventaire
         return true;
     }
     return false;
@@ -74,24 +72,32 @@ bool Joueur::ajouterInventaire(int idObj)
 bool Joueur::echangerInventaire()
 {
 
-    if (inventaire[0] != -1 && inventaire[1] != -1)
+    if (nbObjets == 2)
     {
         std::swap(inventaire[0], inventaire[1]);
-
         return true;
     }
 
     return false;
 }
 
-int Joueur::useObjet(int idObj)
+Collectible* Joueur::useObjet()
 {
+    if (nbObjets > 0)
+    {
+        inventaire[0]->appliquerEffet(*this);
+        return inventaire[0]; // retourne lobjet a la position 0, qui est lobjet utilise
+    }
+    return nullptr;
+    
+}
 
-    int usedObj = inventaire[0];
-    inventaire[0] = inventaire[1];
-    inventaire[1] = -1;
-
-    return usedObj; // retourne lobjet a la position 0, qui est lobjet utilise
+void Joueur::enleverObjet()
+{
+    std::swap(inventaire[0], inventaire[1]);
+    nbObjets--;
+    delete inventaire[1];
+    inventaire[1] = nullptr;
 }
 
 void Joueur::switchEtatBouclier()
@@ -141,6 +147,16 @@ bool Joueur::getEtatEffetBanane()
 void Joueur::immobiliser(bool etat)
 {
     immobilise = etat;
+}
+
+bool Joueur::getVie()
+{
+    return enVie;
+}
+
+void Joueur::isDead()
+{
+    enVie = false;
 }
 
 bool Joueur::up()

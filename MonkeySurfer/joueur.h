@@ -3,6 +3,8 @@
 
 #include <chrono>
 #include "coordonnee.h"
+#include "bouclier.h"
+#include "banane.h"
 
 class Joueur
 {
@@ -13,9 +15,10 @@ public:
 	int getScore();
 	void ramasserPiece();
 	void compteurPointage();
-	bool ajouterInventaire(int idObj);
+	bool ajouterInventaire(Collectible *powerUp);
 	bool echangerInventaire();
-	int useObjet(int idObj);
+	Collectible* useObjet();
+	void enleverObjet();
 	
 	void switchEtatBouclier();
 	void setEtatBouclier(bool etat);
@@ -26,6 +29,9 @@ public:
 	bool getEtatEffetBanane();
 
 	void immobiliser(bool etat);
+
+	bool getVie();
+	void isDead();
 
 	Coordonnee getPosition() const;
 	void setPosition(const Coordonnee &pos);
@@ -39,11 +45,12 @@ private:
 	bool bouclierActif;
 	bool effetBanane;
 	bool immobilise;
+	bool enVie;
 
 	int nbPieces;
 	int score;
 	int nbObjets;
-	int inventaire[2];
+	Collectible* inventaire[2];
 	std::chrono::steady_clock::time_point lastUpdate;
 };
 
