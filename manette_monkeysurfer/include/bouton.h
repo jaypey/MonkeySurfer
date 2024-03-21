@@ -5,22 +5,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-const uint8_t PIN_BTN_1 = 2;
-const uint8_t PIN_BTN_2 = 3;
-const uint8_t PIN_BTN_3 = 4;
-const uint8_t PIN_BTN_4 = 5;
-
-class Bouton {
-    private:
-        uint8_t pinBtn[4];
-    
-    public:
-        Bouton();
-        // Constructeur prenant les broches des boutons en paramètre
-        Bouton(uint8_t p_pinBtn1, uint8_t p_pinBtn2, uint8_t p_pinBtn3, uint8_t p_pinBtn4);
-    
-        // Fonctions pour lire l'état des boutons
-        bool lireBouton(int i);
+struct BoutonState {
+    bool maintenu;
+    bool appuye;
 };
 
-#endif //BOUTON_H
+class Bouton {
+private:
+    uint8_t _pinBtn[4];
+    bool _dejaAppuye[4]; // bouton est maintenu depuis longtemps
+
+public:
+    // Constructeur prenant les broches des boutons en paramètre
+    Bouton(uint8_t p_pinBtn1, uint8_t p_pinBtn2, uint8_t p_pinBtn3, uint8_t p_pinBtn4);
+
+    // Fonctions pour lire l'état des boutons
+    BoutonState getState(int i);
+};
+
+#endif // BOUTON_H!

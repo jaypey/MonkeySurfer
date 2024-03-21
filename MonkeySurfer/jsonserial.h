@@ -27,6 +27,7 @@ public:
     void recvPrint();
 
     bool boutonAppuye(int indexBtn);
+    bool boutonMaintenu(int indexBtn);
     Direction directionJoystickX();
 private:
     void recv();

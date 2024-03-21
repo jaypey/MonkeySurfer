@@ -49,15 +49,18 @@ void JsonSerial::sendJson() {
   // Delai d'envoi de JSON
   long long now = millis();
   long long elapsed = now - _lastsend;
-  if (elapsed < 50)
+  if (elapsed < SEND_DELAY)
     return;
   _lastsend = millis();
 
   StaticJsonDocument<JSON_BUFFER_SIZE> doc;
 
   // BOUTONS
-  for (int i = 0; i < 4; i++)
-    doc["btn"][i] = _info->btn->lireBouton(i);
+  for (int i = 0; i < 4; i++) {
+    BoutonState bstate = _info->btn->getState(i);
+    doc["btn"][i]["appuye"] = bstate.appuye;
+    doc["btn"][i]["maintenu"] = bstate.maintenu;
+  }
 
   // ACCELEROMETRE
   doc["acc"] = _info->acc->shake('Z');

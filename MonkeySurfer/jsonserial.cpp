@@ -96,7 +96,23 @@ bool JsonSerial::boutonAppuye(int indexBtn) {
         return false;
     }
 
-    return _json["btn"][indexBtn] == true;
+    bool appuye = (_json["btn"][indexBtn]["appuye"] == true);
+    _json["btn"][indexBtn]["appuye"] = false; // Empeche lectures subsequentes du meme message json ou "appuye" == true
+    return appuye;
+}
+
+bool JsonSerial::boutonMaintenu(int indexBtn) {
+    if (0 > indexBtn || 3 < indexBtn) {
+        std::cerr << "Mauvais index de bouton, fonction \"JsonSerial::boutonAppuye(int indexBtn)\"." << std::endl;
+        return false;
+    }
+
+    if (!_json.contains("btn")) {
+        std::cerr << "La cle \"btn\" ne se retrouve pas dans le document json." << std::endl;
+        return false;
+    }
+
+    return _json["btn"][indexBtn]["maintenu"] == true;
 }
 
 Direction JsonSerial::directionJoystickX() {
