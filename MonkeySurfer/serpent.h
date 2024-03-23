@@ -12,6 +12,7 @@ public:
 	int getHp();
 	void recoitCoup(Joueur& p_joueur);
 	void mourir(Joueur& p_joueur);
+	void afficherInfo() const;
 
 private:
 	int hp;

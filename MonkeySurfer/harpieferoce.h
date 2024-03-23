@@ -13,6 +13,7 @@ public:
 	void deplacement();
 	int getDirection();
 	virtual void collision(Joueur& _joueur);
+	void afficherInfo() const;
 
 private:
 	int direction;

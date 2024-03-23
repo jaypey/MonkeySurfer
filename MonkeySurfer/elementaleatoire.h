@@ -6,6 +6,8 @@
 #include "bouclier.h"
 #include "projectile.h"
 #include "obstaclefixe.h"
+#include "serpent.h"
+#include "harpieferoce.h"
 
 class GenerateurItem
 {

@@ -38,3 +38,8 @@ void Serpent::mourir(Joueur& p_joueur)
 	p_joueur.immobiliser(false);
 	//this->~Serpent();
 }
+
+void Serpent::afficherInfo() const
+{
+	std::cout << "Un serpent est apparu" << std::endl;
+}

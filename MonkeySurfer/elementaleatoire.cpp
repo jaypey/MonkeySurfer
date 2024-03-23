@@ -29,14 +29,16 @@ Collectible* GenerateurItem::getRandomCollectible()
 {
 	int valeurAleatoire = rand.random(0, 1, 95165);
 
-	if (valeurAleatoire == 0)
+	switch (valeurAleatoire)
 	{
+	case 0:
 		return new Bouclier;
-	}
 
-	else if (valeurAleatoire == 1)
-	{
+	case 1:
 		return new Banane;
+
+	default:
+		break;
 	}
 
 	return nullptr;
@@ -46,15 +48,19 @@ Obstacle* GenerateurItem::getRandomObstacle()
 {
 	int valeurAleatoire = rand.random(0, 1, 95165);
 
-	if (valeurAleatoire == 0)
+	switch (valeurAleatoire)
 	{
-		/*return new Projectile;*/
-		return new ObstacleFixe; //Temporaire
-	}
-
-	else if (valeurAleatoire == 1)
-	{
+	case 0:
 		return new ObstacleFixe;
+
+	case 1:
+		return new ObstacleFixe;
+
+	case 2:
+		return new Serpent;
+
+	default:
+		break;
 	}
 
 	return nullptr;

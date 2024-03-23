@@ -51,3 +51,8 @@ void HarpieFeroce::collision(Joueur& _joueur)
 		_joueur.isDead();
 	}
 }
+
+void HarpieFeroce::afficherInfo() const
+{
+	std::cout << "Une harpie féroce est apparu" << std::endl;
+}
