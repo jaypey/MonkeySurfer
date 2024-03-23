@@ -21,9 +21,10 @@ public:
 	virtual void afficherInfo() const = 0;
 
 private:
-	std::chrono::steady_clock::time_point lastUpdate;
+	//std::chrono::steady_clock::time_point lastUpdate;
 	float duree;
 	bool etat;
 };
 
-#endif // !COLLECTIBLE_H
+
+#endif // COLLECTIBLE_H

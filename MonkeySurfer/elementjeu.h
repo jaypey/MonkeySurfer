@@ -2,7 +2,6 @@
 #define ELEMENTJEU_H
 
 #include <iostream>
-#include "joueur.h"
 #include "aleatoire.h"
 #include "coordonnee.h"
 
@@ -15,6 +14,8 @@
 #define SERPENT				6
 
 #define HAUTEUR_GENERATION	25
+
+class Joueur;
 
 class ElementJeu
 {
@@ -38,6 +39,8 @@ private:
 	int id;
 	Coordonnee position;
 };
+
+#include "joueur.h"
 
 #endif // !ELEMENTJEU_H
 

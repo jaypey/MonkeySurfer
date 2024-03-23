@@ -10,6 +10,8 @@ Joueur::Joueur()
     immobilise = false;
     enVie = true;
 
+    inventaire[0] = nullptr;
+    inventaire[1] = nullptr;
     position.x = 2;
     position.y = 15;
     lastUpdate = std::chrono::steady_clock::now(); // moment dernier update pour score, initialiser
@@ -17,6 +19,8 @@ Joueur::Joueur()
 
 Joueur::~Joueur()
 {
+    delete inventaire[0]; 
+    delete inventaire[1];
 }
 
 int Joueur::getPiece()

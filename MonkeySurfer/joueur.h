@@ -3,9 +3,9 @@
 
 #include <chrono>
 #include "coordonnee.h"
-#include "bouclier.h"
-#include "banane.h"
+#include "elementjeu.h"
 
+class Collectible;
 class Joueur
 {
 public:
@@ -53,5 +53,7 @@ private:
 	Collectible* inventaire[2];
 	std::chrono::steady_clock::time_point lastUpdate;
 };
+
+#include "collectible.h"
 
 #endif // !JOUEUR_H
