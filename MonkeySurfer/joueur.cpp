@@ -45,8 +45,7 @@ void Joueur::compteurPointage()
 
     if (duree >= 1)
     {
-
-        score += (int)duree * 10; // 10 points par seconde ecoulee
+        score += 10; // 10 points par tick
         lastUpdate = maintenant;
     }
 }
