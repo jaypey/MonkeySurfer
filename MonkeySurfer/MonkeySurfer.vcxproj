@@ -153,6 +153,7 @@
     <ClCompile Include="jsonserial.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="monkeysurfer.cpp" />
+    <ClCompile Include="nullstream.cpp" />
     <ClCompile Include="obstacle.cpp" />
     <ClCompile Include="obstaclefixe.cpp" />
     <ClCompile Include="piece.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="joueur.h" />
     <ClInclude Include="jsonserial.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="nullstream.h" />
     <ClInclude Include="obstacle.h" />
     <ClInclude Include="obstaclefixe.h" />
     <ClInclude Include="piece.h" />

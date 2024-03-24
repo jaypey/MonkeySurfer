@@ -7,12 +7,15 @@
 #include <json.hpp>
 #include <thread>
 #include "direction.h"
+#include "nullstream.h"
 
 #define BAUD_RATE 112500
 #define START_MARKER '>'
 #define END_MARKER '<'
 #define JSON_BUFFER_SIZE 1024
 #define SEND_DELAY 50
+
+#define errout null /* "null" pour ignorer les erreurs, "std::cerr" pour les afficher */
 
 class JsonSerial {
 public:

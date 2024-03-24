@@ -36,7 +36,7 @@ void JsonSerial::openSerialPort(const char* port) {
         _serial->set_option(asio::serial_port_base::baud_rate(BAUD_RATE));
     }
     catch (const asio::system_error& e) {
-        std::cerr << "Le port serial n'a pas pu etre ouvert: " << e.what() << std::endl;
+        errout << "Le port serial n'a pas pu etre ouvert: " << e.what() << std::endl;
     }
 }
 
@@ -48,7 +48,7 @@ void JsonSerial::recvJson() {
             _json = nlohmann::json::parse(_msg);
         }
         catch (const nlohmann::json::parse_error& e) {
-            std::cerr << "Erreur de conversion str en json: " << e.what() << std::endl;
+            errout << "Erreur de conversion str en json: " << e.what() << std::endl;
         }
         _newData = false;
     }
@@ -87,12 +87,12 @@ void JsonSerial::recvPrint() {
 
 bool JsonSerial::boutonAppuye(int indexBtn) {
     if (0 > indexBtn || 3 < indexBtn) {
-        std::cerr << "Mauvais index de bouton, fonction \"JsonSerial::boutonAppuye(int indexBtn)\"." << std::endl;
+        errout << "Mauvais index de bouton, fonction \"JsonSerial::boutonAppuye(int indexBtn)\"." << std::endl;
         return false;
     }
 
     if (!_json.contains("btn")) {
-        std::cerr << "La cle \"btn\" ne se retrouve pas dans le document json." << std::endl;
+        errout << "La cle \"btn\" ne se retrouve pas dans le document json." << std::endl;
         return false;
     }
 
@@ -103,12 +103,12 @@ bool JsonSerial::boutonAppuye(int indexBtn) {
 
 bool JsonSerial::boutonMaintenu(int indexBtn) {
     if (0 > indexBtn || 3 < indexBtn) {
-        std::cerr << "Mauvais index de bouton, fonction \"JsonSerial::boutonAppuye(int indexBtn)\"." << std::endl;
+        errout << "Mauvais index de bouton, fonction \"JsonSerial::boutonAppuye(int indexBtn)\"." << std::endl;
         return false;
     }
 
     if (!_json.contains("btn")) {
-        std::cerr << "La cle \"btn\" ne se retrouve pas dans le document json." << std::endl;
+        errout << "La cle \"btn\" ne se retrouve pas dans le document json." << std::endl;
         return false;
     }
 
@@ -117,7 +117,7 @@ bool JsonSerial::boutonMaintenu(int indexBtn) {
 
 Direction JsonSerial::joystickMaintenuX() {
     if (!_json.contains("joyX")) {
-        std::cerr << "La cle \"joyX\" ne se retrouve pas dans le document json." << std::endl;
+        errout << "La cle \"joyX\" ne se retrouve pas dans le document json." << std::endl;
         return NEUTRE;
     }
 
@@ -126,7 +126,7 @@ Direction JsonSerial::joystickMaintenuX() {
 
 Direction JsonSerial::joystickMaintenuY() {
     if (!_json.contains("joyY")) {
-        std::cerr << "La cle \"joyY\" ne se retrouve pas dans le document json." << std::endl;
+        errout << "La cle \"joyY\" ne se retrouve pas dans le document json." << std::endl;
         return NEUTRE;
     }
 
@@ -135,7 +135,7 @@ Direction JsonSerial::joystickMaintenuY() {
 
 bool JsonSerial::joystickAppuyeX() {
     if (!_json.contains("joyX")) {
-        std::cerr << "La cle \"joyX\" ne se retrouve pas dans le document json." << std::endl;
+        errout << "La cle \"joyX\" ne se retrouve pas dans le document json." << std::endl;
         return false;
     }
 
@@ -146,7 +146,7 @@ bool JsonSerial::joystickAppuyeX() {
 
 bool JsonSerial::joystickAppuyeY() {
     if (!_json.contains("joyY")) {
-        std::cerr << "La cle \"joyY\" ne se retrouve pas dans le document json." << std::endl;
+        errout << "La cle \"joyY\" ne se retrouve pas dans le document json." << std::endl;
         return false;
     }
 
@@ -157,7 +157,7 @@ bool JsonSerial::joystickAppuyeY() {
 
 bool JsonSerial::accShake() {
     if (!_json.contains("acc")) {
-        std::cerr << "La cle \"acc\" ne se retrouve pas dans le document json." << std::endl;
+        errout << "La cle \"acc\" ne se retrouve pas dans le document json." << std::endl;
         return NEUTRE;
     }
 
@@ -171,7 +171,7 @@ void JsonSerial::recv() {
         _serial->async_read_some(asio::buffer(_read, sizeof(_read)),
             [this](const asio::error_code& error, size_t bytes_transferred) {
                 if (error) {
-                    std::cerr << "Erreur lors de la lecture des donnees de l'arduino: " << error.message() << std::endl;
+                    errout << "Erreur lors de la lecture des donnees de l'arduino: " << error.message() << std::endl;
                     return;
                 }
 
@@ -215,7 +215,7 @@ void JsonSerial::send(const char* msg) {
         _serial->async_write_some(asio::buffer(_send, std::strlen(_send)),
             [this](const asio::error_code& error, size_t bytes_transferred) {
                 if (error) {
-                    std::cerr << "Erreur lors de l'envoi des donnees a l'arduino: " << error.message() << std::endl;
+                    errout << "Erreur lors de l'envoi des donnees a l'arduino: " << error.message() << std::endl;
                     return;
                 }
 

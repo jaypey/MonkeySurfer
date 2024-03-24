@@ -29,8 +29,6 @@ int main()
                 p1 = new Joueur();
                 j.restartJeu(p1);
             }
-
-            std::cout << "Etat accelerometre: " << js.accShake();
         }
         else {
             m.update();
