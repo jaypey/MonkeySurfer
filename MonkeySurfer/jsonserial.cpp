@@ -142,8 +142,9 @@ bool JsonSerial::accShake() {
     return _recvjson["acc"];
 }
 
-void JsonSerial::lcd(const char* msg) {
-    _sendjson["lcd"] = msg;
+void JsonSerial::lcd(const char* msg_row_1, const char* msg_row_2) {
+    _sendjson["lcd"][0] = msg_row_1;
+    _sendjson["lcd"][1] = msg_row_2;
 }
 
 void JsonSerial::recv() {

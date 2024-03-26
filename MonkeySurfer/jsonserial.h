@@ -36,7 +36,7 @@ public:
     bool accShake();
 
     // Write
-    void lcd(const char* msg);
+    void lcd(const char* msg_row_1, const char* msg_row_2);
 private:
     void recv();
     void send(const char* msg);

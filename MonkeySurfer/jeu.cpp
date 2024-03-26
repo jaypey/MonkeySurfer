@@ -93,13 +93,13 @@ void Jeu::updateJeu()
 	if (!_gameOver && !_modePause)
 	{
 		// Score
-		int score = _joueur->getScore();
-		std::string scoreStr = "Score: " + std::to_string(score);
-		_jsonserial->lcd(scoreStr.c_str());
+		std::string scoreStr = "Score: " + std::to_string(_joueur->getScore());
+		std::string pieceStr = "Pieces: " + std::to_string(_joueur->getPiece());
+		_jsonserial->lcd(scoreStr.c_str(), pieceStr.c_str());
 		_joueur->compteurPointage();
 
 		// Joueur
-		_vitesse = 1000 - (pow(score, 2) / 1000);
+		_vitesse = 1000 - (pow(_joueur->getScore(), 2) / 1000);
 		validerCollision();
 		updateJoueur();
 		auto now = std::chrono::steady_clock::now();
@@ -188,6 +188,9 @@ void Jeu::updatePause() {
 }
 
 void Jeu::updateGameOver() {
+	std::string info = "S:" + std::to_string(_joueur->getScore()) + " P:" + std::to_string(_joueur->getPiece());
+	_jsonserial->lcd("GAME OVER", info.c_str());
+
 	// MANETTE
 	if (_jsonserial->boutonAppuye(1))
 		_isQuitting = true;

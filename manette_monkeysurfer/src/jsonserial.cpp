@@ -37,7 +37,9 @@ void JsonSerial::recvJson() {
 
   // LCD
   _info->lcd->begin(16, 2);
-  _info->lcd->print((const char*) doc["lcd"]);
+  _info->lcd->print((const char*) doc["lcd"][0]);
+  _info->lcd->setCursor(0, 1);
+  _info->lcd->print((const char*) doc["lcd"][1]);
 
   // MOTEUR VIBRANT
   if (doc["motvib"] == true) _info->motvib->controlerMoteur(HIGH); else _info->motvib->controlerMoteur(LOW);
