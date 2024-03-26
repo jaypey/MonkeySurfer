@@ -29,6 +29,7 @@ public:
 
     void recvPrint();
 
+    // Read
     bool boutonAppuye(int indexBtn);
     bool boutonMaintenu(int indexBtn);
     Direction joystickMaintenuX();
@@ -36,6 +37,9 @@ public:
     bool joystickAppuyeX();
     bool joystickAppuyeY();
     bool accShake();
+
+    // Write
+    void lcd(const char* msg);
 private:
     void recv();
     void send(const char* msg);
@@ -58,7 +62,8 @@ private:
     bool _sendInProgress;
 
     // JSON
-    nlohmann::json _json;
+    nlohmann::json _recvjson;
+    nlohmann::json _sendjson;
     std::chrono::steady_clock::time_point _lastsend;
 };
 

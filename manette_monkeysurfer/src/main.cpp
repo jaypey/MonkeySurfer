@@ -17,8 +17,6 @@ JsonSerial js(&info);
 void setup() 
 {
   Serial.begin(BAUD_RATE);
-  lcd.begin(16, 2);
-  lcd.print("allo");
 
   // Configuration des objets
   bar.instancier(22, 24, 26, 28, 30, 32, 34, 36, 38, 40);

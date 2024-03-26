@@ -92,8 +92,14 @@ void Jeu::updateJeu()
 {
 	if (!_gameOver && !_modePause)
 	{
-		_vitesse = 1000 - (pow(_joueur->getScore(), 2) / 1000);
+		// Score
+		int score = _joueur->getScore();
+		std::string scoreStr = "Score: " + std::to_string(score);
+		_jsonserial->lcd(scoreStr.c_str());
 		_joueur->compteurPointage();
+
+		// Joueur
+		_vitesse = 1000 - (pow(score, 2) / 1000);
 		validerCollision();
 		updateJoueur();
 		auto now = std::chrono::steady_clock::now();
