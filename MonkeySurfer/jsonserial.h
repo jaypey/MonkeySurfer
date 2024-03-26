@@ -15,7 +15,7 @@
 #define JSON_BUFFER_SIZE 1024
 #define SEND_DELAY 50
 
-#define errout null /* "null" pour ignorer les erreurs, "std::cerr" pour les afficher */
+#define errout std::cerr /* "null" pour ignorer les erreurs, "std::cerr" pour les afficher */
 
 class JsonSerial {
 public:
@@ -32,7 +32,7 @@ public:
     // Read
     bool boutonAppuye(int indexBtn);
     bool boutonMaintenu(int indexBtn);
-    bool joystickMaintenu(Direction dir, bool vientDeChanger = false);
+    bool joystickMaintenu(Direction dir, bool repeat = false);
     bool accShake();
 
     // Write

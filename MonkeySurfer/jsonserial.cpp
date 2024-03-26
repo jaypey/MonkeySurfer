@@ -113,7 +113,7 @@ bool JsonSerial::boutonMaintenu(int indexBtn) {
     return _recvjson["btn"][indexBtn]["maintenu"] == true;
 }
 
-bool JsonSerial::joystickMaintenu(Direction dir, bool vientDeChanger) {
+bool JsonSerial::joystickMaintenu(Direction dir, bool repeat) {
     const char* jsondir = (dir == HAUT || dir == BAS) ? "joyY" : "joyX";
 
     if (!_recvjson.contains(jsondir)) {
@@ -123,9 +123,9 @@ bool JsonSerial::joystickMaintenu(Direction dir, bool vientDeChanger) {
 
     bool dirs_are_equal = ((Direction)_recvjson[jsondir]["dir"] == dir);
 
-    if (vientDeChanger) {
-        if (_recvjson[jsondir]["appuye"] == true && dirs_are_equal)
-            _recvjson[jsondir]["appuye"] = false;
+    if (repeat) {
+        if (_recvjson[jsondir]["repeat"] == true && dirs_are_equal)
+            _recvjson[jsondir]["repeat"] = false;
         else
             return NEUTRE;
     }

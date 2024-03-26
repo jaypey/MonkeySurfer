@@ -7,6 +7,8 @@
 
 const uint8_t PIN_JOYSTICK_X = A4;
 const uint8_t PIN_JOYSTICK_Y = A5;
+const uint16_t INITIAL_REPEAT_DELAY_JOYSTICK = 600;
+const uint16_t REPEAT_DELAY_JOYSTICK = 200;
 
 enum Direction {
     NEUTRE,
@@ -18,7 +20,7 @@ enum Direction {
 
 struct JoystickState {
     Direction direction;
-    bool vientDeChanger;
+    bool repetition;
 };
 
 class Joystick {
@@ -33,6 +35,10 @@ class Joystick {
 
         Direction _lastDirectionX;
         Direction _lastDirectionY;
+        unsigned long _lastRepeatX;
+        unsigned long _lastRepeatY;
+        bool _isInitialRepeatX;
+        bool _isInitialRepeatY;
     public:
         Joystick();
         // Constructeur prenant les broches des axes X et Y en paramètre
