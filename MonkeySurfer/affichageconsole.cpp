@@ -221,6 +221,11 @@ void AffichageConsole::afficherItems() {
     ElementJeu* elementCourant;
     for (int i = 0; i < _jeu->getElements().size(); i++) {
         elementCourant = _jeu->getElements()[i];
+
+        // On affiche pas les objets hors jeu
+        if (elementCourant->getPosition().y >= NB_LIGNES)
+            continue;
+
         if (elementCourant->getID() == OBSTACLE_FIXE) //Éventuellement trouver une manière plus élégante
         {
             _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = 'X';
