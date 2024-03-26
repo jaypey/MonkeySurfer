@@ -46,7 +46,7 @@ JoystickState Joystick::getStateX() {
     JoystickState jstate;
     jstate.direction = lireDirectionX();
 
-    jstate.appuye = (jstate.direction != NEUTRE && jstate.direction != _lastDirectionX);
+    jstate.vientDeChanger = (jstate.direction != NEUTRE && jstate.direction != _lastDirectionX);
     _lastDirectionX = jstate.direction;
 
     return jstate;
@@ -56,7 +56,7 @@ JoystickState Joystick::getStateY() {
     JoystickState jstate;
     jstate.direction = lireDirectionY();
 
-    jstate.appuye = (jstate.direction != NEUTRE && jstate.direction != _lastDirectionY);
+    jstate.vientDeChanger = (jstate.direction != NEUTRE && jstate.direction != _lastDirectionY);
     _lastDirectionY = jstate.direction;
 
     return jstate;

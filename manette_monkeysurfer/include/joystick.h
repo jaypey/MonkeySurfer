@@ -18,7 +18,7 @@ enum Direction {
 
 struct JoystickState {
     Direction direction;
-    bool appuye; // Pas le bouton du joystick, juste le moment de changement de direction
+    bool vientDeChanger;
 };
 
 class Joystick {
