@@ -121,10 +121,10 @@ void Jeu::updateJoueur()
 {
 	// MANETTE
 	if (_jsonserial->boutonAppuye(2)) {
-		if (_jsonserial->joystickMaintenuX() == GAUCHE) {
+		if (_jsonserial->joystickMaintenu(GAUCHE)) {
 			_joueur->Left();
 		}
-		else if (_jsonserial->joystickMaintenuX() == DROITE) {
+		else if (_jsonserial->joystickMaintenu(DROITE)) {
 			_joueur->Right();
 		}
 	}
@@ -164,12 +164,12 @@ void Jeu::updatePause() {
 		}
 	}
 
-	if (_jsonserial->joystickMaintenuY() == HAUT && _jsonserial->joystickAppuyeY()) {
+	if (_jsonserial->joystickMaintenu(HAUT, true)) {
 		_pauseOption--;
 		if (_pauseOption < 0)
 			_pauseOption = 1;
 	}
-	else if (_jsonserial->joystickMaintenuY() == BAS && _jsonserial->joystickAppuyeY()) {
+	else if (_jsonserial->joystickMaintenu(BAS, true)) {
 		_pauseOption++;
 		if (_pauseOption > 1)
 			_pauseOption = 0;

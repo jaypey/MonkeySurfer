@@ -7,8 +7,8 @@ Menu::~Menu() {}
 void Menu::update() {
     if (_etat == EtatMenu::PRINCIPAL) {
         // MANETTE
-        if (_jsonserial->joystickMaintenuY() == HAUT && _jsonserial->joystickAppuyeY()) modifierChoixMenu(1);
-        if (_jsonserial->joystickMaintenuY() == BAS && _jsonserial->joystickAppuyeY()) modifierChoixMenu(-1);
+        if (_jsonserial->joystickMaintenu(HAUT, true)) modifierChoixMenu(1);
+        if (_jsonserial->joystickMaintenu(BAS, true))  modifierChoixMenu(-1);
 
         if (_jsonserial->boutonAppuye(2)) {
             if (_choixMenu == 0) {
@@ -35,10 +35,10 @@ void Menu::update() {
     }
     else if (_etat == EtatMenu::SKINS) {
         // MANETTE
-        if (_jsonserial->joystickMaintenuX() == GAUCHE && _jsonserial->joystickAppuyeX())   modifierSkin(-1);
-        if (_jsonserial->joystickMaintenuY() == HAUT && _jsonserial->joystickAppuyeY())     modifierSkin(3);
-        if (_jsonserial->joystickMaintenuX() == DROITE && _jsonserial->joystickAppuyeX())   modifierSkin(1);
-        if (_jsonserial->joystickMaintenuY() == BAS && _jsonserial->joystickAppuyeY())      modifierSkin(-3);
+        if (_jsonserial->joystickMaintenu(GAUCHE, true))   modifierSkin(-1);
+        if (_jsonserial->joystickMaintenu(HAUT, true))     modifierSkin(3);
+        if (_jsonserial->joystickMaintenu(DROITE, true))   modifierSkin(1);
+        if (_jsonserial->joystickMaintenu(BAS, true))      modifierSkin(-3);
         if (_jsonserial->boutonAppuye(1)) _etat = EtatMenu::PRINCIPAL;
 
         // CLAVIER

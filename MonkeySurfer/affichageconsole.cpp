@@ -199,9 +199,9 @@ void AffichageConsole::afficherJoueur() {
     _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
 
     // Fleche direction de saut
-    if (_jeu->getJsonSerial()->joystickMaintenuX() == DROITE)
+    if (_jeu->getJsonSerial()->joystickMaintenu(DROITE))
         _img[x + 1][15] = '>';
-    else if (_jeu->getJsonSerial()->joystickMaintenuX() == GAUCHE)
+    else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE))
         _img[x - 1][15] = '<';
 }
 

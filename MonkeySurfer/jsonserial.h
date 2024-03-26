@@ -32,10 +32,7 @@ public:
     // Read
     bool boutonAppuye(int indexBtn);
     bool boutonMaintenu(int indexBtn);
-    Direction joystickMaintenuX();
-    Direction joystickMaintenuY();
-    bool joystickAppuyeX();
-    bool joystickAppuyeY();
+    bool joystickMaintenu(Direction dir, bool vientDeChanger = false);
     bool accShake();
 
     // Write

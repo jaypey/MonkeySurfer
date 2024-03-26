@@ -113,44 +113,24 @@ bool JsonSerial::boutonMaintenu(int indexBtn) {
     return _recvjson["btn"][indexBtn]["maintenu"] == true;
 }
 
-Direction JsonSerial::joystickMaintenuX() {
-    if (!_recvjson.contains("joyX")) {
-        errout << "La cle \"joyX\" ne se retrouve pas dans le document json." << std::endl;
+bool JsonSerial::joystickMaintenu(Direction dir, bool vientDeChanger) {
+    const char* jsondir = (dir == HAUT || dir == BAS) ? "joyY" : "joyX";
+
+    if (!_recvjson.contains(jsondir)) {
+        errout << "La cle \"" << jsondir << "\" ne se retrouve pas dans le document json." << std::endl;
         return NEUTRE;
     }
 
-    return (Direction)_recvjson["joyX"]["dir"];
-}
+    bool dirs_are_equal = ((Direction)_recvjson[jsondir]["dir"] == dir);
 
-Direction JsonSerial::joystickMaintenuY() {
-    if (!_recvjson.contains("joyY")) {
-        errout << "La cle \"joyY\" ne se retrouve pas dans le document json." << std::endl;
-        return NEUTRE;
+    if (vientDeChanger) {
+        if (_recvjson[jsondir]["appuye"] == true && dirs_are_equal)
+            _recvjson[jsondir]["appuye"] = false;
+        else
+            return NEUTRE;
     }
 
-    return (Direction)_recvjson["joyY"]["dir"];
-}
-
-bool JsonSerial::joystickAppuyeX() {
-    if (!_recvjson.contains("joyX")) {
-        errout << "La cle \"joyX\" ne se retrouve pas dans le document json." << std::endl;
-        return false;
-    }
-
-    bool appuye = _recvjson["joyX"]["appuye"];
-    _recvjson["joyX"]["appuye"] = false;
-    return appuye;
-}
-
-bool JsonSerial::joystickAppuyeY() {
-    if (!_recvjson.contains("joyY")) {
-        errout << "La cle \"joyY\" ne se retrouve pas dans le document json." << std::endl;
-        return false;
-    }
-
-    bool appuye = _recvjson["joyY"]["appuye"];
-    _recvjson["joyY"]["appuye"] = false;
-    return appuye;
+    return dirs_are_equal;
 }
 
 bool JsonSerial::accShake() {
