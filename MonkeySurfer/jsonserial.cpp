@@ -139,7 +139,7 @@ bool JsonSerial::accShake() {
         return NEUTRE;
     }
 
-    return _recvjson["acc"];
+    return !_recvjson["acc"];
 }
 
 void JsonSerial::lcd(const char* msg_row_1, const char* msg_row_2) {

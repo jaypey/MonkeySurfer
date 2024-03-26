@@ -203,6 +203,18 @@ void AffichageConsole::afficherJoueur() {
         _img[x + 1][15] = '>';
     else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE))
         _img[x - 1][15] = '<';
+
+    // Poussieres et eclats s'il attaque le serpent
+    if (_jeu->getJsonSerial()->accShake()) {
+        _img[x-1][14] = getCharEclat();
+        _img[x]  [14] = getCharEclat();
+        _img[x+1][14] = getCharEclat();
+        _img[x-1][15] = getCharEclat();
+        _img[x+1][15] = getCharEclat();
+        _img[x-1][16] = getCharEclat();
+        _img[x]  [16] = getCharEclat();
+        _img[x+1][16] = getCharEclat();
+    }
 }
 
 void AffichageConsole::afficherItems() {
@@ -298,6 +310,18 @@ void AffichageConsole::printMatriceChar() {
         _output += '\n';
     }
     std::cout << _output; // Imprime l'image à la console
+}
+
+char AffichageConsole::getCharEclat() {
+    // 50% chance d'afficher un eclat, 50% d'afficher rien
+    // * # @
+    // 0 1 2 3 4 5
+    switch (_rand.random(0, 5, rand())) {
+        case 0: return '*';
+        case 1: return '#';
+        case 2: return '@';
+    }
+    return ' ';
 }
 
 bool AffichageConsole::peutAfficherProchaineImage() {

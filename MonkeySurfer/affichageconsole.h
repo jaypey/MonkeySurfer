@@ -56,6 +56,7 @@ private:
 
     // Fonctions "helper" pour l'affichage à la console
     void printMatriceChar();
+    char getCharEclat();
 
     // Lié au FPS
     bool peutAfficherProchaineImage(); // Attendre que l'image precedente aie finie de s'afficher, vitesse d'affichage limitee par le FPS
@@ -69,6 +70,7 @@ private:
     std::chrono::steady_clock::time_point _lastupdate; // Temps ecoule depuis derniere update du jeu
 
     const long long _DURFRM = 1000 / FPS; // Duree d'affichage d'une image avant d'afficher la prochaine, en millisecondes
+    RandomGenerator _rand;
 
     // Lianes
     int _xlianes[NB_LIANES]; // Emplacement colonne des lianes
