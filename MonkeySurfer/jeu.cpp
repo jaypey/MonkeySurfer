@@ -233,7 +233,22 @@ void Jeu::avancerCase()
 			_elements.erase(_elements.begin() + i);
 		}
 		_elements[i]->setPosition(courant);
+
+		if (HarpieFeroce* harpie = dynamic_cast<HarpieFeroce*>(_elements[i]))
+		{
+			if (harpie->finDeParcours())
+			{
+				delete _elements[i];
+				_elements.erase(_elements.begin() + i);
+			}
+			else
+			{
+				harpie->deplacement();
+			}
+		}
+
 	}
+
 	ElementJeu* element = _generateur.getRandomObstacle();
 	if (rand() % 4 == 2)
 	{

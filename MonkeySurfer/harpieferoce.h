@@ -11,6 +11,7 @@ public:
 	void deplacement();
 	int getDirection();
 	virtual void collision(Joueur& _joueur);
+	bool finDeParcours();
 	void afficherInfo() const;
 
 private:

@@ -196,7 +196,8 @@ void AffichageConsole::afficherLianes() {
 void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
     int x = _xlianes[positionCourante.x];
-    _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
+    std::cout << std::endl << x;
+    _img[x][positionCourante.y] = _skins[_menu->getIndexSkin()].getId(); // monkey
 
     // Fleche direction de saut
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE))
@@ -226,14 +227,33 @@ void AffichageConsole::afficherItems() {
         if (elementCourant->getPosition().y >= NB_LIGNES)
             continue;
 
-        if (elementCourant->getID() == OBSTACLE_FIXE) //Éventuellement trouver une manière plus élégante
+        char visuel;
+        switch (elementCourant->getID())
         {
-            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = 'X';
+        case OBSTACLE_FIXE:
+            visuel = 'X';
+            break;
+        case HARPIE:
+            visuel = '=';
+            break;
+        case SERPENT:
+            visuel = 'S';
+            break;
+        case PIECE:
+            visuel = '$';
+            break;
+        case BOUCLIER:
+            visuel = '@';
+            break;
+        case BANANE:
+            visuel = 'C';
+            break;
+
+        default:
+            visuel = 'l';
         }
-        else
-        {
-            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = '$';
-        }
+
+        _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = visuel;
     }
     
 }

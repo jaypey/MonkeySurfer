@@ -46,7 +46,7 @@ Collectible* GenerateurItem::getRandomCollectible()
 
 Obstacle* GenerateurItem::getRandomObstacle()
 {
-	int valeurAleatoire = rand.random(0, 1, 95165);
+	int valeurAleatoire = rand.random(0, 2, std::rand() % 19);
 
 	switch (valeurAleatoire)
 	{
@@ -54,7 +54,7 @@ Obstacle* GenerateurItem::getRandomObstacle()
 		return new ObstacleFixe;
 
 	case 1:
-		return new ObstacleFixe;
+		return new HarpieFeroce;
 
 	case 2:
 		return new Serpent;

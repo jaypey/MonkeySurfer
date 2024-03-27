@@ -2,7 +2,15 @@
 
 HarpieFeroce::HarpieFeroce()
 {
-	direction = generateur.random(GAUCHE, DROITE, rand() % 1000);
+	setID(HARPIE);
+	if (generateur.random(0, 1, rand() % 1000))
+	{
+		direction = GAUCHE;
+	}
+	else
+	{
+		direction = DROITE;
+	}
 	Coordonnee pos;
 
 	pos.y = generateur.random(0, 20, rand() % 1000); //À changer pour la hauteur maximale de l'écran
@@ -50,6 +58,16 @@ void HarpieFeroce::collision(Joueur& _joueur)
 	{
 		_joueur.isDead();
 	}
+}
+
+bool HarpieFeroce::finDeParcours()
+{
+	if ((getDirection() == GAUCHE && getPosition().x == 0) ||
+		getDirection() == DROITE && getPosition().x == 4)
+	{
+		return true;
+	}
+	return false;
 }
 
 void HarpieFeroce::afficherInfo() const

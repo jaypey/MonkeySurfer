@@ -2,6 +2,7 @@
 
 Serpent::Serpent()
 {
+	setID(SERPENT);
 	hp = generateur.random(6, 10, rand() % 1000);
 }
 
