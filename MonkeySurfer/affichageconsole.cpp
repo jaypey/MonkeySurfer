@@ -25,6 +25,9 @@ void AffichageConsole::afficherJeu() {
     if (_jeu->isGameOver()) {
         afficherGameOver();
     }
+    else if (_jeu->isPaused()) {
+        afficherPause();
+    }
 
     // Print à la console
     printMatriceChar();
@@ -44,14 +47,16 @@ void AffichageConsole::afficherMenu() {
 }
 
 void AffichageConsole::afficherMenuPrincipal() {
+    int cm = _menu->getChoixMenu();
+
     afficherArrierePlan();
     afficherContour();
     afficherFichier("artMenu.txt", 5, 2);
     afficherFichier("monkey.txt", 43, 4);
-    afficherTexte("1. Jouer", 25, 15);
-    afficherTexte("2. Skins", 25, 17);
-    afficherTexte("3. Aide", 25, 19);
-    afficherTexte("4. Quitter", 25, 21);
+    afficherTexte("1. Jouer", 25, 15, (cm == 0));
+    afficherTexte("2. Skins", 25, 17, (cm == 1));
+    afficherTexte("3. Aide", 25, 19, (cm == 2));
+    afficherTexte("4. Quitter", 25, 21, (cm == 3));
 }
 
 void AffichageConsole::afficherMenuSkin() {
@@ -192,12 +197,35 @@ void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
     int x = _xlianes[positionCourante.x];
     _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
+
+    // Fleche direction de saut
+    if (_jeu->getJsonSerial()->joystickMaintenu(DROITE))
+        _img[x + 1][15] = '>';
+    else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE))
+        _img[x - 1][15] = '<';
+
+    // Poussieres et eclats s'il attaque le serpent
+    if (_jeu->getJsonSerial()->accShake()) {
+        _img[x-1][14] = getCharEclat();
+        _img[x]  [14] = getCharEclat();
+        _img[x+1][14] = getCharEclat();
+        _img[x-1][15] = getCharEclat();
+        _img[x+1][15] = getCharEclat();
+        _img[x-1][16] = getCharEclat();
+        _img[x]  [16] = getCharEclat();
+        _img[x+1][16] = getCharEclat();
+    }
 }
 
 void AffichageConsole::afficherItems() {
     ElementJeu* elementCourant;
     for (int i = 0; i < _jeu->getElements().size(); i++) {
         elementCourant = _jeu->getElements()[i];
+
+        // On affiche pas les objets hors jeu
+        if (elementCourant->getPosition().y >= NB_LIGNES)
+            continue;
+
         if (elementCourant->getID() == OBSTACLE_FIXE) //Éventuellement trouver une manière plus élégante
         {
             _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = 'X';
@@ -227,6 +255,14 @@ void AffichageConsole::afficherGameOver() {
     afficherFichier("retryText.txt", 7, 18);
 }
 
+void AffichageConsole::afficherPause() {
+    int po = _jeu->getPauseOption();
+
+    afficherFichier("pause.txt", 4, 4);
+    afficherTexte("1. Continuer", 25, 13, (po == 0));
+    afficherTexte("2. Retourner au menu", 21, 15, (po == 1));
+}
+
 void AffichageConsole::afficherContour() {
     // Coutour zone de jeu + UI
     for (int i = 0; i < NB_COLS; i++) {
@@ -239,7 +275,12 @@ void AffichageConsole::afficherContour() {
     }
 }
 
-void AffichageConsole::afficherTexte(const std::string& s, int x, int y) {
+void AffichageConsole::afficherTexte(std::string s, int x, int y, bool selected) {
+    if (selected) {
+        s = "> " + s + " <";
+        x -= 2;
+    }
+
     for (int i = 0; i < s.size() && x + i < NB_COLS; i++)
         _img[x + i][y] = s[i];
 }
@@ -274,6 +315,18 @@ void AffichageConsole::printMatriceChar() {
         _output += '\n';
     }
     std::cout << _output; // Imprime l'image à la console
+}
+
+char AffichageConsole::getCharEclat() {
+    // 50% chance d'afficher un eclat, 50% d'afficher rien
+    // * # @
+    // 0 1 2 3 4 5
+    switch (_rand.random(0, 5, rand())) {
+        case 0: return '*';
+        case 1: return '#';
+        case 2: return '@';
+    }
+    return ' ';
 }
 
 bool AffichageConsole::peutAfficherProchaineImage() {

@@ -1,63 +1,63 @@
 #include "del.h"
 
-        del::del()
-        {
-        }
+Del::Del()
+{
+}
 
-        del::del (int sapin)
-        {
-            pin = sapin;
-        }
+Del::Del (int sapin)
+{
+    pin = sapin;
+}
 
-        del::~del()
-        {
-        }
-       
-        void del::setpin(int sapin)
-        {
-            pin=sapin;
-        }
+Del::~Del()
+{
+}
 
-        int del::getpin()
-        {
-            return pin;
-        }
+void Del::setpin(int sapin)
+{
+    pin=sapin;
+}
 
-        void del::instancier()
-        {
-            pinMode(pin, OUTPUT);
-        }
+int Del::getpin()
+{
+    return pin;
+}
 
-        void del::allumer()
-        {
-            digitalWrite(pin, HIGH);
-        }
+void Del::instancier()
+{
+    pinMode(pin, OUTPUT);
+}
 
-        void del::eteindre()
-        {
-            digitalWrite(pin, LOW);
-        }
+void Del::allumer()
+{
+    digitalWrite(pin, HIGH);
+}
 
-        void del::clignoterrapidement()
-        {
-            digitalWrite(pin, HIGH);
-            delay(250);
-            digitalWrite(pin, LOW);
-            delay(250);
-        }
+void Del::eteindre()
+{
+    digitalWrite(pin, LOW);
+}
 
-        void del::clignoter()
-        {
-            digitalWrite(pin, HIGH);
-            delay(500);
-            digitalWrite(pin, LOW);
-            delay(500);
-        }
+void Del::clignoterrapidement()
+{
+    digitalWrite(pin, HIGH);
+    delay(250);
+    digitalWrite(pin, LOW);
+    delay(250);
+}
 
-        void del::clignoterlentement()
-        {
-            digitalWrite(pin, HIGH);
-            delay(1000);
-            digitalWrite(pin, LOW);
-            delay(1000);
-        }
+void Del::clignoter()
+{
+    digitalWrite(pin, HIGH);
+    delay(500);
+    digitalWrite(pin, LOW);
+    delay(500);
+}
+
+void Del::clignoterlentement()
+{
+    digitalWrite(pin, HIGH);
+    delay(1000);
+    digitalWrite(pin, LOW);
+    delay(1000);
+}

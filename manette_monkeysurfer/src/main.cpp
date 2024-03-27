@@ -1,54 +1,43 @@
-#include <Arduino.h>
-#include "del.h"
-#include "bargraph.h"
-#include "accelerometre.h"
-#include <LiquidCrystal.h>
-#include <ArduinoJson.h>
-#include "bouton.h"
-#include "moteurvibrant.h"
-#include "joystick.h"
+#include "jsonserial.h"
 
-JsonDocument doc;
+// Creation des objets
+Accelerometre acc;
+Bargraph bar;
+Bouton btn(2, 3, 4, 5);
+Del delR(43);
+Del delJ(45);
+Del delV(47);
+Joystick joy(A4, A5);
+LiquidCrystal lcd(39, 37, 35, 33, 31, 29);
+MoteurVibrant motvib(9);
 
-del rouge(23);
-del jaune(25);
-del vert(27);
-bargraph lebargraph;
-LiquidCrystal ecran(39, 37, 35, 33, 31, 29);
+InfoComposantes info;
+JsonSerial js(&info);
 
 void setup() 
 {
-  rouge.instancier();
-  jaune.instancier();
-  vert.instancier();
-  lebargraph.instancier(22, 24, 26, 28, 30, 32, 34, 36, 38, 40);
-  ecran.begin(16, 2);
-  ecran.print("Vous etes mort!");
-  Serial.begin(9600);
+  Serial.begin(BAUD_RATE);
+
+  // Configuration des objets
+  bar.instancier(22, 24, 26, 28, 30, 32, 34, 36, 38, 40);
+  delR.instancier();
+  delJ.instancier();
+  delV.instancier();
+
+  // Configuration de l'objet "InfoComposantes"
+  info.acc = &acc;
+  info.bar = &bar;
+  info.btn = &btn;
+  info.delR = &delR;
+  info.delJ = &delJ;
+  info.delV = &delV;
+  info.joy = &joy;
+  info.lcd = &lcd;
+  info.motvib = &motvib;
 }
 
-void loop() 
+void loop()
 {
-    /*StaticJsonDocument<64> doc;
-    // Créer une instance de la classe Accelerometre
-    Accelerometre pololo;
-
-    // Appeler la fonction shake avec l'argument 'x'
-    int resultat = pololo.shake('z');
-    doc["shake"] = resultat;
-
-    // Sérialisez l'objet JSON
-    String jsonStr;
-    serializeJson(doc, jsonStr);
-
-    // Faire autre chose avec le résultat si nécessaire
-    Serial.println(resultat);
-
-    // Attendre un peu avant de recommencer
-    delay(200);*/
-  Joystick joystick;
-  Bouton boutons;
-  MoteurVibrant moteurVibrant;
-
-
+  js.recvJson();
+  js.sendJson();
 }

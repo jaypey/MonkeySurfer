@@ -1,9 +1,7 @@
 #ifndef HARPIEFEROCE_H
 #define HARPIEFEROCE_H
 #include "obstacle.h"
-
-#define GAUCHE 0
-#define DROITE 1
+#include "direction.h"
 
 class HarpieFeroce : public Obstacle
 {

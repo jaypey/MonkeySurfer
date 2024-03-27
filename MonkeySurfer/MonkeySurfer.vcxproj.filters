@@ -72,6 +72,12 @@
     <ClCompile Include="serpent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="jsonserial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nullstream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jeu.h">
@@ -128,6 +134,15 @@
     <ClInclude Include="serpent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="jsonserial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="direction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nullstream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="gameOver.txt">
@@ -146,6 +161,9 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="retryText.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="pause.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
