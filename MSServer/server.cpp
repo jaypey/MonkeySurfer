@@ -19,7 +19,7 @@ Server::Server()
 
         //Creation du serveur en host
         m_address.host = ENET_HOST_ANY;
-        m_address.port = 7777;
+        m_address.port = 4444;
 
         m_server = enet_host_create(&m_address, 32, 1, 0, 0);
 
@@ -79,10 +79,10 @@ void Server::ParseData(int id, char* data)
             std::string msgWithHeader;
             if (m_readyPlayersCount > m_playersDict.size()/2)
             {
-                msgWithHeader = std::to_string(6) + "|" + std::to_string(m_readyPlayersCount);
+                msgWithHeader = std::to_string(6) + "|" + std::to_string(id);
             }
             else {
-                msgWithHeader = std::to_string(dataType) + "|" + std::to_string(m_readyPlayersCount); 
+                msgWithHeader = std::to_string(dataType) + "|" + std::to_string(id) + "|" + std::to_string(m_readyPlayersCount);
             }
             BroadcastPacket(msgWithHeader.c_str());
         }

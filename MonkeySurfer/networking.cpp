@@ -1,10 +1,12 @@
 #include "networking.h"
 #include <iostream>
 #include <enet/enet.h>
+#include "coordonnee.h"
 
 Networking::Networking()
 {
 	_readyPlayerCount = 0;
+	_gameStarted = false;
 }
 
 Networking::~Networking()
@@ -75,6 +77,24 @@ int Networking::GetId()
 	return _idJoueur;
 }
 
+void Networking::SendLocalReady() {
+	char messageData[80] = "2|";
+	SendPacket(messageData);
+}
+
+void Networking::SendLocalPosition(Coordonnee c) {
+	std::string msgPosition = std::to_string(c.x) + "x" + std::to_string(c.y) + "y";
+	char messageData[80] = "1|";
+	strcat(messageData, msgPosition.c_str());
+	SendPacket(messageData);
+}
+
+void Networking::SendPacket(char* data)
+{
+	ENetPacket* packet = enet_packet_create(data, strlen(data) + 1, ENET_PACKET_FLAG_RELIABLE);
+	enet_peer_send(_host, 0, packet);
+}
+
 void Networking::ParseData(char* data)
 {
 	int dataType;
@@ -120,6 +140,10 @@ void Networking::ParseData(char* data)
 		}
 
 	}
+	case 6:
+	{
+		_gameStarted = true;
+	}
 	}
 }
 
@@ -139,8 +163,18 @@ void Networking::ReceiveData()
 	}
 }
 
+bool Networking::IsGameStarted()
+{
+	return _gameStarted;
+}
+
 int Networking::GetReadyPlayerCount() {
 	return _readyPlayerCount;
+}
+
+std::map<int, PlayerData*> Networking::GetJoueurs()
+{
+	return _joueurs;
 }
 
 int Networking::GetJoueurCount()

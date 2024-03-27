@@ -12,6 +12,7 @@ private:
     bool m_initialized;
     ENetHost* m_server;
     ENetAddress m_address;
+    int m_readyPlayersCount;
     std::map<int, PlayerData*> m_playersDict;
 
 public:

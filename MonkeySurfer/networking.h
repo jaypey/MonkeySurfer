@@ -16,6 +16,9 @@ public:
 	void SendPacket(char* data);
 	void ParseData(char* data);
 	void ReceiveData();
+	bool IsGameStarted();
+	void SendLocalReady();
+	void SendLocalPosition(Coordonnee c);
 	int GetJoueurCount();
 	int GetReadyPlayerCount();
 	std::map<int, PlayerData*> GetJoueurs();
@@ -26,5 +29,6 @@ private:
 	ENetAddress _address;
 	ENetPeer* _host;
 	std::map<int, PlayerData*> _joueurs;
+	bool _gameStarted;
 };
 #endif // !NETWORKING_H__
