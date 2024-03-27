@@ -8,9 +8,9 @@ GenerateurItem::~GenerateurItem()
 {
 }
 
-ElementJeu* GenerateurItem::genererRandomElement()
+ElementJeu* GenerateurItem::getRandomElement()
 {
-	int valeurAleatoire = rand.random(0, 2, 451565);
+	int valeurAleatoire = rand.random(0, 2, std::rand() % 500);
 
 	if (valeurAleatoire == 0)
 	{
@@ -27,7 +27,7 @@ ElementJeu* GenerateurItem::genererRandomElement()
 
 Collectible* GenerateurItem::getRandomCollectible()
 {
-	int valeurAleatoire = rand.random(0, 1, 95165);
+	int valeurAleatoire = rand.random(0, 1, std::rand()%500);
 
 	switch (valeurAleatoire)
 	{

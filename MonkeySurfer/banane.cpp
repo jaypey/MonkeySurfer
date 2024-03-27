@@ -20,11 +20,20 @@ void Banane::collision(Joueur& _joueur)
 void Banane::stocker(Joueur& joueur)
 {
 	joueur.ajouterInventaire(this);
+	if (joueur.getNbItem() == 1)
+	{
+		joueur.setCharInventaire({ 'B', ' ' });
+	}
+	else if (joueur.getNbItem() == 2)
+	{
+		joueur.setCharInventaire({ joueur.getCharInventaire().item1, 'B' });
+	}
 }
 
 void Banane::appliquerEffet(Joueur& joueur)
 {
 	joueur.setEtatEffetBanane(true);
+	joueur.setCharInventaire({ joueur.getCharInventaire().item2, ' ' });
 	lastUpdateBanane = std::chrono::steady_clock::now();
 }
 

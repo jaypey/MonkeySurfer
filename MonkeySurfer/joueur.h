@@ -6,6 +6,11 @@
 #include "elementjeu.h"
 #include "skin.h"
 
+struct charInventaire {
+	char item1;
+	char item2;
+};
+
 class Collectible;
 class Joueur
 {
@@ -20,9 +25,13 @@ public:
 	int getScore();
 	void ramasserPiece();
 	void compteurPointage();
+	int getNbItem();
 	bool ajouterInventaire(Collectible *powerUp);
+	charInventaire getCharInventaire();
+	void setCharInventaire(charInventaire c);
+
 	bool echangerInventaire();
-	Collectible* useObjet();
+	void useObjet();
 	void enleverObjet();
 	
 	void switchEtatBouclier();
@@ -34,6 +43,7 @@ public:
 	bool getEtatEffetBanane();
 
 	void immobiliser(bool etat);
+	bool isFree();
 
 	bool getVie();
 	void isDead();
@@ -56,6 +66,7 @@ private:
 	int score;
 	int nbObjets;
 	Collectible* inventaire[2];
+	charInventaire charInv;
 	std::chrono::steady_clock::time_point lastUpdate;
 };
 

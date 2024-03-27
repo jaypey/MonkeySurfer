@@ -287,11 +287,11 @@ void AffichageConsole::afficherItems() {
             visuel = {'@', CMD_BOUCLIER_COLOR};
             break;
         case BANANE:
-            visuel = {'C', CMD_BANANE_COLOR};
+            visuel = {'B', CMD_BANANE_COLOR};
             break;
 
         default:
-            visuel = 'l';
+            visuel = {'l', CMD_LIANE_COLOR};
         }
 
         _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = visuel;
@@ -308,7 +308,10 @@ void AffichageConsole::afficherIU() {
 
     // Afficher le texte pour le score
     _score = "Score : " + std::to_string(_jeu->getPointageJoueur()) + " Pieces : " + std::to_string(_jeu->getPiecesJoueur());
+    _inv = "Inventaire :  1 - " + std::string(1, _jeu->getCharInventaire().item1) + "   2 - " + std::string(1, _jeu->getCharInventaire().item2);
+
     afficherTexte(_score, 2, NB_LIGNES - 2);
+    afficherTexte(_inv, 30, NB_LIGNES - 2);
 }
 
 void AffichageConsole::afficherGameOver() {
@@ -394,7 +397,7 @@ CharInfo AffichageConsole::getCharEclat() {
     switch (_rand.random(0, 5, rand())) {
         case 0: return { '*', CMD_ECLAT_COLOR };
         case 1: return { '#', CMD_ECLAT_COLOR };
-        case 2: return { '@', CMD_ECLAT_COLOR };
+        case 2: return { '&', CMD_ECLAT_COLOR };
     }
     return { ' ', CMD_ECLAT_COLOR };
 }

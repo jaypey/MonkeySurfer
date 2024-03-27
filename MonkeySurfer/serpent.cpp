@@ -4,6 +4,9 @@ Serpent::Serpent()
 {
 	setID(SERPENT);
 	hp = generateur.random(6, 10, rand() % 1000);
+
+	setPosition({ generateur.random(0, 5, rand() % 1000) , getPosition().y });
+
 }
 
 Serpent::~Serpent()
@@ -36,8 +39,9 @@ void Serpent::recoitCoup(Joueur& p_joueur)
 
 void Serpent::mourir(Joueur& p_joueur)
 {
+	p_joueur.ramasserPiece();		//Donne 20 pts au joueur pour tuer un serpent
+	p_joueur.ramasserPiece();
 	p_joueur.immobiliser(false);
-	//this->~Serpent();
 }
 
 void Serpent::afficherInfo() const

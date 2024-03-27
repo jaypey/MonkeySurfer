@@ -19,6 +19,7 @@ public:
 	bool isPaused();
 	bool isQuitting(); //Requete du jeu, lue par le menu pour afficher le menu
 	int getPointageJoueur();
+	charInventaire getCharInventaire();
 	int getPiecesJoueur();
 	int getPauseOption();
 	void setPause(bool pause);

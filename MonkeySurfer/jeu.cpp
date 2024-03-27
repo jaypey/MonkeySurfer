@@ -32,6 +32,11 @@ int Jeu::getPointageJoueur() {
 	return _joueur->getScore();
 }
 
+charInventaire Jeu::getCharInventaire()
+{
+	return _joueur->getCharInventaire();
+}
+
 int Jeu::getPiecesJoueur()
 {
 	return _joueur->getPiece();
@@ -40,6 +45,7 @@ int Jeu::getPiecesJoueur()
 int Jeu::getPauseOption() {
 	return _pauseOption;
 }
+
 
 void Jeu::setPause(bool pause) {
 	_modePause = pause;
@@ -120,21 +126,24 @@ void Jeu::updateJeu()
 void Jeu::updateJoueur()
 {
 	// MANETTE
-	if (_jsonserial->boutonAppuye(2)) {
-		if (_jsonserial->joystickMaintenu(GAUCHE)) {
-			_joueur->Left();
+	if(_joueur->isFree())
+	{
+		if (_jsonserial->boutonAppuye(2)) {
+			if (_jsonserial->joystickMaintenu(GAUCHE)) {
+				_joueur->Left();
+			}
+			else if (_jsonserial->joystickMaintenu(DROITE)) {
+				_joueur->Right();
+			}
 		}
-		else if (_jsonserial->joystickMaintenu(DROITE)) {
-			_joueur->Right();
+
+		if (_jsonserial->joystickMaintenu(HAUT, true)) {
+			_joueur->up();
 		}
-	}
 
-	if (_jsonserial->joystickMaintenu(HAUT, true)) {
-		_joueur->up();
-	}
-
-	else if (_jsonserial->joystickMaintenu(BAS, true)) {
-		_joueur->down();
+		else if (_jsonserial->joystickMaintenu(BAS, true)) {
+			_joueur->down();
+		}
 	}
 
 	if (_jsonserial->boutonAppuye(1)) {
@@ -146,20 +155,36 @@ void Jeu::updateJoueur()
 	{
 		char c = _getch();
 		if (c == 224) c = _getch();
-		if (c == 75) { // Fleche gauche
-			_joueur->Left();
-		}
-		else if (c == 77) { // Fleche droite
-			_joueur->Right();
-		}
-		else if (c == 80) {
-			_joueur->up();
-		}
-		else if (c == 72) {
-			_joueur->down();
-		}
-		else if (c == 'p') {
-			_modePause = true;
+
+		if(_joueur->isFree() || c == 'p' || c == ' ')
+		{
+			if (c == 75) { // Fleche gauche
+				_joueur->Left();
+			}
+			else if (c == 77) { // Fleche droite
+				_joueur->Right();
+			}
+			else if (c == 80) { //Fleche bas
+				_joueur->down();
+			}
+			else if (c == 72) {	//Fleche haut
+				_joueur->up();
+			}
+			else if (c == 'p') {
+				_modePause = true;
+			}
+			else if (c == ' ')
+			{
+
+			}
+			else if (c == 'z')
+			{
+				_joueur->echangerInventaire();
+			}
+			else if (c == 'x')
+			{
+				_joueur->useObjet();
+			}
 		}
 	}
 }
@@ -271,7 +296,7 @@ void Jeu::avancerCase()
 	courant.y++;
 	_joueur->setPosition(courant);
 
-	ElementJeu* element = _generateur.getRandomObstacle();
+	ElementJeu* element = _generateur.getRandomElement();
 	if (rand() % 4 == 2)
 	{
 		ElementJeu* piece = new Piece();

@@ -8,6 +8,8 @@ Joueur::Joueur()
 
 Joueur::~Joueur()
 {
+    delete inventaire[0];
+    delete inventaire[1];
 }
 
 void Joueur::reset() {
@@ -18,17 +20,13 @@ void Joueur::reset() {
     immobilise = false;
     enVie = true;
 
+    charInv.item1 = ' ';
+    charInv.item2 = ' ';
     inventaire[0] = nullptr;
     inventaire[1] = nullptr;
     position.x = 2;
     position.y = 15;
     lastUpdate = std::chrono::steady_clock::now(); // moment dernier update pour score, initialiser
-}
-
-Joueur::~Joueur()
-{
-    delete inventaire[0]; 
-    delete inventaire[1];
 }
 
 int Joueur::getPiece()
@@ -63,6 +61,11 @@ void Joueur::compteurPointage()
     }
 }
 
+int Joueur::getNbItem()
+{
+    return nbObjets;
+}
+
 bool Joueur::ajouterInventaire(Collectible* powerUp)
 {
 
@@ -80,26 +83,37 @@ bool Joueur::ajouterInventaire(Collectible* powerUp)
     // Si inventaire plein, objet nest pas recupere, on pourra discuter de ce scenario en equipe
 }
 
+charInventaire Joueur::getCharInventaire()
+{
+    return charInv;
+}
+
+void Joueur::setCharInventaire(charInventaire c)
+{
+    charInv = c;
+}
+
 bool Joueur::echangerInventaire()
 {
-
+    
     if (nbObjets == 2)
     {
         std::swap(inventaire[0], inventaire[1]);
+        char temp = charInv.item1;
+        charInv.item1 = charInv.item2;
+        charInv.item2 = temp;
         return true;
     }
 
     return false;
 }
 
-Collectible* Joueur::useObjet()
+void Joueur::useObjet()
 {
     if (nbObjets > 0)
     {
         inventaire[0]->appliquerEffet(*this);
-        return inventaire[0]; // retourne lobjet a la position 0, qui est lobjet utilise
     }
-    return nullptr;
     
 }
 
@@ -160,6 +174,11 @@ void Joueur::immobiliser(bool etat)
     immobilise = etat;
 }
 
+bool Joueur::isFree()
+{
+    return !immobilise;
+}
+
 bool Joueur::getVie()
 {
     return enVie;
@@ -170,27 +189,34 @@ void Joueur::isDead()
     enVie = false;
 }
 
-bool Joueur::up()
-{
-    if (position.y > 21)
-    {
-        return false;
-    }
-
-    position.y += 1;
-    return true;
-}
-
 bool Joueur::down()
 {
-    if (position.y < 0)
+    if (!(position.y > 21))
     {
-
-        return false;
+        position.y += 1;
+        if (getEtatEffetBanane())
+        {
+            position.x += 1;
+        }
+        return true;
     }
 
-    position.y -= 1;
-    return true;
+    return false;
+}
+
+bool Joueur::up()
+{
+    if (!(position.y < 0))
+    {
+        position.y -= 1;
+        if (getEtatEffetBanane())
+        {
+            position.x -= 1;
+        }
+        return true;
+    }
+
+    return false;
 }
 
 bool Joueur::Right()
@@ -201,7 +227,7 @@ bool Joueur::Right()
     }
     position.x += 1;
 
-    if (getEtatEffetBanane() && position.x < 4)
+    if (getEtatEffetBanane())
     {
         position.x += 1;
     }
@@ -217,7 +243,7 @@ bool Joueur::Left()
     }
     position.x -= 1;
 
-    if (getEtatEffetBanane() && position.x > 0)
+    if (getEtatEffetBanane())
     {
         position.x -= 1;
     }

@@ -21,11 +21,20 @@ void Bouclier::collision(Joueur& _joueur)
 void Bouclier::stocker(Joueur& joueur)
 {
 	joueur.ajouterInventaire(this);
+	if (joueur.getNbItem() == 1 )
+	{
+		joueur.setCharInventaire({ '@', ' '});
+	}
+	else if (joueur.getNbItem() == 2)
+	{
+		joueur.setCharInventaire({ joueur.getCharInventaire().item1, '@' });
+	}
 }
 
 void Bouclier::appliquerEffet(Joueur& joueur)
 {
 	joueur.setEtatBouclier(true);
+	joueur.setCharInventaire({ joueur.getCharInventaire().item2, ' ' });
 	lastUpdateBouclier = std::chrono::steady_clock::now();
 }
 

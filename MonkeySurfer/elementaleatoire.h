@@ -16,7 +16,7 @@ public:
 	GenerateurItem();
 	~GenerateurItem();
 
-	ElementJeu* genererRandomElement();
+	ElementJeu* getRandomElement();
 	Collectible* getRandomCollectible();
 	Obstacle* getRandomObstacle();
 
