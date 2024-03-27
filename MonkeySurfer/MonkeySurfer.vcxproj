@@ -184,15 +184,6 @@
     <ClInclude Include="projectile.h" />
     <ClInclude Include="skin.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="artMenu.txt" />
-    <Text Include="gameOver.txt" />
-    <Text Include="monkey.txt" />
-    <Text Include="pause.txt" />
-    <Text Include="retryText.txt" />
-    <Text Include="showcaseSkin.txt" />
-    <Text Include="showcaseSkinSelect.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
