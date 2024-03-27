@@ -92,9 +92,8 @@ int Joueur::useObjet(int idObj)
 
 bool Joueur::up()
 {
-    if (position.y > 4)
+    if (position.y > 21)
     {
-
         return false;
     }
 

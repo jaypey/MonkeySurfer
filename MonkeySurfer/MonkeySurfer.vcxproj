@@ -167,6 +167,7 @@
     <ClInclude Include="banane.h" />
     <ClInclude Include="bouclier.h" />
     <ClInclude Include="collectible.h" />
+    <ClInclude Include="coordonnee.h" />
     <ClInclude Include="direction.h" />
     <ClInclude Include="elementaleatoire.h" />
     <ClInclude Include="elementjeu.h" />

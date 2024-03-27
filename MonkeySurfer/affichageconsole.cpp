@@ -98,7 +98,7 @@ void AffichageConsole::afficherAide() {
 
     afficherTexte(explicationSinge, 3, 3);
 
-    afficherTexte("# : Les obstacles, le singe doit les eviter!", 3, 5);
+    afficherTexte("X : Les obstacles, le singe doit les eviter!", 3, 5);
 
     afficherTexte("B : Les bananes, ramassez les pour accumuler des points!", 3, 7);
 
@@ -195,25 +195,30 @@ void AffichageConsole::afficherLianes() {
 
 void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
+    int y = _jeu->getPositionJoueur().y;
     int x = _xlianes[positionCourante.x];
-    _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
+    _img[x][y] = _skins[_menu->getIndexSkin()].getId(); // monkey
 
     // Fleche direction de saut
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE))
-        _img[x + 1][15] = '>';
+        _img[x + 1][y] = '>';
     else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE))
-        _img[x - 1][15] = '<';
+        _img[x - 1][y] = '<';
+    else if (_jeu->getJsonSerial()->joystickMaintenu(HAUT))
+        _img[x][y + 1] = '^';
+    else if (_jeu->getJsonSerial()->joystickMaintenu(BAS))
+        _img[x][y - 1] = 'v';
 
     // Poussieres et eclats s'il attaque le serpent
     if (_jeu->getJsonSerial()->accShake()) {
-        _img[x-1][14] = getCharEclat();
-        _img[x]  [14] = getCharEclat();
-        _img[x+1][14] = getCharEclat();
-        _img[x-1][15] = getCharEclat();
-        _img[x+1][15] = getCharEclat();
-        _img[x-1][16] = getCharEclat();
-        _img[x]  [16] = getCharEclat();
-        _img[x+1][16] = getCharEclat();
+        _img[x-1][y-1] = getCharEclat();
+        _img[x]  [y-1] = getCharEclat();
+        _img[x+1][y-1] = getCharEclat();
+        _img[x-1][y] = getCharEclat();
+        _img[x+1][y] = getCharEclat();
+        _img[x-1][y+1] = getCharEclat();
+        _img[x]  [y+1] = getCharEclat();
+        _img[x+1][y+1] = getCharEclat();
     }
 }
 

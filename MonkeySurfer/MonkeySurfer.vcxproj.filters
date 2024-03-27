@@ -131,6 +131,9 @@
     <ClInclude Include="nullstream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="coordonnee.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="gameOver.txt">
