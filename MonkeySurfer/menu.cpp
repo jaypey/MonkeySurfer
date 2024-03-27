@@ -45,7 +45,7 @@ void Menu::update() {
     }
     else if (_etat == EtatMenu::MULTIJOUEUR) {
         _networking->Connect(ipAddress, 4444);
-        _etat = EtatMenu::MULTIJOUEURJEU;
+
     }
     else if (_etat == EtatMenu::AIDE) {
         if (c == 'q')  _etat = EtatMenu::PRINCIPAL;

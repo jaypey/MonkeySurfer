@@ -22,8 +22,8 @@ int main()
         js.recvJson();
 
         // Gestion jeu
-        if (m.getEtat() == Menu::EtatMenu::JEU || m.getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
-            if (m.getEtat() == Menu::EtatMenu::MULTIJOUEUR)
+        if (m.getEtat() == Menu::EtatMenu::JEU || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU) {
+            if (m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
             {
                 j.debuterPartieMultijoueur(&n);
             }

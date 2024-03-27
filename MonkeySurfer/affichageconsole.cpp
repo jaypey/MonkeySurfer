@@ -59,7 +59,8 @@ void AffichageConsole::afficherMenuPrincipal() {
 void AffichageConsole::afficherMenuMultijoueur() {
     afficherArrierePlan();
     afficherContour();
-
+    char c;
+    c = _getch();
     // Affichage des joueurs
     for (int rangee = 0; rangee < 3; rangee++)
         for (int col = 0; col < 3; col++) {
@@ -68,15 +69,22 @@ void AffichageConsole::afficherMenuMultijoueur() {
             std::string idJoueur;
 
 
-            afficherTexte("3", 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS);
+            afficherTexte(idJoueur, 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS);
         }
+    //Username
 
-    std::string apparenceCourante = "Skin choisi : ";
-    apparenceCourante += _skins[_menu->getIndexSkin()].getId();
-    afficherTexte(apparenceCourante, 22, 20);
+    //std::string idJoueur = "Skin choisi : ";
+    
+    
+    afficherTexte("Veuillez appuyer sur '1' lorsque vous etes pret",7,21);
+    afficherTexte("Vous etes presentement dans le lobby multijoueur", 7, 20);
 
-    afficherTexte("Appuyer sur les fleches pour choisir un skin", 7, 21);
+    if (c == '1') {
 
+        //Etat du joueur: Ready, Ready count + 1
+        afficherTexte("Vous etes pret!", 22,23);
+    }
+    
 }
 
 void AffichageConsole::afficherMenuSkin() {
