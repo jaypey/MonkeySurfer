@@ -129,6 +129,14 @@ void Jeu::updateJoueur()
 		}
 	}
 
+	if (_jsonserial->joystickMaintenu(HAUT, true)) {
+		_joueur->up();
+	}
+
+	else if (_jsonserial->joystickMaintenu(BAS, true)) {
+		_joueur->down();
+	}
+
 	if (_jsonserial->boutonAppuye(1)) {
 		_modePause = true;
 	}
@@ -143,6 +151,12 @@ void Jeu::updateJoueur()
 		}
 		else if (c == 77) { // Fleche droite
 			_joueur->Right();
+		}
+		else if (c == 80) {
+			_joueur->up();
+		}
+		else if (c == 72) {
+			_joueur->down();
 		}
 		else if (c == 'p') {
 			_modePause = true;
@@ -206,6 +220,10 @@ void Jeu::updateGameOver() {
 
 void Jeu::validerCollision()
 {
+	if (getPositionJoueur().y > 21 || getPositionJoueur().y <= 0) {
+		_gameOver = true;
+		return;
+	}
 
 	for (int i = 0; i < _elements.size(); i++)
 	{
@@ -242,6 +260,12 @@ void Jeu::avancerCase()
 		}
 		_elements[i]->setPosition(courant);
 	}
+
+	courant = _joueur->getPosition();
+	std::cout << _joueur->getPosition().y;
+	courant.y++;
+	_joueur->setPosition(courant);
+
 	ElementJeu* element = _generateur.getRandomObstacle();
 	if (rand() % 4 == 2)
 	{

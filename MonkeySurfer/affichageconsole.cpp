@@ -28,7 +28,7 @@ void AffichageConsole::afficherJeu() {
         afficherPause();
     }
 
-    // Print à la console
+    // Print ï¿½ la console
     printMatriceChar();
 }
 
@@ -145,19 +145,19 @@ void AffichageConsole::afficherAide() {
 }
 
 void AffichageConsole::afficherLoading() {
-    // Gros monkey qui bondit sur l'écran
+    // Gros monkey qui bondit sur l'ï¿½cran
     // Le code ci-dessous simule un monkey avec des physiques
-    // qui bondit de gauche à droite & vice-versa, avec velocite
-    // et vitesse pour déterminer la vitesse de chute
+    // qui bondit de gauche ï¿½ droite & vice-versa, avec velocite
+    // et vitesse pour dï¿½terminer la vitesse de chute
 
     const int TAILLE_X = 14;
     const int TAILLE_Y = 8;
     const int VEL_X = 0;
     const int VEL_Y = 1;
 
-    // "static" veut dire qu'à chaque appel de la fonction, les variables
-    // gardent les mêmes valeurs qu'elles avaient à la fin de l'exécution
-    // de l'appel de la fonction précédent
+    // "static" veut dire qu'ï¿½ chaque appel de la fonction, les variables
+    // gardent les mï¿½mes valeurs qu'elles avaient ï¿½ la fin de l'exï¿½cution
+    // de l'appel de la fonction prï¿½cï¿½dent
     static int spdX = 2;
     static int spdY = 0;
     static int posX = 0;
@@ -181,7 +181,7 @@ void AffichageConsole::afficherLoading() {
 void AffichageConsole::initialiserLianes() {
     int milieu = NB_COLS / 2;
 
-    // Positionnement des lianes, centré dans la zone de jeu
+    // Positionnement des lianes, centrï¿½ dans la zone de jeu
     for (int i = 0; i < NB_LIANES; i++) {
         int multiple_offset = i - (NB_LIANES / 2);
         _xlianes[i] = milieu + (ECART_LIANES * multiple_offset);
@@ -223,29 +223,39 @@ void AffichageConsole::afficherLianes() {
 
 void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
+    int y = _jeu->getPositionJoueur().y;
     int x = _xlianes[positionCourante.x];
-    _img[x][15] = { _menu->getSkin(_menu->getIndexSkin()).getId(), CMD_MONKEY_COLOR }; // monkey
+    _img[x][y] = { _menu->getSkin(_menu->getIndexSkin()).getId(), CMD_MONKEY_COLOR }; // monkey
 
     // Fleche direction de saut
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE)) {
-        _img[x + 3][15] = { '>', CMD_WHITE };
-        _img[x + 2][15] = { '-', CMD_WHITE };
+        _img[x + 3][y] = { '>', CMD_WHITE };
+        _img[x + 2][y] = { '-', CMD_WHITE };
     }
     else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE)) {
-        _img[x - 3][15] = { '<', CMD_WHITE };
-        _img[x - 2][15] = { '-', CMD_WHITE };
+        _img[x - 3][y] = { '<', CMD_WHITE };
+        _img[x - 2][y] = { '-', CMD_WHITE };
+    }
+
+    else if (_jeu->getJsonSerial()->joystickMaintenu(HAUT)) {
+        _img[x][y + 3] = { 'v', CMD_WHITE };
+        _img[x][y + 2] = { '|', CMD_WHITE };
+    }
+    else if (_jeu->getJsonSerial()->joystickMaintenu(BAS)) {
+        _img[x][y - 3] = { '^', CMD_WHITE };
+        _img[x][y - 2] = { '|', CMD_WHITE };
     }
 
     // Poussieres et eclats s'il attaque le serpent
     if (_jeu->getJsonSerial()->accShake()) {
-        _img[x-1][14] = getCharEclat();
-        _img[x]  [14] = getCharEclat();
-        _img[x+1][14] = getCharEclat();
-        _img[x-1][15] = getCharEclat();
-        _img[x+1][15] = getCharEclat();
-        _img[x-1][16] = getCharEclat();
-        _img[x]  [16] = getCharEclat();
-        _img[x+1][16] = getCharEclat();
+        _img[x-1][y-1] = getCharEclat();
+        _img[x]  [y-1] = getCharEclat();
+        _img[x+1][y-1] = getCharEclat();
+        _img[x-1][y] = getCharEclat();
+        _img[x+1][y] = getCharEclat();
+        _img[x-1][y+1] = getCharEclat();
+        _img[x]  [y+1] = getCharEclat();
+        _img[x+1][y+1] = getCharEclat();
     }
 }
 
@@ -258,7 +268,7 @@ void AffichageConsole::afficherItems() {
         if (elementCourant->getPosition().y >= NB_LIGNES)
             continue;
 
-        if (elementCourant->getID() == OBSTACLE_FIXE) //Éventuellement trouver une manière plus élégante
+        if (elementCourant->getID() == OBSTACLE_FIXE) //ï¿½ventuellement trouver une maniï¿½re plus ï¿½lï¿½gante
         {
             _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = { 'X', CMD_OBSTACLE_COLOR };
         }
@@ -338,7 +348,7 @@ void AffichageConsole::updateDeco() {
 
 void AffichageConsole::printMatriceChar() {
     // Transposition des informations de la matrice de char dans une seule std::string pour tout imprimer
-    // à la console d'un seul coup avec un seul appel de std::cout (very fast)
+    // ï¿½ la console d'un seul coup avec un seul appel de std::cout (very fast)
     CMDColor currcolor = { -1, -1, -1 };
     _output.clear(); // Supprime le contenu de l'ancienne image dans la std::string
     std::cout << "\x1b[0;0H"; // Curseur position (0, 0) - ANSI escape sequence
@@ -355,7 +365,7 @@ void AffichageConsole::printMatriceChar() {
         }
         _output += '\n';
     }
-    std::cout << _output; // Imprime l'image à la console
+    std::cout << _output; // Imprime l'image ï¿½ la console
 }
 
 CharInfo AffichageConsole::getCharEclat() {
@@ -373,10 +383,10 @@ CharInfo AffichageConsole::getCharEclat() {
 bool AffichageConsole::peutAfficherProchaineImage() {
     auto now = std::chrono::steady_clock::now();
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _lastfrm);
-    return elapsed.count() > _DURFRM; // S'assure que suffisamment de temps s'est écoulé depuis le dernier affichage (durée basée sur le FPS)
+    return elapsed.count() > _DURFRM; // S'assure que suffisamment de temps s'est ï¿½coulï¿½ depuis le dernier affichage (durï¿½e basï¿½e sur le FPS)
 }
 
 void AffichageConsole::attendreProchaineImage() {
     while (!peutAfficherProchaineImage()); // Attendre de pouvoir afficher la prochaine image
-    _lastfrm = std::chrono::steady_clock::now(); // Update du temps de la dernière image
+    _lastfrm = std::chrono::steady_clock::now(); // Update du temps de la derniï¿½re image
 }
