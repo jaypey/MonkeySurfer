@@ -131,15 +131,10 @@ void Jeu::updateJoueur()
 
 	if (_jsonserial->joystickMaintenu(HAUT, true)) {
 		_joueur->up();
-		/*if (getPositionJoueur().y <= 1) {
-			isGameOver();
-		}*/
 	}
+
 	else if (_jsonserial->joystickMaintenu(BAS, true)) {
 		_joueur->down();
-	/*if (getPositionJoueur().y >= 20) {
-			isGameOver();
-		}*/
 	}
 
 	if (_jsonserial->boutonAppuye(1)) {
@@ -159,15 +154,9 @@ void Jeu::updateJoueur()
 		}
 		else if (c == 80) {
 			_joueur->up();
-			if (getPositionJoueur().y <= 1) {
-				isGameOver();
-			}
 		}
 		else if (c == 72) {
 			_joueur->down();
-			if (getPositionJoueur().y >= 20) {
-				isGameOver();
-			}
 		}
 		else if (c == 'p') {
 			_modePause = true;

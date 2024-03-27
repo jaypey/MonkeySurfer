@@ -210,7 +210,7 @@ void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
     int y = _jeu->getPositionJoueur().y;
     int x = _xlianes[positionCourante.x];
-    _img[x][15] = { _skins[_menu->getIndexSkin()].getId(), CMD_MONKEY_COLOR }; // monkey
+    _img[x][y] = { _skins[_menu->getIndexSkin()].getId(), CMD_MONKEY_COLOR }; // monkey
 
     // Fleche direction de saut
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE)) {
@@ -222,12 +222,14 @@ void AffichageConsole::afficherJoueur() {
         _img[x - 2][y] = { '-', CMD_WHITE };
     }
 
-    else if (_jeu->getJsonSerial()->joystickMaintenu(HAUT))
-        _img[x][y + 3] = {'^', CMD_WHITE };
-        _img[x][y + 2] = {'|', CMD_WHITE };
-    else if (_jeu->getJsonSerial()->joystickMaintenu(BAS))
-        _img[x][y - 3] = {'v', CMD_WHITE };
-        _img[x][y - 2] = {'|', CMD_WHITE };
+    else if (_jeu->getJsonSerial()->joystickMaintenu(HAUT)) {
+        _img[x][y + 3] = { 'v', CMD_WHITE };
+        _img[x][y + 2] = { '|', CMD_WHITE };
+    }
+    else if (_jeu->getJsonSerial()->joystickMaintenu(BAS)) {
+        _img[x][y - 3] = { '^', CMD_WHITE };
+        _img[x][y - 2] = { '|', CMD_WHITE };
+    }
 
     // Poussieres et eclats s'il attaque le serpent
     if (_jeu->getJsonSerial()->accShake()) {
