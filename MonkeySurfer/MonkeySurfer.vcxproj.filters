@@ -72,6 +72,9 @@
     <ClCompile Include="nullstream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cmdcolor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jeu.h">
@@ -131,7 +134,7 @@
     <ClInclude Include="nullstream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="coordonnee.h">
+    <ClInclude Include="cmdcolor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

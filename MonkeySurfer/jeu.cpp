@@ -246,6 +246,7 @@ void Jeu::validerCollision()
 				break;
 			case PIECE:
 				_joueur->ramasserPiece();
+				delete _elements[i];
 				_elements.erase(_elements.begin() + i);
 			default:
 				break;
@@ -265,6 +266,7 @@ void Jeu::avancerCase()
 		courant.y++;
 		if (courant.y > HAUTEUR_GENERATION)
 		{
+			delete _elements[i];
 			_elements.erase(_elements.begin() + i);
 		}
 		_elements[i]->setPosition(courant);

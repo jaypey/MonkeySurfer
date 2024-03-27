@@ -6,6 +6,10 @@ Joystick::Joystick()
     _pinY = PIN_JOYSTICK_Y;
     _lastDirectionX = NEUTRE;
     _lastDirectionY = NEUTRE;
+    _lastRepeatX = 0;
+    _lastRepeatY = 0;
+    _isInitialRepeatX = false;
+    _isInitialRepeatY = false;
 }
 
 Joystick::Joystick(uint8_t p_pinX, uint8_t p_pinY) 
@@ -46,7 +50,29 @@ JoystickState Joystick::getStateX() {
     JoystickState jstate;
     jstate.direction = lireDirectionX();
 
-    jstate.vientDeChanger = (jstate.direction != NEUTRE && jstate.direction != _lastDirectionX);
+    bool newDir = (jstate.direction != _lastDirectionX);
+    uint16_t delayJoystick = REPEAT_DELAY_JOYSTICK;
+
+    // Determine si on utilise le delai de temps initial pour les repetitions
+    if (newDir)
+       _isInitialRepeatX = true;
+
+    if (_isInitialRepeatX)
+        delayJoystick = INITIAL_REPEAT_DELAY_JOYSTICK;
+
+    // Verifie si on repete l'input du joystick s'il est maintenu a la meme place pendant un certain delai
+    if (
+        jstate.direction != NEUTRE
+        && (newDir || millis() > _lastRepeatX + delayJoystick)
+    ) {
+        jstate.repetition = true;
+        _lastRepeatX = millis();
+        _isInitialRepeatX = newDir;
+    }
+    else
+        jstate.repetition = false;
+
+    // Direction du joystick
     _lastDirectionX = jstate.direction;
 
     return jstate;
@@ -56,7 +82,29 @@ JoystickState Joystick::getStateY() {
     JoystickState jstate;
     jstate.direction = lireDirectionY();
 
-    jstate.vientDeChanger = (jstate.direction != NEUTRE && jstate.direction != _lastDirectionY);
+    bool newDir = (jstate.direction != _lastDirectionY);
+    uint16_t delayJoystick = REPEAT_DELAY_JOYSTICK;
+
+        // Determine si on utilise le delai de temps initial pour les repetitions
+    if (newDir)
+       _isInitialRepeatY = true;
+
+    if (_isInitialRepeatY)
+        delayJoystick = INITIAL_REPEAT_DELAY_JOYSTICK;
+
+    // Verifie si on repete l'input du joystick s'il est maintenu a la meme place pendant un certain delai
+    if  (
+        jstate.direction != NEUTRE
+        && (newDir || millis() > _lastRepeatY + delayJoystick)
+    ) {
+        jstate.repetition = true;
+        _lastRepeatY = millis();
+        _isInitialRepeatY = newDir;
+    }
+    else
+        jstate.repetition = false;
+
+    // Direction du joystick
     _lastDirectionY = jstate.direction;
 
     return jstate;
