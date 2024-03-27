@@ -52,11 +52,11 @@ void AffichageConsole::afficherMenuPrincipal() {
     afficherArrierePlan();
     afficherContour();
     afficherFichier("artMenu.txt", 5, 2);
-    afficherFichier("monkey.txt", 43, 4);
-    afficherTexte("1. Jouer", 25, 15, (cm == 0));
-    afficherTexte("2. Skins", 25, 17, (cm == 1));
-    afficherTexte("3. Aide", 25, 19, (cm == 2));
-    afficherTexte("4. Quitter", 25, 21, (cm == 3));
+    afficherFichier("monkey.txt", 43, 4, CMD_MONKEY_COLOR);
+    afficherTexte("1. Jouer", 25, 15, CMD_WHITE, (cm == 0));
+    afficherTexte("2. Skins", 25, 17, CMD_WHITE, (cm == 1));
+    afficherTexte("3. Aide", 25, 19, CMD_WHITE, (cm == 2));
+    afficherTexte("4. Quitter", 25, 21, CMD_WHITE, (cm == 3));
 }
 
 void AffichageConsole::afficherMenuSkin() {
@@ -75,8 +75,11 @@ void AffichageConsole::afficherMenuSkin() {
             const char* fichier = (_menu->getIndexSkin() == index)
                                 ? "showcaseSkinSelect.txt"
                                 : "showcaseSkin.txt";
-            afficherFichier(fichier, 8 + col * ECART_COL_SKINS, 2 + rangee * ECART_RANGEE_SKINS);
-            afficherTexte(apparence, 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS);
+            CMDColor colorContour = (_menu->getIndexSkin() == index)
+                                    ? CMD_WHITE
+                                    : CMD_CONTOUR_COLOR;
+            afficherFichier(fichier, 8 + col * ECART_COL_SKINS, 2 + rangee * ECART_RANGEE_SKINS, colorContour);
+            afficherTexte(apparence, 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS, CMD_MONKEY_COLOR);
         }
 
     std::string apparenceCourante = "Skin choisi : ";
@@ -84,7 +87,7 @@ void AffichageConsole::afficherMenuSkin() {
     afficherTexte(apparenceCourante, 22, 20);
 
     afficherTexte("Appuyer sur les fleches pour choisir un skin", 7, 21);
-    afficherTexte("Appuyer sur 'q' pour quitter", 15, 22);
+    afficherTexte("Appuyer sur 'Btn2' pour quitter", 14, 22);
 }
 
 void AffichageConsole::afficherAide() {
@@ -98,16 +101,26 @@ void AffichageConsole::afficherAide() {
 
     afficherTexte(explicationSinge, 3, 3);
 
-    afficherTexte("# : Les obstacles, le singe doit les eviter!", 3, 5);
+    afficherTexte("X", 3, 5, CMD_OBSTACLE_COLOR);
+    afficherTexte(" : Les obstacles, le singe doit les eviter!", 4, 5);
 
-    afficherTexte("B : Les bananes, ramassez les pour accumuler des points!", 3, 7);
+    afficherTexte("S", 3, 7, CMD_SERPENT_COLOR);
+    afficherTexte(" : Les serpents, lorsqu'un vous attrape, secouez la", 4, 7);
+    afficherTexte("    manette pour lui donner des coups de pied!", 3, 8);
 
-    afficherTexte("Appuyer sur les fleches pour sauter de liane en liane.", 3, 9);
+    afficherTexte("H", 3, 10, CMD_HARPIE_COLOR);
+    afficherTexte(" : Les harpies, elles ne doivent pas vous attraper!", 4, 10);
 
-    afficherTexte("Une apparence differente peut etre choisie pour le singe", 3, 11);
-    afficherTexte("dans le menu de skins, accessible par le menu principal.", 3, 12);
+    afficherTexte("B", 3, 12, CMD_BANANE_COLOR);
+    afficherTexte(" : Les bananes, ramassez les pour aller plus vite!", 4, 12);
 
-    afficherTexte("Appuyer sur 'q' pour revenir au menu.", 12, 21);
+    afficherTexte("$", 3, 14, CMD_PIECE_COLOR);
+    afficherTexte(" : Les pieces, ramassez les pour accumuler des points!", 4, 14);
+
+    afficherTexte("Le joystick determine la direction du saut, 'Btn3'", 3, 16);
+    afficherTexte("fait sauter le singe aux autres lianes.", 3, 17);
+
+    afficherTexte("Appuyer sur 'Btn2' pour revenir au menu.", 11, 21);
 }
 
 void AffichageConsole::afficherLoading() {
@@ -140,7 +153,7 @@ void AffichageConsole::afficherLoading() {
 
     afficherArrierePlan();
     afficherContour();
-    afficherFichier("monkey.txt", posX, posY);
+    afficherFichier("monkey.txt", posX, posY, CMD_MONKEY_COLOR);
     afficherTexte("Chargement...", 25, 2);
 }
 
@@ -175,20 +188,20 @@ void AffichageConsole::initialiserSkins() {
 void AffichageConsole::afficherArrierePlan() {
     for (int y = 0; y < NB_LIGNES; y++)
         for (int x = 0; x < NB_COLS; x++)
-            _img[x][y] = ' ';
+            _img[x][y] = { ' ', CMD_WHITE };
 }
 
 void AffichageConsole::afficherLianes() {
     for (int i = 0; i < NB_LIANES; i++) {
         // Lianes
         for (int y = 0; y < NB_LIGNES; y++)
-            _img[_xlianes[i]][y] = 'l';
+            _img[_xlianes[i]][y] = { 'l', CMD_LIANE_COLOR };
     
         // Feuilles
         for (int f = 0; f < 3; f++) {
             int fx = _feuilles[i][f].x;
             int fy = _feuilles[i][f].y;
-            _img[fx][fy] = '~';
+            _img[fx][fy] = { '~', CMD_LIANE_COLOR };
         }
     }
 }
@@ -196,13 +209,17 @@ void AffichageConsole::afficherLianes() {
 void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
     int x = _xlianes[positionCourante.x];
-    _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
+    _img[x][15] = { _skins[_menu->getIndexSkin()].getId(), CMD_MONKEY_COLOR }; // monkey
 
     // Fleche direction de saut
-    if (_jeu->getJsonSerial()->joystickMaintenu(DROITE))
-        _img[x + 1][15] = '>';
-    else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE))
-        _img[x - 1][15] = '<';
+    if (_jeu->getJsonSerial()->joystickMaintenu(DROITE)) {
+        _img[x + 3][15] = { '>', CMD_WHITE };
+        _img[x + 2][15] = { '-', CMD_WHITE };
+    }
+    else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE)) {
+        _img[x - 3][15] = { '<', CMD_WHITE };
+        _img[x - 2][15] = { '-', CMD_WHITE };
+    }
 
     // Poussieres et eclats s'il attaque le serpent
     if (_jeu->getJsonSerial()->accShake()) {
@@ -228,11 +245,11 @@ void AffichageConsole::afficherItems() {
 
         if (elementCourant->getID() == OBSTACLE_FIXE) //Éventuellement trouver une manière plus élégante
         {
-            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = 'X';
+            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = { 'X', CMD_OBSTACLE_COLOR };
         }
         else
         {
-            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = '$';
+            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = { '$', CMD_PIECE_COLOR };
         }
     }
     
@@ -241,8 +258,8 @@ void AffichageConsole::afficherItems() {
 void AffichageConsole::afficherIU() {
     // Vider l'espace pour afficher le texte clairement
     for (int i = 1; i < NB_COLS - 1; i++) {
-        _img[i][NB_LIGNES - 2] = ' ';
-        _img[i][NB_LIGNES - 3] = '=';
+        _img[i][NB_LIGNES - 2] = { ' ', CMD_CONTOUR_COLOR };
+        _img[i][NB_LIGNES - 3] = { '=', CMD_CONTOUR_COLOR };
     }
 
     // Afficher le texte pour le score
@@ -259,38 +276,38 @@ void AffichageConsole::afficherPause() {
     int po = _jeu->getPauseOption();
 
     afficherFichier("pause.txt", 4, 4);
-    afficherTexte("1. Continuer", 25, 13, (po == 0));
-    afficherTexte("2. Retourner au menu", 21, 15, (po == 1));
+    afficherTexte("1. Continuer", 25, 13, CMD_WHITE, (po == 0));
+    afficherTexte("2. Retourner au menu", 21, 15, CMD_WHITE, (po == 1));
 }
 
 void AffichageConsole::afficherContour() {
     // Coutour zone de jeu + UI
     for (int i = 0; i < NB_COLS; i++) {
-        _img[i][0] = '-';
-        _img[i][NB_LIGNES - 1] = '-';
+        _img[i][0] = { '-', CMD_CONTOUR_COLOR };
+        _img[i][NB_LIGNES - 1] = { '-', CMD_CONTOUR_COLOR };
     }
     for (int i = 1; i < NB_LIGNES - 1; i++) {
-        _img[0][i] = '|';
-        _img[NB_COLS - 1][i] = '|';
+        _img[0][i] = { '|', CMD_CONTOUR_COLOR };
+        _img[NB_COLS - 1][i] = { '|', CMD_CONTOUR_COLOR };
     }
 }
 
-void AffichageConsole::afficherTexte(std::string s, int x, int y, bool selected) {
+void AffichageConsole::afficherTexte(std::string s, int x, int y, CMDColor color, bool selected) {
     if (selected) {
-        s = "> " + s + " <";
-        x -= 2;
+        _img[x - 2][y] = { '>', CMD_CONTOUR_COLOR };
+        _img[x + s.size() + 1][y] = {'<', CMD_CONTOUR_COLOR};
     }
 
     for (int i = 0; i < s.size() && x + i < NB_COLS; i++)
-        _img[x + i][y] = s[i];
+        _img[x + i][y] = { s[i], color };
 }
 
-void AffichageConsole::afficherFichier(const char* nom, int x, int y) {
+void AffichageConsole::afficherFichier(const char* nom, int x, int y, CMDColor color) {
     std::ifstream fichier(nom);
     std::string texte;
 
     while (std::getline(fichier, texte) && y < NB_LIGNES)
-        afficherTexte(texte, x, y++);
+        afficherTexte(texte, x, y++, color);
 }
 
 void AffichageConsole::updateDeco() {
@@ -307,26 +324,35 @@ void AffichageConsole::updateDeco() {
 void AffichageConsole::printMatriceChar() {
     // Transposition des informations de la matrice de char dans une seule std::string pour tout imprimer
     // à la console d'un seul coup avec un seul appel de std::cout (very fast)
+    CMDColor currcolor = { -1, -1, -1 };
     _output.clear(); // Supprime le contenu de l'ancienne image dans la std::string
     std::cout << "\x1b[0;0H"; // Curseur position (0, 0) - ANSI escape sequence
     for (int y = 0; y < NB_LIGNES; y++) {
-        for (int x = 0; x < NB_COLS; x++)
-            _output += _img[x][y];
+        for (int x = 0; x < NB_COLS; x++) {
+            // Appliquer couleur
+            if (_img[x][y].color != currcolor) {
+                currcolor = _img[x][y].color;
+                _output += currcolor.to_string();
+            }
+
+            // Ajouter caractere a la std::string
+            _output += _img[x][y].c;
+        }
         _output += '\n';
     }
     std::cout << _output; // Imprime l'image à la console
 }
 
-char AffichageConsole::getCharEclat() {
+CharInfo AffichageConsole::getCharEclat() {
     // 50% chance d'afficher un eclat, 50% d'afficher rien
     // * # @
     // 0 1 2 3 4 5
     switch (_rand.random(0, 5, rand())) {
-        case 0: return '*';
-        case 1: return '#';
-        case 2: return '@';
+        case 0: return { '*', CMD_ECLAT_COLOR };
+        case 1: return { '#', CMD_ECLAT_COLOR };
+        case 2: return { '@', CMD_ECLAT_COLOR };
     }
-    return ' ';
+    return { ' ', CMD_ECLAT_COLOR };
 }
 
 bool AffichageConsole::peutAfficherProchaineImage() {

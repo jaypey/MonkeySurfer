@@ -15,7 +15,7 @@
 #define JSON_BUFFER_SIZE 1024
 #define SEND_DELAY 50
 
-#define errout std::cerr /* "null" pour ignorer les erreurs, "std::cerr" pour les afficher */
+#define errout null /* "null" pour ignorer les erreurs, "std::cerr" pour les afficher */
 
 class JsonSerial {
 public:

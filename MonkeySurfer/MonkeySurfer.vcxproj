@@ -145,6 +145,7 @@
     <ClCompile Include="aleatoire.cpp" />
     <ClCompile Include="banane.cpp" />
     <ClCompile Include="bouclier.cpp" />
+    <ClCompile Include="cmdcolor.cpp" />
     <ClCompile Include="collectible.cpp" />
     <ClCompile Include="elementaleatoire.cpp" />
     <ClCompile Include="elementjeu.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="aleatoire.h" />
     <ClInclude Include="banane.h" />
     <ClInclude Include="bouclier.h" />
+    <ClInclude Include="cmdcolor.h" />
     <ClInclude Include="collectible.h" />
     <ClInclude Include="direction.h" />
     <ClInclude Include="elementaleatoire.h" />
