@@ -78,6 +78,9 @@
     <ClCompile Include="nullstream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cmdcolor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jeu.h">
@@ -143,28 +146,8 @@
     <ClInclude Include="nullstream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="gameOver.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="artMenu.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="showcaseSkin.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="showcaseSkinSelect.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="monkey.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="retryText.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="pause.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    <ClInclude Include="cmdcolor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

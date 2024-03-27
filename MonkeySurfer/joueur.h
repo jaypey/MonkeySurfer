@@ -4,6 +4,7 @@
 #include <chrono>
 #include "coordonnee.h"
 #include "elementjeu.h"
+#include "skin.h"
 
 class Collectible;
 class Joueur
@@ -11,7 +12,11 @@ class Joueur
 public:
 	Joueur();
 	~Joueur();
+
+	void reset();
+
 	int getPiece();
+	void addPiece(int n);
 	int getScore();
 	void ramasserPiece();
 	void compteurPointage();

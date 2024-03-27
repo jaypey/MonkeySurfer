@@ -2,8 +2,16 @@
 
 Joueur::Joueur()
 {
-    score = 0;
     nbPieces = 0;
+    reset();
+}
+
+Joueur::~Joueur()
+{
+}
+
+void Joueur::reset() {
+    score = 0;
     nbObjets = 0;
     bouclierActif = false;
     effetBanane = false;
@@ -25,26 +33,26 @@ Joueur::~Joueur()
 
 int Joueur::getPiece()
 {
-
     return nbPieces;
+}
+
+void Joueur::addPiece(int n) {
+    nbPieces += n;
 }
 
 int Joueur::getScore()
 {
-
     return score;
 }
 
 void Joueur::ramasserPiece()
 {
-
     nbPieces += 1;
     score += 10; // A revoir si on conserve
 }
 
 void Joueur::compteurPointage()
 {
-
     auto maintenant = std::chrono::steady_clock::now();
     auto duree = std::chrono::duration_cast<std::chrono::seconds>(maintenant - lastUpdate).count();
 
@@ -164,9 +172,8 @@ void Joueur::isDead()
 
 bool Joueur::up()
 {
-    if (position.y > 4)
+    if (position.y > 21)
     {
-
         return false;
     }
 
@@ -220,12 +227,10 @@ bool Joueur::Left()
 
 Coordonnee Joueur::getPosition() const
 {
-
     return position;
 }
 
 void Joueur::setPosition(const Coordonnee &pos)
 {
-
     position = pos;
 }

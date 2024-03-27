@@ -7,11 +7,11 @@
 int main()
 {
     JsonSerial js;
-    js.openSerialPort("COM4");
+    js.openSerialPort("COM5");
 
-    Joueur* p1 = new Joueur();
-    Jeu j(p1, &js);
-    Menu m(&js);
+    Joueur p1;
+    Jeu j(&p1, &js);
+    Menu m(&p1, &js);
     AffichageConsole a(&j, &m);
 
     while (m.getEtat() != Menu::EtatMenu::QUITTER) {
@@ -25,9 +25,8 @@ int main()
             a.afficherJeu();
             if (j.isQuitting()) {
                 m.setEtat(Menu::EtatMenu::PRINCIPAL);
-                delete p1;
-                p1 = new Joueur();
-                j.restartJeu(p1);
+                p1.reset();
+                j.restartJeu(&p1);
             }
         }
         else {

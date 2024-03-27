@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include "affichage.h"
+#include "cmdcolor.h"
 #include "skin.h"
 
 #define NB_COLS 61
@@ -18,6 +19,11 @@
 #define ECART_RANGEE_SKINS 6
 
 #define FPS 30 // Images par seconde (Frames per second)
+
+struct CharInfo {
+    char c;
+    CMDColor color;
+};
 
 class AffichageConsole : public Affichage
 {
@@ -37,7 +43,6 @@ private:
 
     // Fonctions d'initialisation du jeu
     void initialiserLianes();
-    void initialiserSkins();
 
     // Mise à jour de la matrice de char
     void afficherArrierePlan();
@@ -48,15 +53,15 @@ private:
     void afficherGameOver();
     void afficherPause();
     void afficherContour(); // Non herite
-    void afficherTexte(std::string s, int x, int y, bool selected = false); // Non herite
-    void afficherFichier(const char* nom, int x, int y); // Non herite
+    void afficherTexte(std::string s, int x, int y, CMDColor color = CMD_WHITE, bool selected = false); // Non herite
+    void afficherFichier(std::string nom, int x, int y, CMDColor color = CMD_WHITE); // Non herite
 
     // Mise à jour de la déco (feuilles)
     void updateDeco();
 
     // Fonctions "helper" pour l'affichage à la console
     void printMatriceChar();
-    char getCharEclat();
+    CharInfo getCharEclat();
 
     // Lié au FPS
     bool peutAfficherProchaineImage(); // Attendre que l'image precedente aie finie de s'afficher, vitesse d'affichage limitee par le FPS
@@ -64,7 +69,7 @@ private:
 
 private:
     // Affichage
-    char _img[NB_COLS][NB_LIGNES]; // Informations de l'image à imprimer a la console
+    CharInfo _img[NB_COLS][NB_LIGNES]; // Informations de l'image à imprimer a la console
     std::string _output; // Image a imprimer a la console
     std::chrono::steady_clock::time_point _lastfrm; // Temps ecoule depuis dernier affichage
     std::chrono::steady_clock::time_point _lastupdate; // Temps ecoule depuis derniere update du jeu
@@ -78,9 +83,6 @@ private:
 
     // UI
     std::string _score; // Texte pour afficher le score
-
-    // Skin
-    Skin _skins[NB_SKINS];
 };
 
 #endif // !AFFICHAGECONSOLE_H
