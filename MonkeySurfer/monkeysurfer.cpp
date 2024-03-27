@@ -25,7 +25,7 @@ int main()
         if (m.getEtat() == Menu::EtatMenu::JEU || m.getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
             if (m.getEtat() == Menu::EtatMenu::MULTIJOUEUR)
             {
-                j.debuterPartie(&n);
+                j.debuterPartieMultijoueur(&n);
             }
             else {
                 j.debuterPartie();

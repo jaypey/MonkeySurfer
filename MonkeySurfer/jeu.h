@@ -4,6 +4,7 @@
 #include "elementaleatoire.h"
 #include "joueur.h"
 #include "jsonserial.h"
+#include "networking.h"
 
 
 class Jeu
@@ -13,7 +14,7 @@ public:
 	~Jeu();
 
 	void debuterPartie();
-	void debuterPartie(Networking* n);
+	void debuterPartieMultijoueur(Networking* n);
 	Coordonnee getPositionJoueur();
 	bool isGameOver();
 	bool isStarted();

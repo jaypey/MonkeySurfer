@@ -68,7 +68,7 @@ void AffichageConsole::afficherMenuMultijoueur() {
             std::string idJoueur;
 
 
-            afficherTexte(apparence, 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS);
+            afficherTexte("3", 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS);
         }
 
     std::string apparenceCourante = "Skin choisi : ";

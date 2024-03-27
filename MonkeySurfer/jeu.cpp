@@ -19,7 +19,7 @@ void Jeu::debuterPartie()
 	updateJeu();
 }
 
-void Jeu::debuterPartie(Networking* n)
+void Jeu::debuterPartieMultijoueur(Networking* n)
 {
 	_isStarted = true;
 	_isMultijoueur = true;
