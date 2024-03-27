@@ -3,7 +3,10 @@
 
 #include <chrono>
 #include <conio.h>
+#include <fstream>
+#include "joueur.h"
 #include "jsonserial.h"
+#include "skin.h"
 
 #define NB_SKINS 9
 
@@ -18,22 +21,30 @@ public:
         QUITTER
     };
 public:
-    Menu(JsonSerial* jsonserial);
+    Menu(Joueur* joueur, JsonSerial* jsonserial);
     ~Menu();
+
+    void initialiserSkins();
 
     void update();
     void modifierChoixMenu(int val);
-    void modifierSkin(int val);
+    void modifierSkinPreview(int val);
     void setEtat(EtatMenu e);
     EtatMenu getEtat();
     int getChoixMenu();
     int getIndexSkin();
+    int getIndexSkinPreview();
+    void choisirSkin(int index);
+    Skin getSkin(int index);
 private:
     int _choixMenu;
     int _indexSkin;
+    int _indexSkinPreview;
     EtatMenu _etat;
     std::chrono::steady_clock::time_point _timer;
+    Joueur* _joueur;
     JsonSerial* _jsonserial;
+    Skin _skins[NB_SKINS];
 };
 
 #endif // MENU_H!

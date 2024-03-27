@@ -3,13 +3,18 @@
 
 #include <chrono>
 #include "coordonnee.h"
+#include "skin.h"
 
 class Joueur
 {
 public:
 	Joueur();
 	~Joueur();
+
+	void reset();
+
 	int getPiece();
+	void addPiece(int n);
 	int getScore();
 	void ramasserPiece();
 	void compteurPointage();

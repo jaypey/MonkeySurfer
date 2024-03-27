@@ -2,8 +2,16 @@
 
 Joueur::Joueur()
 {
-    score = 0;
     nbPieces = 0;
+    reset();
+}
+
+Joueur::~Joueur()
+{
+}
+
+void Joueur::reset() {
+    score = 0;
     nbObjets = 0;
 
     inventaire[0] = -1; // Tableau objets initialement vide
@@ -14,32 +22,28 @@ Joueur::Joueur()
     lastUpdate = std::chrono::steady_clock::now(); // moment dernier update pour score, initialiser
 }
 
-Joueur::~Joueur()
-{
-}
-
 int Joueur::getPiece()
 {
-
     return nbPieces;
+}
+
+void Joueur::addPiece(int n) {
+    nbPieces += n;
 }
 
 int Joueur::getScore()
 {
-
     return score;
 }
 
 void Joueur::ramasserPiece()
 {
-
     nbPieces += 1;
     score += 10; // A revoir si on conserve
 }
 
 void Joueur::compteurPointage()
 {
-
     auto maintenant = std::chrono::steady_clock::now();
     auto duree = std::chrono::duration_cast<std::chrono::seconds>(maintenant - lastUpdate).count();
 
@@ -52,7 +56,6 @@ void Joueur::compteurPointage()
 
 bool Joueur::ajouterInventaire(int idObj)
 {
-
     if (inventaire[0] == -1)
     {
         inventaire[0] = idObj; // objet ajoute a la pos 0 de l'inventaire
@@ -69,7 +72,6 @@ bool Joueur::ajouterInventaire(int idObj)
 
 bool Joueur::echangerInventaire()
 {
-
     if (inventaire[0] != -1 && inventaire[1] != -1)
     {
         std::swap(inventaire[0], inventaire[1]);
@@ -82,7 +84,6 @@ bool Joueur::echangerInventaire()
 
 int Joueur::useObjet(int idObj)
 {
-
     int usedObj = inventaire[0];
     inventaire[0] = inventaire[1];
     inventaire[1] = -1;
@@ -137,12 +138,10 @@ bool Joueur::Left()
 
 Coordonnee Joueur::getPosition() const
 {
-
     return position;
 }
 
 void Joueur::setPosition(const Coordonnee &pos)
 {
-
     position = pos;
 }

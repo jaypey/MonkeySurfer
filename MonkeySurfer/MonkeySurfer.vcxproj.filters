@@ -138,27 +138,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="gameOver.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="artMenu.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="showcaseSkin.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="showcaseSkinSelect.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="monkey.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="retryText.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="pause.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-  </ItemGroup>
 </Project>

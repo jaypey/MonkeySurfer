@@ -43,7 +43,6 @@ private:
 
     // Fonctions d'initialisation du jeu
     void initialiserLianes();
-    void initialiserSkins();
 
     // Mise à jour de la matrice de char
     void afficherArrierePlan();
@@ -55,7 +54,7 @@ private:
     void afficherPause();
     void afficherContour(); // Non herite
     void afficherTexte(std::string s, int x, int y, CMDColor color = CMD_WHITE, bool selected = false); // Non herite
-    void afficherFichier(const char* nom, int x, int y, CMDColor color = CMD_WHITE); // Non herite
+    void afficherFichier(std::string nom, int x, int y, CMDColor color = CMD_WHITE); // Non herite
 
     // Mise à jour de la déco (feuilles)
     void updateDeco();
@@ -84,9 +83,6 @@ private:
 
     // UI
     std::string _score; // Texte pour afficher le score
-
-    // Skin
-    Skin _skins[NB_SKINS];
 };
 
 #endif // !AFFICHAGECONSOLE_H

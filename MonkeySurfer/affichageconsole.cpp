@@ -4,7 +4,6 @@ AffichageConsole::AffichageConsole(Jeu *j, Menu *m) : Affichage(j, m) {
     _lastfrm = std::chrono::steady_clock::now();
     _lastupdate = std::chrono::steady_clock::now();
     initialiserLianes();
-    initialiserSkins();
     afficherArrierePlan();
 }
 
@@ -64,30 +63,52 @@ void AffichageConsole::afficherMenuSkin() {
     afficherArrierePlan();
     afficherContour();
 
+    std::string textPrix;
+
     // Affichage de la shop
     for (int rangee = 0; rangee < 3; rangee++)
         for (int col = 0; col < 3; col++) {
             int index = col + rangee * 3;
 
             std::string apparence;
-            apparence += _skins[index].getId();
+            apparence += _menu->getSkin(index).getId();
 
-            const char* fichier = (_menu->getIndexSkin() == index)
-                                ? "showcaseSkinSelect.txt"
-                                : "showcaseSkin.txt";
-            CMDColor colorContour = (_menu->getIndexSkin() == index)
-                                    ? CMD_WHITE
-                                    : CMD_CONTOUR_COLOR;
-            afficherFichier(fichier, 8 + col * ECART_COL_SKINS, 2 + rangee * ECART_RANGEE_SKINS, colorContour);
+            std::string fichierBox;
+            CMDColor couleurBox;
+
+            // Fichier art box skin
+            fichierBox = (_menu->getIndexSkin() == index) ? "showcaseSkinSelect.txt" : "showcaseSkin.txt";
+
+            // Couleur + Prix case
+            if (_menu->getSkin(index).isDebloque())
+                if (_menu->getIndexSkinPreview() == index) {
+                    couleurBox = CMD_WHITE;
+                    textPrix = "Debloque";
+                }
+                else {
+                    couleurBox = CMD_CONTOUR_COLOR;
+                }
+            else if (_menu->getIndexSkinPreview() == index) {
+                couleurBox = CMD_SKIN_SELECT_BLOQUE_COLOR;
+                textPrix = std::to_string(_menu->getSkin(index).getPrix());
+            }
+            else {
+                couleurBox = CMD_SKIN_BLOQUE_COLOR;
+            }
+
+            // Afficher box
+            afficherFichier(fichierBox, 8 + col * ECART_COL_SKINS, 2 + rangee * ECART_RANGEE_SKINS, couleurBox);
             afficherTexte(apparence, 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS, CMD_MONKEY_COLOR);
         }
 
     std::string apparenceCourante = "Skin choisi : ";
-    apparenceCourante += _skins[_menu->getIndexSkin()].getId();
-    afficherTexte(apparenceCourante, 22, 20);
+    apparenceCourante += _menu->getSkin(_menu->getIndexSkin()).getId();
 
-    afficherTexte("Appuyer sur les fleches pour choisir un skin", 7, 21);
-    afficherTexte("Appuyer sur 'Btn2' pour quitter", 14, 22);
+    std::string infoPrix = "Pieces : " + std::to_string(_jeu->getPiecesJoueur()) + " | Prix : " + textPrix;
+
+    afficherTexte(apparenceCourante, 22, 20);
+    afficherTexte(infoPrix, 18, 21);
+    afficherTexte("'Btn3' acheter/choisir, Joystick select, 'Btn2' quitter", 3, 22);
 }
 
 void AffichageConsole::afficherAide() {
@@ -97,7 +118,7 @@ void AffichageConsole::afficherAide() {
 
     // Affichage du tutoriel
     std::string explicationSinge = " : Represente le singe (le joueur).";
-    explicationSinge.insert(explicationSinge.begin(), _skins[_menu->getIndexSkin()].getId());
+    explicationSinge.insert(explicationSinge.begin(), _menu->getSkin(_menu->getIndexSkin()).getId());
 
     afficherTexte(explicationSinge, 3, 3);
 
@@ -179,12 +200,6 @@ void AffichageConsole::initialiserLianes() {
     }
 }
 
-void AffichageConsole::initialiserSkins() {
-    char apparence[9] = { 'M', '#', 'W', 'O', 'X', 'T', 'U', 'A', '8' };
-    for (int i = 0; i < 9; i++)
-        _skins[i].setId(apparence[i]);
-}
-
 void AffichageConsole::afficherArrierePlan() {
     for (int y = 0; y < NB_LIGNES; y++)
         for (int x = 0; x < NB_COLS; x++)
@@ -209,7 +224,7 @@ void AffichageConsole::afficherLianes() {
 void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
     int x = _xlianes[positionCourante.x];
-    _img[x][15] = { _skins[_menu->getIndexSkin()].getId(), CMD_MONKEY_COLOR }; // monkey
+    _img[x][15] = { _menu->getSkin(_menu->getIndexSkin()).getId(), CMD_MONKEY_COLOR }; // monkey
 
     // Fleche direction de saut
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE)) {
@@ -302,8 +317,8 @@ void AffichageConsole::afficherTexte(std::string s, int x, int y, CMDColor color
         _img[x + i][y] = { s[i], color };
 }
 
-void AffichageConsole::afficherFichier(const char* nom, int x, int y, CMDColor color) {
-    std::ifstream fichier(nom);
+void AffichageConsole::afficherFichier(std::string nom, int x, int y, CMDColor color) {
+    std::ifstream fichier("ascii/" + nom);
     std::string texte;
 
     while (std::getline(fichier, texte) && y < NB_LIGNES)

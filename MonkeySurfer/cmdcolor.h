@@ -30,6 +30,8 @@ const extern CMDColor CMD_MONKEY_COLOR;
 const extern CMDColor CMD_OBSTACLE_COLOR;
 const extern CMDColor CMD_PIECE_COLOR;
 const extern CMDColor CMD_SERPENT_COLOR;
+const extern CMDColor CMD_SKIN_BLOQUE_COLOR;
+const extern CMDColor CMD_SKIN_SELECT_BLOQUE_COLOR;
 const extern CMDColor CMD_WHITE;
 
 #endif // CMDCOLOR_H!
