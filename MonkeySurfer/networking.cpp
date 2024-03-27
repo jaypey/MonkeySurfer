@@ -1,5 +1,6 @@
 #include "networking.h"
 #include <iostream>
+#include <enet/enet.h>
 
 Networking::Networking()
 {
@@ -77,7 +78,7 @@ void Networking::ParseData(char* data)
 {
 	int dataType;
 	int id;
-	sscanf(data, "%d|%d", &dataType, &id);
+	sscanf_s(data, "%d|%d", &dataType, &id);
 
 	switch (dataType)
 	{
@@ -86,7 +87,7 @@ void Networking::ParseData(char* data)
 		{
 			int x;
 			int y;
-			sscanf(data, "%*d|%*d|%dx%dy", &x, &y);
+			sscanf_s(data, "%*d|%*d|%dx%dy", &x, &y);
 			_joueurs[id]->setPosition({ x, y });
 		}
 		break;

@@ -34,6 +34,7 @@ private:
     void afficherMenuSkin();
     void afficherAide();
     void afficherLoading();
+    void afficherMenuMultijoueur();
 
     // Fonctions d'initialisation du jeu
     void initialiserLianes();

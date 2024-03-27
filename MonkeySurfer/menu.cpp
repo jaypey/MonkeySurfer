@@ -1,6 +1,14 @@
 #include "menu.h"
+#include "networking.h"
+#include <iostream>
 
-Menu::Menu() : _indexSkin(0), _etat(EtatMenu::PRINCIPAL) {}
+
+Menu::Menu(Networking* n)
+{
+    _indexSkin = 0;
+    _etat = EtatMenu::PRINCIPAL;
+    _networking = n;
+}
 
 Menu::~Menu() {}
 
@@ -8,13 +16,24 @@ void Menu::update() {
     if (!_kbhit())
         return;
 
-    char c = _getch();
+    char c;
+    std::string ipAddress;
+
+    if (_etat != EtatMenu::MULTIJOUEUR)
+    {
+        c = _getch();
+    }
+    else {
+        std::cout << "Adresse du serveur: " << std::endl;
+        std::cin >> ipAddress;
+    }
     
     if (_etat == EtatMenu::PRINCIPAL) {
         if (c == '1')       _etat = EtatMenu::JEU;
-        else if (c == '2')  _etat = EtatMenu::SKINS;
-        else if (c == '3')  _etat = EtatMenu::AIDE;
-        else if (c == '4')  _etat = EtatMenu::QUITTER;
+        if (c == '2')       _etat = EtatMenu::MULTIJOUEUR;
+        else if (c == '3')  _etat = EtatMenu::SKINS;
+        else if (c == '4')  _etat = EtatMenu::AIDE;
+        else if (c == '5')  _etat = EtatMenu::QUITTER;
     }
     else if (_etat == EtatMenu::SKINS) {
         if (c == 224) c = _getch(); // Les caractères spéciaux émettent deux char (224 -> code de flèche)
@@ -23,6 +42,10 @@ void Menu::update() {
         else if (c == 77)   modifierSkin(1);  // RIGHT
         else if (c == 80)   modifierSkin(3);  // DOWN
         else if (c == 'q')  _etat = EtatMenu::PRINCIPAL;
+    }
+    else if (_etat == EtatMenu::MULTIJOUEUR) {
+        _networking->Connect(ipAddress, 4444);
+        _etat = EtatMenu::MULTIJOUEURJEU;
     }
     else if (_etat == EtatMenu::AIDE) {
         if (c == 'q')  _etat = EtatMenu::PRINCIPAL;

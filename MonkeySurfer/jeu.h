@@ -13,6 +13,7 @@ public:
 	~Jeu();
 
 	void debuterPartie();
+	void debuterPartie(Networking* n);
 	Coordonnee getPositionJoueur();
 	bool isGameOver();
 	bool isStarted();
@@ -31,6 +32,9 @@ private:
 	std::chrono::steady_clock::time_point _lastUpdate;
 	
 	Joueur* _joueur; //Ajuster pour multijoueur éventuellement
+	bool _isMultijoueur;
+	Networking* _network;
+	std::vector<Joueur*> _joueurs;
 	GenerateurItem _generateur;
 	std::vector<ElementJeu*> _elements;
 	bool _gameOver;

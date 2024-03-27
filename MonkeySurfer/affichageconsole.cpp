@@ -35,6 +35,7 @@ void AffichageConsole::afficherMenu() {
 
     switch (_menu->getEtat()) {
         case Menu::EtatMenu::PRINCIPAL: afficherMenuPrincipal(); break;
+        case Menu::EtatMenu::MULTIJOUEUR: afficherMenuMultijoueur(); break;
         case Menu::EtatMenu::SKINS: afficherMenuSkin(); break;
         case Menu::EtatMenu::AIDE: afficherAide(); break;
         case Menu::EtatMenu::CHARGEMENT: afficherLoading(); break;
@@ -49,9 +50,37 @@ void AffichageConsole::afficherMenuPrincipal() {
     afficherFichier("artMenu.txt", 5, 2);
     afficherFichier("monkey.txt", 43, 4);
     afficherTexte("1. Jouer", 25, 15);
-    afficherTexte("2. Skins", 25, 17);
-    afficherTexte("3. Aide", 25, 19);
-    afficherTexte("4. Quitter", 25, 21);
+    afficherTexte("2. Jouer en multijoueur", 25, 17);
+    afficherTexte("3. Skins", 25, 19);
+    afficherTexte("4. Aide", 25, 21);
+    afficherTexte("5. Quitter", 25, 23);
+}
+
+void AffichageConsole::afficherMenuMultijoueur() {
+    afficherArrierePlan();
+    afficherContour();
+
+    // Affichage de la shop
+    for (int rangee = 0; rangee < 3; rangee++)
+        for (int col = 0; col < 3; col++) {
+            int index = col + rangee * 3;
+
+            std::string apparence;
+            apparence += _menu->;
+
+            const char* fichier = (_menu->getIndexSkin() == index)
+                ? "showcaseSkinSelect.txt"
+                : "showcaseSkin.txt";
+            afficherFichier(fichier, 8 + col * ECART_COL_SKINS, 2 + rangee * ECART_RANGEE_SKINS);
+            afficherTexte(apparence, 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS);
+        }
+
+    std::string apparenceCourante = "Skin choisi : ";
+    apparenceCourante += _skins[_menu->getIndexSkin()].getId();
+    afficherTexte(apparenceCourante, 22, 20);
+
+    afficherTexte("Appuyer sur les fleches pour choisir un skin", 7, 21);
+
 }
 
 void AffichageConsole::afficherMenuSkin() {

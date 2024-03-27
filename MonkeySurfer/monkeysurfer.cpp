@@ -3,7 +3,7 @@
 #include "menu.h"
 #include "affichageconsole.h"
 #include "jsonserial.h"
-#include "enet/enet.h"
+#include "networking.h"
 
 int main()
 {
@@ -12,7 +12,8 @@ int main()
 
     Joueur* p1 = new Joueur();
     Jeu j(p1, &js);
-    Menu m;
+    Networking n;
+    Menu m(&n);
     AffichageConsole a(&j, &m);
 
     while (m.getEtat() != Menu::EtatMenu::QUITTER) {
@@ -21,8 +22,14 @@ int main()
         js.recvJson();
 
         // Gestion jeu
-        if (m.getEtat() == Menu::EtatMenu::JEU) {
-            j.debuterPartie();
+        if (m.getEtat() == Menu::EtatMenu::JEU || m.getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
+            if (m.getEtat() == Menu::EtatMenu::MULTIJOUEUR)
+            {
+                j.debuterPartie(&n);
+            }
+            else {
+                j.debuterPartie();
+            }
             a.afficherJeu();
             if (_kbhit() && _getch() == 'q') {
                 m.setEtat(Menu::EtatMenu::PRINCIPAL);

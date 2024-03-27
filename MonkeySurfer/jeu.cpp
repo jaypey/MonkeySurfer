@@ -19,6 +19,14 @@ void Jeu::debuterPartie()
 	updateJeu();
 }
 
+void Jeu::debuterPartie(Networking* n)
+{
+	_isStarted = true;
+	_isMultijoueur = true;
+	_network = n;
+	updateJeu();
+}
+
 Coordonnee Jeu::getPositionJoueur()
 {
 	return _joueur->getPosition();

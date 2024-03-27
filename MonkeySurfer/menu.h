@@ -3,6 +3,7 @@
 
 #include <chrono>
 #include <conio.h>
+#include "networking.h"
 
 #define NB_SKINS 9
 
@@ -12,12 +13,14 @@ public:
         PRINCIPAL,
         CHARGEMENT,
         JEU,
+        MULTIJOUEUR,
+        MULTIJOUEURJEU,
         SKINS,
         AIDE,
         QUITTER
     };
 public:
-    Menu();
+    Menu(Networking* n);
     ~Menu();
 
     void update();
@@ -28,6 +31,7 @@ public:
 private:
     int _indexSkin;
     EtatMenu _etat;
+    Networking* _networking;
     std::chrono::steady_clock::time_point _timer;
 };
 
