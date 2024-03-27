@@ -85,7 +85,7 @@ void Networking::SendLocalReady() {
 void Networking::SendLocalPosition(Coordonnee c) {
 	std::string msgPosition = std::to_string(c.x) + "x" + std::to_string(c.y) + "y";
 	char messageData[80] = "1|";
-	strcat(messageData, msgPosition.c_str());
+	strcat_s(messageData, msgPosition.c_str());
 	SendPacket(messageData);
 }
 
