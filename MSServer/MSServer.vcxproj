@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b4f29f55-deb6-4b1a-b06f-6e25fc92fb62}</ProjectGuid>
-    <RootNamespace>MonkeySurfer</RootNamespace>
+    <ProjectGuid>{9d0726cf-c289-40f8-8263-6eca469194cc}</ProjectGuid>
+    <RootNamespace>MSServer</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,21 +70,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)asio\include;$(ProjectDir)json;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\jpbel\Documents\vault\MonkeySurfer\MonkeySurfer\lib;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>C:\Users\jpbel\Documents\vault\MonkeySurfer\MonkeySurfer\lib;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -117,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;ASIO_STANDALONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\jpbel\Documents\MonkeySurfer\MonkeySurfer\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -125,7 +110,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\jpbel\Documents\MonkeySurfer\MonkeySurfer\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>enet64.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>enet.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,59 +129,15 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\jpbel\Documents\MonkeySurfer\MonkeySurfer\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>enet64.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>enet.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="affichage.cpp" />
-    <ClCompile Include="affichageconsole.cpp" />
-    <ClCompile Include="aleatoire.cpp" />
-    <ClCompile Include="banane.cpp" />
-    <ClCompile Include="bouclier.cpp" />
-    <ClCompile Include="collectible.cpp" />
-    <ClCompile Include="elementaleatoire.cpp" />
-    <ClCompile Include="elementjeu.cpp" />
-    <ClCompile Include="jeu.cpp" />
-    <ClCompile Include="joueur.cpp" />
-    <ClCompile Include="jsonserial.cpp" />
-    <ClCompile Include="menu.cpp" />
-    <ClCompile Include="monkeysurfer.cpp" />
-    <ClCompile Include="networking.cpp" />
-    <ClCompile Include="obstacle.cpp" />
-    <ClCompile Include="obstaclefixe.cpp" />
-    <ClCompile Include="piece.cpp" />
-    <ClCompile Include="playerdata.cpp" />
-    <ClCompile Include="projectile.cpp" />
-    <ClCompile Include="skin.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="server.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="affichage.h" />
-    <ClInclude Include="affichageconsole.h" />
-    <ClInclude Include="aleatoire.h" />
-    <ClInclude Include="banane.h" />
-    <ClInclude Include="bouclier.h" />
-    <ClInclude Include="collectible.h" />
-    <ClInclude Include="elementaleatoire.h" />
-    <ClInclude Include="elementjeu.h" />
-    <ClInclude Include="jeu.h" />
-    <ClInclude Include="joueur.h" />
-    <ClInclude Include="jsonserial.h" />
-    <ClInclude Include="menu.h" />
-    <ClInclude Include="networking.h" />
-    <ClInclude Include="obstacle.h" />
-    <ClInclude Include="obstaclefixe.h" />
-    <ClInclude Include="piece.h" />
-    <ClInclude Include="playerdata.h" />
-    <ClInclude Include="projectile.h" />
-    <ClInclude Include="skin.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="artMenu.txt" />
-    <Text Include="gameOver.txt" />
-    <Text Include="monkey.txt" />
-    <Text Include="retryText.txt" />
-    <Text Include="showcaseSkin.txt" />
-    <Text Include="showcaseSkinSelect.txt" />
+    <ClInclude Include="server.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

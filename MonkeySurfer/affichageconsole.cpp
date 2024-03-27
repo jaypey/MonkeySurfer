@@ -60,18 +60,14 @@ void AffichageConsole::afficherMenuMultijoueur() {
     afficherArrierePlan();
     afficherContour();
 
-    // Affichage de la shop
+    // Affichage des joueurs
     for (int rangee = 0; rangee < 3; rangee++)
         for (int col = 0; col < 3; col++) {
             int index = col + rangee * 3;
 
-            std::string apparence;
-            apparence += _menu->;
+            std::string idJoueur;
 
-            const char* fichier = (_menu->getIndexSkin() == index)
-                ? "showcaseSkinSelect.txt"
-                : "showcaseSkin.txt";
-            afficherFichier(fichier, 8 + col * ECART_COL_SKINS, 2 + rangee * ECART_RANGEE_SKINS);
+
             afficherTexte(apparence, 12 + col * ECART_COL_SKINS, 4 + rangee * ECART_RANGEE_SKINS);
         }
 

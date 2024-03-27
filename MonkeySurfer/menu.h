@@ -25,6 +25,8 @@ public:
 
     void update();
     void modifierSkin(int val);
+    void getNbMultijoueurReady();
+    void getNbMultijoueurConnectes();
     void setEtat(EtatMenu e);
     EtatMenu getEtat();
     int getIndexSkin();

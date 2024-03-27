@@ -62,6 +62,15 @@ void Menu::modifierSkin(int val) {
     if (_indexSkin < 0) _indexSkin += NB_SKINS;
 }
 
+void Menu::getNbMultijoueurReady()
+{
+
+}
+
+void Menu::getNbMultijoueurConnectes()
+{
+}
+
 void Menu::setEtat(EtatMenu e) {
     _etat = e;
 }

@@ -4,6 +4,7 @@
 
 Networking::Networking()
 {
+	_readyPlayerCount = 0;
 }
 
 Networking::~Networking()
@@ -88,9 +89,36 @@ void Networking::ParseData(char* data)
 			int x;
 			int y;
 			sscanf_s(data, "%*d|%*d|%dx%dy", &x, &y);
-			_joueurs[id]->setPosition({ x, y });
+			_joueurs[id]->SetPosition({ x, y });
 		}
 		break;
+	}
+	case 2: {
+		int nbReadyJoueur;
+		sscanf_s(data, "%*d|%*d|%dx", &nbReadyJoueur);
+		_readyPlayerCount = nbReadyJoueur;
+	}
+	case 3: //Reception connexion autre user
+	{
+		if (id != _idJoueur)
+		{
+			_joueurs[id] = new PlayerData(id);
+			std::cout << "Nouveau joueur connecté: " << id << std::endl;
+		}
+		break;
+	}
+	case 4: //Reception id
+	{
+		_idJoueur = id;
+		break;
+	}
+	case 5:
+	{
+		if (id != _idJoueur)
+		{
+			_joueurs.erase(id);
+		}
+
 	}
 	}
 }
@@ -109,6 +137,10 @@ void Networking::ReceiveData()
 			break;
 		}
 	}
+}
+
+int Networking::GetReadyPlayerCount() {
+	return _readyPlayerCount;
 }
 
 int Networking::GetJoueurCount()

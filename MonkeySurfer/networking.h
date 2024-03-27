@@ -2,8 +2,8 @@
 #define NETWORKING_H__
 #include <enet/enet.h>
 #include <map>
-#include "joueur.h"
 #include <string>
+#include "playerdata.h"
 
 class Networking
 {
@@ -17,12 +17,14 @@ public:
 	void ParseData(char* data);
 	void ReceiveData();
 	int GetJoueurCount();
-	std::map<int, Joueur*> GetJoueurs();
+	int GetReadyPlayerCount();
+	std::map<int, PlayerData*> GetJoueurs();
 private:
 	int _idJoueur;
+	int _readyPlayerCount;
 	ENetHost* _client;
 	ENetAddress _address;
 	ENetPeer* _host;
-	std::map<int, Joueur*> _joueurs;
+	std::map<int, PlayerData*> _joueurs;
 };
 #endif // !NETWORKING_H__
