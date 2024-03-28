@@ -40,6 +40,7 @@ private:
     void afficherMenuSkin();
     void afficherAide();
     void afficherLoading();
+    void afficherMenuMultijoueur();
 
     // Fonctions d'initialisation du jeu
     void initialiserLianes();
@@ -55,6 +56,9 @@ private:
     void afficherContour(); // Non herite
     void afficherTexte(std::string s, int x, int y, CMDColor color = CMD_WHITE, bool selected = false); // Non herite
     void afficherFichier(std::string nom, int x, int y, CMDColor color = CMD_WHITE); // Non herite
+
+    //Multijoueur
+    void afficherJoueurs();
 
     // Mise à jour de la déco (feuilles)
     void updateDeco();

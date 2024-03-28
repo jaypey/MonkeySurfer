@@ -6,6 +6,7 @@ const CMDColor CMD_ECLAT_COLOR =				{ 190, 190, 190 };
 const CMDColor CMD_HARPIE_COLOR =				{ 120, 100, 120 };
 const CMDColor CMD_LIANE_COLOR =				{ 79, 121, 66 };
 const CMDColor CMD_MONKEY_COLOR =				{ 190, 140, 120 };
+const CMDColor CMD_MONKEY_FRIEND_COLOR =		{ 255, 222, 200 };
 const CMDColor CMD_OBSTACLE_COLOR =				{ 255, 0, 0 };
 const CMDColor CMD_PIECE_COLOR =				{ 255, 255, 0 };
 const CMDColor CMD_SERPENT_COLOR =				{ 0, 255, 0 };
