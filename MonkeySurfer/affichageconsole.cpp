@@ -135,11 +135,16 @@ void AffichageConsole::afficherAide() {
     afficherTexte("B", 3, 12, CMD_BANANE_COLOR);
     afficherTexte(" : Les bananes, ramassez les pour aller plus vite!", 4, 12);
 
-    afficherTexte("$", 3, 14, CMD_PIECE_COLOR);
-    afficherTexte(" : Les pieces, ramassez les pour accumuler des points!", 4, 14);
+    afficherTexte("@", 3, 14, CMD_BOUCLIER_COLOR);
+    afficherTexte(" : Les boucliers, ils vous protege d'un obstacle!",4,14);
 
-    afficherTexte("Le joystick determine la direction du saut, 'Btn3'", 3, 16);
-    afficherTexte("fait sauter le singe aux autres lianes.", 3, 17);
+    afficherTexte("$", 3, 16, CMD_PIECE_COLOR);
+    afficherTexte(" : Les pieces, ramassez les pour accumuler des points!", 4, 16);
+
+    
+
+    afficherTexte("Le joystick determine la direction du saut, 'Btn3'", 3, 18);
+    afficherTexte("fait sauter le singe aux autres lianes.", 3, 19);
 
     afficherTexte("Appuyer sur 'Btn2' pour revenir au menu.", 11, 21);
 }
@@ -327,10 +332,31 @@ void AffichageConsole::afficherIU() {
 
     // Afficher le texte pour le score
     _score = "Score : " + std::to_string(_jeu->getPointageJoueur()) + " Pieces : " + std::to_string(_jeu->getPiecesJoueur());
-    _inv = "Inventaire :  1 - " + std::string(1, _jeu->getCharInventaire().item1) + "   2 - " + std::string(1, _jeu->getCharInventaire().item2);
+    afficherTexte("|", 26, NB_LIGNES - 2);
+    _inv1 = std::string(1, _jeu->getCharInventaire().item1);
+    _inv2 = std::string(1, _jeu->getCharInventaire().item2);
+
+    afficherTexte("item 1:", 29, NB_LIGNES - 2, CMD_WHITE);
+    afficherTexte("item 2:", 40, NB_LIGNES - 2, CMD_WHITE);
+
+    if (_jeu->getCharInventaire().item1 == '@') {
+        
+        afficherTexte(_inv1, 36, NB_LIGNES - 2,CMD_BOUCLIER_COLOR);
+    }
+    if (_jeu->getCharInventaire().item2 == '@') {
+        afficherTexte(_inv2, 47, NB_LIGNES - 2, CMD_BOUCLIER_COLOR);
+    }
+    if (_jeu->getCharInventaire().item1 == 'B') {
+        
+        afficherTexte(_inv1, 36, NB_LIGNES - 2, CMD_BANANE_COLOR);
+    }
+    if (_jeu->getCharInventaire().item2 == 'B') {
+        afficherTexte(_inv2, 47, NB_LIGNES - 2, CMD_BANANE_COLOR);
+        
+    }
 
     afficherTexte(_score, 2, NB_LIGNES - 2);
-    afficherTexte(_inv, 30, NB_LIGNES - 2);
+    //afficherTexte(_inv, 29, NB_LIGNES - 2);
 }
 
 void AffichageConsole::afficherGameOver() {
