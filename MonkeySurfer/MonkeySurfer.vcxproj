@@ -153,6 +153,7 @@
     <ClCompile Include="aleatoire.cpp" />
     <ClCompile Include="banane.cpp" />
     <ClCompile Include="bouclier.cpp" />
+    <ClCompile Include="cmdcolor.cpp" />
     <ClCompile Include="collectible.cpp" />
     <ClCompile Include="elementaleatoire.cpp" />
     <ClCompile Include="elementjeu.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="monkeysurfer.cpp" />
     <ClCompile Include="networking.cpp" />
+    <ClCompile Include="nullstream.cpp" />
     <ClCompile Include="obstacle.cpp" />
     <ClCompile Include="obstaclefixe.cpp" />
     <ClCompile Include="piece.cpp" />
@@ -175,6 +177,7 @@
     <ClInclude Include="aleatoire.h" />
     <ClInclude Include="banane.h" />
     <ClInclude Include="bouclier.h" />
+    <ClInclude Include="cmdcolor.h" />
     <ClInclude Include="collectible.h" />
     <ClInclude Include="elementaleatoire.h" />
     <ClInclude Include="elementjeu.h" />
@@ -183,6 +186,7 @@
     <ClInclude Include="jsonserial.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="networking.h" />
+    <ClInclude Include="nullstream.h" />
     <ClInclude Include="obstacle.h" />
     <ClInclude Include="obstaclefixe.h" />
     <ClInclude Include="piece.h" />
