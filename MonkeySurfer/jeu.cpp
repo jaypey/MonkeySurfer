@@ -23,9 +23,26 @@ void Jeu::debuterPartie()
 	updateJeu();
 }
 
+void Jeu::debuterPartieMultijoueur(Networking* n)
+{
+	_isStarted = true;
+	_isMultijoueur = true;
+	_network = n;
+	updateJeu();
+}
+
 Coordonnee Jeu::getPositionJoueur()
 {
 	return _joueur->getPosition();
+}
+
+std::vector<Coordonnee> Jeu::getPositionsJoueurs()
+{
+	std::vector<Coordonnee> joueurs;
+	for (auto i : _joueurs) {
+		joueurs.push_back(i.second->GetPosition());
+	}
+	return joueurs;
 }
 
 int Jeu::getPointageJoueur() {
@@ -100,7 +117,11 @@ void Jeu::updateJeu()
 
 		// Joueur
 		_vitesse = 1000 - (pow(_joueur->getScore(), 2) / 1000);
-		validerCollision();
+		validerCollision();  
+		if (_isMultijoueur)
+		{
+			updateNetworkJoueurs();
+		}
 		updateJoueur();
 		auto now = std::chrono::steady_clock::now();
 		auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _lastUpdate);
@@ -216,6 +237,12 @@ void Jeu::updateGameOver() {
 			_isQuitting = true;
 		}
 	}
+}
+
+void Jeu::updateNetworkJoueurs()
+{
+	_network->SendLocalPosition(_joueur->getPosition());
+	_joueurs = _network->GetJoueurs();
 }
 
 void Jeu::validerCollision()

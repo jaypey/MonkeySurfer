@@ -3,6 +3,7 @@
 
 #include <chrono>
 #include <conio.h>
+#include "networking.h"
 #include <fstream>
 #include "joueur.h"
 #include "jsonserial.h"
@@ -10,23 +11,33 @@
 
 #define NB_SKINS 9
 
-class Menu {
+class Menu
+{
 public:
-    enum class EtatMenu {
+    enum class EtatMenu
+    {
         PRINCIPAL,
         CHARGEMENT,
         JEU,
+        MULTIJOUEUR,
+        MULTIJOUEURJEU,
         SKINS,
         AIDE,
         QUITTER
     };
+
 public:
-    Menu(Joueur* joueur, JsonSerial* jsonserial);
+    Menu(Joueur *joueur, JsonSerial *jsonserial, Networking *n);
     ~Menu();
 
     void initialiserSkins();
 
     void update();
+    void modifierSkin(int val);
+    int getNbMultijoueurReady();
+    int getNbMultijoueurConnectes();
+    bool isPlayerReady();
+    void updateEtatReady();
     void modifierChoixMenu(int val);
     void modifierSkinPreview(int val);
     void setEtat(EtatMenu e);
@@ -37,14 +48,16 @@ public:
     void choisirSkin(int index);
     void updateUnlocksFile();
     Skin getSkin(int index);
+
 private:
     int _choixMenu;
     int _indexSkin;
     int _indexSkinPreview;
     EtatMenu _etat;
+    Networking *_networking;
     std::chrono::steady_clock::time_point _timer;
-    Joueur* _joueur;
-    JsonSerial* _jsonserial;
+    Joueur *_joueur;
+    JsonSerial *_jsonserial;
     Skin _skins[NB_SKINS];
 };
 
