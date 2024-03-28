@@ -301,7 +301,27 @@ void AffichageConsole::afficherJoueur()
     Coordonnee positionCourante = _jeu->getPositionJoueur();
     int y = _jeu->getPositionJoueur().y;
     int x = _xlianes[positionCourante.x];
-    _img[x][y] = {_menu->getSkin(_menu->getIndexSkin()).getId(), CMD_MONKEY_COLOR}; // monkey
+
+    CMDColor monkey;
+    if (_jeu->isProtected())
+    {
+        monkey = CMD_BOUCLIER_COLOR;
+    }
+    else if (_jeu->isStuck())
+    {
+        monkey = CMD_SERPENT_COLOR;
+    }
+    else if (_jeu->isBoosted())
+    {
+        monkey = CMD_BANANE_COLOR;
+    }
+    else 
+    {
+        monkey = CMD_MONKEY_COLOR;
+    }
+
+
+    _img[x][y] = { _menu->getSkin(_menu->getIndexSkin()).getId(), monkey }; // monkey
 
     // Fleche direction de saut
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE))
@@ -325,18 +345,17 @@ void AffichageConsole::afficherJoueur()
         _img[x][y - 3] = {'^', CMD_WHITE};
         _img[x][y - 2] = {'|', CMD_WHITE};
     }
-
     // Poussieres et eclats s'il attaque le serpent
-    if (_jeu->getJsonSerial()->accShake())
-    {
-        _img[x - 1][y - 1] = getCharEclat();
-        _img[x][y - 1] = getCharEclat();
-        _img[x + 1][y - 1] = getCharEclat();
-        _img[x - 1][y] = getCharEclat();
-        _img[x + 1][y] = getCharEclat();
-        _img[x - 1][y + 1] = getCharEclat();
-        _img[x][y + 1] = getCharEclat();
-        _img[x + 1][y + 1] = getCharEclat();
+    if (_jeu->getJsonSerial()->accShake() || _jeu->isAttacking()) {
+        _img[x-1][y-1] = getCharEclat();
+        _img[x]  [y-1] = getCharEclat();
+        _img[x+1][y-1] = getCharEclat();
+        _img[x-1][y] = getCharEclat();
+        _img[x+1][y] = getCharEclat();
+        _img[x-1][y+1] = getCharEclat();
+        _img[x]  [y+1] = getCharEclat();
+        _img[x+1][y+1] = getCharEclat();
+        _jeu->setIsAttacking(false);
     }
 }
 
@@ -360,14 +379,32 @@ void AffichageConsole::afficherItems()
         if (elementCourant->getPosition().y >= NB_LIGNES)
             continue;
 
-        if (elementCourant->getID() == OBSTACLE_FIXE) // �ventuellement trouver une mani�re plus �l�gante
+        CharInfo visuel;
+        switch (elementCourant->getID())
         {
-            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = {'X', CMD_OBSTACLE_COLOR};
+        case OBSTACLE_FIXE:
+            visuel = {'X', CMD_OBSTACLE_COLOR};
+            break;
+        case HARPIE:
+            visuel = {'=', CMD_HARPIE_COLOR};
+            break;
+        case SERPENT:
+            visuel = {'S', CMD_SERPENT_COLOR};
+            break;
+        case PIECE:
+            visuel = {'$', CMD_PIECE_COLOR};
+            break;
+        case BOUCLIER:
+            visuel = {'@', CMD_BOUCLIER_COLOR};
+            break;
+        case BANANE:
+            visuel = {'B', CMD_BANANE_COLOR};
+            break;
+
+        default:
+            visuel = {'l', CMD_LIANE_COLOR};
         }
-        else
-        {
-            _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = {'$', CMD_PIECE_COLOR};
-        }
+        _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = visuel;
     }
 }
 
@@ -382,7 +419,10 @@ void AffichageConsole::afficherIU()
 
     // Afficher le texte pour le score
     _score = "Score : " + std::to_string(_jeu->getPointageJoueur()) + " Pieces : " + std::to_string(_jeu->getPiecesJoueur());
+    _inv = "Inventaire :  1 - " + std::string(1, _jeu->getCharInventaire().item1) + "   2 - " + std::string(1, _jeu->getCharInventaire().item2);
+
     afficherTexte(_score, 2, NB_LIGNES - 2);
+    afficherTexte(_inv, 30, NB_LIGNES - 2);
 }
 
 void AffichageConsole::afficherGameOver()
@@ -480,14 +520,10 @@ CharInfo AffichageConsole::getCharEclat()
     // 50% chance d'afficher un eclat, 50% d'afficher rien
     // * # @
     // 0 1 2 3 4 5
-    switch (_rand.random(0, 5, rand()))
-    {
-    case 0:
-        return {'*', CMD_ECLAT_COLOR};
-    case 1:
-        return {'#', CMD_ECLAT_COLOR};
-    case 2:
-        return {'@', CMD_ECLAT_COLOR};
+    switch (_rand.random(0, 5, rand())) {
+        case 0: return { '*', CMD_ECLAT_COLOR };
+        case 1: return { '#', CMD_ECLAT_COLOR };
+        case 2: return { '&', CMD_ECLAT_COLOR };
     }
     return {' ', CMD_ECLAT_COLOR};
 }

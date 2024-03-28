@@ -8,15 +8,24 @@ Joueur::Joueur()
 
 Joueur::~Joueur()
 {
+    // delete inventaire[0];
+   // delete inventaire[1];
 }
 
 void Joueur::reset() {
     score = 0;
     nbObjets = 0;
+    nbBoost = 0;
+    bouclierActif = false;
+    effetBanane = false;
+    immobilise = false;
+    enVie = true;
 
-    inventaire[0] = -1; // Tableau objets initialement vide
-    inventaire[1] = -1;
-
+    _serpent = nullptr;
+    charInv.item1 = ' ';
+    charInv.item2 = ' ';
+    inventaire[0] = nullptr;
+    inventaire[1] = nullptr;
     position.x = 2;
     position.y = 15;
     lastUpdate = std::chrono::steady_clock::now(); // moment dernier update pour score, initialiser
@@ -72,86 +81,240 @@ void Joueur::compteurPointage()
     }
 }
 
-bool Joueur::ajouterInventaire(int idObj)
+int Joueur::getNbItem()
 {
-    if (inventaire[0] == -1)
+    return nbObjets;
+}
+
+bool Joueur::ajouterInventaire(Collectible* powerUp)
+{
+
+    if (nbObjets == 0)
     {
-        inventaire[0] = idObj; // objet ajoute a la pos 0 de l'inventaire
+        inventaire[nbObjets++] = powerUp; // objet ajoute a la pos 0 de l'inventaire
         return true;
     }
-    else if (inventaire[1] == -1)
+    else if (nbObjets == 1)
     {
-        inventaire[1] = idObj; // Objet ajoute a la pos 1 de l'inventaire
+        inventaire[nbObjets++] = powerUp; // Objet ajoute a la pos 1 de l'inventaire
         return true;
     }
     return false;
     // Si inventaire plein, objet nest pas recupere, on pourra discuter de ce scenario en equipe
 }
 
+charInventaire Joueur::getCharInventaire()
+{
+    return charInv;
+}
+
+void Joueur::setCharInventaire(charInventaire c)
+{
+    charInv = c;
+}
+
 bool Joueur::echangerInventaire()
 {
-    if (inventaire[0] != -1 && inventaire[1] != -1)
+    
+    if (nbObjets == 2)
     {
         std::swap(inventaire[0], inventaire[1]);
-
+        char temp = charInv.item1;
+        charInv.item1 = charInv.item2;
+        charInv.item2 = temp;
         return true;
     }
 
     return false;
 }
 
-int Joueur::useObjet(int idObj)
+void Joueur::useObjet()
 {
-    int usedObj = inventaire[0];
-    inventaire[0] = inventaire[1];
-    inventaire[1] = -1;
-
-    return usedObj; // retourne lobjet a la position 0, qui est lobjet utilise
+    if (nbObjets > 0)
+    {
+        inventaire[0]->appliquerEffet(*this);
+        enleverObjet();
+    }
+    
 }
 
-bool Joueur::up()
+void Joueur::enleverObjet()
 {
-    if (position.y > 21)
-    {
-        return false;
-    }
+    std::swap(inventaire[0], inventaire[1]);
+    nbObjets--;
+    delete inventaire[1];
+    inventaire[1] = nullptr;
+}
 
-    position.y += 1;
-    return true;
+void Joueur::switchEtatBouclier()
+{
+    if (bouclierActif)
+    {
+        bouclierActif = false;
+    }
+    else
+    {
+        bouclierActif = true;
+    }
+}
+
+void Joueur::setEtatBouclier(bool etat)
+{
+    bouclierActif = etat;
+}
+
+bool Joueur::getEtatBouclier()
+{
+    return bouclierActif;
+}
+
+void Joueur::switchEtatEffetBanane()
+{
+    if (effetBanane)
+    {
+        effetBanane = false;
+    }
+    else
+    {
+        effetBanane = true;
+    }
+}
+
+void Joueur::setEtatEffetBanane(bool etat)
+{
+    effetBanane = etat;
+}
+
+bool Joueur::getEtatEffetBanane()
+{
+    return nbBoost > 0;
+}
+
+void Joueur::immobiliser(bool etat)
+{
+    immobilise = etat;
+}
+
+bool Joueur::isFree()
+{
+    return !immobilise;
+}
+
+bool Joueur::getVie()
+{
+    return enVie;
+}
+
+void Joueur::isDead()
+{
+    enVie = false;
+}
+
+int Joueur::getNbBoost()
+{
+    return nbBoost;
+}
+
+void Joueur::setNbBoost(int nb)
+{
+    nbBoost = nb;
+}
+
+Serpent* Joueur::getSerpent()
+{
+    return _serpent;
+}
+
+void Joueur::setSerpent(Serpent* serpent)
+{
+    _serpent = serpent;
 }
 
 bool Joueur::down()
 {
-    if (position.y < 0)
+    if (!(position.y > 21))
     {
-
-        return false;
+        position.y += 1;
+        if (nbBoost > 0)
+        {
+            position.y += 1;
+            nbBoost--;
+        }
+        return true;
     }
 
-    position.y -= 1;
-    return true;
+    if (nbBoost <= 0)
+    {
+        effetBanane = false;
+    }
+
+    return false;
+}
+
+bool Joueur::up()
+{
+    if (!(position.y < 0))
+    {
+        position.y -= 1;
+        if (nbBoost > 0)
+        {
+            position.y -= 1;
+            nbBoost--;
+        }
+        return true;
+    }
+
+    if (nbBoost <= 0)
+    {
+        effetBanane = false;
+    }
+
+    return false;
 }
 
 bool Joueur::Right()
 {
-    if (position.x >= 4)
+    if (!(position.x >= 4))
     {
-
-        return false;
+        position.x += 1;
+        if (nbBoost > 0 && position.x < 4)
+        {
+            position.x += 1;
+            nbBoost--;
+        }
+        return true;
     }
 
-    position.x += 1;
+    if (nbBoost <= 0)
+    {
+        effetBanane = false;
+    }
+
     return true;
 }
 
 bool Joueur::Left()
 {
-    if (position.x <= 0)
-        return false;
+    if (!(position.x <= 0))
+    {
+        position.x -= 1;
+        if (nbBoost > 0 && position.x > 0)
+        {
+            position.x -= 1;
+            nbBoost--;
+        }
+        return true;
+    }
 
-    position.x -= 1;
+    if (nbBoost <= 0)
+    {
+        effetBanane = false;
+    }
+
     return true;
 }
+
+
 
 Coordonnee Joueur::getPosition() const
 {

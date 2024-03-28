@@ -9,6 +9,7 @@ public:
 	Piece();
 	~Piece();
 
+	virtual void collision(Joueur& _joueur);
 	void appliquerEffet(Joueur& joueur);
 	void afficherInfo() const;
 };

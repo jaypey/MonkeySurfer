@@ -10,6 +10,7 @@ Jeu::Jeu(Joueur* j, JsonSerial* js)
 	_gameOver = false;
 	_jsonserial = js;
 	_isQuitting = false;
+	_isAttacking = false;
 
 	_modePause = false;
 	_pauseOption = 0;
@@ -45,6 +46,11 @@ int Jeu::getPointageJoueur() {
 	return _joueur->getScore();
 }
 
+charInventaire Jeu::getCharInventaire()
+{
+	return _joueur->getCharInventaire();
+}
+
 int Jeu::getPiecesJoueur()
 {
 	return _joueur->getPiece();
@@ -53,6 +59,7 @@ int Jeu::getPiecesJoueur()
 int Jeu::getPauseOption() {
 	return _pauseOption;
 }
+
 
 void Jeu::setPause(bool pause) {
 	_modePause = pause;
@@ -86,6 +93,31 @@ bool Jeu::isPaused() {
 
 bool Jeu::isQuitting() {
 	return _isQuitting;
+}
+
+bool Jeu::isStuck()
+{
+	return !_joueur->isFree();
+}
+
+bool Jeu::isProtected()
+{
+	return _joueur->getEtatBouclier();
+}
+
+bool Jeu::isBoosted()
+{
+	return _joueur->getEtatEffetBanane();
+}
+
+bool Jeu::isAttacking()
+{
+	return _isAttacking;
+}
+
+void Jeu::setIsAttacking(bool attack)
+{
+	_isAttacking = attack;
 }
 
 std::vector<ElementJeu*> Jeu::getElements() const
@@ -136,22 +168,27 @@ void Jeu::updateJeu()
 
 void Jeu::updateJoueur()
 {
+	std::cout << _joueur->getNbBoost();
+
 	// MANETTE
-	if (_jsonserial->boutonAppuye(2)) {
-		if (_jsonserial->joystickMaintenu(GAUCHE)) {
-			_joueur->Left();
+	if(_joueur->isFree())
+	{
+		if (_jsonserial->boutonAppuye(2)) {
+			if (_jsonserial->joystickMaintenu(GAUCHE)) {
+				_joueur->Left();
+			}
+			else if (_jsonserial->joystickMaintenu(DROITE)) {
+				_joueur->Right();
+			}
 		}
-		else if (_jsonserial->joystickMaintenu(DROITE)) {
-			_joueur->Right();
+
+		if (_jsonserial->joystickMaintenu(HAUT, true)) {
+			_joueur->up();
 		}
-	}
 
-	if (_jsonserial->joystickMaintenu(HAUT, true)) {
-		_joueur->up();
-	}
-
-	else if (_jsonserial->joystickMaintenu(BAS, true)) {
-		_joueur->down();
+		else if (_jsonserial->joystickMaintenu(BAS, true)) {
+			_joueur->down();
+		}
 	}
 
 	if (_jsonserial->accShake())
@@ -172,22 +209,44 @@ void Jeu::updateJoueur()
 	{
 		char c = _getch();
 		if (c == 224) c = _getch();
-		if (c == 75) { // Fleche gauche
-			_joueur->Left();
-		}
-		else if (c == 77) { // Fleche droite
-			_joueur->Right();
-		}
-		else if (c == 80) {
-			_joueur->up();
-		}
-		else if (c == 72) {
-			_joueur->down();
-		}
-		else if (c == 'p') {
-			_modePause = true;
+
+		if(_joueur->isFree() || c == 'p' || c == ' ' || c == 'x' || c == 'z')
+		{
+			if (c == 75) { // Fleche gauche
+				_joueur->Left();
+			}
+			else if (c == 77) { // Fleche droite
+				_joueur->Right();
+			}
+			else if (c == 80) { //Fleche bas
+				_joueur->down();
+			}
+			else if (c == 72) {	//Fleche haut
+				_joueur->up();
+			}
+			else if (c == 'p') {
+				_modePause = true;
+			}
+			else if (c == ' ')
+			{	
+				_isAttacking = true;
+				if (_joueur->getSerpent() != nullptr)
+				{
+					_joueur->getSerpent()->recoitCoup(*_joueur);
+				}
+				
+			}
+			else if (c == 'z')
+			{
+				_joueur->echangerInventaire();
+			}
+			else if (c == 'x')
+			{
+				_joueur->useObjet();
+			}
 		}
 	}
+
 }
 
 void Jeu::updatePause() {
@@ -260,20 +319,11 @@ void Jeu::validerCollision()
 	for (int i = 0; i < _elements.size(); i++)
 	{
 		if (_elements[i]->getPosition() == _joueur->getPosition()) {
-			switch (_elements[i]->getID())
-			{
-			case OBSTACLE_FIXE:
-				_gameOver = true;
-				break;
-			case PIECE:
-				_joueur->ramasserPiece();
-				delete _elements[i];
-				_elements.erase(_elements.begin() + i);
-			default:
-				break;
-			}
+			_elements[i]->collision(*_joueur);
+			_elements.erase(_elements.begin() + i);
 			return;
 		}
+		_gameOver = !_joueur->getVie();
 	}
 }
 
@@ -281,7 +331,7 @@ void Jeu::avancerCase()
 {
 	Coordonnee courant;
 
-	for (int i = 0; i < _elements.size(); i++)
+	for (int i = _elements.size()-1; i >= 0; i--)
 	{
 		courant = _elements[i]->getPosition();
 		courant.y++;
@@ -290,15 +340,31 @@ void Jeu::avancerCase()
 			delete _elements[i];
 			_elements.erase(_elements.begin() + i);
 		}
-		_elements[i]->setPosition(courant);
+		else 
+		{
+			_elements[i]->setPosition(courant);
+		}
+
+		if (HarpieFeroce* harpie = dynamic_cast<HarpieFeroce*>(_elements[i]))
+		{
+			if (harpie->finDeParcours())
+			{
+				delete _elements[i];
+				_elements.erase(_elements.begin() + i);
+			}
+			else
+			{
+				harpie->deplacement();
+			}
+		}
+
 	}
 
 	courant = _joueur->getPosition();
-	std::cout << _joueur->getPosition().y;
 	courant.y++;
 	_joueur->setPosition(courant);
 
-	ElementJeu* element = _generateur.getRandomObstacle();
+	ElementJeu* element = _generateur.getRandomElement();
 	if (rand() % 4 == 2)
 	{
 		ElementJeu* piece = new Piece();

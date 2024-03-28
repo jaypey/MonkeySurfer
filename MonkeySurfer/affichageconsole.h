@@ -87,6 +87,7 @@ private:
 
     // UI
     std::string _score; // Texte pour afficher le score
+    std::string _inv; //texte pour afficher l'inventaire
 };
 
 #endif // !AFFICHAGECONSOLE_H

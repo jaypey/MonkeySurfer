@@ -21,6 +21,7 @@ struct CMDColor {
     }
 };
 
+const extern CMDColor CMD_BOUCLIER_COLOR;
 const extern CMDColor CMD_BANANE_COLOR;
 const extern CMDColor CMD_CONTOUR_COLOR;
 const extern CMDColor CMD_ECLAT_COLOR;

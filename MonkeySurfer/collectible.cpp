@@ -29,3 +29,4 @@ void Collectible::setEtat(bool p_etat)
 {
 	etat = p_etat;
 }
+

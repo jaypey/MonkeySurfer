@@ -1,9 +1,10 @@
 #include "cmdcolor.h"
 
+const CMDColor CMD_BOUCLIER_COLOR =				{ 0, 255, 255 };
 const CMDColor CMD_BANANE_COLOR =				{ 210, 230, 0 };
 const CMDColor CMD_CONTOUR_COLOR =				{ 150, 150, 150 };
 const CMDColor CMD_ECLAT_COLOR =				{ 190, 190, 190 };
-const CMDColor CMD_HARPIE_COLOR =				{ 120, 100, 120 };
+const CMDColor CMD_HARPIE_COLOR =				{ 220, 220, 220 };
 const CMDColor CMD_LIANE_COLOR =				{ 79, 121, 66 };
 const CMDColor CMD_MONKEY_COLOR =				{ 190, 140, 120 };
 const CMDColor CMD_MONKEY_FRIEND_COLOR =		{ 255, 222, 200 };

@@ -6,6 +6,9 @@
 #include "bouclier.h"
 #include "projectile.h"
 #include "obstaclefixe.h"
+#include "serpent.h"
+#include "harpieferoce.h"
+#include <random>
 
 class GenerateurItem
 {
@@ -13,7 +16,7 @@ public:
 	GenerateurItem();
 	~GenerateurItem();
 
-	ElementJeu* genererRandomElement();
+	ElementJeu* getRandomElement();
 	Collectible* getRandomCollectible();
 	Obstacle* getRandomObstacle();
 

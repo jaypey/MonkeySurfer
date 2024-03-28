@@ -8,9 +8,13 @@ public:
 	Bouclier();
 	~Bouclier();
 
-	void stocker(Joueur& joueur);
-	void appliquerEffet(Joueur& joueur);
-	void afficherInfo() const;
+	virtual void collision(Joueur& _joueur);
+	virtual void stocker(Joueur& joueur);
+	virtual void appliquerEffet(Joueur& joueur);
+	virtual void afficherInfo() const;
+
+private:
+	std::chrono::steady_clock::time_point lastUpdateBouclier;
 };
 
 #endif // !BOUCLIER_H

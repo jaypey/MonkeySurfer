@@ -5,8 +5,15 @@
 #include <fstream>
 #include <string>
 #include "coordonnee.h"
+#include "elementjeu.h"
 #include "skin.h"
 
+struct charInventaire {
+	char item1;
+	char item2;
+};
+class Serpent;
+class Collectible;
 class Joueur
 {
 public:
@@ -21,9 +28,34 @@ public:
 	void ramasserPiece();
 	void loadPieces();
 	void compteurPointage();
-	bool ajouterInventaire(int idObj);
+	int getNbItem();
+	bool ajouterInventaire(Collectible *powerUp);
+	charInventaire getCharInventaire();
+	void setCharInventaire(charInventaire c);
+
 	bool echangerInventaire();
-	int useObjet(int idObj);
+	void useObjet();
+	void enleverObjet();
+	
+	void switchEtatBouclier();
+	void setEtatBouclier(bool etat);
+	bool getEtatBouclier();
+
+	void switchEtatEffetBanane();
+	void setEtatEffetBanane(bool etat);
+	bool getEtatEffetBanane();
+
+	void immobiliser(bool etat);
+	bool isFree();
+
+	bool getVie();
+	void isDead();
+
+	int getNbBoost();
+	void setNbBoost(int nb);
+
+	Serpent* getSerpent();
+	void setSerpent(Serpent* serpent);
 
 	Coordonnee getPosition() const;
 	void setPosition(const Coordonnee &pos);
@@ -34,11 +66,21 @@ public:
 
 private:
 	Coordonnee position;
+	bool bouclierActif;
+	bool effetBanane;
+	bool immobilise;
+	bool enVie;
+	int nbBoost;
+	Serpent* _serpent;
+
 	int nbPieces;
 	int score;
 	int nbObjets;
-	int inventaire[2];
+	Collectible* inventaire[2];
+	charInventaire charInv;
 	std::chrono::steady_clock::time_point lastUpdate;
 };
+
+#include "collectible.h"
 
 #endif // !JOUEUR_H

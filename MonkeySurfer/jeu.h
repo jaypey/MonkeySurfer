@@ -21,8 +21,14 @@ public:
 	bool isGameOver();
 	bool isStarted();
 	bool isPaused();
-	bool isQuitting(); // Requete du jeu, lue par le menu pour afficher le menu
+	bool isQuitting(); //Requete du jeu, lue par le menu pour afficher le menu
+	bool isStuck();
+	bool isProtected();
+	bool isBoosted();
+	bool isAttacking();
+	void setIsAttacking(bool attack);
 	int getPointageJoueur();
+	charInventaire getCharInventaire();
 	int getPiecesJoueur();
 	int getPauseOption();
 	void setPause(bool pause);
@@ -54,6 +60,7 @@ private:
 	int _vitesse;
 	bool _isStarted;
 	bool _isQuitting;
+	bool _isAttacking;
 
 	bool _modePause;
 	int _pauseOption;

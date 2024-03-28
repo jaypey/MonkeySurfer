@@ -2,7 +2,6 @@
 #define ELEMENTJEU_H
 
 #include <iostream>
-#include "joueur.h"
 #include "aleatoire.h"
 #include "coordonnee.h"
 
@@ -11,8 +10,12 @@
 #define BANANE				2
 #define BOUCLIER			3
 #define PIECE				4
+#define HARPIE				5
+#define SERPENT				6
 
 #define HAUTEUR_GENERATION	25
+
+class Joueur;
 
 class ElementJeu
 {
@@ -20,6 +23,7 @@ public:
 	ElementJeu();
 	virtual ~ElementJeu();
 
+	virtual void collision(Joueur& _joueur) = 0;
 	virtual void afficherInfo() const = 0;
 
 	int getID();
@@ -35,6 +39,8 @@ private:
 	int id;
 	Coordonnee position;
 };
+
+#include "joueur.h"
 
 #endif // !ELEMENTJEU_H
 

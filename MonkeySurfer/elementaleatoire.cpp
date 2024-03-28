@@ -8,35 +8,36 @@ GenerateurItem::~GenerateurItem()
 {
 }
 
-ElementJeu* GenerateurItem::genererRandomElement()
+ElementJeu* GenerateurItem::getRandomElement()
 {
-	int valeurAleatoire = rand.random(0, 2, 451565);
+	int valeurAleatoire = rand.random(0, 10, std::rand() % 500);
 
-	if (valeurAleatoire == 0)
+	if (valeurAleatoire < 4)
 	{
 		return getRandomCollectible();
 	}
 
-	else if (valeurAleatoire == 1)
+	else
 	{
 		return getRandomObstacle();
 	}
 
-	return new Piece;
 }
 
 Collectible* GenerateurItem::getRandomCollectible()
 {
-	int valeurAleatoire = rand.random(0, 1, 95165);
+	int valeurAleatoire = rand.random(0, 1, std::rand()%500);
 
-	if (valeurAleatoire == 0)
+	switch (valeurAleatoire)
 	{
+	case 0:
 		return new Bouclier;
-	}
 
-	else if (valeurAleatoire == 1)
-	{
+	case 1:
 		return new Banane;
+
+	default:
+		break;
 	}
 
 	return nullptr;
@@ -44,17 +45,21 @@ Collectible* GenerateurItem::getRandomCollectible()
 
 Obstacle* GenerateurItem::getRandomObstacle()
 {
-	int valeurAleatoire = rand.random(0, 1, 95165);
+	int valeurAleatoire = rand.random(0, 2, std::rand() % 19);
 
-	if (valeurAleatoire == 0)
+	switch (valeurAleatoire)
 	{
-		/*return new Projectile;*/
-		return new ObstacleFixe; //Temporaire
-	}
-
-	else if (valeurAleatoire == 1)
-	{
+	case 0:
 		return new ObstacleFixe;
+
+	case 1:
+		return new HarpieFeroce;
+
+	case 2:
+		return new Serpent;
+
+	default:
+		break;
 	}
 
 	return nullptr;

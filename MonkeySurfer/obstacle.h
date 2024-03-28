@@ -9,7 +9,7 @@ public:
 	Obstacle();
 	virtual ~Obstacle();
 
-	virtual bool collisionAvecJoueur(Coordonnee p_joueur) = 0;
+	virtual void collision(Joueur& _joueur) = 0;
 	virtual void afficherInfo() const = 0;
 
 };
