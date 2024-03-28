@@ -8,18 +8,20 @@ Joueur::Joueur()
 
 Joueur::~Joueur()
 {
-    delete inventaire[0];
-    delete inventaire[1];
+    // delete inventaire[0];
+   // delete inventaire[1];
 }
 
 void Joueur::reset() {
     score = 0;
     nbObjets = 0;
+    nbBoost = 0;
     bouclierActif = false;
     effetBanane = false;
     immobilise = false;
     enVie = true;
 
+    _serpent = nullptr;
     charInv.item1 = ' ';
     charInv.item2 = ' ';
     inventaire[0] = nullptr;
@@ -113,6 +115,7 @@ void Joueur::useObjet()
     if (nbObjets > 0)
     {
         inventaire[0]->appliquerEffet(*this);
+        enleverObjet();
     }
     
 }
@@ -189,6 +192,26 @@ void Joueur::isDead()
     enVie = false;
 }
 
+int Joueur::getNbBoost()
+{
+    return nbBoost;
+}
+
+void Joueur::setNbBoost(int nb)
+{
+    nbBoost = nb;
+}
+
+Serpent* Joueur::getSerpent()
+{
+    return _serpent;
+}
+
+void Joueur::setSerpent(Serpent* serpent)
+{
+    _serpent = serpent;
+}
+
 bool Joueur::down()
 {
     if (!(position.y > 21))
@@ -196,9 +219,15 @@ bool Joueur::down()
         position.y += 1;
         if (getEtatEffetBanane())
         {
-            position.x += 1;
+            position.y += 1;
+            nbBoost--;
         }
         return true;
+    }
+
+    if (nbBoost <= 0)
+    {
+        setEtatEffetBanane(false);
     }
 
     return false;
@@ -211,9 +240,15 @@ bool Joueur::up()
         position.y -= 1;
         if (getEtatEffetBanane())
         {
-            position.x -= 1;
+            position.y -= 1;
+            nbBoost--;
         }
         return true;
+    }
+
+    if (nbBoost <= 0)
+    {
+        setEtatEffetBanane(false);
     }
 
     return false;
@@ -230,6 +265,12 @@ bool Joueur::Right()
     if (getEtatEffetBanane())
     {
         position.x += 1;
+        nbBoost--;
+    }
+
+    if (nbBoost <= 0)
+    {
+        setEtatEffetBanane(false);
     }
 
     return true;
@@ -246,10 +287,18 @@ bool Joueur::Left()
     if (getEtatEffetBanane())
     {
         position.x -= 1;
+        nbBoost--;
     }
-    
+
+    if (nbBoost <= 0)
+    {
+        setEtatEffetBanane(false);
+    }
+
     return true;
 }
+
+
 
 Coordonnee Joueur::getPosition() const
 {

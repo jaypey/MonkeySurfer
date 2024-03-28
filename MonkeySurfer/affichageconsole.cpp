@@ -225,7 +225,27 @@ void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
     int y = _jeu->getPositionJoueur().y;
     int x = _xlianes[positionCourante.x];
-    _img[x][y] = { _menu->getSkin(_menu->getIndexSkin()).getId(), CMD_MONKEY_COLOR }; // monkey
+
+    CMDColor monkey;
+    if (_jeu->isProtected())
+    {
+        monkey = CMD_BOUCLIER_COLOR;
+    }
+    else if (_jeu->isStuck())
+    {
+        monkey = CMD_SERPENT_COLOR;
+    }
+    else if (_jeu->isBoosted())
+    {
+        monkey = CMD_BANANE_COLOR;
+    }
+    else 
+    {
+        monkey = CMD_MONKEY_COLOR;
+    }
+
+
+    _img[x][y] = { _menu->getSkin(_menu->getIndexSkin()).getId(), monkey }; // monkey
 
     // Fleche direction de saut
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE)) {

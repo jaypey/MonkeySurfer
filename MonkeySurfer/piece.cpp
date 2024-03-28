@@ -13,6 +13,7 @@ Piece::~Piece()
 void Piece::collision(Joueur& _joueur)
 {
 	appliquerEffet(_joueur);
+	delete this;
 }
 
 void Piece::appliquerEffet(Joueur& joueur)

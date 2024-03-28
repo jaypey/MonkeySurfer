@@ -21,6 +21,7 @@ void ObstacleFixe::collision(Joueur& _joueur)
 	{
 		_joueur.isDead();
 	}
+	delete this;
 }
 
 void ObstacleFixe::afficherInfo() const

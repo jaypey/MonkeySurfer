@@ -81,6 +81,21 @@ bool Jeu::isQuitting() {
 	return _isQuitting;
 }
 
+bool Jeu::isStuck()
+{
+	return !_joueur->isFree();
+}
+
+bool Jeu::isProtected()
+{
+	return _joueur->getEtatBouclier();
+}
+
+bool Jeu::isBoosted()
+{
+	return _joueur->getEtatEffetBanane();
+}
+
 std::vector<ElementJeu*> Jeu::getElements() const
 {
 	return _elements;
@@ -156,7 +171,7 @@ void Jeu::updateJoueur()
 		char c = _getch();
 		if (c == 224) c = _getch();
 
-		if(_joueur->isFree() || c == 'p' || c == ' ')
+		if(_joueur->isFree() || c == 'p' || c == ' ' || c == 'x' || c == 'z')
 		{
 			if (c == 75) { // Fleche gauche
 				_joueur->Left();
@@ -174,8 +189,12 @@ void Jeu::updateJoueur()
 				_modePause = true;
 			}
 			else if (c == ' ')
-			{
-
+			{	
+				if (_joueur->getSerpent() != nullptr)
+				{
+					_joueur->getSerpent()->recoitCoup(*_joueur);
+				}
+				
 			}
 			else if (c == 'z')
 			{
@@ -187,6 +206,12 @@ void Jeu::updateJoueur()
 			}
 		}
 	}
+
+	if (_joueur->getEtatEffetBanane())
+	{
+
+	}
+
 }
 
 void Jeu::updatePause() {
@@ -254,7 +279,6 @@ void Jeu::validerCollision()
 	{
 		if (_elements[i]->getPosition() == _joueur->getPosition()) {
 			_elements[i]->collision(*_joueur);
-            delete _elements[i];
 			_elements.erase(_elements.begin() + i);
 			return;
 		}

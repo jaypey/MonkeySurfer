@@ -4,9 +4,9 @@
 Bouclier::Bouclier()
 {
 	setID(BOUCLIER);
-	
+	setPosition({ generateur.random(0, 4, std::rand() % 1000), 0 });
 	RandomGenerator rand;
-	setDuree((float)rand.random(10, 15, 2543312));
+	setDuree((float)rand.random(10, 15, std::rand() % 500));
 }
 
 Bouclier::~Bouclier()
@@ -32,8 +32,13 @@ void Bouclier::stocker(Joueur& joueur)
 }
 
 void Bouclier::appliquerEffet(Joueur& joueur)
-{
-	joueur.setEtatBouclier(true);
+{	
+	if (joueur.isFree()) {
+		joueur.setEtatBouclier(true);
+	}
+	else {
+		joueur.immobiliser(false);
+	}
 	joueur.setCharInventaire({ joueur.getCharInventaire().item2, ' ' });
 	lastUpdateBouclier = std::chrono::steady_clock::now();
 }

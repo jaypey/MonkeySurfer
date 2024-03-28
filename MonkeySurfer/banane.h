@@ -16,6 +16,7 @@ public:
 
 private:
 	std::chrono::steady_clock::time_point lastUpdateBanane;
+	int nbUtilisation;
 };
 
 #endif // !BANANE_H

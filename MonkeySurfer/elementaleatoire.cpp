@@ -10,19 +10,18 @@ GenerateurItem::~GenerateurItem()
 
 ElementJeu* GenerateurItem::getRandomElement()
 {
-	int valeurAleatoire = rand.random(0, 2, std::rand() % 500);
+	int valeurAleatoire = rand.random(0, 10, std::rand() % 500);
 
-	if (valeurAleatoire == 0)
+	if (valeurAleatoire < 4)
 	{
 		return getRandomCollectible();
 	}
 
-	else if (valeurAleatoire == 1)
+	else
 	{
 		return getRandomObstacle();
 	}
 
-	return new Piece;
 }
 
 Collectible* GenerateurItem::getRandomCollectible()

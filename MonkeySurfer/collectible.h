@@ -15,6 +15,7 @@ public:
 	bool getEtat();
 	void setEtat(bool p_etat);
 
+
 	virtual void collision(Joueur& _joueur) = 0;
 	virtual void stocker(Joueur& joueur) = 0;
 	virtual void appliquerEffet(Joueur& joueur) = 0;

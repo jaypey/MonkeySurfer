@@ -15,12 +15,21 @@ Serpent::~Serpent()
 
 void Serpent::collision(Joueur& _joueur)
 {
-	attraperJoueur(_joueur);
+	if (_joueur.getEtatBouclier())
+	{
+		_joueur.setEtatBouclier(false);
+	}
+	else 
+	{
+		attraperJoueur(_joueur);
+	}
+
 }
 
 void Serpent::attraperJoueur(Joueur& p_joueur)
 {
 	p_joueur.immobiliser(true);
+	p_joueur.setSerpent(this);
 }
 
 int Serpent::getHp()
@@ -42,6 +51,7 @@ void Serpent::mourir(Joueur& p_joueur)
 	p_joueur.ramasserPiece();		//Donne 20 pts au joueur pour tuer un serpent
 	p_joueur.ramasserPiece();
 	p_joueur.immobiliser(false);
+	p_joueur.setSerpent(nullptr);
 }
 
 void Serpent::afficherInfo() const

@@ -18,6 +18,9 @@ public:
 	bool isStarted();
 	bool isPaused();
 	bool isQuitting(); //Requete du jeu, lue par le menu pour afficher le menu
+	bool isStuck();
+	bool isProtected();
+	bool isBoosted();
 	int getPointageJoueur();
 	charInventaire getCharInventaire();
 	int getPiecesJoueur();

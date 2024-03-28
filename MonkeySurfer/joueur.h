@@ -10,7 +10,7 @@ struct charInventaire {
 	char item1;
 	char item2;
 };
-
+class Serpent;
 class Collectible;
 class Joueur
 {
@@ -48,6 +48,12 @@ public:
 	bool getVie();
 	void isDead();
 
+	int getNbBoost();
+	void setNbBoost(int nb);
+
+	Serpent* getSerpent();
+	void setSerpent(Serpent* serpent);
+
 	Coordonnee getPosition() const;
 	void setPosition(const Coordonnee &pos);
 	bool up();
@@ -61,6 +67,8 @@ private:
 	bool effetBanane;
 	bool immobilise;
 	bool enVie;
+	int nbBoost;
+	Serpent* _serpent;
 
 	int nbPieces;
 	int score;

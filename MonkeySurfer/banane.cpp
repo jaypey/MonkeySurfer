@@ -3,9 +3,9 @@
 Banane::Banane()
 {
 	setID(BANANE);
-
+	setPosition({ generateur.random(0, 4, std::rand() % 1000), 0 });
 	RandomGenerator rand;
-	setDuree((float)rand.random(5, 9, 1951132));
+	setDuree((float)rand.random(5, 9, std::rand() % 1000));
 }
 
 Banane::~Banane()
@@ -33,11 +33,14 @@ void Banane::stocker(Joueur& joueur)
 void Banane::appliquerEffet(Joueur& joueur)
 {
 	joueur.setEtatEffetBanane(true);
+	joueur.setNbBoost(generateur.random(3, 6, std::rand() % 299));
 	joueur.setCharInventaire({ joueur.getCharInventaire().item2, ' ' });
-	lastUpdateBanane = std::chrono::steady_clock::now();
 }
 
 void Banane::afficherInfo() const
 {
 	std::cout << "Banane attrapée!!!" << std::endl;
 }
+
+
+

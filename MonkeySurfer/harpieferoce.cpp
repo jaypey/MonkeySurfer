@@ -58,6 +58,7 @@ void HarpieFeroce::collision(Joueur& _joueur)
 	{
 		_joueur.isDead();
 	}
+	delete this;
 }
 
 bool HarpieFeroce::finDeParcours()
