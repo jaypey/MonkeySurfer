@@ -17,7 +17,7 @@ public:
 	void debuterPartie();
 	void debuterPartieMultijoueur(Networking *n);
 	Coordonnee getPositionJoueur();
-	std::vector<Coordonnee> getPositionsJoueurs();
+	std::map<int, PlayerData*> getPositionsJoueurs();
 	bool isGameOver();
 	bool isStarted();
 	bool isPaused();
