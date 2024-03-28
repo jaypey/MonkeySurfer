@@ -151,6 +151,8 @@ void Jeu::updateJeu()
 
 void Jeu::updateJoueur()
 {
+	std::cout << _joueur->getNbBoost();
+
 	// MANETTE
 	if(_joueur->isFree())
 	{
@@ -217,11 +219,6 @@ void Jeu::updateJoueur()
 				_joueur->useObjet();
 			}
 		}
-	}
-
-	if (_joueur->getEtatEffetBanane())
-	{
-
 	}
 
 }

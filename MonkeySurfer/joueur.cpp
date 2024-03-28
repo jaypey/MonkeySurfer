@@ -262,7 +262,7 @@ bool Joueur::Right()
     }
     position.x += 1;
 
-    if (getEtatEffetBanane())
+    if (getEtatEffetBanane() && !(position.x >= 4))
     {
         position.x += 1;
         nbBoost--;
@@ -284,7 +284,7 @@ bool Joueur::Left()
     }
     position.x -= 1;
 
-    if (getEtatEffetBanane())
+    if (getEtatEffetBanane() && !(position.x <= 0))
     {
         position.x -= 1;
         nbBoost--;

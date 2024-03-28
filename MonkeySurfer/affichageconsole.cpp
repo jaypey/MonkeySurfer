@@ -313,7 +313,6 @@ void AffichageConsole::afficherItems() {
         default:
             visuel = {'l', CMD_LIANE_COLOR};
         }
-
         _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = visuel;
     }
     
