@@ -299,7 +299,7 @@ void Jeu::avancerCase()
 {
 	Coordonnee courant;
 
-	for (int i = 0; i < _elements.size(); i++)
+	for (int i = _elements.size()-1; i >= 0; i--)
 	{
 		courant = _elements[i]->getPosition();
 		courant.y++;
@@ -308,7 +308,10 @@ void Jeu::avancerCase()
 			delete _elements[i];
 			_elements.erase(_elements.begin() + i);
 		}
-		_elements[i]->setPosition(courant);
+		else 
+		{
+			_elements[i]->setPosition(courant);
+		}
 
 		if (HarpieFeroce* harpie = dynamic_cast<HarpieFeroce*>(_elements[i]))
 		{

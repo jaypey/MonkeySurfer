@@ -5,7 +5,7 @@ Serpent::Serpent()
 	setID(SERPENT);
 	hp = generateur.random(6, 10, rand() % 1000);
 
-	setPosition({ generateur.random(0, 5, rand() % 1000) , getPosition().y });
+	setPosition({ generateur.random(0, 4, rand() % 1000) , getPosition().y });
 
 }
 

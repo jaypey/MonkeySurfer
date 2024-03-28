@@ -169,7 +169,7 @@ void Joueur::setEtatEffetBanane(bool etat)
 
 bool Joueur::getEtatEffetBanane()
 {
-    return effetBanane;
+    return nbBoost > 0;
 }
 
 void Joueur::immobiliser(bool etat)
@@ -217,7 +217,7 @@ bool Joueur::down()
     if (!(position.y > 21))
     {
         position.y += 1;
-        if (getEtatEffetBanane())
+        if (nbBoost > 0)
         {
             position.y += 1;
             nbBoost--;
@@ -227,7 +227,7 @@ bool Joueur::down()
 
     if (nbBoost <= 0)
     {
-        setEtatEffetBanane(false);
+        effetBanane = false;
     }
 
     return false;
@@ -238,7 +238,7 @@ bool Joueur::up()
     if (!(position.y < 0))
     {
         position.y -= 1;
-        if (getEtatEffetBanane())
+        if (nbBoost > 0)
         {
             position.y -= 1;
             nbBoost--;
@@ -248,7 +248,7 @@ bool Joueur::up()
 
     if (nbBoost <= 0)
     {
-        setEtatEffetBanane(false);
+        effetBanane = false;
     }
 
     return false;
@@ -256,21 +256,20 @@ bool Joueur::up()
 
 bool Joueur::Right()
 {
-    if (position.x >= 4)
-    {
-        return false;
-    }
-    position.x += 1;
-
-    if (getEtatEffetBanane() && !(position.x >= 4))
+    if (!(position.x >= 4))
     {
         position.x += 1;
-        nbBoost--;
+        if (nbBoost > 0 && position.x < 4)
+        {
+            position.x += 1;
+            nbBoost--;
+        }
+        return true;
     }
 
     if (nbBoost <= 0)
     {
-        setEtatEffetBanane(false);
+        effetBanane = false;
     }
 
     return true;
@@ -278,21 +277,20 @@ bool Joueur::Right()
 
 bool Joueur::Left()
 {
-    if (position.x <= 0) 
-    {
-        return false;
-    }
-    position.x -= 1;
-
-    if (getEtatEffetBanane() && !(position.x <= 0))
+    if (!(position.x <= 0))
     {
         position.x -= 1;
-        nbBoost--;
+        if (nbBoost > 0 && position.x > 0)
+        {
+            position.x -= 1;
+            nbBoost--;
+        }
+        return true;
     }
 
     if (nbBoost <= 0)
     {
-        setEtatEffetBanane(false);
+        effetBanane = false;
     }
 
     return true;
