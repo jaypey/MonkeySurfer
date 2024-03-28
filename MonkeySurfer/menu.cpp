@@ -14,21 +14,33 @@ Menu::Menu(Joueur* joueur, JsonSerial* jsonserial)
 Menu::~Menu() {}
 
 void Menu::initialiserSkins() {
-    std::ifstream fichier("data/skins.txt");
+    std::ifstream fichierSkin("data/skins.txt");
+    std::ifstream fichierUnlock("data/unlocks.txt");
     std::string ligne;
 
+    // Charger les donnes des skins
     for (int i = 0; i < NB_SKINS; i++) {
-        std::getline(fichier, ligne, ' ');
+        std::getline(fichierSkin, ligne, ' ');
         _skins[i].setId(ligne[0]);
 
-        std::getline(fichier, ligne, ' ');
+        std::getline(fichierSkin, ligne, ' ');
         _skins[i].setFile(ligne.c_str());
 
-        std::getline(fichier, ligne, ' ');
+        std::getline(fichierSkin, ligne, '\n');
         _skins[i].setPrix(std::stoi(ligne));
+    }
 
-        std::getline(fichier, ligne, '\n');
-        _skins[i].setDebloque(std::stoi(ligne));
+    // Charger quels skins sont debloques
+    if (fichierUnlock.is_open()) {
+        for (int i = 0; i < NB_SKINS; i++) {
+            std::getline(fichierUnlock, ligne);
+            _skins[i].setDebloque(std::stoi(ligne));
+        }
+    }
+    else {
+        _skins[0].setDebloque(true);
+        for (int i = 1; i < NB_SKINS; i++)
+            _skins[i].setDebloque(false);
     }
 }
 
@@ -137,7 +149,15 @@ void Menu::choisirSkin(int index) {
         _joueur->addPiece(-_skins[index].getPrix());
         _indexSkin = index;
         _skins[index].setDebloque(true);
+
+        updateUnlocksFile();
     }
+}
+
+void Menu::updateUnlocksFile() {
+    std::ofstream fichierUnlocks("data/unlocks.txt");
+    for (int i = 0; i < NB_SKINS; i++)
+        fichierUnlocks << _skins[i].isDebloque() << std::endl;
 }
 
 Skin Menu::getSkin(int index) {
