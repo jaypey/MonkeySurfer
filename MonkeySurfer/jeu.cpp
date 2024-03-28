@@ -36,13 +36,9 @@ Coordonnee Jeu::getPositionJoueur()
 	return _joueur->getPosition();
 }
 
-std::vector<Coordonnee> Jeu::getPositionsJoueurs()
+std::map<int, PlayerData*> Jeu::getPositionsJoueurs()
 {
-	std::vector<Coordonnee> joueurs;
-	for (auto i : _joueurs) {
-		joueurs.push_back(i.second->GetPosition());
-	}
-	return joueurs;
+	return _joueurs;
 }
 
 int Jeu::getPointageJoueur() {

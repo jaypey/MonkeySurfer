@@ -342,10 +342,10 @@ void AffichageConsole::afficherJoueur()
 
 void AffichageConsole::afficherJoueurs()
 {
-    std::vector<Coordonnee> cs = _jeu->getPositionsJoueurs();
-    for (int i = 0; i < cs.size(); i++)
+    std::map<int, PlayerData*> cs = _jeu->getPositionsJoueurs();
+    for(auto i : cs)
     {
-        _img[_xlianes[cs[i].x]][cs[i].y] = { _menu->getSkin(_menu->getIndexSkin()).getId(), CMD_MONKEY_FRIEND_COLOR }; // monkey
+        _img[_xlianes[i.second->GetPosition().x]][i.second->GetPosition().y] = {_menu->getSkin(_menu->getIndexSkin()).getId(), CMD_MONKEY_FRIEND_COLOR}; // monkey
     }
 }
 

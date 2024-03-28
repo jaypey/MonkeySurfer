@@ -46,6 +46,7 @@ public:
     int getIndexSkin();
     int getIndexSkinPreview();
     void choisirSkin(int index);
+    void updateUnlocksFile();
     Skin getSkin(int index);
 
 private:

@@ -58,7 +58,7 @@ void Networking::Connect(std::string adresse, int port)
 			throw("Aucune connexion!");
 		}
 		ENetEvent event;
-		if (enet_host_service(_client, &event, 5000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
+		if (enet_host_service(_client, &event, 10000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
 		{
 			enet_host_flush(_client);
 			std::cout << "Connecte a " << adresse << ":" << std::to_string(port) << std::endl;

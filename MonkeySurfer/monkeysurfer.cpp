@@ -8,7 +8,7 @@
 int main()
 {
     JsonSerial js;
-    js.openSerialPort("COM5");
+    js.openSerialPort("COM4");
 
     Joueur p1;
     Networking n;
