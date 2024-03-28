@@ -28,6 +28,7 @@ const extern CMDColor CMD_ECLAT_COLOR;
 const extern CMDColor CMD_HARPIE_COLOR;
 const extern CMDColor CMD_LIANE_COLOR;
 const extern CMDColor CMD_MONKEY_COLOR;
+const extern CMDColor CMD_MONKEY_FRIEND_COLOR;
 const extern CMDColor CMD_OBSTACLE_COLOR;
 const extern CMDColor CMD_PIECE_COLOR;
 const extern CMDColor CMD_SERPENT_COLOR;
