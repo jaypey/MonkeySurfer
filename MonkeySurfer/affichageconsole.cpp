@@ -19,6 +19,10 @@ void AffichageConsole::afficherJeu() {
     afficherArrierePlan();
     afficherLianes();
     afficherJoueur();
+    if (_menu->getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
+    {
+        afficherJoueurs();
+    }
     afficherItems();
     afficherContour();
     afficherIU();
@@ -225,6 +229,14 @@ void AffichageConsole::afficherJoueur() {
     Coordonnee positionCourante = _jeu->getPositionJoueur();
     int x = _xlianes[positionCourante.x];
     _img[x][15] = _skins[_menu->getIndexSkin()].getId(); // monkey
+}
+
+void AffichageConsole::afficherJoueurs() {
+    std::vector<Coordonnee> cs = _jeu->getPositionsJoueurs();
+    for (int i = 0; i < cs.size(); i++)
+    {
+        _img[cs[i].x][cs[i].y] = _skins[_menu->getIndexSkin()].getId(); // monkey
+    }
 }
 
 void AffichageConsole::afficherItems() {

@@ -32,6 +32,15 @@ Coordonnee Jeu::getPositionJoueur()
 	return _joueur->getPosition();
 }
 
+std::vector<Coordonnee> Jeu::getPositionsJoueurs()
+{
+	std::vector<Coordonnee> joueurs;
+	for (auto i : _joueurs) {
+		joueurs.push_back(i.second->GetPosition());
+	}
+	return joueurs;
+}
+
 int Jeu::getPointageJoueur() {
 	return _joueur->getScore();
 }
@@ -76,6 +85,7 @@ void Jeu::updateJeu()
 		_vitesse = 1000 - (pow(_joueur->getScore(), 2) / 1000);
 		_joueur->compteurPointage();
 		validerCollision();
+		updateNetworkJoueurs();
 		updateJoueur();
 		auto now = std::chrono::steady_clock::now();
 		auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _lastUpdate);
@@ -106,6 +116,12 @@ void Jeu::updateJoueur()
 			_joueur->Right();
 		}
 	}
+}
+
+void Jeu::updateNetworkJoueurs()
+{
+	_network->SendLocalPosition(_joueur->getPosition());
+	_joueurs = _network->GetJoueurs();
 }
 
 void Jeu::validerCollision()

@@ -13,7 +13,15 @@ Menu::Menu(Networking* n)
 Menu::~Menu() {}
 
 void Menu::update() {
-    if (!_kbhit() || _etat == EtatMenu::MULTIJOUEUR)
+    if (_etat == EtatMenu::MULTIJOUEUR) {
+        if (_networking->IsGameStarted())
+        {
+            _etat = EtatMenu::MULTIJOUEURJEU;
+        }
+        return;
+    }
+
+    if (!_kbhit())
         return;
 
     char c = _getch();

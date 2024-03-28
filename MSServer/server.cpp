@@ -55,14 +55,14 @@ void Server::ParseData(int id, char* data)
     int dataType;
 
     // std::cout << "Phrase: " << data << std::endl;
-    sscanf_s(data, "%d|", &dataType);
+    sscanf(data, "%d|", &dataType);
 
     switch (dataType)
     {
     case 1:
     {
         char msg[80];
-        sscanf_s(data, "%*d|%[^\n]", &msg);
+        sscanf(data, "%*d|%[^\n]", &msg);
 
         std::string msgWithHeader = std::to_string(dataType) + "|" + std::to_string(id) + "|" + msg;
 

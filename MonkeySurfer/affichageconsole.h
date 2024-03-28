@@ -51,6 +51,9 @@ private:
     void afficherTexte(const std::string& s, int x, int y); // Non herite
     void afficherFichier(const char* nom, int x, int y); // Non herite
 
+    //Multijoueur
+    void afficherJoueurs();
+
     // Mise à jour de la déco (feuilles)
     void updateDeco();
 

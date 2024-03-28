@@ -5,6 +5,7 @@
 #include "joueur.h"
 #include "jsonserial.h"
 #include "networking.h"
+#include "playerdata.h"
 
 
 class Jeu
@@ -16,6 +17,7 @@ public:
 	void debuterPartie();
 	void debuterPartieMultijoueur(Networking* n);
 	Coordonnee getPositionJoueur();
+	std::vector<Coordonnee> getPositionsJoueurs();
 	bool isGameOver();
 	bool isStarted();
 	int getPointageJoueur();
@@ -27,6 +29,7 @@ public:
 private:
 	void updateJeu();
 	void updateJoueur();
+	void updateNetworkJoueurs();
 	void validerCollision();
 	void avancerCase();
 private:
@@ -35,7 +38,7 @@ private:
 	Joueur* _joueur; //Ajuster pour multijoueur éventuellement
 	bool _isMultijoueur;
 	Networking* _network;
-	std::vector<Joueur*> _joueurs;
+	std::map<int, PlayerData*> _joueurs;
 	GenerateurItem _generateur;
 	std::vector<ElementJeu*> _elements;
 	bool _gameOver;
