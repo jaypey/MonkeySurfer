@@ -158,6 +158,15 @@ void Jeu::updateJoueur()
 		_joueur->down();
 	}
 
+	if (_jsonserial->accShake())
+	{
+		_isAttacking = true;
+		if (_joueur->getSerpent() != nullptr)
+		{
+			_joueur->getSerpent()->recoitCoup(*_joueur);
+		}
+	}
+
 	if (_jsonserial->boutonAppuye(1)) {
 		_modePause = true;
 	}
