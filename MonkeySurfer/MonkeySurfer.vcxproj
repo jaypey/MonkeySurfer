@@ -79,11 +79,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)asio\include;$(ProjectDir)json;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\jpbel\Documents\vault\MonkeySurfer\MonkeySurfer\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>C:\Users\jpbel\Documents\vault\MonkeySurfer\MonkeySurfer\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -119,12 +119,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;ASIO_STANDALONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\jpbel\Documents\vault\MonkeySurfer\MonkeySurfer\lib;C:\Users\mjgag\OneDrive - USherbrooke\Ecole\S2\Projet\Monkey Surfer\MonkeySurfer\MonkeySurfer\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib;C:\Users\mjgag\OneDrive - USherbrooke\Ecole\S2\Projet\Monkey Surfer\MonkeySurfer\MonkeySurfer\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\jpbel\Documents\vault\MonkeySurfer\MonkeySurfer\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>enet64.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -136,14 +136,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\jpbel\Documents\vault\MonkeySurfer\MonkeySurfer\lib;C:\Users\jpbel\Documents\MonkeySurfer\MonkeySurfer\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib;C:\Users\jpbel\Documents\MonkeySurfer\MonkeySurfer\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\jpbel\Documents\vault\MonkeySurfer\MonkeySurfer\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>enet64.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -153,7 +153,6 @@
     <ClCompile Include="aleatoire.cpp" />
     <ClCompile Include="banane.cpp" />
     <ClCompile Include="bouclier.cpp" />
-    <ClCompile Include="cmdcolor.cpp" />
     <ClCompile Include="collectible.cpp" />
     <ClCompile Include="elementaleatoire.cpp" />
     <ClCompile Include="elementjeu.cpp" />
@@ -163,7 +162,6 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="monkeysurfer.cpp" />
     <ClCompile Include="networking.cpp" />
-    <ClCompile Include="nullstream.cpp" />
     <ClCompile Include="obstacle.cpp" />
     <ClCompile Include="obstaclefixe.cpp" />
     <ClCompile Include="piece.cpp" />
@@ -175,13 +173,9 @@
     <ClInclude Include="affichage.h" />
     <ClInclude Include="affichageconsole.h" />
     <ClInclude Include="aleatoire.h" />
-    <ClInclude Include="asio\include\asio.hpp" />
     <ClInclude Include="banane.h" />
     <ClInclude Include="bouclier.h" />
-    <ClInclude Include="cmdcolor.h" />
     <ClInclude Include="collectible.h" />
-    <ClInclude Include="coordonnee.h" />
-    <ClInclude Include="direction.h" />
     <ClInclude Include="elementaleatoire.h" />
     <ClInclude Include="elementjeu.h" />
     <ClInclude Include="jeu.h" />
@@ -189,13 +183,20 @@
     <ClInclude Include="jsonserial.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="networking.h" />
-    <ClInclude Include="nullstream.h" />
     <ClInclude Include="obstacle.h" />
     <ClInclude Include="obstaclefixe.h" />
     <ClInclude Include="piece.h" />
     <ClInclude Include="playerdata.h" />
     <ClInclude Include="projectile.h" />
     <ClInclude Include="skin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="artMenu.txt" />
+    <Text Include="gameOver.txt" />
+    <Text Include="monkey.txt" />
+    <Text Include="retryText.txt" />
+    <Text Include="showcaseSkin.txt" />
+    <Text Include="showcaseSkinSelect.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
