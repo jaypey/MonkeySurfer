@@ -2,7 +2,7 @@
 
 Joueur::Joueur()
 {
-    nbPieces = 0;
+    loadPieces();
     reset();
 }
 
@@ -29,6 +29,8 @@ int Joueur::getPiece()
 
 void Joueur::addPiece(int n) {
     nbPieces += n;
+    std::ofstream fichier("data/pieces.txt");
+    fichier << nbPieces;
 }
 
 int Joueur::getScore()
@@ -38,8 +40,24 @@ int Joueur::getScore()
 
 void Joueur::ramasserPiece()
 {
-    nbPieces += 1;
+    addPiece(1);
     score += 10; // A revoir si on conserve
+}
+
+void Joueur::loadPieces() {
+    std::ifstream fichier("data/pieces.txt");
+    if (fichier.is_open()) {
+        // On load les pieces du fichier de donnees
+        std::string pieces;
+        std::getline(fichier, pieces);
+        nbPieces = std::stoi(pieces);
+    }
+    else {
+        // Si pas de fichier, on le cree avec 0 pieces
+        std::ofstream newfichier("data/pieces.txt");
+        newfichier << "0";
+        nbPieces = 0;
+    }
 }
 
 void Joueur::compteurPointage()
