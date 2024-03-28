@@ -12,7 +12,7 @@ Menu::~Menu() {}
 
 void Menu::initialiserSkins() {
     std::ifstream fichierSkin("data/skins.txt");
-    std::ifstream fichierUnlock("data/unlocks.txt");
+    std::ifstream fichierUnlock("data/skin_data.txt");
     std::string ligne;
 
     // Charger les donnes des skins
@@ -27,14 +27,17 @@ void Menu::initialiserSkins() {
         _skins[i].setPrix(std::stoi(ligne));
     }
 
-    // Charger quels skins sont debloques
+    // Charger quels skins sont debloques + skin equipped
     if (fichierUnlock.is_open()) {
+        std::getline(fichierUnlock, ligne);
+        _indexSkin = std::stoi(ligne);
         for (int i = 0; i < NB_SKINS; i++) {
             std::getline(fichierUnlock, ligne);
             _skins[i].setDebloque(std::stoi(ligne));
         }
     }
     else {
+        _indexSkin = 0;
         _skins[0].setDebloque(true);
         for (int i = 1; i < NB_SKINS; i++)
             _skins[i].setDebloque(false);
@@ -237,15 +240,16 @@ void Menu::choisirSkin(int index)
         _joueur->addPiece(-_skins[index].getPrix());
         _indexSkin = index;
         _skins[index].setDebloque(true);
-
-        updateUnlocksFile();
     }
+
+    updateSkinDataFile();
 }
 
-void Menu::updateUnlocksFile() {
-    std::ofstream fichierUnlocks("data/unlocks.txt");
+void Menu::updateSkinDataFile() {
+    std::ofstream fichierData("data/skin_data.txt");
+    fichierData << _indexSkin << std::endl;
     for (int i = 0; i < NB_SKINS; i++)
-        fichierUnlocks << _skins[i].isDebloque() << std::endl;
+        fichierData << _skins[i].isDebloque() << std::endl;
 }
 
 Skin Menu::getSkin(int index) {

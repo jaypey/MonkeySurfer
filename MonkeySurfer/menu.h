@@ -33,7 +33,6 @@ public:
     void initialiserSkins();
 
     void update();
-    void modifierSkin(int val);
     int getNbMultijoueurReady();
     int getNbMultijoueurConnectes();
     bool isPlayerReady();
@@ -46,7 +45,7 @@ public:
     int getIndexSkin();
     int getIndexSkinPreview();
     void choisirSkin(int index);
-    void updateUnlocksFile();
+    void updateSkinDataFile();
     Skin getSkin(int index);
 
 private:
