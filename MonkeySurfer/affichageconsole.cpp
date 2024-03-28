@@ -265,9 +265,8 @@ void AffichageConsole::afficherJoueur() {
         _img[x][y - 3] = { '^', CMD_WHITE };
         _img[x][y - 2] = { '|', CMD_WHITE };
     }
-
     // Poussieres et eclats s'il attaque le serpent
-    if (_jeu->getJsonSerial()->accShake()) {
+    if (_jeu->getJsonSerial()->accShake() || _jeu->isAttacking()) {
         _img[x-1][y-1] = getCharEclat();
         _img[x]  [y-1] = getCharEclat();
         _img[x+1][y-1] = getCharEclat();
@@ -276,6 +275,7 @@ void AffichageConsole::afficherJoueur() {
         _img[x-1][y+1] = getCharEclat();
         _img[x]  [y+1] = getCharEclat();
         _img[x+1][y+1] = getCharEclat();
+        _jeu->setIsAttacking(false);
     }
 }
 

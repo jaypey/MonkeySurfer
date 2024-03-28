@@ -10,6 +10,7 @@ Jeu::Jeu(Joueur* j, JsonSerial* js)
 	_gameOver = false;
 	_jsonserial = js;
 	_isQuitting = false;
+	_isAttacking = false;
 
 	_modePause = false;
 	_pauseOption = 0;
@@ -94,6 +95,16 @@ bool Jeu::isProtected()
 bool Jeu::isBoosted()
 {
 	return _joueur->getEtatEffetBanane();
+}
+
+bool Jeu::isAttacking()
+{
+	return _isAttacking;
+}
+
+void Jeu::setIsAttacking(bool attack)
+{
+	_isAttacking = attack;
 }
 
 std::vector<ElementJeu*> Jeu::getElements() const
@@ -190,6 +201,7 @@ void Jeu::updateJoueur()
 			}
 			else if (c == ' ')
 			{	
+				_isAttacking = true;
 				if (_joueur->getSerpent() != nullptr)
 				{
 					_joueur->getSerpent()->recoitCoup(*_joueur);

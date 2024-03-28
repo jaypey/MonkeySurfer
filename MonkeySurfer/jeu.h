@@ -21,6 +21,8 @@ public:
 	bool isStuck();
 	bool isProtected();
 	bool isBoosted();
+	bool isAttacking();
+	void setIsAttacking(bool attack);
 	int getPointageJoueur();
 	charInventaire getCharInventaire();
 	int getPiecesJoueur();
@@ -48,6 +50,7 @@ private:
 	int _vitesse;
 	bool _isStarted;
 	bool _isQuitting;
+	bool _isAttacking;
 
 	bool _modePause;
 	int _pauseOption;
