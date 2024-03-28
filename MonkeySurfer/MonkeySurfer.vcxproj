@@ -153,6 +153,7 @@
     <ClCompile Include="aleatoire.cpp" />
     <ClCompile Include="banane.cpp" />
     <ClCompile Include="bouclier.cpp" />
+    <ClCompile Include="cmdcolor.cpp" />
     <ClCompile Include="collectible.cpp" />
     <ClCompile Include="elementaleatoire.cpp" />
     <ClCompile Include="elementjeu.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="monkeysurfer.cpp" />
     <ClCompile Include="networking.cpp" />
+    <ClCompile Include="nullstream.cpp" />
     <ClCompile Include="obstacle.cpp" />
     <ClCompile Include="obstaclefixe.cpp" />
     <ClCompile Include="piece.cpp" />
@@ -175,7 +177,10 @@
     <ClInclude Include="aleatoire.h" />
     <ClInclude Include="banane.h" />
     <ClInclude Include="bouclier.h" />
+    <ClInclude Include="cmdcolor.h" />
     <ClInclude Include="collectible.h" />
+    <ClInclude Include="coordonnee.h" />
+    <ClInclude Include="direction.h" />
     <ClInclude Include="elementaleatoire.h" />
     <ClInclude Include="elementjeu.h" />
     <ClInclude Include="jeu.h" />
@@ -183,20 +188,13 @@
     <ClInclude Include="jsonserial.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="networking.h" />
+    <ClInclude Include="nullstream.h" />
     <ClInclude Include="obstacle.h" />
     <ClInclude Include="obstaclefixe.h" />
     <ClInclude Include="piece.h" />
     <ClInclude Include="playerdata.h" />
     <ClInclude Include="projectile.h" />
     <ClInclude Include="skin.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="artMenu.txt" />
-    <Text Include="gameOver.txt" />
-    <Text Include="monkey.txt" />
-    <Text Include="retryText.txt" />
-    <Text Include="showcaseSkin.txt" />
-    <Text Include="showcaseSkinSelect.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

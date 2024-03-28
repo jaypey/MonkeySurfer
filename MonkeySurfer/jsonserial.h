@@ -6,12 +6,16 @@
 #include <iostream>
 #include <json.hpp>
 #include <thread>
+#include "direction.h"
+#include "nullstream.h"
 
 #define BAUD_RATE 112500
 #define START_MARKER '>'
 #define END_MARKER '<'
 #define JSON_BUFFER_SIZE 1024
 #define SEND_DELAY 50
+
+#define errout null /* "null" pour ignorer les erreurs, "std::cerr" pour les afficher */
 
 class JsonSerial {
 public:
@@ -25,7 +29,14 @@ public:
 
     void recvPrint();
 
+    // Read
     bool boutonAppuye(int indexBtn);
+    bool boutonMaintenu(int indexBtn);
+    bool joystickMaintenu(Direction dir, bool repeat = false);
+    bool accShake();
+
+    // Write
+    void lcd(const char* msg_row_1, const char* msg_row_2);
 private:
     void recv();
     void send(const char* msg);
@@ -48,7 +59,8 @@ private:
     bool _sendInProgress;
 
     // JSON
-    nlohmann::json _json;
+    nlohmann::json _recvjson;
+    nlohmann::json _sendjson;
     std::chrono::steady_clock::time_point _lastsend;
 };
 

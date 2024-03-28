@@ -8,16 +8,19 @@
 int main()
 {
     JsonSerial js;
-    js.openSerialPort("COM4");
+    js.openSerialPort("COM5");
 
-    Joueur* p1 = new Joueur();
-    Jeu j(p1, &js);
+    Joueur p1;
     Networking n;
-    Menu m(&n);
+    Jeu j(&p1, &js);
+    Menu m(&p1, &js, &n);
+
     AffichageConsole a(&j, &m);
 
-    while (m.getEtat() != Menu::EtatMenu::QUITTER) {
-        if (m.getEtat() == Menu::EtatMenu::MULTIJOUEUR || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU) {
+    while (m.getEtat() != Menu::EtatMenu::QUITTER)
+    {
+        if (m.getEtat() == Menu::EtatMenu::MULTIJOUEUR || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
+        {
             n.ReceiveData();
         }
         // Communication avec l'arduino
@@ -25,24 +28,26 @@ int main()
         js.recvJson();
 
         // Gestion jeu
-        if (m.getEtat() == Menu::EtatMenu::JEU || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU) {
+        if (m.getEtat() == Menu::EtatMenu::JEU || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
+        {
             if (m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
             {
                 j.debuterPartieMultijoueur(&n);
             }
-            else {
+            else
+            {
                 j.debuterPartie();
             }
             a.afficherJeu();
-            if (_kbhit() && _getch() == 'q') {
+            if (j.isQuitting())
+            {
                 m.setEtat(Menu::EtatMenu::PRINCIPAL);
-                delete p1;
-                p1 = new Joueur();
-                j.restartJeu(p1);
-                continue;
+                p1.reset();
+                j.restartJeu(&p1);
             }
         }
-        else {
+        else
+        {
             m.update();
             a.afficherMenu();
         }

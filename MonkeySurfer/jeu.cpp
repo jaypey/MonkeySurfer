@@ -9,6 +9,10 @@ Jeu::Jeu(Joueur* j, JsonSerial* js)
 	_isStarted = false;
 	_gameOver = false;
 	_jsonserial = js;
+	_isQuitting = false;
+
+	_modePause = false;
+	_pauseOption = 0;
 }
 
 Jeu::~Jeu() {}
@@ -50,12 +54,23 @@ int Jeu::getPiecesJoueur()
 	return _joueur->getPiece();
 }
 
+int Jeu::getPauseOption() {
+	return _pauseOption;
+}
+
+void Jeu::setPause(bool pause) {
+	_modePause = pause;
+	_pauseOption = 0;
+}
+
 void Jeu::restartJeu(Joueur* j)
 {
 	_joueur = j;
 	_vitesse = 1000;
 	_isStarted = false;
 	_gameOver = false;
+	_modePause = false;
+	_isQuitting = false;
 	_elements.clear();
 }
 
@@ -69,6 +84,14 @@ bool Jeu::isStarted()
 	return _isStarted;
 }
 
+bool Jeu::isPaused() {
+	return _modePause;
+}
+
+bool Jeu::isQuitting() {
+	return _isQuitting;
+}
+
 std::vector<ElementJeu*> Jeu::getElements() const
 {
 	return _elements;
@@ -78,12 +101,22 @@ std::chrono::steady_clock::time_point Jeu::getLastUpdate() {
 	return _lastUpdate;
 }
 
+JsonSerial* Jeu::getJsonSerial() {
+	return _jsonserial;
+}
+
 void Jeu::updateJeu()
 {
-	if (!_gameOver)
+	if (!_gameOver && !_modePause)
 	{
-		_vitesse = 1000 - (pow(_joueur->getScore(), 2) / 1000);
+		// Score
+		std::string scoreStr = "Score: " + std::to_string(_joueur->getScore());
+		std::string pieceStr = "Pieces: " + std::to_string(_joueur->getPiece());
+		_jsonserial->lcd(scoreStr.c_str(), pieceStr.c_str());
 		_joueur->compteurPointage();
+
+		// Joueur
+		_vitesse = 1000 - (pow(_joueur->getScore(), 2) / 1000);
 		validerCollision();
 		updateNetworkJoueurs();
 		updateJoueur();
@@ -94,26 +127,111 @@ void Jeu::updateJeu()
 			avancerCase();
 		}
 	}
+	else if (_modePause) {
+		updatePause();
+	}
+	else if (_gameOver) {
+		updateGameOver();
+	}
 }
 
 void Jeu::updateJoueur()
 {
 	// MANETTE
-	if (_jsonserial->boutonAppuye(0))
-		_joueur->Left();
-	if (_jsonserial->boutonAppuye(1))
-		_joueur->Right();
+	if (_jsonserial->boutonAppuye(2)) {
+		if (_jsonserial->joystickMaintenu(GAUCHE)) {
+			_joueur->Left();
+		}
+		else if (_jsonserial->joystickMaintenu(DROITE)) {
+			_joueur->Right();
+		}
+	}
+
+	if (_jsonserial->joystickMaintenu(HAUT, true)) {
+		_joueur->up();
+	}
+
+	else if (_jsonserial->joystickMaintenu(BAS, true)) {
+		_joueur->down();
+	}
+
+	if (_jsonserial->boutonAppuye(1)) {
+		_modePause = true;
+	}
 
 	// CLAVIER
 	if (_kbhit())
 	{
 		char c = _getch();
 		if (c == 224) c = _getch();
-		if (c == 75) {
+		if (c == 75) { // Fleche gauche
 			_joueur->Left();
 		}
-		else if (c == 77) {
+		else if (c == 77) { // Fleche droite
 			_joueur->Right();
+		}
+		else if (c == 80) {
+			_joueur->up();
+		}
+		else if (c == 72) {
+			_joueur->down();
+		}
+		else if (c == 'p') {
+			_modePause = true;
+		}
+	}
+}
+
+void Jeu::updatePause() {
+	// MANETTE
+	if (_jsonserial->boutonAppuye(1)) {
+		_modePause = false;
+	}
+	else if (_jsonserial->boutonAppuye(2)) {
+		if (_pauseOption == 0) {
+			_modePause = false;
+		}
+		else if (_pauseOption == 1) {
+			_isQuitting = true;
+		}
+	}
+
+	if (_jsonserial->joystickMaintenu(HAUT, true)) {
+		_pauseOption--;
+		if (_pauseOption < 0)
+			_pauseOption = 1;
+	}
+	else if (_jsonserial->joystickMaintenu(BAS, true)) {
+		_pauseOption++;
+		if (_pauseOption > 1)
+			_pauseOption = 0;
+	}
+
+	// CLAVIER
+	if (_kbhit()) {
+		char c = _getch();
+		if (c == '1') {
+			_modePause = false;
+		}
+		else if (c == '2') {
+			_isQuitting = true;
+		}
+	}
+}
+
+void Jeu::updateGameOver() {
+	std::string info = "S:" + std::to_string(_joueur->getScore()) + " P:" + std::to_string(_joueur->getPiece());
+	_jsonserial->lcd("GAME OVER", info.c_str());
+
+	// MANETTE
+	if (_jsonserial->boutonAppuye(1))
+		_isQuitting = true;
+
+	// CLAVIER
+	if (_kbhit()) {
+		char c = _getch();
+		if (c == 'q') {
+			_isQuitting = true;
 		}
 	}
 }
@@ -126,6 +244,10 @@ void Jeu::updateNetworkJoueurs()
 
 void Jeu::validerCollision()
 {
+	if (getPositionJoueur().y > 21 || getPositionJoueur().y <= 0) {
+		_gameOver = true;
+		return;
+	}
 
 	for (int i = 0; i < _elements.size(); i++)
 	{
@@ -137,6 +259,7 @@ void Jeu::validerCollision()
 				break;
 			case PIECE:
 				_joueur->ramasserPiece();
+				delete _elements[i];
 				_elements.erase(_elements.begin() + i);
 			default:
 				break;
@@ -156,10 +279,17 @@ void Jeu::avancerCase()
 		courant.y++;
 		if (courant.y > HAUTEUR_GENERATION)
 		{
+			delete _elements[i];
 			_elements.erase(_elements.begin() + i);
 		}
 		_elements[i]->setPosition(courant);
 	}
+
+	courant = _joueur->getPosition();
+	std::cout << _joueur->getPosition().y;
+	courant.y++;
+	_joueur->setPosition(courant);
+
 	ElementJeu* element = _generateur.getRandomObstacle();
 	if (rand() % 4 == 2)
 	{

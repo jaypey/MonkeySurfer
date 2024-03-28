@@ -37,7 +37,9 @@ void JsonSerial::recvJson() {
 
   // LCD
   _info->lcd->begin(16, 2);
-  _info->lcd->print((const char*) doc["lcd"]);
+  _info->lcd->print((const char*) doc["lcd"][0]);
+  _info->lcd->setCursor(0, 1);
+  _info->lcd->print((const char*) doc["lcd"][1]);
 
   // MOTEUR VIBRANT
   if (doc["motvib"] == true) _info->motvib->controlerMoteur(HIGH); else _info->motvib->controlerMoteur(LOW);
@@ -49,23 +51,32 @@ void JsonSerial::sendJson() {
   // Delai d'envoi de JSON
   long long now = millis();
   long long elapsed = now - _lastsend;
-  if (elapsed < 50)
+  if (elapsed < SEND_DELAY)
     return;
   _lastsend = millis();
 
   StaticJsonDocument<JSON_BUFFER_SIZE> doc;
 
   // BOUTONS
-  for (int i = 0; i < 4; i++)
-    doc["btn"][i] = _info->btn->lireBouton(i);
+  for (int i = 0; i < 4; i++) {
+    BoutonState bstate = _info->btn->getState(i);
+    doc["btn"][i]["appuye"] = bstate.appuye;
+    doc["btn"][i]["maintenu"] = bstate.maintenu;
+  }
 
   // ACCELEROMETRE
   doc["acc"] = _info->acc->shake('Z');
 
   // JOYSTICK
-  doc["joyX"] = (int) _info->joy->lireDirectionX();
-  doc["joyY"] = (int) _info->joy->lireDirectionY();
+  JoystickState jstate = _info->joy->getStateX();
+  doc["joyX"]["dir"] = (int) jstate.direction;
+  doc["joyX"]["repeat"] = jstate.repetition;
 
+  jstate = _info->joy->getStateY();
+  doc["joyY"]["dir"] = (int) jstate.direction;
+  doc["joyY"]["repeat"] = jstate.repetition;
+
+  // ENVOI DU MESSAGE
   Serial.print(">");
   serializeJson(doc, Serial);
   Serial.print("<\n");
