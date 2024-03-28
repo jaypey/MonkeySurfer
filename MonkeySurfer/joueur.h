@@ -2,6 +2,8 @@
 #define JOUEUR_H
 
 #include <chrono>
+#include <fstream>
+#include <string>
 #include "coordonnee.h"
 #include "skin.h"
 
@@ -17,6 +19,7 @@ public:
 	void addPiece(int n);
 	int getScore();
 	void ramasserPiece();
+	void loadPieces();
 	void compteurPointage();
 	bool ajouterInventaire(int idObj);
 	bool echangerInventaire();
