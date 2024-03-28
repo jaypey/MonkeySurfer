@@ -7,7 +7,7 @@
 int main()
 {
     JsonSerial js;
-    js.openSerialPort("COM5");
+    js.openSerialPort("COM4");
 
     Joueur p1;
     Jeu j(&p1, &js);
