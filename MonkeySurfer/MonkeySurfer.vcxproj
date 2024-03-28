@@ -175,6 +175,7 @@
     <ClInclude Include="affichage.h" />
     <ClInclude Include="affichageconsole.h" />
     <ClInclude Include="aleatoire.h" />
+    <ClInclude Include="asio\include\asio.hpp" />
     <ClInclude Include="banane.h" />
     <ClInclude Include="bouclier.h" />
     <ClInclude Include="cmdcolor.h" />

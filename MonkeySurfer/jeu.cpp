@@ -117,8 +117,11 @@ void Jeu::updateJeu()
 
 		// Joueur
 		_vitesse = 1000 - (pow(_joueur->getScore(), 2) / 1000);
-		validerCollision();
-		updateNetworkJoueurs();
+		validerCollision();  
+		if (_isMultijoueur)
+		{
+			updateNetworkJoueurs();
+		}
 		updateJoueur();
 		auto now = std::chrono::steady_clock::now();
 		auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _lastUpdate);

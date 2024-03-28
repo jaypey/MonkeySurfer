@@ -75,9 +75,10 @@ void AffichageConsole::afficherMenuPrincipal()
     afficherFichier("artMenu.txt", 5, 2);
     afficherFichier("monkey.txt", 43, 4, CMD_MONKEY_COLOR);
     afficherTexte("1. Jouer", 25, 15, CMD_WHITE, (cm == 0));
-    afficherTexte("2. Skins", 25, 17, CMD_WHITE, (cm == 1));
-    afficherTexte("3. Aide", 25, 19, CMD_WHITE, (cm == 2));
-    afficherTexte("4. Quitter", 25, 21, CMD_WHITE, (cm == 3));
+    afficherTexte("2. Jouer multijoueur", 25, 17, CMD_WHITE, (cm == 1));
+    afficherTexte("3. Skins", 25, 19, CMD_WHITE, (cm == 2));
+    afficherTexte("4. Aide", 25, 21, CMD_WHITE, (cm == 3));
+    afficherTexte("5. Quitter", 25, 23, CMD_WHITE, (cm == 4));
 }
 
 void AffichageConsole::afficherMenuMultijoueur()
@@ -344,7 +345,7 @@ void AffichageConsole::afficherJoueurs()
     std::vector<Coordonnee> cs = _jeu->getPositionsJoueurs();
     for (int i = 0; i < cs.size(); i++)
     {
-        _img[cs[i].x][cs[i].y] = _skins[_menu->getIndexSkin()].getId(); // monkey
+        _img[_xlianes[cs[i].x]][cs[i].y] = { _menu->getSkin(_menu->getIndexSkin()).getId(), CMD_MONKEY_FRIEND_COLOR }; // monkey
     }
 }
 

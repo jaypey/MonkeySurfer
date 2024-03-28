@@ -59,6 +59,7 @@ void Menu::update()
             }
             else if (_choixMenu == 1)
             {
+                std::string ipAddress;
                 std::cout << "Adresse du serveur: " << std::endl;
                 std::cin >> ipAddress;
                 _etat = EtatMenu::MULTIJOUEUR;
@@ -82,11 +83,18 @@ void Menu::update()
                 _etat = EtatMenu::CHARGEMENT;
                 _timer = std::chrono::steady_clock::now();
             }
-            else if (c == '2')
-                _etat = EtatMenu::SKINS;
+            else if (c == '2') {
+                std::string ipAddress;
+                std::cout << "Adresse du serveur: " << std::endl;
+                std::cin >> ipAddress;
+                _etat = EtatMenu::MULTIJOUEUR;
+                _networking->Connect(ipAddress, 7777);
+            }
             else if (c == '3')
-                _etat = EtatMenu::AIDE;
+                _etat = EtatMenu::SKINS;
             else if (c == '4')
+                _etat = EtatMenu::AIDE;
+            else if (c == '5')
                 _etat = EtatMenu::QUITTER;
         }
     }

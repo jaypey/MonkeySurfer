@@ -1,171 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="affichage.cpp" />
+    <ClCompile Include="affichageconsole.cpp" />
+    <ClCompile Include="aleatoire.cpp" />
+    <ClCompile Include="banane.cpp" />
+    <ClCompile Include="bouclier.cpp" />
+    <ClCompile Include="cmdcolor.cpp" />
+    <ClCompile Include="collectible.cpp" />
+    <ClCompile Include="elementaleatoire.cpp" />
+    <ClCompile Include="elementjeu.cpp" />
+    <ClCompile Include="jeu.cpp" />
+    <ClCompile Include="joueur.cpp" />
+    <ClCompile Include="jsonserial.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="monkeysurfer.cpp" />
+    <ClCompile Include="networking.cpp" />
+    <ClCompile Include="nullstream.cpp" />
+    <ClCompile Include="obstacle.cpp" />
+    <ClCompile Include="obstaclefixe.cpp" />
+    <ClCompile Include="piece.cpp" />
+    <ClCompile Include="playerdata.cpp" />
+    <ClCompile Include="projectile.cpp" />
+    <ClCompile Include="skin.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="monkeysurfer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jeu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="joueur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="collectible.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="obstacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="piece.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bouclier.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="banane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="affichage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="affichageconsole.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="aleatoire.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="elementjeu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="elementaleatoire.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="obstaclefixe.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="projectile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="skin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jsonserial.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="networking.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="playerdata.cpp">
-    <ClCompile Include="nullstream.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cmdcolor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="jeu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="joueur.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="collectible.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="obstacle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="piece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bouclier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="banane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="affichage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="affichageconsole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aleatoire.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="elementjeu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="elementaleatoire.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="obstaclefixe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="projectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="skin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="jsonserial.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="networking.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="playerdata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="gameOver.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="artMenu.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="showcaseSkin.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="showcaseSkinSelect.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="monkey.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="retryText.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <ClInclude Include="direction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="nullstream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cmdcolor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="affichage.h" />
+    <ClInclude Include="affichageconsole.h" />
+    <ClInclude Include="aleatoire.h" />
+    <ClInclude Include="banane.h" />
+    <ClInclude Include="bouclier.h" />
+    <ClInclude Include="cmdcolor.h" />
+    <ClInclude Include="collectible.h" />
+    <ClInclude Include="coordonnee.h" />
+    <ClInclude Include="direction.h" />
+    <ClInclude Include="elementaleatoire.h" />
+    <ClInclude Include="elementjeu.h" />
+    <ClInclude Include="jeu.h" />
+    <ClInclude Include="joueur.h" />
+    <ClInclude Include="jsonserial.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="networking.h" />
+    <ClInclude Include="nullstream.h" />
+    <ClInclude Include="obstacle.h" />
+    <ClInclude Include="obstaclefixe.h" />
+    <ClInclude Include="piece.h" />
+    <ClInclude Include="playerdata.h" />
+    <ClInclude Include="projectile.h" />
+    <ClInclude Include="skin.h" />
+    <ClInclude Include="asio\include\asio.hpp" />
   </ItemGroup>
 </Project>
