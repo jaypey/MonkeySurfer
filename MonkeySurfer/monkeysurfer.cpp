@@ -17,6 +17,9 @@ int main()
     AffichageConsole a(&j, &m);
 
     while (m.getEtat() != Menu::EtatMenu::QUITTER) {
+        if (m.getEtat() == Menu::EtatMenu::MULTIJOUEUR || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU) {
+            n.ReceiveData();
+        }
         // Communication avec l'arduino
         js.sendJson();
         js.recvJson();

@@ -13,24 +13,20 @@ Menu::Menu(Networking* n)
 Menu::~Menu() {}
 
 void Menu::update() {
-    if (!_kbhit())
+    if (!_kbhit() || _etat == EtatMenu::MULTIJOUEUR)
         return;
 
-    char c;
+    char c = _getch();
     std::string ipAddress;
-
-    if (_etat != EtatMenu::MULTIJOUEUR)
-    {
-        c = _getch();
-    }
-    else {
-        std::cout << "Adresse du serveur: " << std::endl;
-        std::cin >> ipAddress;
-    }
     
     if (_etat == EtatMenu::PRINCIPAL) {
         if (c == '1')       _etat = EtatMenu::JEU;
-        if (c == '2')       _etat = EtatMenu::MULTIJOUEUR;
+        if (c == '2') {
+            std::cout << "Adresse du serveur: " << std::endl;
+            std::cin >> ipAddress;
+            _etat = EtatMenu::MULTIJOUEUR;
+            _networking->Connect(ipAddress, 7777);
+        }
         else if (c == '3')  _etat = EtatMenu::SKINS;
         else if (c == '4')  _etat = EtatMenu::AIDE;
         else if (c == '5')  _etat = EtatMenu::QUITTER;
@@ -42,10 +38,6 @@ void Menu::update() {
         else if (c == 77)   modifierSkin(1);  // RIGHT
         else if (c == 80)   modifierSkin(3);  // DOWN
         else if (c == 'q')  _etat = EtatMenu::PRINCIPAL;
-    }
-    else if (_etat == EtatMenu::MULTIJOUEUR) {
-        _networking->Connect(ipAddress, 4444);
-
     }
     else if (_etat == EtatMenu::AIDE) {
         if (c == 'q')  _etat = EtatMenu::PRINCIPAL;
@@ -62,13 +54,24 @@ void Menu::modifierSkin(int val) {
     if (_indexSkin < 0) _indexSkin += NB_SKINS;
 }
 
-void Menu::getNbMultijoueurReady()
+int Menu::getNbMultijoueurReady()
 {
-
+    return _networking->GetReadyPlayerCount();
 }
 
-void Menu::getNbMultijoueurConnectes()
+int Menu::getNbMultijoueurConnectes()
 {
+    return _networking->GetJoueurCount();
+}
+
+bool Menu::isPlayerReady()
+{
+    return _networking->IsPlayerReady();
+}
+
+void Menu::updateEtatReady()
+{
+    _networking->SendLocalReady();
 }
 
 void Menu::setEtat(EtatMenu e) {

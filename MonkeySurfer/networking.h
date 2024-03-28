@@ -17,6 +17,7 @@ public:
 	void ParseData(char* data);
 	void ReceiveData();
 	bool IsGameStarted();
+	bool IsPlayerReady();
 	void SendLocalReady();
 	void SendLocalPosition(Coordonnee c);
 	int GetJoueurCount();
@@ -25,6 +26,7 @@ public:
 private:
 	int _idJoueur;
 	int _readyPlayerCount;
+	bool _isPlayerReady;
 	ENetHost* _client;
 	ENetAddress _address;
 	ENetPeer* _host;

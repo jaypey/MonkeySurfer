@@ -21,9 +21,18 @@
     <ClCompile Include="server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="playerdata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="playerdata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="coordonnee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

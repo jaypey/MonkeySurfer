@@ -7,6 +7,7 @@ Networking::Networking()
 {
 	_readyPlayerCount = 0;
 	_gameStarted = false;
+	_isPlayerReady = false;
 }
 
 Networking::~Networking()
@@ -15,7 +16,7 @@ Networking::~Networking()
 
 	enet_peer_disconnect(_host, 0);
 
-	while (enet_host_service(_client, &event, 3000) > 0)
+	while (enet_host_service(_client, &event, 100000) > 0)
 	{
 		switch (event.type)
 		{
@@ -59,6 +60,7 @@ void Networking::Connect(std::string adresse, int port)
 		ENetEvent event;
 		if (enet_host_service(_client, &event, 5000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
 		{
+			enet_host_flush(_client);
 			std::cout << "Connecte a " << adresse << ":" << std::to_string(port) << std::endl;
 		}
 		else {
@@ -93,6 +95,7 @@ void Networking::SendPacket(char* data)
 {
 	ENetPacket* packet = enet_packet_create(data, strlen(data) + 1, ENET_PACKET_FLAG_RELIABLE);
 	enet_peer_send(_host, 0, packet);
+	enet_host_flush(_client);
 }
 
 void Networking::ParseData(char* data)
@@ -151,11 +154,12 @@ void Networking::ReceiveData()
 {
 	ENetEvent event;
 
-	while (enet_host_service(_client, &event, 0) > 0)
+	while (enet_host_service(_client, &event, 100) > 0)
 	{
 		switch (event.type)
 		{
 		case ENET_EVENT_TYPE_RECEIVE:
+			std::cout << "Message recu: " << (char*)event.packet->data << std::endl;
 			ParseData((char*)event.packet->data);
 			enet_packet_destroy(event.packet);
 			break;
@@ -166,6 +170,11 @@ void Networking::ReceiveData()
 bool Networking::IsGameStarted()
 {
 	return _gameStarted;
+}
+
+bool Networking::IsPlayerReady()
+{
+	return _isPlayerReady;
 }
 
 int Networking::GetReadyPlayerCount() {

@@ -59,8 +59,11 @@ void AffichageConsole::afficherMenuPrincipal() {
 void AffichageConsole::afficherMenuMultijoueur() {
     afficherArrierePlan();
     afficherContour();
-    char c;
-    c = _getch();
+    if (_kbhit() && _getch() == '1')
+    {
+        //Etat du joueur: Ready, Ready count + 1
+        _menu->updateEtatReady();
+    }
     // Affichage des joueurs
     for (int rangee = 0; rangee < 3; rangee++)
         for (int col = 0; col < 3; col++) {
@@ -78,13 +81,10 @@ void AffichageConsole::afficherMenuMultijoueur() {
     
     afficherTexte("Veuillez appuyer sur '1' lorsque vous etes pret",7,21);
     afficherTexte("Vous etes presentement dans le lobby multijoueur", 7, 20);
-
-    if (c == '1') {
-
-        //Etat du joueur: Ready, Ready count + 1
-        afficherTexte("Vous etes pret!", 22,23);
+    afficherTexte("Il y a " + std::to_string(_menu->getNbMultijoueurReady()) + "/" + std::to_string(_menu->getNbMultijoueurConnectes()) + " joueurs prêts",7,19);
+    if (_menu->isPlayerReady()) {
+        afficherTexte("Vous etes pret!", 22, 23);
     }
-    
 }
 
 void AffichageConsole::afficherMenuSkin() {

@@ -25,8 +25,10 @@ public:
 
     void update();
     void modifierSkin(int val);
-    void getNbMultijoueurReady();
-    void getNbMultijoueurConnectes();
+    int getNbMultijoueurReady();
+    int getNbMultijoueurConnectes();
+    bool isPlayerReady();
+    void updateEtatReady();
     void setEtat(EtatMenu e);
     EtatMenu getEtat();
     int getIndexSkin();

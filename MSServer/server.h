@@ -3,8 +3,11 @@
 
 
 #include <enet/enet.h>
-#include "../playerdata.h"
+#include "playerdata.h"
 #include <map>
+#include <stdio.h>
+#include <string>
+#include <iostream>
 
 class Server
 {

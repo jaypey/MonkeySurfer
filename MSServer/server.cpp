@@ -1,9 +1,5 @@
 
 #include "server.h"
-#include <enet/enet.h>
-#include <stdio.h>
-#include <string>
-#include <iostream>
 
 Server::Server()
 {
@@ -19,13 +15,16 @@ Server::Server()
 
         //Creation du serveur en host
         m_address.host = ENET_HOST_ANY;
-        m_address.port = 4444;
+        m_address.port = 7777;
 
         m_server = enet_host_create(&m_address, 32, 1, 0, 0);
 
         if (m_server == NULL)
         {
             throw("Can't create ENet Server!");
+        }
+        else {
+            std::cout << "Serveur démarré sur le port 7777" << std::endl;
         }
     }
     catch (std::string errorMessage)
@@ -56,14 +55,14 @@ void Server::ParseData(int id, char* data)
     int dataType;
 
     // std::cout << "Phrase: " << data << std::endl;
-    sscanf(data, "%d|", &dataType);
+    sscanf_s(data, "%d|", &dataType);
 
     switch (dataType)
     {
     case 1:
     {
         char msg[80];
-        sscanf(data, "%*d|%[^\n]", &msg);
+        sscanf_s(data, "%*d|%[^\n]", &msg);
 
         std::string msgWithHeader = std::to_string(dataType) + "|" + std::to_string(id) + "|" + msg;
 
@@ -98,7 +97,7 @@ void Server::StartLoop()
     int new_player_id = 0;
     while (true)
     {
-        while (enet_host_service(m_server, &event, 5000) > 0)
+        while (enet_host_service(m_server, &event, 1000) > 0)
         {
             switch (event.type)
             {
@@ -116,19 +115,19 @@ void Server::StartLoop()
                 for (auto const& x : m_playersDict)
                 {
                     char send_data[1024] = { '\0' };
-                    sprintf(send_data, "3|%d", x.first);
+                    sprintf_s(send_data, "3|%d", x.first);
                     BroadcastPacket(send_data);
                 }
 
                 char data_to_send[126] = { '\0' };
-                sprintf(data_to_send, "4|%d", new_player_id);
+                sprintf_s(data_to_send, "4|%d", new_player_id);
                 SendPacket(event.peer, data_to_send);
                 break;
 
             }
             case ENET_EVENT_TYPE_RECEIVE:
             {
-                printf("A packet of length %u containing %s was received from %x:%u on channel %u.\n",
+                printf_s("A packet of length %u containing %s was received from %x:%u on channel %u.\n",
                     event.packet->dataLength,
                     event.packet->data,
                     event.peer->address.host,
@@ -147,7 +146,7 @@ void Server::StartLoop()
                     event.peer->address.port);
 
                 char send_data[126] = { '\0' };
-                sprintf(send_data, "5|%d", static_cast<PlayerData*>(event.peer->data)->GetId());
+                sprintf_s(send_data, "5|%d", static_cast<PlayerData*>(event.peer->data)->GetId());
                 BroadcastPacket(send_data);
                 m_playersDict.erase(static_cast<PlayerData*>(event.peer->data)->GetId());
 
