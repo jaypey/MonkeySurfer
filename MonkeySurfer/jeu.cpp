@@ -263,12 +263,12 @@ void Jeu::updatePause() {
 		}
 	}
 
-	if (_jsonserial->joystickMaintenu(HAUT, true)) {
+	if (_jsonserial->joystickMaintenu(BAS, true)) {
 		_pauseOption--;
 		if (_pauseOption < 0)
 			_pauseOption = 1;
 	}
-	else if (_jsonserial->joystickMaintenu(BAS, true)) {
+	else if (_jsonserial->joystickMaintenu(HAUT, true)) {
 		_pauseOption++;
 		if (_pauseOption > 1)
 			_pauseOption = 0;

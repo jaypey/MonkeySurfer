@@ -335,12 +335,12 @@ void AffichageConsole::afficherJoueur()
         _img[x - 2][y] = {'-', CMD_WHITE};
     }
 
-    else if (_jeu->getJsonSerial()->joystickMaintenu(HAUT))
+    else if (_jeu->getJsonSerial()->joystickMaintenu(BAS))
     {
         _img[x][y + 3] = {'v', CMD_WHITE};
         _img[x][y + 2] = {'|', CMD_WHITE};
     }
-    else if (_jeu->getJsonSerial()->joystickMaintenu(BAS))
+    else if (_jeu->getJsonSerial()->joystickMaintenu(HAUT))
     {
         _img[x][y - 3] = {'^', CMD_WHITE};
         _img[x][y - 2] = {'|', CMD_WHITE};

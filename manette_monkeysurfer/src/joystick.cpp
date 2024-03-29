@@ -40,9 +40,9 @@ Direction Joystick::lireDirectionY()
     
     // Retourner "Gauche" si la valeur est inférieure à 350, sinon "Droite"
     if (valeurY < THRESHOLD_DOWN)
-        return BAS;
-    else if (valeurY > THRESHOLD_UP)
         return HAUT;
+    else if (valeurY > THRESHOLD_UP)
+        return BAS;
     return NEUTRE;
 }
 

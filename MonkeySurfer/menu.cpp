@@ -58,9 +58,9 @@ void Menu::update()
     if (_etat == EtatMenu::PRINCIPAL)
     {
         // MANETTE
-        if (_jsonserial->joystickMaintenu(HAUT, true))
-            modifierChoixMenu(1);
         if (_jsonserial->joystickMaintenu(BAS, true))
+            modifierChoixMenu(1);
+        if (_jsonserial->joystickMaintenu(HAUT, true))
             modifierChoixMenu(-1);
 
         if (_jsonserial->boutonAppuye(2))
@@ -116,11 +116,11 @@ void Menu::update()
         // MANETTE
         if (_jsonserial->joystickMaintenu(GAUCHE, true))
             modifierSkinPreview(-1);
-        if (_jsonserial->joystickMaintenu(HAUT, true))
+        if (_jsonserial->joystickMaintenu(BAS, true))
             modifierSkinPreview(3);
         if (_jsonserial->joystickMaintenu(DROITE, true))
             modifierSkinPreview(1);
-        if (_jsonserial->joystickMaintenu(BAS, true))
+        if (_jsonserial->joystickMaintenu(HAUT, true))
             modifierSkinPreview(-3);
         if (_jsonserial->boutonAppuye(1))
             _etat = EtatMenu::PRINCIPAL;
@@ -172,9 +172,9 @@ void Menu::update()
 
 void Menu::modifierChoixMenu(int val)
 {
-    _choixMenu = (_choixMenu + val) % 4;
+    _choixMenu = (_choixMenu + val) % 5;
     if (_choixMenu < 0)
-        _choixMenu = 3;
+        _choixMenu = 4;
 }
 
 void Menu::modifierSkinPreview(int val)
