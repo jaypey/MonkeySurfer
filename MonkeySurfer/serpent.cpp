@@ -13,7 +13,7 @@ Serpent::~Serpent()
 {
 }
 
-void Serpent::collision(Joueur& _joueur)
+bool Serpent::collision(Joueur& _joueur)
 {
 	if (_joueur.getEtatBouclier())
 	{
@@ -23,7 +23,7 @@ void Serpent::collision(Joueur& _joueur)
 	{
 		attraperJoueur(_joueur);
 	}
-
+	return true;
 }
 
 void Serpent::attraperJoueur(Joueur& p_joueur)

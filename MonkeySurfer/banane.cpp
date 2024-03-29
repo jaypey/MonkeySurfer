@@ -12,9 +12,10 @@ Banane::~Banane()
 {
 }
 
-void Banane::collision(Joueur& _joueur)
+bool Banane::collision(Joueur& _joueur)
 {
 	stocker(_joueur);
+	return true;
 }
 
 void Banane::stocker(Joueur& joueur)

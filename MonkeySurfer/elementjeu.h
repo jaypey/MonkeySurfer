@@ -23,7 +23,7 @@ public:
 	ElementJeu();
 	virtual ~ElementJeu();
 
-	virtual void collision(Joueur& _joueur) = 0;
+	virtual bool collision(Joueur& _joueur) = 0; // true si on delete l'element de la liste d'element de la classe jeu
 	virtual void afficherInfo() const = 0;
 
 	int getID();

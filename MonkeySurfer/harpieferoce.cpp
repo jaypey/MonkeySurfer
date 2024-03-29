@@ -24,7 +24,7 @@ HarpieFeroce::HarpieFeroce()
 	}
 
 	setPosition(pos);
-
+	avertissement = true;
 }
 
 HarpieFeroce::~HarpieFeroce()
@@ -33,6 +33,11 @@ HarpieFeroce::~HarpieFeroce()
 
 void HarpieFeroce::deplacement()
 {
+	if (avertissement) {
+		avertissement = false;
+		return;
+	}
+
 	if (direction == GAUCHE)
 	{
 		setPosition({ getPosition().x - 1, getPosition().y });
@@ -48,8 +53,15 @@ int HarpieFeroce::getDirection()
 	return direction;
 }
 
-void HarpieFeroce::collision(Joueur& _joueur)
+bool HarpieFeroce::getAvertissement() {
+	return avertissement;
+}
+
+bool HarpieFeroce::collision(Joueur& _joueur)
 {
+	if (avertissement)
+		return false;
+
 	if (_joueur.getEtatBouclier())
 	{
 		_joueur.setEtatBouclier(false);   //Désactive le bouclier
@@ -59,6 +71,7 @@ void HarpieFeroce::collision(Joueur& _joueur)
 		_joueur.isDead();
 	}
 	delete this;
+	return true;
 }
 
 bool HarpieFeroce::finDeParcours()

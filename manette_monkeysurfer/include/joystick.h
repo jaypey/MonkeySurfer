@@ -7,8 +7,8 @@
 
 const uint8_t PIN_JOYSTICK_X = A4;
 const uint8_t PIN_JOYSTICK_Y = A5;
-const uint16_t INITIAL_REPEAT_DELAY_JOYSTICK = 600;
-const uint16_t REPEAT_DELAY_JOYSTICK = 200;
+const uint16_t INITIAL_REPEAT_DELAY_JOYSTICK = 500;
+const uint16_t REPEAT_DELAY_JOYSTICK = 150;
 
 enum Direction {
     NEUTRE,

@@ -10,10 +10,11 @@ Piece::~Piece()
 {
 }
 
-void Piece::collision(Joueur& _joueur)
+bool Piece::collision(Joueur& _joueur)
 {
 	appliquerEffet(_joueur);
 	delete this;
+	return true;
 }
 
 void Piece::appliquerEffet(Joueur& joueur)

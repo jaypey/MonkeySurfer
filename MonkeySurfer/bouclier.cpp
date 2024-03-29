@@ -13,9 +13,10 @@ Bouclier::~Bouclier()
 {
 }
 
-void Bouclier::collision(Joueur& _joueur)
+bool Bouclier::collision(Joueur& _joueur)
 {
 	stocker(_joueur);
+	return true;
 }
 
 void Bouclier::stocker(Joueur& joueur)

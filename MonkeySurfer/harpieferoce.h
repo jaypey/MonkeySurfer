@@ -10,13 +10,14 @@ public:
 	~HarpieFeroce();
 	void deplacement();
 	int getDirection();
-	virtual void collision(Joueur& _joueur);
+	bool getAvertissement();
+	virtual bool collision(Joueur& _joueur);
 	bool finDeParcours();
 	void afficherInfo() const;
 
 private:
-	int direction;
-
+	Direction direction;
+	bool avertissement; // Point d'exclamation avant que l'harpie apparaisse
 };
 
 #endif //HARPIEFEROCE_H

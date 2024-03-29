@@ -179,10 +179,11 @@ void AffichageConsole::afficherAide()
     afficherContour();
 
     // Affichage du tutoriel
-    std::string explicationSinge = " : Represente le singe (le joueur).";
-    explicationSinge.insert(explicationSinge.begin(), _menu->getSkin(_menu->getIndexSkin()).getId());
+    std::string singe;
+    singe += _menu->getSkin(_menu->getIndexSkin()).getId();
 
-    afficherTexte(explicationSinge, 3, 3);
+    afficherTexte(singe, 3, 3, CMD_MONKEY_COLOR);
+    afficherTexte(" : Represente le singe (le joueur).", 4, 3);
 
     afficherTexte("X", 3, 5, CMD_OBSTACLE_COLOR);
     afficherTexte(" : Les obstacles, le singe doit les eviter!", 4, 5);
@@ -191,7 +192,7 @@ void AffichageConsole::afficherAide()
     afficherTexte(" : Les serpents, lorsqu'un vous attrape, secouez la", 4, 7);
     afficherTexte("    manette pour lui donner des coups de pied!", 3, 8);
 
-    afficherTexte("H", 3, 10, CMD_HARPIE_COLOR);
+    afficherTexte("=", 3, 10, CMD_HARPIE_COLOR);
     afficherTexte(" : Les harpies, elles ne doivent pas vous attraper!", 4, 10);
 
     afficherTexte("B", 3, 12, CMD_BANANE_COLOR);
@@ -376,9 +377,15 @@ void AffichageConsole::afficherJoueurs()
 void AffichageConsole::afficherItems()
 {
     ElementJeu *elementCourant;
+    Coordonnee positionCourante;
+    Coordonnee offsetVisuel;
+    HarpieFeroce* hf;
+
     for (int i = 0; i < _jeu->getElements().size(); i++)
     {
         elementCourant = _jeu->getElements()[i];
+        positionCourante = elementCourant->getPosition();
+        offsetVisuel = { 0, 0 };
 
         // On affiche pas les objets hors jeu
         if (elementCourant->getPosition().y >= NB_LIGNES)
@@ -391,7 +398,20 @@ void AffichageConsole::afficherItems()
             visuel = {'X', CMD_OBSTACLE_COLOR};
             break;
         case HARPIE:
-            visuel = {'=', CMD_HARPIE_COLOR};
+            hf = (HarpieFeroce*)elementCourant;
+
+            if (hf->getAvertissement() == true) {
+                // Avertir le joueur qu'un harpie va apparaitre
+                if (hf->getDirection() == GAUCHE)
+                    offsetVisuel.x = 3;
+                else if (hf->getDirection() == DROITE)
+                    offsetVisuel.x = -3;
+
+                visuel = { '!', CMD_HARPIE_COLOR };
+            }
+            else {
+                visuel = {'=', CMD_HARPIE_COLOR};
+            }
             break;
         case SERPENT:
             visuel = {'S', CMD_SERPENT_COLOR};
@@ -409,7 +429,7 @@ void AffichageConsole::afficherItems()
         default:
             visuel = {'l', CMD_LIANE_COLOR};
         }
-        _img[_xlianes[elementCourant->getPosition().x]][elementCourant->getPosition().y] = visuel;
+        _img[_xlianes[positionCourante.x] + offsetVisuel.x][positionCourante.y + offsetVisuel.y] = visuel;
     }
 }
 

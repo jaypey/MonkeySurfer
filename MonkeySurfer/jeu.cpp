@@ -168,8 +168,6 @@ void Jeu::updateJeu()
 
 void Jeu::updateJoueur()
 {
-	std::cout << _joueur->getNbBoost();
-
 	// MANETTE
 	if(_joueur->isFree())
 	{
@@ -319,8 +317,9 @@ void Jeu::validerCollision()
 	for (int i = 0; i < _elements.size(); i++)
 	{
 		if (_elements[i]->getPosition() == _joueur->getPosition()) {
-			_elements[i]->collision(*_joueur);
-			_elements.erase(_elements.begin() + i);
+			if (_elements[i]->collision(*_joueur)) {
+				_elements.erase(_elements.begin() + i);
+			}
 			return;
 		}
 		_gameOver = !_joueur->getVie();

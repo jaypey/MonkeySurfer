@@ -7,7 +7,7 @@ class Serpent : public Obstacle
 public:
 	Serpent();
 	~Serpent();
-	virtual void collision(Joueur& _joueur);
+	virtual bool collision(Joueur& _joueur);
 	void attraperJoueur(Joueur& p_joueur);
 	int getHp();
 	void recoitCoup(Joueur& p_joueur);

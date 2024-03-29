@@ -9,7 +9,7 @@ public:
 	Banane();
 	~Banane();
 
-	virtual void collision(Joueur& _joueur);
+	virtual bool collision(Joueur& _joueur);
 	virtual void stocker(Joueur& joueur);
 	virtual void appliquerEffet(Joueur& joueur);
 	virtual void afficherInfo() const;

@@ -11,7 +11,7 @@ ObstacleFixe::~ObstacleFixe()
 }
 
 
-void ObstacleFixe::collision(Joueur& _joueur)
+bool ObstacleFixe::collision(Joueur& _joueur)
 {
 	if (_joueur.getEtatBouclier())
 	{
@@ -22,6 +22,7 @@ void ObstacleFixe::collision(Joueur& _joueur)
 		_joueur.isDead();
 	}
 	delete this;
+	return true;
 }
 
 void ObstacleFixe::afficherInfo() const
