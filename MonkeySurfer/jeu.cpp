@@ -195,6 +195,17 @@ void Jeu::updateJoueur()
 		}
 	}
 
+	if (_jsonserial->boutonAppuye(0))
+	{
+		_joueur->echangerInventaire();
+	}
+
+	if (_jsonserial->boutonAppuye(3))
+	{
+		_joueur->useObjet();
+	}
+
+
 	if (_jsonserial->boutonAppuye(1)) {
 		_modePause = true;
 	}
