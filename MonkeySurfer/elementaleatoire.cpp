@@ -12,7 +12,7 @@ ElementJeu* GenerateurItem::getRandomElement()
 {
 	int valeurAleatoire = rand.random(0, 10, std::rand() % 500);
 
-	if (valeurAleatoire < 4)
+	if (valeurAleatoire < 2)
 	{
 		return getRandomCollectible();
 	}
