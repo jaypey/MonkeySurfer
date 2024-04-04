@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonkeySurfer", "MonkeySurfe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MSServer", "..\MSServer\MSServer.vcxproj", "{9D0726CF-C289-40F8-8263-6ECA469194CC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonkeySurferGUI", "..\MonkeySurferGUI\MonkeySurferGUI.vcxproj", "{BD3C2A24-F69E-4949-A8B4-3B058C16B134}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,6 +36,14 @@ Global
 		{9D0726CF-C289-40F8-8263-6ECA469194CC}.Release|x64.Build.0 = Release|x64
 		{9D0726CF-C289-40F8-8263-6ECA469194CC}.Release|x86.ActiveCfg = Release|Win32
 		{9D0726CF-C289-40F8-8263-6ECA469194CC}.Release|x86.Build.0 = Release|Win32
+		{BD3C2A24-F69E-4949-A8B4-3B058C16B134}.Debug|x64.ActiveCfg = Debug|x64
+		{BD3C2A24-F69E-4949-A8B4-3B058C16B134}.Debug|x64.Build.0 = Debug|x64
+		{BD3C2A24-F69E-4949-A8B4-3B058C16B134}.Debug|x86.ActiveCfg = Debug|Win32
+		{BD3C2A24-F69E-4949-A8B4-3B058C16B134}.Debug|x86.Build.0 = Debug|Win32
+		{BD3C2A24-F69E-4949-A8B4-3B058C16B134}.Release|x64.ActiveCfg = Release|x64
+		{BD3C2A24-F69E-4949-A8B4-3B058C16B134}.Release|x64.Build.0 = Release|x64
+		{BD3C2A24-F69E-4949-A8B4-3B058C16B134}.Release|x86.ActiveCfg = Release|Win32
+		{BD3C2A24-F69E-4949-A8B4-3B058C16B134}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
