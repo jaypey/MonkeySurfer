@@ -1,5 +1,5 @@
 TEMPLATE     = vcapp
-TARGET       = monkeysurfer
+TARGET       = monkeysurfergui
 CONFIG      += warn_on qt debug windows console
 HEADERS     += 
 SOURCES     += MonkeySurferGUI.cpp
