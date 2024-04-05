@@ -76,7 +76,7 @@ void Menu::update()
                 std::cout << "Adresse du serveur: " << std::endl;
                 std::cin >> ipAddress;
                 _etat = EtatMenu::MULTIJOUEUR;
-                _networking->Connect(ipAddress, 7777);
+                _networking->Connect(ipAddress, 7775);
             }
             else if (_choixMenu == 2)
                 _etat = EtatMenu::SKINS;
@@ -101,7 +101,7 @@ void Menu::update()
                 std::cout << "Adresse du serveur: " << std::endl;
                 std::cin >> ipAddress;
                 _etat = EtatMenu::MULTIJOUEUR;
-                _networking->Connect(ipAddress, 7777);
+                _networking->Connect(ipAddress, 7775);
             }
             else if (c == '3')
                 _etat = EtatMenu::SKINS;
