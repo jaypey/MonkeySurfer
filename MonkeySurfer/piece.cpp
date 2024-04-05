@@ -24,5 +24,5 @@ void Piece::appliquerEffet(Joueur& joueur)
 
 void Piece::afficherInfo() const
 {
-	std::cout << "Une pièce de plus" << std::endl;
+	std::cout << "Une piece de plus" << std::endl;
 }

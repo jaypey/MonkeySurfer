@@ -15,7 +15,7 @@ bool ObstacleFixe::collision(Joueur& _joueur)
 {
 	if (_joueur.getEtatBouclier())
 	{
-		_joueur.setEtatBouclier(false);   //Désactive le bouclier
+		_joueur.setEtatBouclier(false);   // Desactive le bouclier
 	}
 	else
 	{

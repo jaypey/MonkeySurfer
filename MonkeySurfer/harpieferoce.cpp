@@ -13,7 +13,7 @@ HarpieFeroce::HarpieFeroce()
 	}
 	Coordonnee pos;
 
-	pos.y = generateur.random(0, 20, rand() % 1000); //À changer pour la hauteur maximale de l'écran
+	pos.y = generateur.random(0, 20, rand() % 1000); // A changer pour la hauteur maximale de l'ecran
 	if (direction == GAUCHE)
 	{
 		pos.x = 4;
@@ -64,7 +64,7 @@ bool HarpieFeroce::collision(Joueur& _joueur)
 
 	if (_joueur.getEtatBouclier())
 	{
-		_joueur.setEtatBouclier(false);   //Désactive le bouclier
+		_joueur.setEtatBouclier(false);   // Desactive le bouclier
 	}
 	else
 	{
@@ -86,5 +86,5 @@ bool HarpieFeroce::finDeParcours()
 
 void HarpieFeroce::afficherInfo() const
 {
-	std::cout << "Une harpie féroce est apparu" << std::endl;
+	std::cout << "Une harpie feroce est apparu" << std::endl;
 }

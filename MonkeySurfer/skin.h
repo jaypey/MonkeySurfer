@@ -18,7 +18,7 @@ public:
     int getPrix();
     bool isDebloque();
 private:
-    char _id; // Caractère à afficher dans la console, aussi clé d'identification
+    char _id; // Caractere a afficher dans la console, aussi cle d'identification
     std::string _file; // Fichier de l'image du skin, pour affichage graphique Qt
     int _prix;
     bool _debloque;

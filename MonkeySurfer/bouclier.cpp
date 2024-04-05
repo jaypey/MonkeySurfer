@@ -46,5 +46,5 @@ void Bouclier::appliquerEffet(Joueur& joueur)
 
 void Bouclier::afficherInfo() const
 {
-	std::cout << "Bouclier activé" << std::endl;
+	std::cout << "Bouclier active" << std::endl;
 }
