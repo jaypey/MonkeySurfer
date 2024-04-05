@@ -6,6 +6,6 @@ HEADERS     += \
 SOURCES     += \
 			MonkeySurferGUI.cpp \
 			jeuWorker.cpp
-INCLUDEPATH += .
+INCLUDEPATH += . ../MonkeySurfer/
 LIBS        += 
 QT          += widgets

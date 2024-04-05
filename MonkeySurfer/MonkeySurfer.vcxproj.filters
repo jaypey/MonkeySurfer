@@ -23,6 +23,8 @@
     <ClCompile Include="skin.cpp" />
     <ClCompile Include="cmdcolor.cpp" />
     <ClCompile Include="nullstream.cpp" />
+    <ClCompile Include="harpieferoce.cpp" />
+    <ClCompile Include="serpent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="monkeysurfer.cpp">
@@ -76,12 +78,6 @@
     <ClCompile Include="menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="harpieferoce.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="serpent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="jsonserial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,72 +89,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="jeu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="joueur.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="collectible.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="obstacle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="piece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bouclier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="banane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="affichage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="affichageconsole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aleatoire.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="elementjeu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="elementaleatoire.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="obstaclefixe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="projectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="skin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="harpieferoce.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="serpent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="jsonserial.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="direction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="nullstream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cmdcolor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="affichage.h" />
     <ClInclude Include="affichageconsole.h" />
     <ClInclude Include="aleatoire.h" />
@@ -180,6 +110,27 @@
     <ClInclude Include="skin.h" />
     <ClInclude Include="cmdcolor.h" />
     <ClInclude Include="nullstream.h" />
+    <ClInclude Include="affichage.h" />
+    <ClInclude Include="affichageconsole.h" />
+    <ClInclude Include="aleatoire.h" />
+    <ClInclude Include="banane.h" />
+    <ClInclude Include="bouclier.h" />
+    <ClInclude Include="cmdcolor.h" />
+    <ClInclude Include="collectible.h" />
+    <ClInclude Include="elementaleatoire.h" />
+    <ClInclude Include="elementjeu.h" />
+    <ClInclude Include="harpieferoce.h" />
+    <ClInclude Include="jeu.h" />
+    <ClInclude Include="joueur.h" />
+    <ClInclude Include="jsonserial.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="nullstream.h" />
+    <ClInclude Include="obstacle.h" />
+    <ClInclude Include="obstaclefixe.h" />
+    <ClInclude Include="piece.h" />
+    <ClInclude Include="projectile.h" />
+    <ClInclude Include="serpent.h" />
+    <ClInclude Include="skin.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="artMenu.txt" />

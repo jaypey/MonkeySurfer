@@ -206,6 +206,11 @@
     <Text Include="showcaseSkin.txt" />
     <Text Include="showcaseSkinSelect.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonkeySurferGUI\monkeysurfergui.vcxproj">
+      <Project>{08a39de4-7ca2-3bda-95b8-9e2c093e5f0b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
