@@ -3,6 +3,8 @@
 #include <QGraphicsView>
 #include <QGraphicsRectItem>
 
+#include "jeuWorker.h"
+
 #define WINDOW_SIZE_X 800
 #define WINDOW_SIZE_Y 600
 #define ESPACEMENT_LIANES 100
@@ -36,6 +38,14 @@ int main(int argv, char** args)
 		lianes[i]->setRect(posXLiane, 0, 20, WINDOW_SIZE_Y);
 		scene->addItem(lianes[i]);
 	}
+
+	// Thread manette
+	QThread threadJeu;
+	JeuWorker workerJeu;
+
+	workerJeu.moveToThread(&threadJeu);
+	QObject::connect(&threadJeu, &QThread::started, &workerJeu, &JeuWorker::doWork);
+	threadJeu.start();
 
 	view->show();
 	app.exec();
