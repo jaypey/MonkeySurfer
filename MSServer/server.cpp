@@ -15,7 +15,7 @@ Server::Server()
 
         //Creation du serveur en host
         m_address.host = ENET_HOST_ANY;
-        m_address.port = 7777;
+        m_address.port = 7775;
 
         m_server = enet_host_create(&m_address, 32, 1, 0, 0);
 
@@ -24,7 +24,7 @@ Server::Server()
             throw("Can't create ENet Server!");
         }
         else {
-            std::cout << "Serveur démarré sur le port 7777" << std::endl;
+            std::cout << "Serveur démarré sur le port 7775" << std::endl;
         }
     }
     catch (std::string errorMessage)
