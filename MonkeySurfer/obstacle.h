@@ -6,11 +6,11 @@
 class Obstacle : public ElementJeu
 {
 public:
-	Obstacle();
-	virtual ~Obstacle();
+    Obstacle();
+    virtual ~Obstacle();
 
-	virtual bool collision(Joueur& _joueur) = 0;
-	virtual void afficherInfo() const = 0;
+    virtual bool collision(Joueur& _joueur) = 0;
+    virtual void afficherInfo() const = 0;
 
 };
 

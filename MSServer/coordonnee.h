@@ -2,12 +2,12 @@
 #define COORDONNEE_H
 
 struct Coordonnee {
-	int x;
-	int y;
+    int x;
+    int y;
 
-	bool operator==(const Coordonnee& other) const {
-		return (x == other.x) && (y == other.y);
-	}
+    bool operator==(const Coordonnee& other) const {
+        return (x == other.x) && (y == other.y);
+    }
 };
 
 

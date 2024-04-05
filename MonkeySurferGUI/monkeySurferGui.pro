@@ -3,6 +3,8 @@ TARGET       = monkeysurfergui
 CONFIG      += warn_on qt debug windows console
 HEADERS     += \
 			jeuWorker.h \
+			../MonkeySurfer/affichage.h \
+			../MonkeySurfer/affichagegui.h \
 			../MonkeySurfer/aleatoire.h \
 			../MonkeySurfer/banane.h \
 			../MonkeySurfer/bouclier.h \
@@ -27,6 +29,8 @@ HEADERS     += \
 SOURCES     += \
 			MonkeySurferGUI.cpp \
 			jeuWorker.cpp \
+			../MonkeySurfer/affichage.cpp \
+			../MonkeySurfer/affichagegui.cpp \
 			../MonkeySurfer/aleatoire.cpp \
 			../MonkeySurfer/banane.cpp \
 			../MonkeySurfer/bouclier.cpp \

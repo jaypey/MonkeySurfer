@@ -35,7 +35,7 @@ public:
     void afficherJeu();
     void afficherMenu();
 private:
-    // Affichage menu;
+    // Affichage menu
     void afficherMenuPrincipal();
     void afficherMenuSkin();
     void afficherAide();
@@ -45,7 +45,7 @@ private:
     // Fonctions d'initialisation du jeu
     void initialiserLianes();
 
-    // Mise à jour de la matrice de char
+    // Mise a jour de la matrice de char
     void afficherArrierePlan();
     void afficherLianes();
     void afficherJoueur();
@@ -57,23 +57,23 @@ private:
     void afficherTexte(std::string s, int x, int y, CMDColor color = CMD_WHITE, bool selected = false); // Non herite
     void afficherFichier(std::string nom, int x, int y, CMDColor color = CMD_WHITE); // Non herite
 
-    //Multijoueur
+    // Multijoueur
     void afficherJoueurs();
 
-    // Mise à jour de la déco (feuilles)
+    // Mise a jour de la deco (feuilles)
     void updateDeco();
 
     // Fonctions "helper" pour l'affichage à la console
     void printMatriceChar();
     CharInfo getCharEclat();
 
-    // Lié au FPS
+    // Lie au FPS
     bool peutAfficherProchaineImage(); // Attendre que l'image precedente aie finie de s'afficher, vitesse d'affichage limitee par le FPS
     void attendreProchaineImage(); // Attend que "peutAfficherProchaineImage" soit true
 
 private:
     // Affichage
-    CharInfo _img[NB_COLS][NB_LIGNES]; // Informations de l'image à imprimer a la console
+    CharInfo _img[NB_COLS][NB_LIGNES]; // Informations de l'image a imprimer a la console
     std::string _output; // Image a imprimer a la console
     std::chrono::steady_clock::time_point _lastfrm; // Temps ecoule depuis dernier affichage
     std::chrono::steady_clock::time_point _lastupdate; // Temps ecoule depuis derniere update du jeu
@@ -83,13 +83,13 @@ private:
 
     // Lianes
     int _xlianes[NB_LIANES]; // Emplacement colonne des lianes
-    Coordonnee _feuilles[NB_LIANES][3]; // Des feuilles accrochées aux lianes pour points bonus esthetique
+    Coordonnee _feuilles[NB_LIANES][3]; // Des feuilles accrochees aux lianes pour points bonus esthetique
 
     // UI
     std::string _score; // Texte pour afficher le score
     std::string _inv;
     std::string _inv1;
-    std::string _inv2; //texte pour afficher l'inventaire
+    std::string _inv2; // Texte pour afficher l'inventaire
 };
 
 #endif // !AFFICHAGECONSOLE_H

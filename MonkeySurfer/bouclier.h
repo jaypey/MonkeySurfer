@@ -5,16 +5,16 @@
 class Bouclier : public Collectible
 {
 public:
-	Bouclier();
-	~Bouclier();
+    Bouclier();
+    ~Bouclier();
 
-	virtual bool collision(Joueur& _joueur);
-	virtual void stocker(Joueur& joueur);
-	virtual void appliquerEffet(Joueur& joueur);
-	virtual void afficherInfo() const;
+    virtual bool collision(Joueur& _joueur);
+    virtual void stocker(Joueur& joueur);
+    virtual void appliquerEffet(Joueur& joueur);
+    virtual void afficherInfo() const;
 
 private:
-	std::chrono::steady_clock::time_point lastUpdateBouclier;
+    std::chrono::steady_clock::time_point lastUpdateBouclier;
 };
 
 #endif // !BOUCLIER_H

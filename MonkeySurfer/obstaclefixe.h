@@ -5,11 +5,11 @@
 class ObstacleFixe : public Obstacle
 {
 public:
-	ObstacleFixe();
-	~ObstacleFixe();
+    ObstacleFixe();
+    ~ObstacleFixe();
 
-	virtual bool collision(Joueur& _joueur);
-	void afficherInfo() const;
+    virtual bool collision(Joueur& _joueur);
+    void afficherInfo() const;
 };
 
 

@@ -11,61 +11,61 @@
 class Jeu
 {
 public:
-	Jeu(Joueur *, JsonSerial *);
-	~Jeu();
+    Jeu(Joueur *, JsonSerial *);
+    ~Jeu();
 
-	void debuterPartie();
-	void debuterPartieMultijoueur(Networking *n);
-	Coordonnee getPositionJoueur();
-	std::map<int, PlayerData*> getPositionsJoueurs();
-	bool isGameOver();
-	bool isStarted();
-	bool isPaused();
-	bool isQuitting(); //Requete du jeu, lue par le menu pour afficher le menu
-	bool isStuck();
-	bool isProtected();
-	bool isBoosted();
-	bool isAttacking();
-	void setIsAttacking(bool attack);
-	int getPointageJoueur();
-	charInventaire getCharInventaire();
-	int getPiecesJoueur();
-	int getPauseOption();
-	void setPause(bool pause);
-	void restartJeu(Joueur *j);
+    void debuterPartie();
+    void debuterPartieMultijoueur(Networking *n);
+    Coordonnee getPositionJoueur();
+    std::map<int, PlayerData*> getPositionsJoueurs();
+    bool isGameOver();
+    bool isStarted();
+    bool isPaused();
+    bool isQuitting(); //Requete du jeu, lue par le menu pour afficher le menu
+    bool isStuck();
+    bool isProtected();
+    bool isBoosted();
+    bool isAttacking();
+    void setIsAttacking(bool attack);
+    int getPointageJoueur();
+    charInventaire getCharInventaire();
+    int getPiecesJoueur();
+    int getPauseOption();
+    void setPause(bool pause);
+    void restartJeu(Joueur *j);
 
-	std::vector<ElementJeu *> getElements() const;
-	std::chrono::steady_clock::time_point getLastUpdate();
-	JsonSerial *getJsonSerial();
-
-private:
-	void updateJeu();
-	void updateJoueur();
-	void updateNetworkJoueurs();
-	void updatePause();
-	void updateGameOver();
-	void validerCollision();
-	void avancerCase();
+    std::vector<ElementJeu *> getElements() const;
+    std::chrono::steady_clock::time_point getLastUpdate();
+    JsonSerial *getJsonSerial();
 
 private:
-	std::chrono::steady_clock::time_point _lastUpdate;
+    void updateJeu();
+    void updateJoueur();
+    void updateNetworkJoueurs();
+    void updatePause();
+    void updateGameOver();
+    void validerCollision();
+    void avancerCase();
 
-	Joueur *_joueur; // Ajuster pour multijoueur �ventuellement
-	bool _isMultijoueur;
-	Networking *_network;
-	std::map<int, PlayerData *> _joueurs;
-	GenerateurItem _generateur;
-	std::vector<ElementJeu *> _elements;
-	bool _gameOver;
-	int _vitesse;
-	bool _isStarted;
-	bool _isQuitting;
-	bool _isAttacking;
+private:
+    std::chrono::steady_clock::time_point _lastUpdate;
 
-	bool _modePause;
-	int _pauseOption;
+    Joueur *_joueur; // Ajuster pour multijoueur �ventuellement
+    bool _isMultijoueur;
+    Networking *_network;
+    std::map<int, PlayerData *> _joueurs;
+    GenerateurItem _generateur;
+    std::vector<ElementJeu *> _elements;
+    bool _gameOver;
+    int _vitesse;
+    bool _isStarted;
+    bool _isQuitting;
+    bool _isAttacking;
 
-	JsonSerial *_jsonserial; // pour les commandes de manette
+    bool _modePause;
+    int _pauseOption;
+
+    JsonSerial *_jsonserial; // pour les commandes de manette
 };
 
 #endif // !JEU_H

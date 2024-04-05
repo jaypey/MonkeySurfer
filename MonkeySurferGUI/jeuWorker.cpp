@@ -5,23 +5,18 @@
 #include "menu.h"
 #include "jsonserial.h"
 #include "networking.h"
-
 #include <QDebug>
+
+JeuWorker::JeuWorker(JsonSerial* js, Jeu* j) : _jsonSerial(js), _jeu(j) {}
+
 void JeuWorker::doWork() {
-    JsonSerial js;
-    js.openSerialPort("COM4");
-
-    Joueur p1;
-    Networking n;
-    Jeu j(&p1, &js);
-
-	qDebug() << "Work in thread:" << QThread::currentThread();
+    qDebug() << "Work in thread:" << QThread::currentThread();
 
     while (true) {
-        js.sendJson();
-        js.recvJson();
+        _jsonSerial->sendJson();
+        _jsonSerial->recvJson();
 
-        j.debuterPartie();
-        qDebug() << j.getPointageJoueur();
+        _jeu->debuterPartie();
+        qDebug() << _jeu->getPointageJoueur();
     }
 }

@@ -2,8 +2,8 @@
 
 Collectible::Collectible()
 {
-	duree = 0;
-	etat = true;
+    duree = 0;
+    etat = true;
 }
 
 Collectible::~Collectible()
@@ -12,21 +12,21 @@ Collectible::~Collectible()
 
 float Collectible::getDuree()
 {
-	return duree;
+    return duree;
 }
 
 void Collectible::setDuree(float p_duree)
 {
-	duree = p_duree;
+    duree = p_duree;
 }
 
 bool Collectible::getEtat()
 {
-	return etat;
+    return etat;
 }
 
 void Collectible::setEtat(bool p_etat)
 {
-	etat = p_etat;
+    etat = p_etat;
 }
 

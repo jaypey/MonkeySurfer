@@ -1,0 +1,9 @@
+M path/to/skin.png 0
+# path/to/skin.png 1
+W path/to/skin.png 5
+O path/to/skin.png 5
+X path/to/skin.png 5
+G path/to/skin.png 5
+& path/to/skin.png 10
+@ path/to/skin.png 10
+! path/to/skin.png 100

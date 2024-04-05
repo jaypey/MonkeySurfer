@@ -5,11 +5,11 @@
 class Projectile : public Obstacle
 {
 public:
-	Projectile();
-	~Projectile();
-	bool collisionAvecJoueur(Coordonnee p_joueur);
-	void tombe();
-	void afficherInfo() const;
+    Projectile();
+    ~Projectile();
+    bool collisionAvecJoueur(Coordonnee p_joueur);
+    void tombe();
+    void afficherInfo() const;
 };
 
 #endif //!PROJECTILE_H

@@ -30,6 +30,9 @@
     <ClCompile Include="MonkeySurferGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\MonkeySurfer\affichage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\MonkeySurfer\aleatoire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,8 +96,14 @@
     <ClCompile Include="..\MonkeySurfer\skin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="affichagegui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\MonkeySurfer\affichage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\MonkeySurfer\aleatoire.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -159,6 +168,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\MonkeySurfer\skin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="affichagegui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,52 +1,34 @@
 #include <QApplication>
-#include <QGraphicsScene>
-#include <QGraphicsView>
-#include <QGraphicsRectItem>
 
+#include "affichagegui.h"
+#include "jeu.h"
 #include "jeuWorker.h"
-
-#define WINDOW_SIZE_X 800
-#define WINDOW_SIZE_Y 600
-#define ESPACEMENT_LIANES 100
+#include "joueur.h"
+#include "jsonSerial.h"
+#include "menu.h"
+#include "networking.h"
 
 int main(int argv, char** args)
 {
-	QApplication app(argv, args);
+    QApplication app(argv, args);
 
-	// Scene (infos GUI)
-	QGraphicsScene* scene = new QGraphicsScene;
-	scene->setSceneRect(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y);
+    JsonSerial jsonSerial;
+    jsonSerial.openSerialPort("COM4");
 
-	// View (affichage GUI)
-	QGraphicsView* view = new QGraphicsView;
-	view->setScene(scene);
-	view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	view->setFixedSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
+    Joueur joueur;
+    Jeu jeu(&joueur, &jsonSerial);
+    Networking networking;
+    Menu menu(&joueur, &jsonSerial, &networking);
 
-	// Singe
-	QGraphicsRectItem* singe = new QGraphicsRectItem;
-	singe->setRect(350, 400, 100, 100);
-	scene->addItem(singe);
+    AffichageGUI affichage(&jeu, &menu);
 
-	// Lianes
-	QGraphicsRectItem* lianes[5];
-	for (int i = 0; i < 5; i++) {
-		int posXLiane = ((WINDOW_SIZE_X / 2) - 10) - (ESPACEMENT_LIANES * (i - 2));
+    JeuWorker workerJeu(&jsonSerial, &jeu);
+    QThread threadJeu;
 
-		lianes[i] = new QGraphicsRectItem;
-		lianes[i]->setRect(posXLiane, 0, 20, WINDOW_SIZE_Y);
-		scene->addItem(lianes[i]);
-	}
+    workerJeu.moveToThread(&threadJeu);
+    QObject::connect(&threadJeu, &QThread::started, &workerJeu, &JeuWorker::doWork);
+    threadJeu.start();
 
-	// Thread manette
-	QThread threadJeu;
-	JeuWorker workerJeu;
-
-	workerJeu.moveToThread(&threadJeu);
-	QObject::connect(&threadJeu, &QThread::started, &workerJeu, &JeuWorker::doWork);
-	threadJeu.start();
-
-	view->show();
-	app.exec();
+    affichage.show();
+    app.exec();
 }

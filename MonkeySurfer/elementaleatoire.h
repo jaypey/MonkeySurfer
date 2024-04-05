@@ -13,15 +13,15 @@
 class GenerateurItem
 {
 public:
-	GenerateurItem();
-	~GenerateurItem();
+    GenerateurItem();
+    ~GenerateurItem();
 
-	ElementJeu* getRandomElement();
-	Collectible* getRandomCollectible();
-	Obstacle* getRandomObstacle();
+    ElementJeu* getRandomElement();
+    Collectible* getRandomCollectible();
+    Obstacle* getRandomObstacle();
 
 private:
-	RandomGenerator rand;
+    RandomGenerator rand;
 };
 
 #endif // !ELEMENTALEATOIRE_H
