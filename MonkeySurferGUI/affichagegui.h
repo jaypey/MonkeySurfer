@@ -9,7 +9,11 @@
 
 #define WINDOW_SIZE_X 800
 #define WINDOW_SIZE_Y 600
+#define COORD_MAX_Y 21
+
+#define NB_LIANES 5
 #define ESPACEMENT_LIANES 100
+#define LARGEUR_LIANES 20
 
 #define FPS 30
 
@@ -34,9 +38,12 @@ private:
     void updateJeu();
     void updateGUI();
 
+    // Transpose les position du jeu de base a l'interface GUI
+    Coordonnee transposerCoord(const Coordonnee& coord, QGraphicsItem* item);
+
     QGraphicsScene* _scene;
     QGraphicsRectItem* _singe;
-    QGraphicsRectItem* _lianes[5];
+    QGraphicsRectItem* _lianes[NB_LIANES];
     QTimer* _updateTimer;
 };
 
