@@ -4,19 +4,25 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QTimer>
 #include "affichage.h"
 
 #define WINDOW_SIZE_X 800
 #define WINDOW_SIZE_Y 600
 #define ESPACEMENT_LIANES 100
 
-class AffichageGUI : public Affichage, public QGraphicsView {
+#define FPS 30
+
+class AffichageGUI : public Affichage {
+    Q_OBJECT
 public:
     AffichageGUI(Jeu* j, Menu* m);
 
     void afficherJeu();
     void afficherMenu();
-protected:
+public slots:
+    void update();
+private:
     void afficherArrierePlan();
     void afficherLianes();
     void afficherJoueur();
@@ -24,10 +30,14 @@ protected:
     void afficherIU();
     void afficherGameOver();
     void afficherPause();
-private:
+
+    void updateJeu();
+    void updateGUI();
+
     QGraphicsScene* _scene;
     QGraphicsRectItem* _singe;
     QGraphicsRectItem* _lianes[5];
+    QTimer* _updateTimer;
 };
 
 #endif // !AFFICHAGEGUI_H

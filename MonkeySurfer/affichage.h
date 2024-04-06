@@ -4,7 +4,14 @@
 #include "jeu.h"
 #include "menu.h"
 
+#ifdef USE_QT
+#include <QGraphicsView>
+#endif
+
 class Affichage
+#ifdef USE_QT
+    : public QGraphicsView
+#endif
 {
 public:
     Affichage(Jeu *j, Menu *m);

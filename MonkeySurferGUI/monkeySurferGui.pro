@@ -2,9 +2,8 @@ TEMPLATE     = vcapp
 TARGET       = monkeysurfergui
 CONFIG      += warn_on qt debug windows console
 HEADERS     += \
-			jeuWorker.h \
+			affichagegui.h \
 			../MonkeySurfer/affichage.h \
-			../MonkeySurfer/affichagegui.h \
 			../MonkeySurfer/aleatoire.h \
 			../MonkeySurfer/banane.h \
 			../MonkeySurfer/bouclier.h \
@@ -28,9 +27,8 @@ HEADERS     += \
 			../MonkeySurfer/skin.h
 SOURCES     += \
 			MonkeySurferGUI.cpp \
-			jeuWorker.cpp \
+			affichagegui.cpp \
 			../MonkeySurfer/affichage.cpp \
-			../MonkeySurfer/affichagegui.cpp \
 			../MonkeySurfer/aleatoire.cpp \
 			../MonkeySurfer/banane.cpp \
 			../MonkeySurfer/bouclier.cpp \
@@ -55,4 +53,5 @@ INCLUDEPATH += \
 			../MonkeySurfer/ \
 			../MonkeySurfer/lib
 LIBS        += -L../MonkeySurfer/lib enet64.lib winmm.lib
+DEFINES     += USE_QT
 QT          += widgets
