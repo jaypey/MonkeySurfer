@@ -31,7 +31,7 @@ public:
     AffichageConsole(Jeu *j, Menu *m);
     ~AffichageConsole();
 
-    // Affichage à la console (cout)
+    // Affichage a la console (cout)
     void afficherJeu();
     void afficherMenu();
 private:
@@ -63,7 +63,7 @@ private:
     // Mise a jour de la deco (feuilles)
     void updateDeco();
 
-    // Fonctions "helper" pour l'affichage à la console
+    // Fonctions "helper" pour l'affichage a la console
     void printMatriceChar();
     CharInfo getCharEclat();
 

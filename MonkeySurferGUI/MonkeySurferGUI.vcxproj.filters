@@ -81,6 +81,9 @@
     <ClCompile Include="..\MonkeySurfer\obstaclefixe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pausemenugui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\MonkeySurfer\piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\MonkeySurfer\obstaclefixe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pausemenugui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\MonkeySurfer\piece.h">

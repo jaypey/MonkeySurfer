@@ -159,6 +159,7 @@
     <ClCompile Include="..\MonkeySurfer\nullstream.cpp" />
     <ClCompile Include="..\MonkeySurfer\obstacle.cpp" />
     <ClCompile Include="..\MonkeySurfer\obstaclefixe.cpp" />
+    <ClCompile Include="pausemenugui.cpp" />
     <ClCompile Include="..\MonkeySurfer\piece.cpp" />
     <ClCompile Include="..\MonkeySurfer\playerdata.cpp" />
     <ClCompile Include="..\MonkeySurfer\projectile.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="..\MonkeySurfer\nullstream.h" />
     <ClInclude Include="..\MonkeySurfer\obstacle.h" />
     <ClInclude Include="..\MonkeySurfer\obstaclefixe.h" />
+    <ClInclude Include="pausemenugui.h" />
     <ClInclude Include="..\MonkeySurfer\piece.h" />
     <ClInclude Include="..\MonkeySurfer\playerdata.h" />
     <ClInclude Include="..\MonkeySurfer\projectile.h" />
