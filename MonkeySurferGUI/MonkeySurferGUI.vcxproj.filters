@@ -141,6 +141,9 @@
     <ClInclude Include="..\MonkeySurfer\harpieferoce.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="itemgui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\MonkeySurfer\jeu.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -1,12 +1,14 @@
 #ifndef AFFICHAGEGUI_H
 #define AFFICHAGEGUI_H
 
+#include <vector>
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include "affichage.h"
+#include "itemgui.h"
 #include "pausemenugui.h"
 
 #define WINDOW_SIZE_X 800
@@ -39,6 +41,7 @@ private:
 
     void updateJeu();
     void updateGUI();
+    void updateItemGUI();
 
     // Transpose les position du jeu de base a l'interface GUI
     Coordonnee transposerCoord(const Coordonnee& coord, QGraphicsItem* item);
@@ -47,6 +50,8 @@ private:
     QGraphicsRectItem* _singe;
     QGraphicsRectItem* _lianes[NB_LIANES];
     PauseMenuGui* _menuPause;
+
+    std::vector<ItemGui> _itemsGui;
 
     QTimer* _updateTimer;
 };

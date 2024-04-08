@@ -3,6 +3,7 @@ TARGET       = monkeysurfergui
 CONFIG      += warn_on qt debug windows console
 HEADERS     += \
 			affichagegui.h \
+			itemgui.h \
 			pausemenugui.h \
 			../MonkeySurfer/affichage.h \
 			../MonkeySurfer/aleatoire.h \

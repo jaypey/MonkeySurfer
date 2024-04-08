@@ -18,7 +18,7 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
 
     // Sprite du joueur
     _singe = new QGraphicsRectItem;
-    _singe->setRect(0, 0, 100, 100);
+    _singe->setRect(0, 0, 40, 40);
     _scene->addItem(_singe);
 
     // Sprites des lianes
@@ -74,7 +74,26 @@ void AffichageGUI::afficherJoueur() {
 }
 
 void AffichageGUI::afficherItems() {
+    updateItemGUI();
 
+    for (size_t i = 0; i < _itemsGui.size(); i++) {
+        ElementJeu* item = _itemsGui[i].item;
+        QGraphicsRectItem* rect = _itemsGui[i].gui;
+        Coordonnee coord = transposerCoord(item->getPosition(), rect);
+
+        // Offset si l'harpie est en mode "avertissement"
+        if (item->getID() == HARPIE) {
+            HarpieFeroce* harpie = static_cast<HarpieFeroce*>(item);
+            if (harpie->getAvertissement() == true) {
+                if (harpie->getPosition().x == 0)
+                    coord.x -= ESPACEMENT_LIANES;
+                else if (harpie->getPosition().x == 4)
+                    coord.x += ESPACEMENT_LIANES;
+            }
+        }
+
+        rect->setPos(coord.x, coord.y);
+    }
 }
 
 void AffichageGUI::afficherIU() {
@@ -107,10 +126,42 @@ void AffichageGUI::updateGUI() {
     afficherJeu();
 }
 
+void AffichageGUI::updateItemGUI() {
+    std::vector<ElementJeu*> elements = _jeu->getElements();
+
+    // Enlever les items supprimes
+    for (size_t i = 0; i < _itemsGui.size(); i++)
+        if (i >= elements.size() || _itemsGui[i].item != elements[i]) {
+            delete _itemsGui[i].gui;
+            _itemsGui.erase(_itemsGui.begin() + i);
+            i--;
+        }
+
+    // Ajouter les nouveaux items
+    for (size_t i = _itemsGui.size(); i < elements.size(); i++) {
+        QGraphicsRectItem* rect = new QGraphicsRectItem;
+        _itemsGui.push_back({ elements[i], new QGraphicsRectItem });
+        _itemsGui[i].gui->setRect(0, 0, 25, 25);
+
+        Qt::GlobalColor color = Qt::white;
+        switch (_itemsGui[i].item->getID()) {
+            case OBSTACLE_FIXE: color = Qt::red;         break;
+            case BANANE:        color = Qt::yellow;      break;
+            case BOUCLIER:      color = Qt::blue;        break;
+            case PIECE:         color = Qt::darkYellow;  break;
+            case HARPIE:        color = Qt::lightGray;   break;
+            case SERPENT:       color = Qt::green;       break;
+        }
+        _itemsGui[i].gui->setBrush(color);
+
+        _scene->addItem(_itemsGui[i].gui);
+    }
+}
+
 Coordonnee AffichageGUI::transposerCoord(const Coordonnee& coord, QGraphicsItem* item) {
     int w = item->boundingRect().width();
     int h = item->boundingRect().height();
     int x = _lianes[coord.x]->x() - (w / 2) + (LARGEUR_LIANES / 2);
-    int y = _jeu->getPositionJoueur().y * (WINDOW_SIZE_Y / COORD_MAX_Y) - (h / 2);
+    int y = coord.y * (WINDOW_SIZE_Y / COORD_MAX_Y) - (h / 2);
     return { x, y };
 }
