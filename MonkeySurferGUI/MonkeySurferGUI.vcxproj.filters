@@ -66,6 +66,9 @@
     <ClCompile Include="..\MonkeySurfer\jsonSerial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\MonkeySurfer\menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -140,6 +143,9 @@
     <ClInclude Include="..\MonkeySurfer\jsonSerial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <CustomBuild Include="mainwindow.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <ClInclude Include="..\MonkeySurfer\menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -179,6 +185,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_affichagegui.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_mainwindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_mainwindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <CustomBuild Include="debug\moc_predefs.h.cbt">

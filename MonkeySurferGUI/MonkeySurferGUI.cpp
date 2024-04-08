@@ -6,6 +6,7 @@
 #include "jsonSerial.h"
 #include "menu.h"
 #include "networking.h"
+#include <mainwindow.h>
 
 int main(int argv, char** args)
 {
@@ -21,6 +22,8 @@ int main(int argv, char** args)
 
     AffichageGUI affichage(&jeu, &menu);
 
-    affichage.show();
+    MonkeySurferMainWindow mainwindow;
+    mainwindow.showFullScreen();
+    /*affichage.show();*/
     app.exec();
 }

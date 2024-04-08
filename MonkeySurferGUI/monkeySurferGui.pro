@@ -4,6 +4,7 @@ CONFIG      += warn_on qt debug windows console
 HEADERS     += \
 			affichagegui.h \
 			pausemenugui.h \
+			mainwindow.h \
 			../MonkeySurfer/affichage.h \
 			../MonkeySurfer/aleatoire.h \
 			../MonkeySurfer/banane.h \
@@ -30,6 +31,7 @@ SOURCES     += \
 			MonkeySurferGUI.cpp \
 			affichagegui.cpp \
 			pausemenugui.cpp \
+			mainwindow.cpp \
 			../MonkeySurfer/affichage.cpp \
 			../MonkeySurfer/aleatoire.cpp \
 			../MonkeySurfer/banane.cpp \
