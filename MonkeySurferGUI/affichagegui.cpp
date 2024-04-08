@@ -19,7 +19,6 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     // Sprite du joueur
     _singe = new QGraphicsRectItem;
     _singe->setRect(0, 0, 100, 100);
-    _singe->setTransformOriginPoint(_singe->boundingRect().center());
     _scene->addItem(_singe);
 
     // Sprites des lianes
@@ -28,10 +27,13 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
 
         _lianes[i] = new QGraphicsRectItem;
         _lianes[i]->setRect(0, 0, LARGEUR_LIANES, WINDOW_SIZE_Y);
-        _lianes[i]->setTransformOriginPoint(_lianes[i]->boundingRect().center());
         _lianes[i]->setPos(x, 0);
         _scene->addItem(_lianes[i]);
     }
+
+    // Menu pause
+    _menuPause = new PauseMenuGui;
+    _menuPause->sceneAjouter(_scene);
 
     // Timer qui update automatiquement le jeu ainsi que les graphiques Qt
     _updateTimer = new QTimer;
@@ -45,8 +47,8 @@ void AffichageGUI::afficherJeu() {
     afficherJoueur();
     afficherItems();
     afficherIU();
-    // afficherGameOver();
-    // afficherPause();
+    afficherGameOver();
+    afficherPause();
 }
 
 void AffichageGUI::afficherMenu() {
@@ -84,7 +86,12 @@ void AffichageGUI::afficherGameOver() {
 }
 
 void AffichageGUI::afficherPause() {
-
+    if (_jeu->isPaused()) {
+        _menuPause->setVisible(true);
+        _menuPause->setChoixOption(_jeu->getPauseOption());
+    }
+    else
+        _menuPause->setVisible(false);
 }
 
 void AffichageGUI::updateJeu() {

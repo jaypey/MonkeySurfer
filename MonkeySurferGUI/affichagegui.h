@@ -7,6 +7,7 @@
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include "affichage.h"
+#include "pausemenugui.h"
 
 #define WINDOW_SIZE_X 800
 #define WINDOW_SIZE_Y 600
@@ -45,6 +46,8 @@ private:
     QGraphicsScene* _scene;
     QGraphicsRectItem* _singe;
     QGraphicsRectItem* _lianes[NB_LIANES];
+    PauseMenuGui* _menuPause;
+
     QTimer* _updateTimer;
 };
 
