@@ -1,0 +1,8 @@
+<RCC>
+    <qresource>
+	<file>sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb1.png</file>
+	<file>sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb2.png</file>
+	<file>sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb3.png</file>
+	<file>sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb4.png</file>
+    </qresource>
+</RCC>

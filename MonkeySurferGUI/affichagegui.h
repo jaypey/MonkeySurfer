@@ -4,6 +4,7 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QGraphicsPixmapItem>
 #include <QTimer>
 #include "affichage.h"
 

@@ -55,3 +55,6 @@ INCLUDEPATH += \
 LIBS        += -L../MonkeySurfer/lib enet64.lib winmm.lib
 DEFINES     += USE_QT
 QT          += widgets
+
+RESOURCES += \
+    Resource_qrc.qrc

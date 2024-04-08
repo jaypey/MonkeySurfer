@@ -1,10 +1,14 @@
 #include "affichagegui.h"
 #include <QDebug>
 
+
 AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     // Scene du jeu
     _scene = new QGraphicsScene;
     _scene->setSceneRect(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y);
+    QGraphicsPixmapItem* pixmap = new QGraphicsPixmapItem;
+    pixmap->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
+    _scene->addItem(pixmap);
 
     // View du jeu
     setScene(_scene);
