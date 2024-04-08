@@ -19,6 +19,8 @@
 #define ESPACEMENT_LIANES 100
 #define LARGEUR_LIANES 20
 
+#define PADDING_ITEM_JOUEUR 10.0
+
 #define FPS 30
 
 class AffichageGUI : public Affichage {
@@ -50,6 +52,15 @@ private:
     QGraphicsRectItem* _singe;
     QGraphicsRectItem* _lianes[NB_LIANES];
     PauseMenuGui* _menuPause;
+
+    QGraphicsTextItem* _score;
+    QGraphicsTextItem* _piece;
+    QGraphicsTextItem* _item;
+
+    QGraphicsRectItem* _item1;
+    QGraphicsRectItem* _item2;
+    QGraphicsRectItem* _itemCadre1;
+    QGraphicsRectItem* _itemCadre2;
 
     std::vector<ItemGui> _itemsGui;
 

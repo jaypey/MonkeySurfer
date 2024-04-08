@@ -35,6 +35,52 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _menuPause = new PauseMenuGui;
     _menuPause->sceneAjouter(_scene);
 
+    // Score + pieces + item texte
+    _score = new QGraphicsTextItem;
+    _score->setFont(QFont("Arial", 20));
+    _score->setPos(20, WINDOW_SIZE_Y - 60);
+    _scene->addItem(_score);
+
+    _piece = new QGraphicsTextItem;
+    _piece->setFont(QFont("Arial", 20));
+    _piece->setPos(20, WINDOW_SIZE_Y - 100);
+    _scene->addItem(_piece);
+
+    _item = new QGraphicsTextItem;
+    _item->setFont(QFont("Arial", 20));
+    _item->setPos(WINDOW_SIZE_X - 140, WINDOW_SIZE_Y - 60);
+    _item->setPlainText("ITEMS");
+    _scene->addItem(_item);
+
+    // Items du joueur
+    _itemCadre1 = new QGraphicsRectItem;
+    _itemCadre1->setRect(0, 0, 75, 75);
+    _itemCadre1->setPos(WINDOW_SIZE_X - 160, WINDOW_SIZE_Y - 150);
+    _scene->addItem(_itemCadre1);
+
+    _itemCadre2 = new QGraphicsRectItem;
+    _itemCadre2->setRect(0, 0, 40, 40);
+    _itemCadre2->setPos(WINDOW_SIZE_X - 70, WINDOW_SIZE_Y - 170);
+    _scene->addItem(_itemCadre2);
+
+    _item1 = new QGraphicsRectItem;
+    int wc1 = _itemCadre1->boundingRect().width();
+    int hc1 = _itemCadre1->boundingRect().height();
+    int xc1 = _itemCadre1->x();
+    int yc1 = _itemCadre1->y();
+    _item1->setRect(0, 0, wc1 - (PADDING_ITEM_JOUEUR * 2), hc1 - (PADDING_ITEM_JOUEUR * 2));
+    _item1->setPos(xc1 + PADDING_ITEM_JOUEUR, yc1 + PADDING_ITEM_JOUEUR);
+    _scene->addItem(_item1);
+
+    _item2 = new QGraphicsRectItem;
+    int wc2 = _itemCadre2->boundingRect().width();
+    int hc2 = _itemCadre2->boundingRect().height();
+    int xc2 = _itemCadre2->x();
+    int yc2 = _itemCadre2->y();
+    _item2->setRect(0, 0, wc2 - (PADDING_ITEM_JOUEUR * 2), hc2 - (PADDING_ITEM_JOUEUR * 2));
+    _item2->setPos(xc2 + PADDING_ITEM_JOUEUR, yc2 + PADDING_ITEM_JOUEUR);
+    _scene->addItem(_item2);
+
     // Timer qui update automatiquement le jeu ainsi que les graphiques Qt
     _updateTimer = new QTimer;
     QObject::connect(_updateTimer, SIGNAL(timeout()), this, SLOT(update()));
@@ -97,7 +143,35 @@ void AffichageGUI::afficherItems() {
 }
 
 void AffichageGUI::afficherIU() {
+    // Texte score & piece
+    _score->setPlainText(QString("Score: ") + QString::number(_jeu->getPointageJoueur()));
+    _piece->setPlainText(QString("Pieces: ") + QString::number(_jeu->getPiecesJoueur()));
 
+    // Items que le joueur a recolte
+    char charItem1 = _jeu->getCharInventaire().item1;
+    char charItem2 = _jeu->getCharInventaire().item2;
+
+    if (charItem1 == '@') {
+        _item1->setVisible(true);
+        _item1->setBrush(Qt::cyan);
+    }
+    else if (charItem1 == 'B') {
+        _item1->setVisible(true);
+        _item1->setBrush(Qt::yellow);
+    }
+    else
+        _item1->setVisible(false);
+
+    if (charItem2 == '@') {
+        _item2->setVisible(true);
+        _item2->setBrush(Qt::cyan);
+    }
+    else if (charItem2 == 'B') {
+        _item2->setVisible(true);
+        _item2->setBrush(Qt::yellow);
+    }
+    else
+        _item2->setVisible(false);
 }
 
 void AffichageGUI::afficherGameOver() {
@@ -118,7 +192,6 @@ void AffichageGUI::updateJeu() {
     _jeu->getJsonSerial()->recvJson();
 
     _jeu->debuterPartie();
-    qDebug() << _jeu->getPointageJoueur() << ", " << _jeu->getPositionJoueur().x;
 }
 
 void AffichageGUI::updateGUI() {
@@ -147,7 +220,7 @@ void AffichageGUI::updateItemGUI() {
         switch (_itemsGui[i].item->getID()) {
             case OBSTACLE_FIXE: color = Qt::red;         break;
             case BANANE:        color = Qt::yellow;      break;
-            case BOUCLIER:      color = Qt::blue;        break;
+            case BOUCLIER:      color = Qt::cyan;        break;
             case PIECE:         color = Qt::darkYellow;  break;
             case HARPIE:        color = Qt::lightGray;   break;
             case SERPENT:       color = Qt::green;       break;
