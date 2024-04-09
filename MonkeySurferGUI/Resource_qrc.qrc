@@ -6,5 +6,7 @@
 	<file>sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb4.png</file>
 	<file>sprites\Background\Vines\Vine.png</file>
 	<file>sprites\Background\Background\Background.png</file>
+	<file>fonts\JungleFeverNF.otf</file>
+  <file>images\monkeysurfer.png</file>
     </qresource>
 </RCC>
