@@ -56,6 +56,17 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _item->setDefaultTextColor(Qt::black);
     _scene->addItem(_item);
 
+    // Fleches direction joueur
+    _flecheGauche = new QGraphicsPixmapItem;
+    _flecheGauche->setPixmap(QPixmap(":/sprites/UI/flecheGauche.png"));
+    _flecheGauche->setVisible(false);
+    _scene->addItem(_flecheGauche);
+
+    _flecheDroite = new QGraphicsPixmapItem;
+    _flecheDroite->setPixmap(QPixmap(":/sprites/UI/flecheDroite.png"));
+    _flecheDroite->setVisible(false);
+    _scene->addItem(_flecheDroite);
+
     // Items du joueur
     _itemCadre1 = new QGraphicsRectItem;
     _itemCadre1->setRect(0, 0, 75, 75);
@@ -186,6 +197,22 @@ void AffichageGUI::afficherIU() {
     }
     else
         _item2->setVisible(false);
+
+    // Fleches direction joueur
+    if (_jeu->getJsonSerial()->joystickMaintenu(DROITE)) {
+        _flecheDroite->setVisible(true);
+        _flecheGauche->setVisible(false);
+        _flecheDroite->setPos(_singe->x() + 75 - _singe->boundingRect().width(), _singe->y() - 2);
+    }
+    else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE)) {
+        _flecheGauche->setVisible(true);
+        _flecheDroite->setVisible(false);
+        _flecheGauche->setPos(_singe->x() - 75, _singe->y() - 2);
+    }
+    else {
+        _flecheGauche->setVisible(false);
+        _flecheDroite->setVisible(false);
+    }
 }
 
 void AffichageGUI::afficherGameOver() {

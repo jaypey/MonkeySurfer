@@ -59,6 +59,9 @@ private:
     QGraphicsTextItem* _piece;
     QGraphicsTextItem* _item;
 
+    QGraphicsPixmapItem* _flecheGauche;
+    QGraphicsPixmapItem* _flecheDroite;
+
     QGraphicsRectItem* _item1;
     QGraphicsRectItem* _item2;
     QGraphicsRectItem* _itemCadre1;
