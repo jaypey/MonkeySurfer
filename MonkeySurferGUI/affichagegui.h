@@ -13,12 +13,12 @@
 #include "itemgui.h"
 #include "pausemenugui.h"
 
-#define WINDOW_SIZE_X 800
-#define WINDOW_SIZE_Y 600
+#define WINDOW_SIZE_X 1920
+#define WINDOW_SIZE_Y 1080
 #define COORD_MAX_Y 21
 
 #define NB_LIANES 5
-#define ESPACEMENT_LIANES 100
+#define ESPACEMENT_LIANES 200
 #define LARGEUR_LIANES 20
 
 #define PADDING_ITEM_JOUEUR 10.0
@@ -51,8 +51,9 @@ private:
     Coordonnee transposerCoord(const Coordonnee& coord, QGraphicsItem* item);
 
     QGraphicsScene* _scene;
-    QGraphicsRectItem* _singe;
-    QGraphicsRectItem* _lianes[NB_LIANES];
+    QGraphicsPixmapItem* _singe;
+    QGraphicsPixmapItem* _lianes[NB_LIANES];
+    QGraphicsPixmapItem* _background;
     PauseMenuGui* _menuPause;
 
     QGraphicsTextItem* _score;

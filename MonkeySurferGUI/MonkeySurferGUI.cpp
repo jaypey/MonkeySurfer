@@ -21,6 +21,6 @@ int main(int argv, char** args)
 
     AffichageGUI affichage(&jeu, &menu);
 
-    affichage.show();
+    affichage.showFullScreen();
     app.exec();
 }

@@ -1,8 +1,5 @@
 <RCC>
     <qresource>
-	<file>music\monkeyClimb.mp3</file>
-	<file>sprites\UI\flecheGauche.png</file>
-	<file>sprites\UI\flecheDroite.png</file>
 	<file>sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb1.png</file>
 	<file>sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb2.png</file>
 	<file>sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb3.png</file>
