@@ -3,6 +3,7 @@ TARGET       = monkeysurfergui
 CONFIG      += warn_on qt debug windows console
 HEADERS     += \
 			affichagegui.h \
+			itemgui.h \
 			pausemenugui.h \
 			mainwindow.h \
 			../MonkeySurfer/affichage.h \
@@ -58,4 +59,5 @@ INCLUDEPATH += \
 			../MonkeySurfer/lib
 LIBS        += -L../MonkeySurfer/lib enet64.lib winmm.lib
 DEFINES     += USE_QT
-QT          += widgets
+QT          += widgets multimedia
+RESOURCES   += Resource_qrc.qrc

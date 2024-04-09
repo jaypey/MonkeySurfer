@@ -13,20 +13,29 @@ PauseMenuGui::PauseMenuGui() {
     _textePause = new QGraphicsTextItem;
     _textePause->setPlainText("PAUSE");
     _textePause->setFont(QFont("Arial", 40));
+    _textePause->setDefaultTextColor(Qt::black);
     w = _textePause->boundingRect().width();
     _textePause->setPos(400 - (w / 2.0), 150);
 
     _texteContinuer = new QGraphicsTextItem;
     _texteContinuer->setPlainText("Continuer");
     _texteContinuer->setFont(QFont("Arial", 20));
+    _texteContinuer->setDefaultTextColor(Qt::black);
     w = _texteContinuer->boundingRect().width();
     _texteContinuer->setPos(400 - (w / 2.0), 325);
 
     _texteRetourMenu = new QGraphicsTextItem;
     _texteRetourMenu->setPlainText("Retour au menu");
     _texteRetourMenu->setFont(QFont("Arial", 20));
+    _texteRetourMenu->setDefaultTextColor(Qt::black);
     w = _texteRetourMenu->boundingRect().width();
     _texteRetourMenu->setPos(400 - (w / 2.0), 400);
+
+    _cadre->setZValue(100);
+    _choix->setZValue(101);
+    _textePause->setZValue(102);
+    _texteContinuer->setZValue(103);
+    _texteRetourMenu->setZValue(104);
 }
 
 void PauseMenuGui::sceneAjouter(QGraphicsScene* scene) {

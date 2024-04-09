@@ -1,11 +1,16 @@
 #ifndef AFFICHAGEGUI_H
 #define AFFICHAGEGUI_H
 
+#include <vector>
+#include <QAudioOutput>
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QGraphicsPixmapItem>
+#include <QMediaPlayer>
 #include <QTimer>
 #include "affichage.h"
+#include "itemgui.h"
 #include "pausemenugui.h"
 
 #define WINDOW_SIZE_X 800
@@ -16,7 +21,9 @@
 #define ESPACEMENT_LIANES 100
 #define LARGEUR_LIANES 20
 
-#define FPS 30
+#define PADDING_ITEM_JOUEUR 10.0
+
+#define FPS 60
 
 class AffichageGUI : public Affichage {
     Q_OBJECT
@@ -38,6 +45,7 @@ private:
 
     void updateJeu();
     void updateGUI();
+    void updateItemGUI();
 
     // Transpose les position du jeu de base a l'interface GUI
     Coordonnee transposerCoord(const Coordonnee& coord, QGraphicsItem* item);
@@ -46,6 +54,23 @@ private:
     QGraphicsRectItem* _singe;
     QGraphicsRectItem* _lianes[NB_LIANES];
     PauseMenuGui* _menuPause;
+
+    QGraphicsTextItem* _score;
+    QGraphicsTextItem* _piece;
+    QGraphicsTextItem* _item;
+
+    QGraphicsPixmapItem* _flecheGauche;
+    QGraphicsPixmapItem* _flecheDroite;
+
+    QGraphicsRectItem* _item1;
+    QGraphicsRectItem* _item2;
+    QGraphicsRectItem* _itemCadre1;
+    QGraphicsRectItem* _itemCadre2;
+
+    std::vector<ItemGui> _itemsGui;
+
+    QMediaPlayer* _mediaPlayer;
+    QAudioOutput* _audioOutput;
 
     QTimer* _updateTimer;
 };
