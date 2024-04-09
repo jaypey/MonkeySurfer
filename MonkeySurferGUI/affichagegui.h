@@ -23,7 +23,7 @@
 
 #define PADDING_ITEM_JOUEUR 10.0
 
-#define FPS 30
+#define FPS 60
 
 class AffichageGUI : public Affichage {
     Q_OBJECT
