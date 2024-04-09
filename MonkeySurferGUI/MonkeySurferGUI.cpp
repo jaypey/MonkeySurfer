@@ -6,10 +6,20 @@
 #include "jsonSerial.h"
 #include "menu.h"
 #include "networking.h"
+#include <mainwindow.h>
+#include <QFontDatabase>
 
 int main(int argv, char** args)
 {
     QApplication app(argv, args);
+
+    //Setup fonts
+    QFontDatabase::addApplicationFont(QString(":/fonts/JungleFeverNF.otf"));
+
+    QFont defaultFont;
+    defaultFont.setFamily("Jungle Fever NF");
+    defaultFont.setPointSize(20);
+    app.setFont(defaultFont);
 
     JsonSerial jsonSerial;
     jsonSerial.openSerialPort("COM4");
@@ -21,6 +31,7 @@ int main(int argv, char** args)
 
     AffichageGUI affichage(&jeu, &menu);
 
-    affichage.show();
+    MonkeySurferMainWindow mainwindow(&affichage);
+    mainwindow.showFullScreen();
     app.exec();
 }

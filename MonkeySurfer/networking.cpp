@@ -12,22 +12,6 @@ Networking::Networking()
 
 Networking::~Networking()
 {
-    ENetEvent event;
-
-    enet_peer_disconnect(_host, 0);
-
-    while (enet_host_service(_client, &event, 100000) > 0)
-    {
-        switch (event.type)
-        {
-        case ENET_EVENT_TYPE_RECEIVE:
-            enet_packet_destroy(event.packet);
-            break;
-        case ENET_EVENT_TYPE_DISCONNECT:
-            std::cout << "Deconnectee" << std::endl;
-            break;
-        }
-    }
 }
 
 void Networking::Connect(std::string adresse, int port)
