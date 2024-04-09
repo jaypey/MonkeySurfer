@@ -220,6 +220,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="fonts\JungleFeverNF.otf">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb1.png">
       <Filter>Resource Files</Filter>
     </None>
@@ -235,7 +238,16 @@
     <CustomBuild Include="Resource_qrc.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <None Include="sprites\UI\flecheDroite.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\UI\flecheGauche.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="music\monkeyClimb.mp3">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="images\monkeysurfer.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

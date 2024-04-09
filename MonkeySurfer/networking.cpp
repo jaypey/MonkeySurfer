@@ -12,10 +12,6 @@ Networking::Networking()
 
 Networking::~Networking()
 {
-    ENetEvent event;
-
-    enet_peer_disconnect(_host, 0);
-
 }
 
 void Networking::Connect(std::string adresse, int port)

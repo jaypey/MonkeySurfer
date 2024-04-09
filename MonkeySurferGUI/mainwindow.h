@@ -4,23 +4,28 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QGridLayout>
+#include <QApplication>
+#include <QGraphicsView>
+#include <QLabel>
+#include <QPixMap>
 
 class MonkeySurferMainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	explicit MonkeySurferMainWindow();
+	explicit MonkeySurferMainWindow(QGraphicsView* jeu);
 
 private slots:
 	void demarrerPartie();
 	void demarrerPartieMulti();
 	void afficherSkins();
 	void afficherAide();
-	void quitter();
 
 private:
 	QWidget* m_centralWidget;
+	QGraphicsView* m_jeu;
 	QGridLayout* m_layout;
+	QLabel* m_titre;
 	QPushButton* m_btnDemarrer;
 	QPushButton* m_btnDemarrerMulti;
 	QPushButton* m_btnAfficherSkins;
