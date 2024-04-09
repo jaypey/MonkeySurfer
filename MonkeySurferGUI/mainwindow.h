@@ -9,7 +9,7 @@ class MonkeySurferMainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	MonkeySurferMainWindow();
+	explicit MonkeySurferMainWindow();
 
 private slots:
 	void demarrerPartie();
@@ -19,12 +19,13 @@ private slots:
 	void quitter();
 
 private:
-	QGridLayout* layout;
-	QPushButton* btnDemarrer;
-	QPushButton* btnDemarrerMulti;
-	QPushButton* btnAfficherSkins;
-	QPushButton* btnAfficherAide;
-	QPushButton* btnQuitter;
+	QWidget* m_centralWidget;
+	QGridLayout* m_layout;
+	QPushButton* m_btnDemarrer;
+	QPushButton* m_btnDemarrerMulti;
+	QPushButton* m_btnAfficherSkins;
+	QPushButton* m_btnAfficherAide;
+	QPushButton* m_btnQuitter;
 };
 
 
