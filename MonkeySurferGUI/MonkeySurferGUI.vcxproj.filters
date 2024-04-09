@@ -223,5 +223,8 @@
     <CustomBuild Include="Resource_qrc.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <None Include="music\monkeyClimb.mp3">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

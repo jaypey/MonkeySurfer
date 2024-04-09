@@ -2,10 +2,12 @@
 #define AFFICHAGEGUI_H
 
 #include <vector>
+#include <QAudioOutput>
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
+#include <QMediaPlayer>
 #include <QTimer>
 #include "affichage.h"
 #include "itemgui.h"
@@ -63,6 +65,9 @@ private:
     QGraphicsRectItem* _itemCadre2;
 
     std::vector<ItemGui> _itemsGui;
+
+    QMediaPlayer* _mediaPlayer;
+    QAudioOutput* _audioOutput;
 
     QTimer* _updateTimer;
 };

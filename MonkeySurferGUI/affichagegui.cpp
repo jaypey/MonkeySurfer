@@ -6,6 +6,7 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     // Scene du jeu
     _scene = new QGraphicsScene;
     _scene->setSceneRect(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y);
+    _scene->setBackgroundBrush(Qt::white);
     QGraphicsPixmapItem* pixmap = new QGraphicsPixmapItem;
     pixmap->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
     _scene->addItem(pixmap);
@@ -39,17 +40,20 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _score = new QGraphicsTextItem;
     _score->setFont(QFont("Arial", 20));
     _score->setPos(20, WINDOW_SIZE_Y - 60);
+    _score->setDefaultTextColor(Qt::black);
     _scene->addItem(_score);
 
     _piece = new QGraphicsTextItem;
     _piece->setFont(QFont("Arial", 20));
     _piece->setPos(20, WINDOW_SIZE_Y - 100);
+    _piece->setDefaultTextColor(Qt::black);
     _scene->addItem(_piece);
 
     _item = new QGraphicsTextItem;
     _item->setFont(QFont("Arial", 20));
     _item->setPos(WINDOW_SIZE_X - 140, WINDOW_SIZE_Y - 60);
     _item->setPlainText("ITEMS");
+    _item->setDefaultTextColor(Qt::black);
     _scene->addItem(_item);
 
     // Items du joueur
@@ -80,6 +84,16 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _item2->setRect(0, 0, wc2 - (PADDING_ITEM_JOUEUR * 2), hc2 - (PADDING_ITEM_JOUEUR * 2));
     _item2->setPos(xc2 + PADDING_ITEM_JOUEUR, yc2 + PADDING_ITEM_JOUEUR);
     _scene->addItem(_item2);
+
+    // Joueur audio
+    _mediaPlayer = new QMediaPlayer;
+    _audioOutput = new QAudioOutput;
+
+    _mediaPlayer->setAudioOutput(_audioOutput);
+    _mediaPlayer->setSource(QUrl("qrc:/music/monkeyClimb.mp3"));
+    _audioOutput->setVolume(50);
+    _mediaPlayer->setLoops(QMediaPlayer::Infinite);
+    _mediaPlayer->play();
 
     // Timer qui update automatiquement le jeu ainsi que les graphiques Qt
     _updateTimer = new QTimer;
