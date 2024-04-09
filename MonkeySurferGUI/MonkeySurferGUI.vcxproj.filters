@@ -205,6 +205,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="sprites\Background\Background\Background.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb1.png">
       <Filter>Resource Files</Filter>
     </None>
@@ -220,5 +223,8 @@
     <CustomBuild Include="Resource_qrc.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <None Include="sprites\Background\Vines\Vine.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
