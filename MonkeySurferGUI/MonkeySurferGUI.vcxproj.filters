@@ -265,6 +265,9 @@
     <None Include="sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb4.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\Background\Background\Repeatable_space.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <CustomBuild Include="Resource_qrc.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>

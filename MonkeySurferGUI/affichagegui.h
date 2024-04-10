@@ -71,6 +71,8 @@ private:
     AnimatedPixmap* _singe;
     QGraphicsPixmapItem* _lianes[NB_LIANES];
     QGraphicsPixmapItem* _background;
+    QGraphicsPixmapItem* _backgroundLoop1;
+    QGraphicsPixmapItem* _backgroundLoop2;
     PauseMenuGui* _menuPause;
     GameOverMenuGui* _menuGameover;
 

@@ -21,6 +21,16 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _background->setPos(0, (-_background->boundingRect().height() + WINDOW_SIZE_Y));
     _scene->addItem(_background);
 
+    _backgroundLoop1 = new QGraphicsPixmapItem;
+    _backgroundLoop1->setPixmap(QPixmap(":\\sprites\\Background\\Background\\Repeatable_space.png"));
+    _backgroundLoop1->setPos(0, _background->y() - _backgroundLoop1->boundingRect().height());
+    _scene->addItem(_backgroundLoop1);
+
+    _backgroundLoop2 = new QGraphicsPixmapItem;
+    _backgroundLoop2->setPixmap(QPixmap(":\\sprites\\Background\\Background\\Repeatable_space.png"));
+    _backgroundLoop2->setPos(0, _backgroundLoop1->y() - _backgroundLoop2->boundingRect().height());
+    _scene->addItem(_backgroundLoop2);
+
     // Sprite du joueur
     _singe = new AnimatedPixmap(150);
     _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png");
@@ -167,7 +177,17 @@ void AffichageGUI::mouvementSinge() {
 }
 
 void AffichageGUI::afficherArrierePlan() {
-    _background->setPos(0, _background->y() + std::max(1.0, (1000.0 - _jeu->getVitesse()) / 100.0));
+    int mouvementBg = std::max(1.0, (1000.0 - _jeu->getVitesse()) / 100.0);
+
+    _background->setPos(0, _background->y() + mouvementBg);
+    _backgroundLoop1->setPos(0, _backgroundLoop1->y() + mouvementBg);
+    _backgroundLoop2->setPos(0, _backgroundLoop2->y() + mouvementBg);
+
+    if (_backgroundLoop1->y() > WINDOW_SIZE_Y)
+        _backgroundLoop1->setPos(0, _backgroundLoop2->y() - _backgroundLoop1->boundingRect().height());
+
+    if (_backgroundLoop2->y() > WINDOW_SIZE_Y)
+        _backgroundLoop2->setPos(0, _backgroundLoop1->y() - _backgroundLoop2->boundingRect().height());
 }
 
 void AffichageGUI::afficherLianes() {
