@@ -9,24 +9,26 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
+#include <QGraphicsPixmapItem>
+#include <QPixmap>
 #include "skin.h"
 
 class SkinShop : public QWidget
 {
-  
+    
 public:
     explicit SkinShop();
 
-    void addScene(QGraphicsScene* scene);
-    void setVisible(bool visible);
+   
     int getSelectedSkin();
 
 
 private:
     int m_selectedSkinIndex;
+    void updateskinselection();
     void loadSkins();
     void displaySkinPreview();
     
+    
 };
-
 #endif // SKINSHOP_H

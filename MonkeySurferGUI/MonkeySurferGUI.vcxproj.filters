@@ -201,9 +201,9 @@
     <ClInclude Include="..\MonkeySurfer\skin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <CustomBuild Include="skinshop.h">
+    <ClInclude Include="skinshop.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_affichagegui.cpp">
@@ -224,12 +224,6 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    <ClCompile Include="debug\moc_skinshop.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\moc_skinshop.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="debug\qrc_Resource_qrc.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
