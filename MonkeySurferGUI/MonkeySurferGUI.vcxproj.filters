@@ -262,6 +262,9 @@
     <None Include="sprites\Background\Vines\Vine.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\UI\cadrevigne.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\Effets\dustpuff1.png">
       <Filter>Resource Files</Filter>
     </None>
