@@ -29,14 +29,15 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
         _lianes[i] = new QGraphicsPixmapItem;
 
         _lianes[i]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\Vine.png"));
+        //_lianes[i]->setRect(0, 0, LARGEUR_LIANES, WINDOW_SIZE_Y);
         _lianes[i]->setPos(x, 0);
         _scene->addItem(_lianes[i]);
     }
 
     // Sprite du joueur
-        _singe = new QGraphicsPixmapItem;
-        _singe->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
-        _scene->addItem(_singe);
+    _singe = new QGraphicsPixmapItem;
+    _singe->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
+    _scene->addItem(_singe);
 
     // Menu pause
     _menuPause = new PauseMenuGui;
@@ -74,14 +75,15 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _scene->addItem(_flecheDroite);
 
     // Items du joueur
-    _itemCadre1 = new QGraphicsRectItem;
-    _itemCadre1->setRect(0, 0, 75, 75);
-    _itemCadre1->setPos(WINDOW_SIZE_X - 160, WINDOW_SIZE_Y - 150);
+    _itemCadre1 = new QGraphicsPixmapItem;
+    _itemCadre1->setPixmap(QPixmap(":/sprites/UI/cadrevigne.png"));
+    _itemCadre1->setPos(WINDOW_SIZE_X - 350, WINDOW_SIZE_Y - 250);
     _scene->addItem(_itemCadre1);
 
-    _itemCadre2 = new QGraphicsRectItem;
-    _itemCadre2->setRect(0, 0, 40, 40);
-    _itemCadre2->setPos(WINDOW_SIZE_X - 70, WINDOW_SIZE_Y - 170);
+    _itemCadre2 = new QGraphicsPixmapItem;
+    _itemCadre2->setPixmap(QPixmap(":/sprites/UI/cadrevigne.png"));
+    _itemCadre2->setScale(0.8);
+    _itemCadre2->setPos(WINDOW_SIZE_X - 170, WINDOW_SIZE_Y - 270);
     _scene->addItem(_itemCadre2);
 
     _item1 = new QGraphicsRectItem;
@@ -89,17 +91,17 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     int hc1 = _itemCadre1->boundingRect().height();
     int xc1 = _itemCadre1->x();
     int yc1 = _itemCadre1->y();
-    _item1->setRect(0, 0, wc1 - (PADDING_ITEM_JOUEUR * 2), hc1 - (PADDING_ITEM_JOUEUR * 2));
-    _item1->setPos(xc1 + PADDING_ITEM_JOUEUR, yc1 + PADDING_ITEM_JOUEUR);
+    _item1->setRect(0, 0, wc1 - (PADDING_ITEM1_JOUEUR * 2), hc1 - (PADDING_ITEM1_JOUEUR * 2));
+    _item1->setPos(xc1 + PADDING_ITEM1_JOUEUR, yc1 + PADDING_ITEM1_JOUEUR);
     _scene->addItem(_item1);
 
     _item2 = new QGraphicsRectItem;
-    int wc2 = _itemCadre2->boundingRect().width();
-    int hc2 = _itemCadre2->boundingRect().height();
+    int wc2 = _itemCadre2->boundingRect().width() * 0.8;
+    int hc2 = _itemCadre2->boundingRect().height() * 0.8;
     int xc2 = _itemCadre2->x();
     int yc2 = _itemCadre2->y();
-    _item2->setRect(0, 0, wc2 - (PADDING_ITEM_JOUEUR * 2), hc2 - (PADDING_ITEM_JOUEUR * 2));
-    _item2->setPos(xc2 + PADDING_ITEM_JOUEUR, yc2 + PADDING_ITEM_JOUEUR);
+    _item2->setRect(0, 0, wc2 - (PADDING_ITEM2_JOUEUR * 2), hc2 - (PADDING_ITEM2_JOUEUR * 2));
+    _item2->setPos(xc2 + PADDING_ITEM2_JOUEUR, yc2 + PADDING_ITEM2_JOUEUR);
     _scene->addItem(_item2);
 
     // Joueur audio
@@ -249,7 +251,9 @@ void AffichageGUI::updateJeu() {
     _jeu->getJsonSerial()->sendJson();
     _jeu->getJsonSerial()->recvJson();
 
-    _jeu->debuterPartie();
+    if (_menu->getEtat() == Menu::EtatMenu::JEU) {
+        _jeu->debuterPartie();
+    }
 }
 
 void AffichageGUI::updateGUI() {
