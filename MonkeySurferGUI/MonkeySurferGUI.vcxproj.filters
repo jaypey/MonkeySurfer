@@ -221,7 +221,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="sprites\Background\Background\Background.png">
-          <Filter>Resource Files</Filter>
+      <Filter>Resource Files</Filter>
     </None>
     <None Include="fonts\JungleFeverNF.otf">
       <Filter>Resource Files</Filter>
@@ -242,15 +242,6 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <None Include="sprites\Background\Vines\Vine.png">
-          <Filter>Resource Files</Filter>
-    </None>
-    <None Include="sprites\UI\flecheDroite.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="sprites\UI\flecheGauche.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="music\monkeyClimb.mp3">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="images\monkeysurfer.png">
