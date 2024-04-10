@@ -29,11 +29,6 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
         _lianes[i] = new QGraphicsPixmapItem;
 
         _lianes[i]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\Vine.png"));
-        //_lianes[1]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V1.png"));
-        //_lianes[2]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V2.png"));
-        //_lianes[3]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V3.png"));
-        //_lianes[4]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V4.png"));
-        //_lianes[i]->setRect(0, 0, LARGEUR_LIANES, WINDOW_SIZE_Y);
         _lianes[i]->setPos(x, 0);
         _scene->addItem(_lianes[i]);
     }
