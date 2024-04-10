@@ -31,7 +31,7 @@ int main(int argv, char** args)
 
     AffichageGUI affichage(&jeu, &menu);
 
-    MonkeySurferMainWindow mainwindow(&affichage);
+    MonkeySurferMainWindow mainwindow(&affichage, &menu);
     mainwindow.showFullScreen();
 
     app.exec();
