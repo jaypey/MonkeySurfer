@@ -13,6 +13,7 @@
 #include <QTimer>
 #include "affichage.h"
 #include "aleatoire.h"
+#include "animatedpixmap.h"
 #include "dustpuff.h"
 #include "itemgui.h"
 #include "pausemenugui.h"
@@ -44,6 +45,7 @@ public:
     void afficherMenu();
 public slots:
     void update();
+    void mouvementSinge();
 private:
     void afficherArrierePlan();
     void afficherLianes();
@@ -65,7 +67,7 @@ private:
     Coordonnee transposerCoord(const Coordonnee& coord, QGraphicsItem* item);
 
     QGraphicsScene* _scene;
-    QGraphicsPixmapItem* _singe;
+    AnimatedPixmap* _singe;
     QGraphicsPixmapItem* _lianes[NB_LIANES];
     QGraphicsPixmapItem* _background;
     PauseMenuGui* _menuPause;

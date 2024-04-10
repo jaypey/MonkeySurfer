@@ -8,6 +8,10 @@
 #include "elementjeu.h"
 #include "skin.h"
 
+#ifdef USE_QT
+#include <QObject>
+#endif
+
 struct charInventaire {
     char item1;
     char item2;
@@ -15,7 +19,11 @@ struct charInventaire {
 class Serpent;
 class Collectible;
 class Joueur
+#ifdef USE_QT
+    : public QObject
+#endif
 {
+    Q_OBJECT
 public:
     Joueur();
     ~Joueur();
@@ -63,7 +71,8 @@ public:
     bool down();
     bool Right();
     bool Left();
-
+signals:
+    void mouvementSinge();
 private:
     Coordonnee position;
     bool bouclierActif;

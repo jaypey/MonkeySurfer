@@ -240,6 +240,11 @@ bool Joueur::down()
             position.y += 1;
             nbBoost--;
         }
+
+#ifdef USE_QT
+        emit mouvementSinge();
+#endif
+
         return true;
     }
 
@@ -261,6 +266,11 @@ bool Joueur::up()
             position.y -= 1;
             nbBoost--;
         }
+
+#ifdef USE_QT
+        emit mouvementSinge();
+#endif
+
         return true;
     }
 
@@ -282,6 +292,11 @@ bool Joueur::Right()
             position.x += 1;
             nbBoost--;
         }
+
+#ifdef USE_QT
+        emit mouvementSinge();
+#endif
+
         return true;
     }
 
@@ -303,6 +318,11 @@ bool Joueur::Left()
             position.x -= 1;
             nbBoost--;
         }
+
+#ifdef USE_QT
+        emit mouvementSinge();
+#endif
+
         return true;
     }
 

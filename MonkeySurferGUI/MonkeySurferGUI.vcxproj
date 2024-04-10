@@ -145,6 +145,7 @@
     <ClCompile Include="..\MonkeySurfer\affichage.cpp" />
     <ClCompile Include="affichagegui.cpp" />
     <ClCompile Include="..\MonkeySurfer\aleatoire.cpp" />
+    <ClCompile Include="animatedpixmap.cpp" />
     <ClCompile Include="..\MonkeySurfer\banane.cpp" />
     <ClCompile Include="..\MonkeySurfer\bouclier.cpp" />
     <ClCompile Include="..\MonkeySurfer\collectible.cpp" />
@@ -181,6 +182,7 @@
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_affichagegui.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <ClInclude Include="..\MonkeySurfer\aleatoire.h" />
+    <ClInclude Include="animatedpixmap.h" />
     <ClInclude Include="..\MonkeySurfer\banane.h" />
     <ClInclude Include="..\MonkeySurfer\bouclier.h" />
     <ClInclude Include="..\MonkeySurfer\collectible.h" />
@@ -191,7 +193,16 @@
     <ClInclude Include="..\MonkeySurfer\harpieferoce.h" />
     <ClInclude Include="itemgui.h" />
     <ClInclude Include="..\MonkeySurfer\jeu.h" />
-    <ClInclude Include="..\MonkeySurfer\joueur.h" />
+    <CustomBuild Include="..\MonkeySurfer\joueur.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">..\MonkeySurfer\joueur.h;debug\moc_predefs.h;C:\Qt\6.7.0\msvc2019_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/prog/C++/MonkeySurfer/MonkeySurferGUI/debug/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/prog/C++/MonkeySurfer/MonkeySurferGUI -IC:/prog/C++/MonkeySurfer/MonkeySurfer -IC:/prog/C++/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore ..\MonkeySurfer\joueur.h -o debug\moc_joueur.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC ../MonkeySurfer/joueur.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_joueur.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">..\MonkeySurfer\joueur.h;release\moc_predefs.h;C:\Qt\6.7.0\msvc2019_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/prog/C++/MonkeySurfer/MonkeySurferGUI/release/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/prog/C++/MonkeySurfer/MonkeySurferGUI -IC:/prog/C++/MonkeySurfer/MonkeySurfer -IC:/prog/C++/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore ..\MonkeySurfer\joueur.h -o release\moc_joueur.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC ../MonkeySurfer/joueur.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_joueur.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
     <ClInclude Include="..\MonkeySurfer\jsonSerial.h" />
     <CustomBuild Include="mainwindow.h">
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">mainwindow.h;debug\moc_predefs.h;C:\Qt\6.7.0\msvc2019_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
@@ -231,6 +242,12 @@
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_affichagegui.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_joueur.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_joueur.cpp">
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_mainwindow.cpp">

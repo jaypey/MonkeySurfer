@@ -27,6 +27,7 @@ public:
     bool isBoosted();
     bool isAttacking();
     void setIsAttacking(bool attack);
+    Joueur* getJoueur();
     int getPointageJoueur();
     charInventaire getCharInventaire();
     int getPiecesJoueur();

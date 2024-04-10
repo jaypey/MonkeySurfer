@@ -121,6 +121,10 @@ void Jeu::setIsAttacking(bool attack)
     _isAttacking = attack;
 }
 
+Joueur* Jeu::getJoueur() {
+    return _joueur;
+}
+
 std::vector<ElementJeu*> Jeu::getElements() const
 {
     return _elements;

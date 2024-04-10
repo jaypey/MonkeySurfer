@@ -21,7 +21,6 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _background->setPos(0, (-_background->boundingRect().height() + WINDOW_SIZE_Y));
     _scene->addItem(_background);
 
-    
     // Sprites des lianes
     for (int i = 0; i < NB_LIANES; i++) {
         int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
@@ -35,8 +34,12 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     }
 
     // Sprite du joueur
-    _singe = new QGraphicsPixmapItem;
-    _singe->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
+    _singe = new AnimatedPixmap(150);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb2.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb3.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb4.png");
+    _singe->setFrame(0);
     _scene->addItem(_singe);
 
     // Menu pause
@@ -121,6 +124,9 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _updateTimer = new QTimer;
     QObject::connect(_updateTimer, SIGNAL(timeout()), this, SLOT(update()));
     _updateTimer->start(1000 / FPS); // Nb ms par frame
+
+    // Quand le singe bouge on part l'animation
+    QObject::connect(_jeu->getJoueur(), SIGNAL(mouvementSinge()), this, SLOT(mouvementSinge()));
 }
 
 void AffichageGUI::afficherJeu() {
@@ -142,6 +148,10 @@ void AffichageGUI::update() {
     updateGUI();
 }
 
+void AffichageGUI::mouvementSinge() {
+    _singe->setLoops(1);
+}
+
 void AffichageGUI::afficherArrierePlan() {
 
 }
@@ -154,6 +164,7 @@ void AffichageGUI::afficherJoueur() {
     // Singe
     Coordonnee coord = transposerCoord(_jeu->getPositionJoueur(), _singe);
     _singe->setPos(coord.x, coord.y);
+    _singe->animate();
 
     // Nuages de poussiere (serpent)
     if (_jeu->getJsonSerial()->accShake() && canSpawnDustPuff())

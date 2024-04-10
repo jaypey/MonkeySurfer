@@ -3,6 +3,7 @@ TARGET       = monkeysurfergui
 CONFIG      += warn_on qt debug windows console
 HEADERS     += \
 			affichagegui.h \
+			animatedpixmap.h \
 			dustpuff.h \
 			itemgui.h \
 			pausemenugui.h \
@@ -34,6 +35,7 @@ HEADERS     += \
 SOURCES     += \
 			MonkeySurferGUI.cpp \
 			affichagegui.cpp \
+			animatedpixmap.cpp \
 			pausemenugui.cpp \
 			mainwindow.cpp \
 			skinshop.cpp \
