@@ -91,19 +91,23 @@ void MonkeySurferMainWindow::updateMenuSelection()
 
 void MonkeySurferMainWindow::demarrerPartie() {
 	m_updateTimer->stop();
+	m_menu->setEtat(Menu::EtatMenu::JEU);
 	this->m_jeu->showFullScreen();
 	this->hide();
 }
 
 void MonkeySurferMainWindow::demarrerPartieMulti()
 {
+	m_menu->setEtat(Menu::EtatMenu::MULTIJOUEUR);
 }
 
 void MonkeySurferMainWindow::afficherSkins()
 {
+	m_menu->setEtat(Menu::EtatMenu::SKINS);
 }
 
 void MonkeySurferMainWindow::afficherAide()
 {
+	m_menu->setEtat(Menu::EtatMenu::AIDE);
 }
 
