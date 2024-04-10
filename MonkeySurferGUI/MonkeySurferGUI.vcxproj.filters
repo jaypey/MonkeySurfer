@@ -201,9 +201,9 @@
     <ClInclude Include="..\MonkeySurfer\skin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <CustomBuild Include="skinshop.h">
+    <ClInclude Include="skinshop.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_affichagegui.cpp">
@@ -224,12 +224,6 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    <ClCompile Include="debug\moc_skinshop.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\moc_skinshop.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="debug\qrc_Resource_qrc.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -284,6 +278,33 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="images\monkeysurfer.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin5.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin6.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin7.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin8.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin9.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

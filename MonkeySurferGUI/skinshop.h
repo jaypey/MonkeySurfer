@@ -5,16 +5,30 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QKeyEvent>
-#include <QVBoxLayout> // Include for layout management
+#include <QVBoxLayout>
+#include <QGraphicsRectItem>
+#include <QGraphicsScene>
+#include <QGraphicsTextItem>
+#include <QGraphicsPixmapItem>
+#include <QPixmap>
 #include "skin.h"
 
 class SkinShop : public QWidget
 {
-    Q_OBJECT
+    
 public:
-    explicit SkinShop(QWidget* parent = nullptr);
+    explicit SkinShop();
+
+   
+    int getSelectedSkin();
+
 
 private:
+    int m_selectedSkinIndex;
+    void updateskinselection();
+    void loadSkins();
+    void displaySkinPreview();
+    
+    
 };
-
 #endif // SKINSHOP_H

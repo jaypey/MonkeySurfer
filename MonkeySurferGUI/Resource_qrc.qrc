@@ -15,5 +15,14 @@
 		<file>sprites\Background\Background\Background.png</file>
 		<file>fonts\JungleFeverNF.otf</file>
 		<file>images\monkeysurfer.png</file>
+		<file>sprites\Skins\SkinShop\skin1.png</file>
+		<file>sprites\Skins\SkinShop\skin2.png</file>
+		<file>sprites\Skins\SkinShop\skin3.png</file>
+		<file>sprites\Skins\SkinShop\skin4.png</file>
+		<file>sprites\Skins\SkinShop\skin5.png</file>
+		<file>sprites\Skins\SkinShop\skin6.png</file>
+		<file>sprites\Skins\SkinShop\skin7.png</file>
+		<file>sprites\Skins\SkinShop\skin8.png</file>
+		<file>sprites\Skins\SkinShop\skin9.png</file>
     </qresource>
 </RCC>
