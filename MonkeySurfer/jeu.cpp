@@ -188,7 +188,6 @@ void Jeu::updateJoueur()
 		_jsonserial->vibration(true);
 		int vie = _joueur->getSerpent()->getHp();
 		_jsonserial->bar(vie);
-		std::cout << vie;
 	}
 
 	else {
