@@ -76,6 +76,9 @@ void JsonSerial::sendJson() {
   doc["joyY"]["dir"] = (int) jstate.direction;
   doc["joyY"]["repeat"] = jstate.repetition;
 
+  //DETECTEUR DE MUONS
+  doc["muons"] = _info->muons->muons;
+
   // ENVOI DU MESSAGE
   Serial.print(">");
   serializeJson(doc, Serial);
