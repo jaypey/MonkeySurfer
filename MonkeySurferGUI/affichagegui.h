@@ -26,7 +26,8 @@
 #define ESPACEMENT_LIANES 200
 #define LARGEUR_LIANES 20
 
-#define PADDING_ITEM_JOUEUR 10.0
+#define PADDING_ITEM1_JOUEUR 65.0
+#define PADDING_ITEM2_JOUEUR 55.0
 
 #define DIST_SPAWN_DUSTPUFF 40.0
 #define PEAK_SCALE_DUSTPUFF 0.7
@@ -80,8 +81,8 @@ private:
 
     QGraphicsRectItem* _item1;
     QGraphicsRectItem* _item2;
-    QGraphicsRectItem* _itemCadre1;
-    QGraphicsRectItem* _itemCadre2;
+    QGraphicsPixmapItem* _itemCadre1;
+    QGraphicsPixmapItem* _itemCadre2;
 
     std::vector<ItemGui> _itemsGui;
 

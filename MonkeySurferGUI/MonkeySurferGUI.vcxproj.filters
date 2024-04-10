@@ -115,6 +115,9 @@
     <ClCompile Include="..\MonkeySurfer\skin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="skinshop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameOverMenuGui.h">
@@ -207,6 +210,9 @@
     <ClInclude Include="..\MonkeySurfer\skin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <CustomBuild Include="skinshop.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_affichagegui.cpp">
@@ -227,6 +233,12 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    <ClCompile Include="debug\moc_skinshop.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_skinshop.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\qrc_Resource_qrc.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -259,6 +271,9 @@
     </CustomBuild>
     <None Include="sprites\Background\Vines\Vine.png">
       <Filter>Resource Files</Filter>
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\UI\cadrevigne.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Effets\dustpuff1.png">

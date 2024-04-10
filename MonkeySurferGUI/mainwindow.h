@@ -9,8 +9,10 @@
 #include <QLabel>
 #include <QPixMap>
 #include <QTimer>
+#include <QStackedWidget>
 #include <menubutton.h>
 #include <affichagegui.h>
+#include <skinshop.h>
 
 class MonkeySurferMainWindow : public QMainWindow
 {
@@ -28,7 +30,9 @@ private slots:
 private:
 	Menu* m_menu;
 	QTimer* m_updateTimer;
-	QWidget* m_centralWidget;
+	QStackedWidget* m_centralWidget;
+	SkinShop* m_skinShop;
+	QWidget* m_mainWidget;
 	QGraphicsView* m_jeu;
 	QGridLayout* m_layout;
 	QLabel* m_titre;
