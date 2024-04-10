@@ -7,30 +7,41 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _scene = new QGraphicsScene;
     _scene->setSceneRect(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y);
     _scene->setBackgroundBrush(Qt::white);
-    QGraphicsPixmapItem* pixmap = new QGraphicsPixmapItem;
-    pixmap->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
-    _scene->addItem(pixmap);
+    //QGraphicsPixmapItem* pixmap = new QGraphicsPixmapItem;
+    //pixmap->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
+    //_scene->addItem(pixmap);
 
     // View du jeu
     setScene(_scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
+    _background = new QGraphicsPixmapItem;
+    _background->setPixmap(QPixmap(":\\sprites\\Background\\Background\\Background.png"));
+    _background->setPos(0, (-_background->boundingRect().height() + WINDOW_SIZE_Y));
+    _scene->addItem(_background);
 
-    // Sprite du joueur
-    _singe = new QGraphicsRectItem;
-    _singe->setRect(0, 0, 40, 40);
-    _scene->addItem(_singe);
-
+    
     // Sprites des lianes
     for (int i = 0; i < NB_LIANES; i++) {
         int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
 
-        _lianes[i] = new QGraphicsRectItem;
-        _lianes[i]->setRect(0, 0, LARGEUR_LIANES, WINDOW_SIZE_Y);
+        _lianes[i] = new QGraphicsPixmapItem;
+
+        _lianes[i]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\Vine.png"));
+        //_lianes[1]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V1.png"));
+        //_lianes[2]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V2.png"));
+        //_lianes[3]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V3.png"));
+        //_lianes[4]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V4.png"));
+        //_lianes[i]->setRect(0, 0, LARGEUR_LIANES, WINDOW_SIZE_Y);
         _lianes[i]->setPos(x, 0);
         _scene->addItem(_lianes[i]);
     }
+
+    // Sprite du joueur
+        _singe = new QGraphicsPixmapItem;
+        _singe->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
+        _scene->addItem(_singe);
 
     // Menu pause
     _menuPause = new PauseMenuGui;
