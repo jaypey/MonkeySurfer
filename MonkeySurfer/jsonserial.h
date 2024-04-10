@@ -37,6 +37,9 @@ public:
 
     // Write
     void lcd(const char* msg_row_1, const char* msg_row_2);
+    void led(int numero);
+    void bar(int numero);
+    void vibration(bool vibre);
 private:
     void recv();
     void send(const char* msg);
