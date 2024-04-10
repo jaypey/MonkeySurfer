@@ -34,6 +34,7 @@ public:
     int getPiecesJoueur();
     int getGameOverOption();
     int getPauseOption();
+    int getVitesse();
     void setPause(bool pause);
     void restartJeu(Joueur *j);
 
