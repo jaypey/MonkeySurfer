@@ -47,6 +47,9 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _menuPause = new PauseMenuGui;
     _menuPause->sceneAjouter(_scene);
 
+    _menuGameover = new GameOverMenuGui(j);
+    _menuGameover->sceneAjouter(_scene);
+
     // Score + pieces + item texte
     _score = new QGraphicsTextItem;
     _score->setFont(QFont("Arial", 20));
@@ -227,7 +230,24 @@ void AffichageGUI::afficherIU() {
 }
 
 void AffichageGUI::afficherGameOver() {
-
+    if (_jeu->isGameOver())
+    {
+        _menuGameover->setPiece();
+        _menuGameover->setScore();
+        _menuGameover->setVisible(true);
+        _score->setVisible(false);
+        _piece->setVisible(false);
+        _item1->setVisible(false);
+        _item2->setVisible(false);
+        _itemCadre1->setVisible(false);
+        _itemCadre2->setVisible(false);
+        _item->setVisible(false);
+        //_menuGameover->setChoixOption(_jeu.get)
+    }
+    else
+    {
+        _menuGameover->setVisible(false);
+    }
 }
 
 void AffichageGUI::afficherPause() {

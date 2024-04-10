@@ -12,6 +12,7 @@
 #include "affichage.h"
 #include "itemgui.h"
 #include "pausemenugui.h"
+#include "GameOverMenuGui.h"
 
 #define WINDOW_SIZE_X 1920
 #define WINDOW_SIZE_Y 1080
@@ -55,6 +56,7 @@ private:
     QGraphicsPixmapItem* _lianes[NB_LIANES];
     QGraphicsPixmapItem* _background;
     PauseMenuGui* _menuPause;
+    GameOverMenuGui* _menuGameover;
 
     QGraphicsTextItem* _score;
     QGraphicsTextItem* _piece;

@@ -7,6 +7,9 @@
 	<file>sprites\Background\Vines\Vine.png</file>
 	<file>sprites\Background\Background\Background.png</file>
 	<file>fonts\JungleFeverNF.otf</file>
-  <file>images\monkeysurfer.png</file>
+	<file>images\monkeysurfer.png</file>
+	<file>sprites\Background\GameOver\cadre_bambou.png</file>
+	<file>sprites\Background\GameOver\gameover.png</file>
+	<file>font\junglefever.ttf</file>
     </qresource>
 </RCC>

@@ -1,6 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <QInputDialog>
 #include <chrono>
 #include <conio.h>
 #include "networking.h"

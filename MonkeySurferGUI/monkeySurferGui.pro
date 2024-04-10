@@ -7,6 +7,7 @@ HEADERS     += \
 			pausemenugui.h \
 			mainwindow.h \
 			menubutton.h \
+			GameOverMenuGui.h \
 			../MonkeySurfer/affichage.h \
 			../MonkeySurfer/aleatoire.h \
 			../MonkeySurfer/banane.h \
@@ -34,6 +35,7 @@ SOURCES     += \
 			affichagegui.cpp \
 			pausemenugui.cpp \
 			mainwindow.cpp \
+			GameOverMenuGui.cpp \
 			../MonkeySurfer/affichage.cpp \
 			../MonkeySurfer/aleatoire.cpp \
 			../MonkeySurfer/banane.cpp \
