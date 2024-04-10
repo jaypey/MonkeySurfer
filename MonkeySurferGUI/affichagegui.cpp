@@ -29,19 +29,15 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
         _lianes[i] = new QGraphicsPixmapItem;
 
         _lianes[i]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\Vine.png"));
-        //_lianes[1]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V1.png"));
-        //_lianes[2]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V2.png"));
-        //_lianes[3]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V3.png"));
-        //_lianes[4]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\V4.png"));
         //_lianes[i]->setRect(0, 0, LARGEUR_LIANES, WINDOW_SIZE_Y);
         _lianes[i]->setPos(x, 0);
         _scene->addItem(_lianes[i]);
     }
 
     // Sprite du joueur
-        _singe = new QGraphicsPixmapItem;
-        _singe->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
-        _scene->addItem(_singe);
+    _singe = new QGraphicsPixmapItem;
+    _singe->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
+    _scene->addItem(_singe);
 
     // Menu pause
     _menuPause = new PauseMenuGui;
@@ -254,7 +250,9 @@ void AffichageGUI::updateJeu() {
     _jeu->getJsonSerial()->sendJson();
     _jeu->getJsonSerial()->recvJson();
 
-    _jeu->debuterPartie();
+    if (_menu->getEtat() == Menu::EtatMenu::JEU) {
+        _jeu->debuterPartie();
+    }
 }
 
 void AffichageGUI::updateGUI() {
