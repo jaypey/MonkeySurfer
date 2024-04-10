@@ -6,6 +6,7 @@ HEADERS     += \
 			itemgui.h \
 			pausemenugui.h \
 			mainwindow.h \
+			menubutton.h \
 			../MonkeySurfer/affichage.h \
 			../MonkeySurfer/aleatoire.h \
 			../MonkeySurfer/banane.h \

@@ -207,6 +207,7 @@
     <ClInclude Include="..\MonkeySurfer\nullstream.h" />
     <ClInclude Include="..\MonkeySurfer\obstacle.h" />
     <ClInclude Include="..\MonkeySurfer\obstaclefixe.h" />
+    <ClInclude Include="menubutton.h" />
     <ClInclude Include="pausemenugui.h" />
     <ClInclude Include="..\MonkeySurfer\piece.h" />
     <ClInclude Include="..\MonkeySurfer\playerdata.h" />
