@@ -82,12 +82,12 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     {
         for (int i = 0; i < NB_LIANES; i++) {
             int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
-            int y = (WINDOW_SIZE_Y-HAUTEUR_LIANES) - (j * HAUTEUR_LIANES);
             _lianes[NB_LIANES * j + i] = new QGraphicsPixmapItem;
             QPixmap vine(":\\sprites\\Background\\Vines\\Vine.png");
-
             _lianes[NB_LIANES * j + i]->setPixmap(vine);
-            _lianes[NB_LIANES * j + i]->setPos(x, 0);
+            int y = (WINDOW_SIZE_Y + _lianes[i]->boundingRect().height() * (j + 1));
+
+            _lianes[NB_LIANES * j + i]->setPos(x, y);
             _scene->addItem(_lianes[NB_LIANES * j + i]);
         }
     }
@@ -183,11 +183,20 @@ void AffichageGUI::afficherArrierePlan() {
 
 void AffichageGUI::afficherLianes() {
     int tickCount = _jeu->getTickTockWahHooCount();
-
     // Sprites des lianes
-    for (int i = 0; i < NB_LIANES; i++) {
-        int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
-        _lianes[i]->setPos(x, (WINDOW_SIZE_Y - HAUTEUR_LIANES) - (j * HAUTEUR_LIANES););
+    for (int j = 0; j < 3; j++)
+    {
+        for (int i = 0; i < NB_LIANES; i++) {
+            int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
+            _lianes[NB_LIANES * j + i]->setPos(x, (WINDOW_SIZE_Y - _lianes[i]->boundingRect().height()*(j + 1) +(WINDOW_SIZE_Y / COORD_MAX_Y) * tickCount));
+            if (_lianes[NB_LIANES * j + i]->y() > WINDOW_SIZE_Y)
+            {
+                std::cout << "Avant: " << _lianes[NB_LIANES * j + i]->y() << std::endl;
+                _lianes[NB_LIANES * j + i]->setPos(x, WINDOW_SIZE_Y - _lianes[i]->boundingRect().height() * 3);
+                std::cout << "Apres: " << _lianes[NB_LIANES * j + i]->y() << std::endl;
+
+            }
+        }
     }
 }
 
