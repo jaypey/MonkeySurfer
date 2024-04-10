@@ -3,7 +3,7 @@
 MonkeySurferMainWindow::MonkeySurferMainWindow(QGraphicsView* jeu, Menu* menu)
 {
 	m_centralWidget = new QStackedWidget(this);
-	m_skinShop = new SkinShop(m_centralWidget);
+	m_skinShop = new SkinShop();
 	m_mainWidget = new QWidget(m_centralWidget);
 	m_menu = menu;
 	m_jeu = jeu;

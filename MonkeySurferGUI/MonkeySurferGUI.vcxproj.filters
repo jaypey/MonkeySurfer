@@ -37,6 +37,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameOverMenuGui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="MonkeySurferGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -120,6 +123,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameOverMenuGui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\MonkeySurfer\affichage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -207,9 +213,9 @@
     <ClInclude Include="..\MonkeySurfer\skin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <CustomBuild Include="skinshop.h">
+    <ClInclude Include="skinshop.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_affichagegui.cpp">
@@ -236,12 +242,6 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    <ClCompile Include="debug\moc_skinshop.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\moc_skinshop.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="debug\qrc_Resource_qrc.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -274,6 +274,9 @@
     <None Include="sprites\Background\Vines\Vine.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\Background\GameOver\cadre_bambou.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\UI\cadrevigne.png">
       <Filter>Resource Files</Filter>
     </None>
@@ -292,10 +295,43 @@
     <None Include="sprites\UI\flecheGauche.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\Background\GameOver\gameover.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="font\junglefever.ttf">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="music\monkeyClimb.mp3">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="images\monkeysurfer.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin5.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin6.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin7.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin8.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin9.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

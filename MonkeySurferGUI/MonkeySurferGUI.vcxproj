@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8BA81720-167E-3195-8564-8734EB53E82C}</ProjectGuid>
+    <ProjectGuid>{2FD9B24E-EAB2-3705-9D5E-F87484A47421}</ProjectGuid>
     <RootNamespace>monkeysurfergui</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -56,7 +56,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\MonkeySurfer;..\MonkeySurfer\lib;..\..\..\..\Qt\6.7.0\msvc2019_64\include;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtWidgets;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtMultimedia;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtGui;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtNetwork;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtCore;debug;/include;..\..\..\..\Qt\6.7.0\msvc2019_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\MonkeySurfer;..\MonkeySurfer\lib;C:\Qt\6.7.0\msvc2019_64\include;C:\Qt\6.7.0\msvc2019_64\include\QtWidgets;C:\Qt\6.7.0\msvc2019_64\include\QtMultimedia;C:\Qt\6.7.0\msvc2019_64\include\QtGui;C:\Qt\6.7.0\msvc2019_64\include\QtNetwork;C:\Qt\6.7.0\msvc2019_64\include\QtCore;debug;/include;C:\Qt\6.7.0\msvc2019_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -97,7 +97,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\MonkeySurfer;..\MonkeySurfer\lib;..\..\..\..\Qt\6.7.0\msvc2019_64\include;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtWidgets;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtMultimedia;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtGui;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtNetwork;..\..\..\..\Qt\6.7.0\msvc2019_64\include\QtCore;release;/include;..\..\..\..\Qt\6.7.0\msvc2019_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\MonkeySurfer;..\MonkeySurfer\lib;C:\Qt\6.7.0\msvc2019_64\include;C:\Qt\6.7.0\msvc2019_64\include\QtWidgets;C:\Qt\6.7.0\msvc2019_64\include\QtMultimedia;C:\Qt\6.7.0\msvc2019_64\include\QtGui;C:\Qt\6.7.0\msvc2019_64\include\QtNetwork;C:\Qt\6.7.0\msvc2019_64\include\QtCore;release;/include;C:\Qt\6.7.0\msvc2019_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -141,6 +141,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameOverMenuGui.cpp" />
     <ClCompile Include="MonkeySurferGUI.cpp" />
     <ClCompile Include="..\MonkeySurfer\affichage.cpp" />
     <ClCompile Include="affichagegui.cpp" />
@@ -170,14 +171,15 @@
     <ClCompile Include="skinshop.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameOverMenuGui.h" />
     <ClInclude Include="..\MonkeySurfer\affichage.h" />
     <CustomBuild Include="affichagegui.h">
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">affichagegui.h;debug\moc_predefs.h;C:\Qt\6.7.0\msvc2019_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/prog/C++/MonkeySurfer/MonkeySurferGUI/debug/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/prog/C++/MonkeySurfer/MonkeySurferGUI -IC:/prog/C++/MonkeySurfer/MonkeySurfer -IC:/prog/C++/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore affichagegui.h -o debug\moc_affichagegui.cpp</Command>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurferGUI/debug/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurferGUI -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurfer -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore affichagegui.h -o debug\moc_affichagegui.cpp</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC affichagegui.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_affichagegui.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">affichagegui.h;release\moc_predefs.h;C:\Qt\6.7.0\msvc2019_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/prog/C++/MonkeySurfer/MonkeySurferGUI/release/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/prog/C++/MonkeySurfer/MonkeySurferGUI -IC:/prog/C++/MonkeySurfer/MonkeySurfer -IC:/prog/C++/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore affichagegui.h -o release\moc_affichagegui.cpp</Command>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurferGUI/release/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurferGUI -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurfer -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore affichagegui.h -o release\moc_affichagegui.cpp</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC affichagegui.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_affichagegui.cpp;%(Outputs)</Outputs>
     </CustomBuild>
@@ -206,11 +208,11 @@
     <ClInclude Include="..\MonkeySurfer\jsonSerial.h" />
     <CustomBuild Include="mainwindow.h">
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">mainwindow.h;debug\moc_predefs.h;C:\Qt\6.7.0\msvc2019_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/prog/C++/MonkeySurfer/MonkeySurferGUI/debug/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/prog/C++/MonkeySurfer/MonkeySurferGUI -IC:/prog/C++/MonkeySurfer/MonkeySurfer -IC:/prog/C++/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore mainwindow.h -o debug\moc_mainwindow.cpp</Command>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurferGUI/debug/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurferGUI -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurfer -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore mainwindow.h -o debug\moc_mainwindow.cpp</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC mainwindow.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_mainwindow.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">mainwindow.h;release\moc_predefs.h;C:\Qt\6.7.0\msvc2019_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/prog/C++/MonkeySurfer/MonkeySurferGUI/release/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/prog/C++/MonkeySurfer/MonkeySurferGUI -IC:/prog/C++/MonkeySurfer/MonkeySurfer -IC:/prog/C++/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore mainwindow.h -o release\moc_mainwindow.cpp</Command>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DUSE_QT -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include C:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurferGUI/release/moc_predefs.h -IC:/Qt/6.7.0/msvc2019_64/mkspecs/win32-msvc -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurferGUI -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurfer -IC:/Users/lfl27/Documents/GitHub/MonkeySurfer/MonkeySurfer/lib -IC:/Qt/6.7.0/msvc2019_64/include -IC:/Qt/6.7.0/msvc2019_64/include/QtWidgets -IC:/Qt/6.7.0/msvc2019_64/include/QtMultimedia -IC:/Qt/6.7.0/msvc2019_64/include/QtGui -IC:/Qt/6.7.0/msvc2019_64/include/QtNetwork -IC:/Qt/6.7.0/msvc2019_64/include/QtCore mainwindow.h -o release\moc_mainwindow.cpp</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC mainwindow.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_mainwindow.cpp;%(Outputs)</Outputs>
     </CustomBuild>
@@ -258,8 +260,8 @@
     </ClCompile>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <FileType>Document</FileType>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">..\..\..\..\Qt\6.7.0\msvc2019_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">cl -BxC:\Qt\6.7.0\msvc2019_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -Zi -MDd -std:c++17 -utf-8 -E ..\..\..\..\Qt\6.7.0\msvc2019_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\Qt\6.7.0\msvc2019_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">cl -BxC:\Qt\6.7.0\msvc2019_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -Zi -MDd -std:c++17 -utf-8 -E C:\Qt\6.7.0\msvc2019_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">Generate moc_predefs.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_predefs.h;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
@@ -267,8 +269,8 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">..\..\..\..\Qt\6.7.0\msvc2019_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">cl -BxC:\Qt\6.7.0\msvc2019_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -O2 -MD -std:c++17 -utf-8 -E ..\..\..\..\Qt\6.7.0\msvc2019_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\Qt\6.7.0\msvc2019_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">cl -BxC:\Qt\6.7.0\msvc2019_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -O2 -MD -std:c++17 -utf-8 -E C:\Qt\6.7.0\msvc2019_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">Generate moc_predefs.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_predefs.h;%(Outputs)</Outputs>
     </CustomBuild>
@@ -294,22 +296,36 @@
     <None Include="sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb4.png" />
     <CustomBuild Include="Resource_qrc.qrc">
       <FileType>Document</FileType>
+<<<<<<< Updated upstream
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">Resource_qrc.qrc;C:\Qt\6.7.0\msvc2019_64\bin\rcc.exe;music\monkeyClimb.mp3;images\monkeysurfer.png;fonts\JungleFeverNF.otf;sprites\Background\Background\Background.png;sprites\Background\Vines\Vine.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb2.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb1.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb4.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb3.png;sprites\UI\cadrevigne.png;sprites\UI\flecheGauche.png;sprites\UI\flecheDroite.png;sprites\Effets\dustpuff1.png;sprites\Effets\dustpuff3.png;sprites\Effets\dustpuff2.png;%(AdditionalInputs)</AdditionalInputs>
       <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\rcc.exe -name Resource_qrc --no-zstd Resource_qrc.qrc -o debug\qrc_Resource_qrc.cpp</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">RCC Resource_qrc.qrc</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\qrc_Resource_qrc.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">Resource_qrc.qrc;C:\Qt\6.7.0\msvc2019_64\bin\rcc.exe;music\monkeyClimb.mp3;images\monkeysurfer.png;fonts\JungleFeverNF.otf;sprites\Background\Background\Background.png;sprites\Background\Vines\Vine.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb2.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb1.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb4.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb3.png;sprites\UI\cadrevigne.png;sprites\UI\flecheGauche.png;sprites\UI\flecheDroite.png;sprites\Effets\dustpuff1.png;sprites\Effets\dustpuff3.png;sprites\Effets\dustpuff2.png;%(AdditionalInputs)</AdditionalInputs>
+=======
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">Resource_qrc.qrc;C:\Qt\6.7.0\msvc2019_64\bin\rcc.exe;music\monkeyClimb.mp3;images\monkeysurfer.png;font\junglefever.ttf;fonts\JungleFeverNF.otf;sprites\Background\Background\Background.png;sprites\Background\GameOver\cadre_bambou.png;sprites\Background\GameOver\gameover.png;sprites\Background\Vines\Vine.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb2.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb1.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb4.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb3.png;sprites\UI\flecheGauche.png;sprites\UI\flecheDroite.png;sprites\Effets\dustpuff1.png;sprites\Effets\dustpuff3.png;sprites\Effets\dustpuff2.png;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\rcc.exe -name Resource_qrc --no-zstd Resource_qrc.qrc -o debug\qrc_Resource_qrc.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">RCC Resource_qrc.qrc</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\qrc_Resource_qrc.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">Resource_qrc.qrc;C:\Qt\6.7.0\msvc2019_64\bin\rcc.exe;music\monkeyClimb.mp3;images\monkeysurfer.png;font\junglefever.ttf;fonts\JungleFeverNF.otf;sprites\Background\Background\Background.png;sprites\Background\GameOver\cadre_bambou.png;sprites\Background\GameOver\gameover.png;sprites\Background\Vines\Vine.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb2.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb1.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb4.png;sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb3.png;sprites\UI\flecheGauche.png;sprites\UI\flecheDroite.png;sprites\Effets\dustpuff1.png;sprites\Effets\dustpuff3.png;sprites\Effets\dustpuff2.png;%(AdditionalInputs)</AdditionalInputs>
+>>>>>>> Stashed changes
       <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\Qt\6.7.0\msvc2019_64\bin\rcc.exe -name Resource_qrc --no-zstd Resource_qrc.qrc -o release\qrc_Resource_qrc.cpp</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">RCC Resource_qrc.qrc</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\qrc_Resource_qrc.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <None Include="sprites\Background\Vines\Vine.png" />
+<<<<<<< Updated upstream
     <None Include="sprites\UI\cadrevigne.png" />
+=======
+    <None Include="sprites\Background\GameOver\cadre_bambou.png" />
+>>>>>>> Stashed changes
     <None Include="sprites\Effets\dustpuff1.png" />
     <None Include="sprites\Effets\dustpuff2.png" />
     <None Include="sprites\Effets\dustpuff3.png" />
     <None Include="sprites\UI\flecheDroite.png" />
     <None Include="sprites\UI\flecheGauche.png" />
+    <None Include="sprites\Background\GameOver\gameover.png" />
+    <None Include="font\junglefever.ttf" />
     <None Include="music\monkeyClimb.mp3" />
     <None Include="images\monkeysurfer.png" />
   </ItemGroup>

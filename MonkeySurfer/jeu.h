@@ -31,6 +31,7 @@ public:
     int getPointageJoueur();
     charInventaire getCharInventaire();
     int getPiecesJoueur();
+    int getGameOverOption();
     int getPauseOption();
     void setPause(bool pause);
     void restartJeu(Joueur *j);
@@ -62,6 +63,8 @@ private:
     bool _isStarted;
     bool _isQuitting;
     bool _isAttacking;
+
+    int _gameOverOption;
 
     bool _modePause;
     int _pauseOption;
