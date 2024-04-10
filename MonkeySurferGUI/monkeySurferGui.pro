@@ -9,7 +9,6 @@ HEADERS     += \
 			pausemenugui.h \
 			mainwindow.h \
 			menubutton.h \
-			GameOverMenuGui.h \
 			skinshop.h \
 			../MonkeySurfer/affichage.h \
 			../MonkeySurfer/aleatoire.h \

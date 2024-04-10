@@ -28,6 +28,7 @@ public:
     bool isAttacking();
     void setIsAttacking(bool attack);
     Joueur* getJoueur();
+    int getTickTockWahHooCount();
     int getPointageJoueur();
     charInventaire getCharInventaire();
     int getPiecesJoueur();
@@ -63,6 +64,7 @@ private:
     bool _isStarted;
     bool _isQuitting;
     bool _isAttacking;
+    int _tickMoveCount;
 
     int _gameOverOption;
 

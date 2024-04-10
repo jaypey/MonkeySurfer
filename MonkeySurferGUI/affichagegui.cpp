@@ -21,6 +21,15 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _background->setPos(0, (-_background->boundingRect().height() + WINDOW_SIZE_Y));
     _scene->addItem(_background);
 
+    // Sprite du joueur
+    _singe = new AnimatedPixmap(150);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb2.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb3.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb4.png");
+    _singe->setFrame(0);
+    _scene->addItem(_singe);
+
     // Sprites des lianes
     for (int i = 0; i < NB_LIANES; i++) {
         int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
@@ -32,15 +41,6 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
         _lianes[i]->setPos(x, 0);
         _scene->addItem(_lianes[i]);
     }
-
-    // Sprite du joueur
-    _singe = new AnimatedPixmap(150);
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb2.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb3.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb4.png");
-    _singe->setFrame(0);
-    _scene->addItem(_singe);
 
     // Menu pause
     _menuPause = new PauseMenuGui;
@@ -79,6 +79,17 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _flecheDroite->setPixmap(QPixmap(":/sprites/UI/flecheDroite.png"));
     _flecheDroite->setVisible(false);
     _scene->addItem(_flecheDroite);
+
+    for (int i = 0; i < NB_LIANES; i++) {
+        int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
+
+        _lianes[i] = new QGraphicsPixmapItem;
+
+        _lianes[i]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\Vine.png"));
+        //_lianes[i]->setRect(0, 0, LARGEUR_LIANES, WINDOW_SIZE_Y);
+        _lianes[i]->setPos(x, 0);
+        _scene->addItem(_lianes[i]);
+    }
 
     // Items du joueur
     _itemCadre1 = new QGraphicsPixmapItem;
@@ -160,7 +171,13 @@ void AffichageGUI::afficherArrierePlan() {
 }
 
 void AffichageGUI::afficherLianes() {
+    int tickCount = _jeu->getTickTockWahHooCount();
 
+    // Sprites des lianes
+    for (int i = 0; i < NB_LIANES; i++) {
+        int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
+        _lianes[i]->setPos(x, tickCount);
+    }
 }
 
 void AffichageGUI::afficherJoueur() {
