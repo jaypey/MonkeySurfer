@@ -167,7 +167,7 @@ void AffichageGUI::mouvementSinge() {
 }
 
 void AffichageGUI::afficherArrierePlan() {
-
+    _background->setPos(0, _background->y() + std::max(1.0, (1000.0 - _jeu->getVitesse()) / 100.0));
 }
 
 void AffichageGUI::afficherLianes() {

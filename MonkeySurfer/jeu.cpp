@@ -67,6 +67,9 @@ int Jeu::getPauseOption() {
     return _pauseOption;
 }
 
+int Jeu::getVitesse() {
+    return _vitesse;
+}
 
 void Jeu::setPause(bool pause) {
     _modePause = pause;
