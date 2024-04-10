@@ -123,9 +123,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameOverMenuGui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\MonkeySurfer\affichage.h">
       <Filter>Header Files</Filter>
     </ClInclude>

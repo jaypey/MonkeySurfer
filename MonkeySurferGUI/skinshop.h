@@ -10,6 +10,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
 #include <QGraphicsPixmapItem>
+#include <QPushButton>
 #include <QPixmap>
 #include "skin.h"
 
@@ -24,11 +25,17 @@ public:
 
 
 private:
+   
+    QVBoxLayout* layout;
+    QGraphicsView* view;
+    QGraphicsScene* scene;
+    QPushButton* exitButton;
+    std::vector<Skin> skins;
     int m_selectedSkinIndex;
-    void updateskinselection();
+
+    void setupUI();
     void loadSkins();
-    void displaySkinPreview();
-    
-    
+    void displaySkins();
+    void createSkinItem(const Skin& skin, int position);
 };
 #endif // SKINSHOP_H
