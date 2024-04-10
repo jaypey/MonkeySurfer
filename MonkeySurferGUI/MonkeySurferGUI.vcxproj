@@ -167,6 +167,7 @@
     <ClCompile Include="..\MonkeySurfer\projectile.cpp" />
     <ClCompile Include="..\MonkeySurfer\serpent.cpp" />
     <ClCompile Include="..\MonkeySurfer\skin.cpp" />
+    <ClCompile Include="skinshop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\MonkeySurfer\affichage.h" />
@@ -215,6 +216,7 @@
     <ClInclude Include="..\MonkeySurfer\projectile.h" />
     <ClInclude Include="..\MonkeySurfer\serpent.h" />
     <ClInclude Include="..\MonkeySurfer\skin.h" />
+    <ClInclude Include="skinshop.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_affichagegui.cpp">

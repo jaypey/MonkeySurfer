@@ -112,6 +112,9 @@
     <ClCompile Include="..\MonkeySurfer\skin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="skinshop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\MonkeySurfer\affichage.h">
@@ -196,6 +199,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\MonkeySurfer\skin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="skinshop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
