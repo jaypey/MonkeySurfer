@@ -15,6 +15,8 @@ class SkinShop : public QWidget
 {
   
 public:
+    explicit SkinShop();
+
     void addScene(QGraphicsScene* scene);
     void setVisible(bool visible);
     int getSelectedSkin();
@@ -24,6 +26,7 @@ private:
     int m_selectedSkinIndex;
     void loadSkins();
     void displaySkinPreview();
+    
 };
 
 #endif // SKINSHOP_H

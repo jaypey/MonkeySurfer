@@ -3,6 +3,7 @@
 MonkeySurferMainWindow::MonkeySurferMainWindow(QGraphicsView* jeu, Menu* menu)
 {
 	m_centralWidget = new QStackedWidget(this);
+	m_skinShop = new SkinShop();
 	m_mainWidget = new QWidget(m_centralWidget);
 	m_menu = menu;
 	m_jeu = jeu;
@@ -11,6 +12,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(QGraphicsView* jeu, Menu* menu)
 	m_layout->setContentsMargins(200, 0, 200, 0);
 	m_mainWidget->setLayout(m_layout);
 	m_centralWidget->addWidget(m_mainWidget);
+	m_centralWidget->addWidget(m_skinShop);
 	m_centralWidget->setCurrentIndex(0);
 
 	QString str = "QPushButton:focus{color: #c1ccba;} QPushButton:hover{color: #32a150; background: none; border: none;}"
@@ -106,6 +108,7 @@ void MonkeySurferMainWindow::demarrerPartieMulti()
 
 void MonkeySurferMainWindow::afficherSkins()
 {
+	m_centralWidget->setCurrentIndex(1);
 	m_menu->setEtat(Menu::EtatMenu::SKINS);
 }
 
