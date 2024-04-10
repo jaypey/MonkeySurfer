@@ -13,7 +13,7 @@
 #include <QGraphicsTextItem>
 #include "jeu.h"
 
-class GameOverMenuGui : public QMainWindow
+class GameOverMenuGui : public QWidget
 {
 public:
 	GameOverMenuGui(Jeu* j);
@@ -38,7 +38,7 @@ private:
 	QPushButton* _retourMenuBtn;
 	QPushButton* _rejouerBtn;
 	QWidget* _widgetBtns;
-	QGridLayout* _layout;
+	QHBoxLayout* _layout;
 
 	Jeu* _j;
 

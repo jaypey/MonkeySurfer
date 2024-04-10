@@ -177,9 +177,6 @@
     <ClInclude Include="menubutton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="menubutton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\MonkeySurfer\networking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -249,7 +246,6 @@
   <ItemGroup>
     <None Include="sprites\Background\Background\Background.png">
       <Filter>Resource Files</Filter>
-      <Filter>Resource Files</Filter>
     </None>
     <None Include="fonts\JungleFeverNF.otf">
       <Filter>Resource Files</Filter>
@@ -271,6 +267,8 @@
     </CustomBuild>
     <None Include="sprites\Background\Vines\Vine.png">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Background\GameOver\cadre_bambou.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\UI\cadrevigne.png">
@@ -286,13 +284,18 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\UI\flecheDroite.png">
-    <None Include="sprites\Background\GameOver\cadre_bambou.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\UI\flecheGauche.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Background\GameOver\gameover.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="font\junglefever.ttf">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="music\monkeyClimb.mp3">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="images\monkeysurfer.png">

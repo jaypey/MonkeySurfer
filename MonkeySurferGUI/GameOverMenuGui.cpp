@@ -4,7 +4,7 @@ GameOverMenuGui::GameOverMenuGui(Jeu* j)
 {
     _j = j;
     _widgetBtns = new QWidget;
-    _layout = new QGridLayout(_widgetBtns);
+    _layout = new QHBoxLayout(_widgetBtns);
     _widgetBtns->setLayout(_layout);
 
     QFont junglefever(":/font/junglefever.ttf");
@@ -60,7 +60,11 @@ GameOverMenuGui::GameOverMenuGui(Jeu* j)
     connect(_rejouerBtn, &QPushButton::released, this, &GameOverMenuGui::btnRejouer);
     _layout->addWidget(_rejouerBtn);
 
+    _choix = new QGraphicsRectItem;
+
+
     _cadre->setZValue(200);
+    _choix->setZValue(201);
     _pieces->setZValue(202);
     _score->setZValue(203);
     _gameOverTxt->setZValue(204);
@@ -90,7 +94,7 @@ void GameOverMenuGui::sceneAjouter(QGraphicsScene* scene)
     _layout->setSpacing(100);// Adjust spacing as needed
     // Add container widget to scene and set its position
     QGraphicsProxyWidget* proxyWidget = scene->addWidget(_widgetBtns);
-    proxyWidget->setPos(_cadre->pos().x()+(_cadre->boundingRect().width()/2)-(_layout->geometry().width() / 2)-50, 
+    proxyWidget->setPos(_cadre->pos().x()+(_cadre->boundingRect().width()/2)-(_layout->geometry().width() / 2)-40, 
         _cadre->pos().y()+(_cadre->boundingRect().height()*0.65));
     proxyWidget->setZValue(205); // Ensure it's displayed on top of _cadre
 
@@ -107,7 +111,7 @@ void GameOverMenuGui::setVisible(bool visible)
     _pieces->setVisible(visible);
     _cadre->setVisible(visible);
     _gameOverTxt->setVisible(visible);
-    
+    _choix->setVisible(visible);
     
     for (QWidget* widget : _widgetBtns->findChildren<QPushButton*>()) {
         widget->setVisible(visible);
@@ -117,6 +121,18 @@ void GameOverMenuGui::setVisible(bool visible)
 
 void GameOverMenuGui::setChoixOption(int choix)
 {
+    switch (choix)
+    {
+    case 0:
+        _choix->setPos(_rejouerBtn->pos());
+        _choix->setRect(_rejouerBtn->geometry());
+    case 1:
+        _choix->setPos(_retourMenuBtn->pos());
+        _choix->setRect(_retourMenuBtn->geometry());
+    default:
+        break;
+    }
+    
 }
 
 void GameOverMenuGui::setScore()

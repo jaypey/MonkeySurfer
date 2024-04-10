@@ -47,23 +47,23 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _menuGameover->sceneAjouter(_scene);
 
     // Score + pieces + item texte
-    _score = new QGraphicsTextItem;
-    _score->setFont(QFont("Arial", 20));
-    _score->setPos(20, WINDOW_SIZE_Y - 60);
-    _score->setDefaultTextColor(Qt::black);
-    _scene->addItem(_score);
-
     _piece = new QGraphicsTextItem;
-    _piece->setFont(QFont("Arial", 20));
-    _piece->setPos(20, WINDOW_SIZE_Y - 100);
-    _piece->setDefaultTextColor(Qt::black);
+    _piece->setFont(QFont("Jungle Fever NF", 40));
+    _piece->setPos(45, WINDOW_SIZE_Y - 45 - _piece->boundingRect().height());
+    _piece->setDefaultTextColor(Qt::white);
     _scene->addItem(_piece);
 
+    _score = new QGraphicsTextItem;
+    _score->setFont(QFont("Jungle Fever NF", 40));
+    _score->setPos(45, WINDOW_SIZE_Y - 45 - _score->boundingRect().height() - _piece->boundingRect().height());
+    _score->setDefaultTextColor(Qt::white);
+    _scene->addItem(_score);
+
     _item = new QGraphicsTextItem;
-    _item->setFont(QFont("Arial", 20));
+    _item->setFont(QFont("Jungle Fever NF", 20));
     _item->setPos(WINDOW_SIZE_X - 140, WINDOW_SIZE_Y - 60);
     _item->setPlainText("ITEMS");
-    _item->setDefaultTextColor(Qt::black);
+    _item->setDefaultTextColor(Qt::white);
     _scene->addItem(_item);
 
     // Fleches direction joueur
@@ -250,7 +250,7 @@ void AffichageGUI::afficherGameOver() {
         _itemCadre1->setVisible(false);
         _itemCadre2->setVisible(false);
         _item->setVisible(false);
-        //_menuGameover->setChoixOption(_jeu.get)
+        _menuGameover->setChoixOption(_jeu->getGameOverOption());
     }
     else
     {
