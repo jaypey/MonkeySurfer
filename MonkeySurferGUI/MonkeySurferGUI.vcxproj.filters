@@ -135,6 +135,9 @@
     <ClInclude Include="..\MonkeySurfer\direction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dustpuff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\MonkeySurfer\elementaleatoire.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -160,6 +163,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <ClInclude Include="..\MonkeySurfer\menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menubutton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\MonkeySurfer\networking.h">
@@ -192,9 +198,6 @@
     <ClInclude Include="..\MonkeySurfer\skin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="menubutton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_affichagegui.cpp">
@@ -224,7 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="sprites\Background\Background\Background.png">
-          <Filter>Resource Files</Filter>
+      <Filter>Resource Files</Filter>
     </None>
     <None Include="fonts\JungleFeverNF.otf">
       <Filter>Resource Files</Filter>
@@ -245,7 +248,16 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <None Include="sprites\Background\Vines\Vine.png">
-          <Filter>Resource Files</Filter>
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Effets\dustpuff1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Effets\dustpuff2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Effets\dustpuff3.png">
+      <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\UI\flecheDroite.png">
       <Filter>Resource Files</Filter>
