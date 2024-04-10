@@ -37,6 +37,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameOverMenuGui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="MonkeySurferGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -117,6 +120,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameOverMenuGui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\MonkeySurfer\affichage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -256,6 +262,9 @@
     <None Include="sprites\Background\Vines\Vine.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\Background\GameOver\cadre_bambou.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\UI\cadrevigne.png">
       <Filter>Resource Files</Filter>
     </None>
@@ -272,6 +281,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\UI\flecheGauche.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Background\GameOver\gameover.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="font\junglefever.ttf">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="music\monkeyClimb.mp3">
