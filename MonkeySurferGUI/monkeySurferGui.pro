@@ -3,6 +3,7 @@ TARGET       = monkeysurfergui
 CONFIG      += warn_on qt debug windows console
 HEADERS     += \
 			affichagegui.h \
+			dustpuff.h \
 			itemgui.h \
 			pausemenugui.h \
 			mainwindow.h \

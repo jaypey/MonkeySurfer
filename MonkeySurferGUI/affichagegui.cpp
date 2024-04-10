@@ -120,6 +120,9 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _mediaPlayer->setLoops(QMediaPlayer::Infinite);
     _mediaPlayer->play();
 
+    // Time points
+    _lastDustPuffSpawn = std::chrono::steady_clock::now();
+
     // Timer qui update automatiquement le jeu ainsi que les graphiques Qt
     _updateTimer = new QTimer;
     QObject::connect(_updateTimer, SIGNAL(timeout()), this, SLOT(update()));
@@ -154,8 +157,16 @@ void AffichageGUI::afficherLianes() {
 }
 
 void AffichageGUI::afficherJoueur() {
+    // Singe
     Coordonnee coord = transposerCoord(_jeu->getPositionJoueur(), _singe);
     _singe->setPos(coord.x, coord.y);
+
+    // Nuages de poussiere (serpent)
+    if (_jeu->getJsonSerial()->accShake() && canSpawnDustPuff())
+        createDustPuff();
+
+    for (int i = _dustPuffs.size() - 1; i >= 0; i--)
+        updateDustPuff(i);
 }
 
 void AffichageGUI::afficherItems() {
@@ -275,7 +286,7 @@ void AffichageGUI::updateItemGUI() {
     std::vector<ElementJeu*> elements = _jeu->getElements();
 
     // Enlever les items supprimes
-    for (size_t i = 0; i < _itemsGui.size(); i++)
+    for (size_t i = 0; i < _itemsGui.size(); i++) // TODO - iteration inverse
         if (i >= elements.size() || _itemsGui[i].item != elements[i]) {
             delete _itemsGui[i].gui;
             _itemsGui.erase(_itemsGui.begin() + i);
@@ -301,6 +312,49 @@ void AffichageGUI::updateItemGUI() {
 
         _scene->addItem(_itemsGui[i].gui);
     }
+}
+
+void AffichageGUI::createDustPuff() {
+    QGraphicsPixmapItem* pixmap = new QGraphicsPixmapItem;
+    QPointF centreSinge = _singe->pos() + _singe->boundingRect().center();
+    int x = _randGen.random(centreSinge.x() - DIST_SPAWN_DUSTPUFF, centreSinge.x() + DIST_SPAWN_DUSTPUFF, rand());
+    int y = _randGen.random(centreSinge.y() - DIST_SPAWN_DUSTPUFF, centreSinge.y() + DIST_SPAWN_DUSTPUFF, rand());
+    int dustPuffType = _randGen.random(1, 3, rand());
+    int startingRotation = _randGen.random(0, 359, rand());
+
+    pixmap->setPixmap(QPixmap(QString(":/sprites/Effets/dustpuff") + QString::number(dustPuffType) + QString(".png")));
+    pixmap->setPos(x - pixmap->boundingRect().width() / 2, y - pixmap->boundingRect().height() / 2);
+    pixmap->setTransformOriginPoint(pixmap->boundingRect().width() / 2, pixmap->boundingRect().height() / 2);
+    pixmap->setRotation(startingRotation);
+    _scene->addItem(pixmap);
+
+    _lastDustPuffSpawn = std::chrono::steady_clock::now();
+
+    _dustPuffs.push_back({ pixmap, _lastDustPuffSpawn });
+}
+
+void AffichageGUI::updateDustPuff(int vecIndex) {
+    DustPuff* puff = &_dustPuffs[vecIndex];
+    auto now = std::chrono::steady_clock::now();
+    auto duration = now - puff->spawnTime;
+    double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+
+    if (elapsed > LIFESPAN_DUSTPUFF) {
+        delete puff->pixmap;
+        _dustPuffs.erase(_dustPuffs.begin() + vecIndex);
+        return;
+    }
+
+    double scale = PEAK_SCALE_DUSTPUFF * sin((M_PI * elapsed) / 1000.0);
+    puff->pixmap->setScale(scale);
+    puff->pixmap->setRotation(puff->pixmap->rotation() + 1);
+    return;
+}
+
+bool AffichageGUI::canSpawnDustPuff() {
+    auto now = std::chrono::steady_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _lastDustPuffSpawn);
+    return elapsed.count() > SPAWN_DELAY_DUSTPUFF;
 }
 
 Coordonnee AffichageGUI::transposerCoord(const Coordonnee& coord, QGraphicsItem* item) {

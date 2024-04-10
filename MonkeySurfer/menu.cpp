@@ -115,6 +115,13 @@ void Menu::update()
                 _etat = EtatMenu::AIDE;
             else if (c == '5')
                 _etat = EtatMenu::QUITTER;
+            
+            if (c == 224)
+                c = _getch(); // Les caract�res sp�ciaux �mettent deux char (224 -> code de fl�che)
+            else if (c == 72)
+                modifierChoixMenu(-1); // UP
+            else if (c == 80)
+                modifierChoixMenu(1); // DOWN
         }
     }
     else if (_etat == EtatMenu::SKINS)

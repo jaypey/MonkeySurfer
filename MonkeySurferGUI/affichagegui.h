@@ -1,6 +1,8 @@
 #ifndef AFFICHAGEGUI_H
 #define AFFICHAGEGUI_H
 
+#include <chrono>
+#include <cmath>
 #include <vector>
 #include <QAudioOutput>
 #include <QGraphicsRectItem>
@@ -10,6 +12,8 @@
 #include <QMediaPlayer>
 #include <QTimer>
 #include "affichage.h"
+#include "aleatoire.h"
+#include "dustpuff.h"
 #include "itemgui.h"
 #include "pausemenugui.h"
 #include "GameOverMenuGui.h"
@@ -23,6 +27,11 @@
 #define LARGEUR_LIANES 20
 
 #define PADDING_ITEM_JOUEUR 10.0
+
+#define DIST_SPAWN_DUSTPUFF 40.0
+#define PEAK_SCALE_DUSTPUFF 0.7
+#define LIFESPAN_DUSTPUFF 1000.0 // En ms
+#define SPAWN_DELAY_DUSTPUFF 200 // En ms
 
 #define FPS 60
 
@@ -48,6 +57,10 @@ private:
     void updateGUI();
     void updateItemGUI();
 
+    void createDustPuff();
+    void updateDustPuff(int vecIndex);
+    bool canSpawnDustPuff();
+
     // Transpose les position du jeu de base a l'interface GUI
     Coordonnee transposerCoord(const Coordonnee& coord, QGraphicsItem* item);
 
@@ -72,10 +85,15 @@ private:
 
     std::vector<ItemGui> _itemsGui;
 
+    std::vector<DustPuff> _dustPuffs;
+    std::chrono::steady_clock::time_point _lastDustPuffSpawn;
+
     QMediaPlayer* _mediaPlayer;
     QAudioOutput* _audioOutput;
 
     QTimer* _updateTimer;
+
+    RandomGenerator _randGen;
 };
 
 #endif // !AFFICHAGEGUI_H

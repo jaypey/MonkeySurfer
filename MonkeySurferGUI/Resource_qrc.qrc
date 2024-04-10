@@ -11,5 +11,11 @@
 	<file>sprites\Background\GameOver\cadre_bambou.png</file>
 	<file>sprites\Background\GameOver\gameover.png</file>
 	<file>font\junglefever.ttf</file>
+	<file>music\monkeyClimb.mp3</file>
+	<file>sprites\UI\flecheGauche.png</file>
+	<file>sprites\UI\flecheDroite.png</file>
+	<file>sprites\Effets\dustpuff1.png</file>
+	<file>sprites\Effets\dustpuff2.png</file>
+	<file>sprites\Effets\dustpuff3.png</file>
     </qresource>
 </RCC>
