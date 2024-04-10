@@ -72,17 +72,11 @@ void Menu::update()
             }
             else if (_choixMenu == 1)
             {
-                std::string ip = QInputDialog::getText(nullptr, "Connection multijoueur", "Veuillez entrer l'adresse du serveur : ").toStdString();
-                if (ip == "")
-                {
-                    _etat = EtatMenu::PRINCIPAL;
-                }
-                else
-                {
-                    _etat = EtatMenu::MULTIJOUEUR;
-                    _networking->Connect(ip, 7777);
-                }
-                
+                std::string ipAddress;
+                std::cout << "Adresse du serveur: " << std::endl;
+                std::cin >> ipAddress;
+                _etat = EtatMenu::MULTIJOUEUR;
+                _networking->Connect(ipAddress, 7777);
             }
             else if (_choixMenu == 2)
                 _etat = EtatMenu::SKINS;
