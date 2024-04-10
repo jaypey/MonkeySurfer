@@ -223,6 +223,21 @@
     <CustomBuild Include="Resource_qrc.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <None Include="sprites\Effets\dustpuff1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Effets\dustpuff2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Effets\dustpuff3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\UI\flecheDroite.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\UI\flecheGauche.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="music\monkeyClimb.mp3">
       <Filter>Resource Files</Filter>
     </None>
