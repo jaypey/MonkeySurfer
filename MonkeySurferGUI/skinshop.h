@@ -14,23 +14,7 @@ class SkinShop : public QWidget
 public:
     explicit SkinShop(QWidget* parent = nullptr);
 
-signals:
-    void skinChosen(const Skin& skin);
-
-public slots:
-    void setVisible(bool visible);
-
-protected:
-    void keyPressEvent(QKeyEvent* event);
-
 private:
-    QGraphicsView* m_graphicsView;
-    QGraphicsScene* m_scene;
-    QVector<Skin> m_skins;
-    int m_selectedSkinIndex;
-
-    void loadSkins();
-    void displaySkinPreview();
 };
 
 #endif // SKINSHOP_H
