@@ -19,8 +19,7 @@ class SkinShop : public QWidget
     
 public:
     explicit SkinShop();
-
-   
+    ~SkinShop();
     int getSelectedSkin();
 
 
@@ -29,9 +28,17 @@ private:
     QVBoxLayout* layout;
     QGraphicsView* view;
     QGraphicsScene* scene;
-    QPushButton* exitButton;
     std::vector<Skin> skins;
     int m_selectedSkinIndex;
+    QGraphicsPixmapItem* skin1;
+    QGraphicsPixmapItem* skin2;
+    QGraphicsPixmapItem* skin3;
+    QGraphicsPixmapItem* skin4;
+    QGraphicsPixmapItem* skin5;
+    QGraphicsPixmapItem* skin6;
+    QGraphicsPixmapItem* skin7;
+    QGraphicsPixmapItem* skin8;
+    QGraphicsPixmapItem* skin9;
 
     void setupUI();
     void loadSkins();
