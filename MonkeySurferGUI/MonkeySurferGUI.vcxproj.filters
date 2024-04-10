@@ -277,5 +277,32 @@
     <None Include="images\monkeysurfer.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\Skins\SkinShop\skin1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin5.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin6.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin7.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin8.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\SkinShop\skin9.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
