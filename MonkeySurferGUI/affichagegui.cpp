@@ -30,17 +30,6 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _singe->setFrame(0);
     _scene->addItem(_singe);
 
-    // Sprites des lianes
-    for (int i = 0; i < NB_LIANES; i++) {
-        int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
-
-        _lianes[i] = new QGraphicsPixmapItem;
-
-        _lianes[i]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\Vine.png"));
-        //_lianes[i]->setRect(0, 0, LARGEUR_LIANES, WINDOW_SIZE_Y);
-        _lianes[i]->setPos(x, 0);
-        _scene->addItem(_lianes[i]);
-    }
 
     // Menu pause
     _menuPause = new PauseMenuGui;
@@ -79,16 +68,18 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _flecheDroite->setPixmap(QPixmap(":/sprites/UI/flecheDroite.png"));
     _flecheDroite->setVisible(false);
     _scene->addItem(_flecheDroite);
+    for (int j = 0; j < 3; j++)
+    {
+        for (int i = 0; i < NB_LIANES; i++) {
+            int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
+            int y = (WINDOW_SIZE_Y-HAUTEUR_LIANES) - (j * HAUTEUR_LIANES);
+            _lianes[NB_LIANES * j + i] = new QGraphicsPixmapItem;
+            QPixmap vine(":\\sprites\\Background\\Vines\\Vine.png");
 
-    for (int i = 0; i < NB_LIANES; i++) {
-        int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
-
-        _lianes[i] = new QGraphicsPixmapItem;
-
-        _lianes[i]->setPixmap(QPixmap(":\\sprites\\Background\\Vines\\Vine.png"));
-        //_lianes[i]->setRect(0, 0, LARGEUR_LIANES, WINDOW_SIZE_Y);
-        _lianes[i]->setPos(x, 0);
-        _scene->addItem(_lianes[i]);
+            _lianes[NB_LIANES * j + i]->setPixmap(vine);
+            _lianes[NB_LIANES * j + i]->setPos(x, 0);
+            _scene->addItem(_lianes[NB_LIANES * j + i]);
+        }
     }
 
     // Items du joueur
@@ -176,7 +167,7 @@ void AffichageGUI::afficherLianes() {
     // Sprites des lianes
     for (int i = 0; i < NB_LIANES; i++) {
         int x = ((WINDOW_SIZE_X / 2) - (LARGEUR_LIANES / 2)) + (ESPACEMENT_LIANES * (i - 2));
-        _lianes[i]->setPos(x, tickCount);
+        _lianes[i]->setPos(x, (WINDOW_SIZE_Y - HAUTEUR_LIANES) - (j * HAUTEUR_LIANES););
     }
 }
 
