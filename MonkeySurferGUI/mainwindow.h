@@ -8,21 +8,26 @@
 #include <QGraphicsView>
 #include <QLabel>
 #include <QPixMap>
+#include <QTimer>
 #include <menubutton.h>
+#include <affichagegui.h>
 
 class MonkeySurferMainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	explicit MonkeySurferMainWindow(QGraphicsView* jeu);
+	explicit MonkeySurferMainWindow(QGraphicsView* jeu, Menu* menu);
 
 private slots:
 	void demarrerPartie();
 	void demarrerPartieMulti();
 	void afficherSkins();
 	void afficherAide();
+	void updateMenuSelection();
 
 private:
+	Menu* m_menu;
+	QTimer* m_updateTimer;
 	QWidget* m_centralWidget;
 	QGraphicsView* m_jeu;
 	QGridLayout* m_layout;

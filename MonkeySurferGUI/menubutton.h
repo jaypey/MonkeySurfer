@@ -7,7 +7,7 @@ class MenuButton : public QPushButton
 {
 public:
 	MenuButton(const QString& text, QWidget* parent = nullptr) : QPushButton(text, parent) {
-		QString str2 = "QPushButton:hover{color: #32a150; background: none; border: none;}"
+		QString str2 = "QPushButton:focus{color: #c1ccba;} QPushButton:hover{color: #32a150; background: none; border: none;}"
 			"QPushButton {"
 			"font-size: 30px;"
 			"background: none; border: none;"
