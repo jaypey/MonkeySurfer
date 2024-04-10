@@ -11,7 +11,7 @@ Jeu::Jeu(Joueur* j, JsonSerial* js)
     _jsonserial = js;
     _isQuitting = false;
     _isAttacking = false;
-
+    _tickMoveCount = 0;
     _modePause = false;
     _isMultijoueur = false;
     _pauseOption = 0;
@@ -119,6 +119,11 @@ bool Jeu::isAttacking()
 void Jeu::setIsAttacking(bool attack)
 {
     _isAttacking = attack;
+}
+
+int Jeu::getTickTockWahHooCount()
+{
+    return _tickMoveCount;
 }
 
 std::vector<ElementJeu*> Jeu::getElements() const
@@ -330,7 +335,7 @@ void Jeu::validerCollision()
 void Jeu::avancerCase()
 {
     Coordonnee courant;
-
+    _tickMoveCount++;
     for (int i = _elements.size()-1; i >= 0; i--)
     {
         courant = _elements[i]->getPosition();

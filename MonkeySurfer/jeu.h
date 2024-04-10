@@ -27,6 +27,7 @@ public:
     bool isBoosted();
     bool isAttacking();
     void setIsAttacking(bool attack);
+    int getTickTockWahHooCount();
     int getPointageJoueur();
     charInventaire getCharInventaire();
     int getPiecesJoueur();
@@ -61,7 +62,7 @@ private:
     bool _isStarted;
     bool _isQuitting;
     bool _isAttacking;
-
+    int _tickMoveCount;
     bool _modePause;
     int _pauseOption;
 
