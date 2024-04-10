@@ -192,6 +192,9 @@
     <ClInclude Include="..\MonkeySurfer\skin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="menubutton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_affichagegui.cpp">

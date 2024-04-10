@@ -8,6 +8,7 @@
 #include <QGraphicsView>
 #include <QLabel>
 #include <QPixMap>
+#include <menubutton.h>
 
 class MonkeySurferMainWindow : public QMainWindow
 {

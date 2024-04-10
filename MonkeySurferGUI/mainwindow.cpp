@@ -18,14 +18,6 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(QGraphicsView* jeu)
 		"QPushButton:pressed {background: none; border: none;"
 		"color: #1f472a;}";
 
-	QString str2 = "QPushButton:hover{color: #32a150; background: none; border: none;}"
-		"QPushButton {"
-		"font-size: 30px;"
-		"background: none; border: none;"
-		"color: #32a852;"
-		" height: 30px;}"
-		"QPushButton:pressed {background: none; border: none;"
-		"color: #1f472a;}";
 
 	QPixmap image(":/images/monkeysurfer.png");
 
@@ -42,32 +34,20 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(QGraphicsView* jeu)
 	m_layout->addWidget(m_btnDemarrer, 1, 0, Qt::AlignCenter);
 
 
-	m_btnDemarrerMulti = new QPushButton("Multijoueur", this);
-	m_btnDemarrerMulti->setMaximumWidth(300);
-	m_btnDemarrerMulti->setMinimumHeight(100);
+	m_btnDemarrerMulti = new MenuButton("Multijoueur", this);
 	connect(m_btnDemarrerMulti, &QPushButton::released, this, &MonkeySurferMainWindow::demarrerPartieMulti);
-	m_btnDemarrerMulti->setStyleSheet(str2);
 	m_layout->addWidget(m_btnDemarrerMulti, 2, 0, Qt::AlignCenter);
 
-	m_btnAfficherSkins = new QPushButton("Skins", this);
-	m_btnAfficherSkins->setMaximumWidth(300);
-	m_btnAfficherSkins->setMinimumHeight(100);
+	m_btnAfficherSkins = new MenuButton("Skins", this);
 	connect(m_btnAfficherSkins, &QPushButton::released, this, &MonkeySurferMainWindow::afficherSkins);
-	m_btnAfficherSkins->setStyleSheet(str2);
 	m_layout->addWidget(m_btnAfficherSkins, 3, 0, Qt::AlignCenter);
 
-	m_btnAfficherAide = new QPushButton("Aide", this);
-	m_btnAfficherAide->setMaximumWidth(300);
-	m_btnAfficherAide->setMinimumHeight(100);
+	m_btnAfficherAide = new MenuButton("Aide", this);
 	connect(m_btnAfficherAide, &QPushButton::released, this, &MonkeySurferMainWindow::afficherAide);
-	m_btnAfficherAide->setStyleSheet(str2);
 	m_layout->addWidget(m_btnAfficherAide, 4, 0, Qt::AlignCenter);
 
-	m_btnQuitter = new QPushButton("Quitter", this);
-	m_btnQuitter->setMaximumWidth(300);
-	m_btnQuitter->setMinimumHeight(100);
+	m_btnQuitter = new MenuButton("Quitter", this);
 	connect(m_btnQuitter, &QPushButton::released, this, &QApplication::quit);
-	m_btnQuitter->setStyleSheet(str2);
 	m_layout->addWidget(m_btnQuitter, 5, 0, Qt::AlignCenter);
 
 }
