@@ -19,7 +19,7 @@ void setup()
   Serial.begin(BAUD_RATE);
 
   // Configuration des objets
-  bar.instancier(22, 24, 26, 28, 30, 32, 34, 36, 38, 40);
+  bar.instancier(40, 38, 36, 34, 32, 30, 28, 26, 24, 22);
   delR.instancier();
   delJ.instancier();
   delV.instancier();
