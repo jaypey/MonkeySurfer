@@ -23,7 +23,9 @@ class Joueur
     : public QObject
 #endif
 {
+#ifdef USE_QT
     Q_OBJECT
+#endif
 public:
     Joueur();
     ~Joueur();
