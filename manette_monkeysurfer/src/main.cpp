@@ -10,6 +10,7 @@ Del delV(47);
 Joystick joy(A4, A5);
 LiquidCrystal lcd(39, 37, 35, 33, 31, 29);
 MoteurVibrant motvib(9);
+DetecteurMuons muons;
 
 InfoComposantes info;
 JsonSerial js(&info);
@@ -19,7 +20,7 @@ void setup()
   Serial.begin(BAUD_RATE);
 
   // Configuration des objets
-  bar.instancier(22, 24, 26, 28, 30, 32, 34, 36, 38, 40);
+  bar.instancier(40, 38, 36, 34, 32, 30, 28, 26, 24, 22);
   delR.instancier();
   delJ.instancier();
   delV.instancier();
@@ -34,10 +35,12 @@ void setup()
   info.joy = &joy;
   info.lcd = &lcd;
   info.motvib = &motvib;
+  info.muons = &muons;
 }
 
 void loop()
 {
+  muons.detecteurDeMuons();
   js.recvJson();
   js.sendJson();
 }

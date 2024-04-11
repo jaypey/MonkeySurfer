@@ -8,6 +8,7 @@
 #include <thread>
 #include "direction.h"
 #include "nullstream.h"
+#include "aleatoire.h"
 
 #define BAUD_RATE 112500
 #define START_MARKER '>'
@@ -29,14 +30,19 @@ public:
 
     void recvPrint();
 
+
     // Read
     bool boutonAppuye(int indexBtn);
     bool boutonMaintenu(int indexBtn);
     bool joystickMaintenu(Direction dir, bool repeat = false);
     bool accShake();
+    int  muons(RandomGenerator* random, int borneinf, int bornesup);
 
     // Write
     void lcd(const char* msg_row_1, const char* msg_row_2);
+    void led(int numero);
+    void bar(int numero);
+    void vibration(bool vibre);
 private:
     void recv();
     void send(const char* msg);

@@ -193,6 +193,7 @@ bool Joueur::getEtatEffetBanane()
 void Joueur::immobiliser(bool etat)
 {
     immobilise = etat;
+
 }
 
 bool Joueur::isFree()
