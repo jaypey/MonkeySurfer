@@ -33,6 +33,7 @@ public:
     void initialiserSkins();
 
     void update();
+    void updateMultijoueur();
     int getNbMultijoueurReady();
     int getNbMultijoueurConnectes();
     bool isPlayerReady();
@@ -43,6 +44,7 @@ public:
     EtatMenu getEtat();
     int getChoixMenu();
     int getIndexSkin();
+    JsonSerial* getJsonSerial();
     void connectNetwork(std::string ipAddress);
     int getIndexSkinPreview();
     void choisirSkin(int index);

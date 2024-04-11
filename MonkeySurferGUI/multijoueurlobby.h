@@ -12,6 +12,7 @@
 #include <QGraphicsProxyWidget>
 #include <QVector>
 #include "menu.h"
+#include <QTimer>
 
 
 class MultijoueurLobby : public QWidget
@@ -23,12 +24,15 @@ public:
     ~MultijoueurLobby();
 
 public slots:
-    void updateConnectedPlayers(int playerCount);
+    void updateConnectedPlayers();
+    void startUpdateLoop();
+    void updateNetwork();
 
 private:
     int m_selectedSkinIndex;
     int m_playerCount;
     Menu* _menu;
+    QTimer* _timer;
     QGraphicsPixmapItem* cadre;
     QGraphicsTextItem* titre;
     QGraphicsTextItem* messagePret;
