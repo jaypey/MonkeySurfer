@@ -141,7 +141,27 @@ bool JsonSerial::accShake() {
 
     return !_recvjson["acc"];
 }
+int JsonSerial::muons(RandomGenerator* random, int borneinf, int bornesup) {
+    if (!_recvjson.contains("muons")) {
+        errout << "La cle \"muons\" ne se retrouve pas dans le document json." << std::endl;
+        return NEUTRE;
+    }
+    else
+    {
+        random->derniermuons = random->vraimuons;
+        random->vraimuons = _recvjson["muons"];
+        random->tableau[0] = random->derniermuons;
+        random->tableau[1] = random->vraimuons;
+        random->muons = random->verificateurNouveauMuon(random->tableau[1], random->tableau[0]);
+        random->muons = random->random(1, (162 + random->i) % 25486, random->muons);
+        random->muons = random->random(3, 14556, random->muons);
+        int rand = random->random(borneinf, bornesup, random->muons);
+        std::cout << rand << std::endl;
+        random->i = (random->i + 1) % 1727;
+    }
 
+    return _recvjson["muons"];
+}
 void JsonSerial::lcd(const char* msg_row_1, const char* msg_row_2) {
     _sendjson["lcd"][0] = msg_row_1;
     _sendjson["lcd"][1] = msg_row_2;

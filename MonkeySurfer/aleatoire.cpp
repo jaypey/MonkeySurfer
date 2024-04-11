@@ -4,12 +4,22 @@
 
 /*Si aucun nouveau muon n'est détecté (la variable "muons" n'est ainsi pas incrémenté), on crée une valeur semi-aléatoire 
 de muons permettant un random plus uniforme (empêche que la fonction random stagne et génère la même valeur)*/
-void RandomGenerator::verificateurNouveauMuon(int muons, int derniermuons)
+int RandomGenerator::verificateurNouveauMuon(int muons, int derniermuons)
 {
     if (muons == derniermuons)
     {
-        muons = (muons + muons) * (((muons) % 13) + 1);
+        muons = (((muons + muons)) * (((muons) % 117) + 1)) % 29547;
+        if (muons == 0)
+
+        {
+            muons++;
+        }
+        if (muons < 0)
+        {
+            muons *= -1;
+        }
     }
+    return muons;
 }
 
 /*Génère un nombre random compris inclusivement entre la borne inférieure et supérieure selon la valeur de "muons" 
