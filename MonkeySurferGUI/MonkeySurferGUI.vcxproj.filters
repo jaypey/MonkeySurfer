@@ -210,9 +210,9 @@
     <ClInclude Include="..\MonkeySurfer\skin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="skinshop.h">
+    <CustomBuild Include="skinshop.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_affichagegui.cpp">
@@ -239,6 +239,12 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    <ClCompile Include="debug\moc_skinshop.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_skinshop.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\qrc_Resource_qrc.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -263,9 +269,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Skins\Monkey\Monkey_Climb\Monkey_Climb4.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="sprites\Background\Background\Repeatable_space.png">
       <Filter>Resource Files</Filter>
     </None>
     <CustomBuild Include="Resource_qrc.qrc">
