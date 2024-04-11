@@ -36,6 +36,7 @@ public:
     int getPauseOption();
     int getVitesse();
     void setPause(bool pause);
+    void setQuit(bool quit);
     void restartJeu(Joueur *j);
 
     std::vector<ElementJeu *> getElements() const;

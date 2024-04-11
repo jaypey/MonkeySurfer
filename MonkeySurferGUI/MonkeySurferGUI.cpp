@@ -32,6 +32,9 @@ int main(int argv, char** args)
     AffichageGUI affichage(&jeu, &menu);
 
     MonkeySurferMainWindow mainwindow(&affichage, &menu);
+
+    QObject::connect(&affichage, &AffichageGUI::retourMenu, &mainwindow, &MonkeySurferMainWindow::handleRetourMenu);
+
     mainwindow.showFullScreen();
 
     app.exec();
