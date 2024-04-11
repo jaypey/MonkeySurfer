@@ -253,6 +253,102 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\2_1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\2_2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\2_3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\2_4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\3_1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\3_2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\3_3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\3_4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\4_1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\4_2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\4_3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\4_4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\5_1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\5_2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\5_3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\5_4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\6_1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\6_2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\6_3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\6_4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\7_1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\7_2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\7_3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\7_4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\8_1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\8_2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\8_3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\8_4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\9_1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\9_2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\9_3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\9_4.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\Background\Background\Background.png">
       <Filter>Resource Files</Filter>
     </None>

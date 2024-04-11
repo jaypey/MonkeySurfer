@@ -31,15 +31,7 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _backgroundLoop2->setPos(0, _backgroundLoop1->y() - _backgroundLoop2->boundingRect().height());
     _scene->addItem(_backgroundLoop2);
 
-    // Sprite du joueur
-    _singe = new AnimatedPixmap(150);
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb2.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb3.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb4.png");
-    _singe->setFrame(0);
-    _scene->addItem(_singe);
-
+    
 
     // Menu pause
     _menuPause = new PauseMenuGui;
@@ -91,6 +83,15 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
             _scene->addItem(_lianes[NB_LIANES * j + i]);
         }
     }
+    // Sprite du joueur
+    _singe = new AnimatedPixmap(150);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_1.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_2.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_3.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_4.png");
+    _singe->setFrame(0);
+    _scene->addItem(_singe);
+
 
     // Items du joueur
     _itemCadre1 = new QGraphicsPixmapItem;
