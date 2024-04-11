@@ -277,10 +277,25 @@
     <None Include="sprites\Background\Vines\Vine.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\Objets\Banane\banana.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Objets\Banane\bigBanana.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Objets\Bouclier\bigBubble.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Objets\Bouclier\bubble.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\Background\GameOver\cadre_bambou.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\UI\cadrevigne.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Objets\Piece\coin.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Effets\dustpuff1.png">
@@ -301,6 +316,9 @@
     <None Include="sprites\Background\GameOver\gameover.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\Objets\Harpie\harpie.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="font\junglefever.ttf">
       <Filter>Resource Files</Filter>
     </None>
@@ -308,6 +326,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="images\monkeysurfer.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Objets\Ruche\ruche.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Skins\SkinShop\skin1.png">
@@ -335,6 +356,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Skins\SkinShop\skin9.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Objets\Serpent\snake.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
