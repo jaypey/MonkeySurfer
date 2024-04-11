@@ -1,12 +1,12 @@
 #include "mainwindow.h"
 
-MonkeySurferMainWindow::MonkeySurferMainWindow(QGraphicsView* jeu, Menu* menu)
+MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 {
 	m_centralWidget = new QStackedWidget(this);
-	m_skinShop = new SkinShop();
 	m_mainWidget = new QWidget(m_centralWidget);
 	m_menu = menu;
 	m_jeu = jeu;
+	m_skinShop = new SkinShop(m_jeu->getjeu()->getJoueur());
 	this->setCentralWidget(m_centralWidget);
 	m_layout = new QGridLayout(this);
 	m_layout->setContentsMargins(200, 0, 200, 0);

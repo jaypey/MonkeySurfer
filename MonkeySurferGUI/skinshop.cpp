@@ -1,10 +1,12 @@
 #include "skinshop.h"
 #include "jeu.h"
+#include "joueur.h"
 
 #include <QGraphicsGridLayout>
 
-SkinShop::SkinShop()
+SkinShop::SkinShop(Joueur* _j)
 {
+    joueur = _j;
 	setupUI();
 	loadSkins();
 	displaySkins();
@@ -40,37 +42,45 @@ void SkinShop::setupUI() {
     scene->addItem(background);
 
     //Titre
-    QFont junglefever(":/font/junglefever.ttf");
+    
     titre = new QGraphicsTextItem;
     titre->setPlainText("MAGASIN");
     w = titre->boundingRect().width();
     titre->setDefaultTextColor(Qt::white);
-    titre->setFont(QFont("junglefever", 100));
+    titre->setFont(QFont("Jungle Fever NF", 100));
     titre->setPos(1920/2 - ((titre->boundingRect().width())/2) , 0);
     scene->addItem(titre);
 
     //pieces du joueur
+    
+
     pieces = new QGraphicsTextItem;
-    pieces->setPlainText("Vos pieces:");
-    titre->setFont(QFont("junglefever", 35));
-    pieces->setDefaultTextColor(Qt::black);
+    pieces->setPlainText(QString("Vos pieces: ") + QString::number(joueur->getPiece()));
+    pieces->setFont(QFont("junglefever", 25));
+    pieces->setDefaultTextColor(Qt::white);
     pieces->setPos(45, 45);
     scene->addItem(pieces);
 
+    imgpiece = new QGraphicsPixmapItem;
+    
+
+
     //Bouton retour au menu
     exitButton = new QPushButton("Retour");
-    connect(exitButton, &QPushButton::clicked, this, [this]() {
-        this->setVisible(false);
+    connect(exitButton, &QPushButton::clicked, this, [this]  {
+        this->hide();
+
         });
 
     buttonContainer = new QWidget;
     buttonLayout = new QHBoxLayout(buttonContainer);
     buttonLayout->addWidget(exitButton);
     buttonContainer->setLayout(buttonLayout);
+    
 
     QGraphicsProxyWidget* proxyWidget = scene->addWidget(buttonContainer);
-    // Adjust the button container to be at the bottom center
     proxyWidget->setPos(30, 1000);
+    
 
 }
 

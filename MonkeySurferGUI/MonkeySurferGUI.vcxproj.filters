@@ -412,9 +412,6 @@
     <None Include="sprites\Effets\dustpuff3.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="sprites\Objets\Banane\effetBanana.png">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="sprites\UI\flecheDroite.png">
       <Filter>Resource Files</Filter>
     </None>
@@ -434,9 +431,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="images\monkeysurfer.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="sprites\Objets\Bouclier\playerBubble.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Objets\Ruche\ruche.png">
@@ -470,9 +464,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Objets\Serpent\snake.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="sprites\Objets\Serpent\snakeAroundMonkey.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
