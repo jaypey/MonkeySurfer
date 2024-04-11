@@ -15,6 +15,13 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(QGraphicsView* jeu, Menu* menu)
 	m_centralWidget->addWidget(m_skinShop);
 	m_centralWidget->setCurrentIndex(0);
 
+	QPixmap bkgnd(":\\sprites\\Background\\Background\\5386360.jpg");
+	QPalette palette;
+	bkgnd = bkgnd.scaledToWidth(WINDOW_SIZE_X);
+	bkgnd = bkgnd.scaledToHeight(WINDOW_SIZE_Y);
+	palette.setBrush(QPalette::Window, bkgnd);
+	this->setPalette(palette);
+
 	QString str = "QPushButton:focus{color: #c1ccba;} QPushButton:hover{color: #32a150; background: none; border: none;}"
 		"QPushButton {"
 		"font-size: 40px;"
