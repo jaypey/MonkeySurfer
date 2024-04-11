@@ -111,8 +111,8 @@ void MonkeySurferMainWindow::handleRetourMenu()
 void MonkeySurferMainWindow::demarrerPartie() {
 	m_updateTimer->stop();
 	m_menu->setEtat(Menu::EtatMenu::JEU);
-	this->m_jeu->showFullScreen();
-	this->hide();
+	m_jeu->showFullScreen();
+	hide();
 }
 
 void MonkeySurferMainWindow::demarrerPartieMulti()

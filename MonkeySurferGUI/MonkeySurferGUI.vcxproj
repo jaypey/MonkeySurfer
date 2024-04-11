@@ -171,6 +171,7 @@
     <ClCompile Include="skinshop.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameOverMenuGui.h" />
     <ClInclude Include="..\MonkeySurfer\affichage.h" />
     <CustomBuild Include="affichagegui.h">
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">affichagegui.h;debug\moc_predefs.h;C:\Qt\6.7.0\msvc2019_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
