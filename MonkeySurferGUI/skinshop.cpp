@@ -45,7 +45,7 @@ void SkinShop::setupUI() {
     titre->setPlainText("MAGASIN");
     w = titre->boundingRect().width();
     titre->setDefaultTextColor(Qt::white);
-    titre->setFont(QFont("junglefever", 100));
+    titre->setFont(QFont("junglefever", 200));
     titre->setPos(1920/2 - ((titre->boundingRect().width())/2) , 0);
     scene->addItem(titre);
 
@@ -69,7 +69,6 @@ void SkinShop::setupUI() {
     buttonContainer->setLayout(buttonLayout);
 
     QGraphicsProxyWidget* proxyWidget = scene->addWidget(buttonContainer);
-    // Adjust the button container to be at the bottom center
     proxyWidget->setPos(30, 1000);
 
 }
