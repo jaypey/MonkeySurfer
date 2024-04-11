@@ -32,7 +32,6 @@ Collectible* GenerateurItem::getRandomCollectible()
     //{
     //    valeurAleatoire = rand.random(0, 1, std::rand()%500);
     //}
-    std::cout << valeurAleatoire << std::endl;
     switch (valeurAleatoire)
     {
     case 0:
@@ -51,7 +50,6 @@ Collectible* GenerateurItem::getRandomCollectible()
 Obstacle* GenerateurItem::getRandomObstacle()
 {
     int valeurAleatoire = _jsonSerial->muons(&rand, 0, 2);
-    std::cout << valeurAleatoire << std::endl;
     //if (valeurAleatoire == -1)
     //{
     //    valeurAleatoire = rand.random(0, 2, std::rand() % 500);

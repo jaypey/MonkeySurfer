@@ -81,22 +81,37 @@ void MonkeySurferMainWindow::updateMenuSelection()
 	case 0:
 		m_btnDemarrer->setText("> Jouer");
 		m_btnDemarrer->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::JEU) {
+			m_btnDemarrer->click();
+		}
 		break;
 	case 1:
 		m_btnDemarrerMulti->setText("> Multijoueur");
 		m_btnDemarrerMulti->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
+			m_btnDemarrerMulti->click();
+		}
 		break;
 	case 2:
 		m_btnAfficherSkins->setText("> Skins");
 		m_btnAfficherSkins->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::SKINS) {
+			m_btnAfficherSkins->animateClick();
+		}
 		break;
 	case 3:
 		m_btnAfficherAide->setText("> Aide");
 		m_btnAfficherAide->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::AIDE) {
+			m_btnAfficherAide->animateClick();
+		}
 		break;
 	case 4:
 		m_btnQuitter->setText("> Quitter");
 		m_btnQuitter->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::QUITTER) {
+			m_btnQuitter->animateClick();
+		}
 		break;
 	}
 }
