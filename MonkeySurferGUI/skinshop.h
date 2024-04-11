@@ -1,48 +1,51 @@
 #ifndef SKINSHOP_H
 #define SKINSHOP_H
 
+
 #include <QWidget>
+#include <QGraphicsScene>
 #include <QGraphicsView>
-#include <QGraphicsScene>
-#include <QKeyEvent>
-#include <QVBoxLayout>
-#include <QGraphicsRectItem>
-#include <QGraphicsScene>
+#include <QPushButton>
+#include <QHBoxLayout>
 #include <QGraphicsTextItem>
 #include <QGraphicsPixmapItem>
-#include <QPushButton>
-#include <QPixmap>
-#include "skin.h"
+#include <QGraphicsProxyWidget>
+#include <QVector>
+
 
 class SkinShop : public QWidget
 {
+    Q_OBJECT
     
 public:
     explicit SkinShop();
     ~SkinShop();
-    int getSelectedSkin();
+    
 
 
 private:
-   
+    int m_selectedSkinIndex;
+    int w;
+    QGraphicsPixmapItem* cadre;
+    QGraphicsTextItem* titre;
+    QGraphicsTextItem* pieces;
     QVBoxLayout* layout;
     QGraphicsView* view;
     QGraphicsScene* scene;
-    std::vector<Skin> skins;
-    int m_selectedSkinIndex;
-    QGraphicsPixmapItem* skin1;
-    QGraphicsPixmapItem* skin2;
-    QGraphicsPixmapItem* skin3;
-    QGraphicsPixmapItem* skin4;
-    QGraphicsPixmapItem* skin5;
-    QGraphicsPixmapItem* skin6;
-    QGraphicsPixmapItem* skin7;
-    QGraphicsPixmapItem* skin8;
-    QGraphicsPixmapItem* skin9;
+    QGraphicsPixmapItem* background;
+    QGraphicsPixmapItem* vignes;
+    QPushButton* exitButton;
+    QWidget* buttonContainer;
+    QHBoxLayout* buttonLayout;
+    QVector<QGraphicsPixmapItem*> skinItems;
+    
+    
 
     void setupUI();
     void loadSkins();
     void displaySkins();
-    void createSkinItem(const Skin& skin, int position);
+
+   
+
 };
 #endif // SKINSHOP_H

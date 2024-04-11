@@ -31,15 +31,7 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _backgroundLoop2->setPos(0, _backgroundLoop1->y() - _backgroundLoop2->boundingRect().height());
     _scene->addItem(_backgroundLoop2);
 
-    // Sprite du joueur
-    _singe = new AnimatedPixmap(150);
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb2.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb3.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb4.png");
-    _singe->setFrame(0);
-    _scene->addItem(_singe);
-
+    
 
     // Menu pause
     _menuPause = new PauseMenuGui;
@@ -91,6 +83,15 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
             _scene->addItem(_lianes[NB_LIANES * j + i]);
         }
     }
+    // Sprite du joueur
+    _singe = new AnimatedPixmap(150);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_1.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_2.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_3.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_4.png");
+    _singe->setFrame(0);
+    _scene->addItem(_singe);
+
 
     // Items du joueur
     _itemCadre1 = new QGraphicsPixmapItem;
@@ -104,21 +105,19 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _itemCadre2->setPos(WINDOW_SIZE_X - 170, WINDOW_SIZE_Y - 270);
     _scene->addItem(_itemCadre2);
 
-    _item1 = new QGraphicsRectItem;
+    _item1 = new QGraphicsPixmapItem;
     int wc1 = _itemCadre1->boundingRect().width();
     int hc1 = _itemCadre1->boundingRect().height();
     int xc1 = _itemCadre1->x();
     int yc1 = _itemCadre1->y();
-    _item1->setRect(0, 0, wc1 - (PADDING_ITEM1_JOUEUR * 2), hc1 - (PADDING_ITEM1_JOUEUR * 2));
     _item1->setPos(xc1 + PADDING_ITEM1_JOUEUR, yc1 + PADDING_ITEM1_JOUEUR);
     _scene->addItem(_item1);
 
-    _item2 = new QGraphicsRectItem;
+    _item2 = new QGraphicsPixmapItem;
     int wc2 = _itemCadre2->boundingRect().width() * 0.8;
     int hc2 = _itemCadre2->boundingRect().height() * 0.8;
     int xc2 = _itemCadre2->x();
     int yc2 = _itemCadre2->y();
-    _item2->setRect(0, 0, wc2 - (PADDING_ITEM2_JOUEUR * 2), hc2 - (PADDING_ITEM2_JOUEUR * 2));
     _item2->setPos(xc2 + PADDING_ITEM2_JOUEUR, yc2 + PADDING_ITEM2_JOUEUR);
     _scene->addItem(_item2);
 
@@ -217,7 +216,7 @@ void AffichageGUI::afficherItems() {
 
     for (size_t i = 0; i < _itemsGui.size(); i++) {
         ElementJeu* item = _itemsGui[i].item;
-        QGraphicsRectItem* rect = _itemsGui[i].gui;
+        QGraphicsPixmapItem* rect = _itemsGui[i].gui;
         Coordonnee coord = transposerCoord(item->getPosition(), rect);
 
         // Offset si l'harpie est en mode "avertissement"
@@ -246,22 +245,22 @@ void AffichageGUI::afficherIU() {
 
     if (charItem1 == '@') {
         _item1->setVisible(true);
-        _item1->setBrush(Qt::cyan);
+        _item1->setPixmap(QPixmap(":/sprites/Objets/Bouclier/bigBubble.png"));
     }
     else if (charItem1 == 'B') {
         _item1->setVisible(true);
-        _item1->setBrush(Qt::yellow);
+        _item1->setPixmap(QPixmap(":/sprites/Objets/Banane/bigBanana.png"));
     }
     else
         _item1->setVisible(false);
 
     if (charItem2 == '@') {
         _item2->setVisible(true);
-        _item2->setBrush(Qt::cyan);
+        _item2->setPixmap(QPixmap(":/sprites/Objets/Bouclier/bubble.png"));
     }
     else if (charItem2 == 'B') {
         _item2->setVisible(true);
-        _item2->setBrush(Qt::yellow);
+        _item2->setPixmap(QPixmap(":/sprites/Objets/Banane/banana.png"));
     }
     else
         _item2->setVisible(false);
@@ -341,19 +340,18 @@ void AffichageGUI::updateItemGUI() {
     // Ajouter les nouveaux items
     for (size_t i = _itemsGui.size(); i < elements.size(); i++) {
         QGraphicsRectItem* rect = new QGraphicsRectItem;
-        _itemsGui.push_back({ elements[i], new QGraphicsRectItem });
-        _itemsGui[i].gui->setRect(0, 0, 25, 25);
+        _itemsGui.push_back({ elements[i], new QGraphicsPixmapItem });
 
-        Qt::GlobalColor color = Qt::white;
+        QString pixmap;
         switch (_itemsGui[i].item->getID()) {
-            case OBSTACLE_FIXE: color = Qt::red;         break;
-            case BANANE:        color = Qt::yellow;      break;
-            case BOUCLIER:      color = Qt::cyan;        break;
-            case PIECE:         color = Qt::darkYellow;  break;
-            case HARPIE:        color = Qt::lightGray;   break;
-            case SERPENT:       color = Qt::green;       break;
+            case OBSTACLE_FIXE: pixmap = ":/sprites/Objets/Ruche/ruche.png";        break;
+            case BANANE:        pixmap = ":/sprites/Objets/Banane/banana.png";      break;
+            case BOUCLIER:      pixmap = ":/sprites/Objets/Bouclier/bubble.png";    break;
+            case PIECE:         pixmap = ":/sprites/Objets/Piece/coin.png";         break;
+            case HARPIE:        pixmap = ":/sprites/Objets/Harpie/harpie.png";      break;
+            case SERPENT:       pixmap = ":/sprites/Objets/Serpent/snake.png";      break;
         }
-        _itemsGui[i].gui->setBrush(color);
+        _itemsGui[i].gui->setPixmap(QPixmap(pixmap));
 
         _scene->addItem(_itemsGui[i].gui);
     }
