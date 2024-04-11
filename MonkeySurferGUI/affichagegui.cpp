@@ -53,7 +53,7 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
 
     _item = new QGraphicsTextItem;
     _item->setFont(QFont("Jungle Fever NF", 20));
-    _item->setPos(WINDOW_SIZE_X - 140, WINDOW_SIZE_Y - 60);
+    _item->setPos(WINDOW_SIZE_X - 140, WINDOW_SIZE_Y - 100);
     _item->setPlainText("ITEMS");
     _item->setDefaultTextColor(Qt::white);
     _scene->addItem(_item);
