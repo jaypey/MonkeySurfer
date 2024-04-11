@@ -43,6 +43,7 @@ public:
     EtatMenu getEtat();
     int getChoixMenu();
     int getIndexSkin();
+    void connectNetwork(std::string ipAddress);
     int getIndexSkinPreview();
     void choisirSkin(int index);
     void updateSkinDataFile();
