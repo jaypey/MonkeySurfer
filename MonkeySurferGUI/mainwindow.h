@@ -13,6 +13,7 @@
 #include <menubutton.h>
 #include <affichagegui.h>
 #include <skinshop.h>
+#include <multijoueurlobby.h>
 
 class MonkeySurferMainWindow : public QMainWindow
 {
@@ -34,6 +35,7 @@ private:
 	QTimer* m_updateTimer;
 	QStackedWidget* m_centralWidget;
 	SkinShop* m_skinShop;
+	MultijoueurLobby* m_multijoueurLobby;
 	QWidget* m_mainWidget;
 	AffichageGUI* m_jeu;
 	QGridLayout* m_layout;

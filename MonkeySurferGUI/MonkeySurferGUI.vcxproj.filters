@@ -88,6 +88,9 @@
     <ClCompile Include="..\MonkeySurfer\menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="multijoueurlobby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\MonkeySurfer\networking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -183,6 +186,9 @@
     <ClInclude Include="menubutton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <CustomBuild Include="multijoueurlobby.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <ClInclude Include="..\MonkeySurfer\networking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -234,6 +240,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_mainwindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_multijoueurlobby.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_multijoueurlobby.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
