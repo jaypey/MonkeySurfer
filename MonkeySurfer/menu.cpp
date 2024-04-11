@@ -18,7 +18,7 @@ void Menu::initialiserSkins() {
     // Charger les donnes des skins
     for (int i = 0; i < NB_SKINS; i++) {
         std::getline(fichierSkin, ligne, ' ');
-        _skins[i].setId(ligne[0]);
+        _skins[i].setId(ligne);
 
         std::getline(fichierSkin, ligne, ' ');
         _skins[i].setFile(ligne.c_str());
@@ -262,3 +262,4 @@ void Menu::updateSkinDataFile() {
 Skin Menu::getSkin(int index) {
     return _skins[index];
 }
+

@@ -1,12 +1,12 @@
 #include "skin.h"
 
-Skin::Skin() : _id(' '), _prix(0), _debloque(false) {}
+Skin::Skin() : _id(" "), _prix(0), _debloque(false) {}
 
-Skin::Skin(char id, const char *file) : _id(id), _file(file), _prix(0), _debloque(false) {}
+Skin::Skin(std::string id, const char *file) : _id(""), _file(file), _prix(0), _debloque(false) {}
 
 Skin::~Skin() {}
 
-void Skin::setId(char id) {
+void Skin::setId(std::string id) {
     _id = id;
 }
 
@@ -22,18 +22,18 @@ void Skin::setDebloque(bool debloque) {
     _debloque = debloque;
 }
 
-char Skin::getId() {
+std::string Skin::getId() const {
     return _id;
 }
 
-const char *Skin::getFile() {
+const char *Skin::getFile() const {
     return _file.c_str();
 }
 
-int Skin::getPrix() {
+int Skin::getPrix() const{
     return _prix;
 }
 
-bool Skin::isDebloque() {
+bool Skin::isDebloque() const {
     return _debloque;
 }

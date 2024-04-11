@@ -13,6 +13,8 @@
 #include <menubutton.h>
 #include <affichagegui.h>
 #include <skinshop.h>
+#include "skinshop.h"
+#include "menu.h"
 
 class MonkeySurferMainWindow : public QMainWindow
 {

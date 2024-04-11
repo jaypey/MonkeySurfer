@@ -4,13 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonkeySurfer", "MonkeySurfer.vcxproj", "{B4F29F55-DEB6-4B1A-B06F-6E25FC92FB62}"
-	ProjectSection(ProjectDependencies) = postProject
-		{9D0726CF-C289-40F8-8263-6ECA469194CC} = {9D0726CF-C289-40F8-8263-6ECA469194CC}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MSServer", "..\MSServer\MSServer.vcxproj", "{9D0726CF-C289-40F8-8263-6ECA469194CC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "monkeysurfergui", "..\MonkeySurferGUI\monkeysurfergui.vcxproj", "{08A39DE4-7CA2-3BDA-95B8-9E2C093E5F0B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "monkeysurfergui", "..\MonkeySurferGUI\monkeysurfergui.vcxproj", "{8BA81720-167E-3195-8564-8734EB53E82C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,14 +33,14 @@ Global
 		{9D0726CF-C289-40F8-8263-6ECA469194CC}.Release|x64.Build.0 = Release|x64
 		{9D0726CF-C289-40F8-8263-6ECA469194CC}.Release|x86.ActiveCfg = Release|Win32
 		{9D0726CF-C289-40F8-8263-6ECA469194CC}.Release|x86.Build.0 = Release|Win32
-		{08A39DE4-7CA2-3BDA-95B8-9E2C093E5F0B}.Debug|x64.ActiveCfg = Debug|x64
-		{08A39DE4-7CA2-3BDA-95B8-9E2C093E5F0B}.Debug|x64.Build.0 = Debug|x64
-		{08A39DE4-7CA2-3BDA-95B8-9E2C093E5F0B}.Debug|x86.ActiveCfg = Debug|x64
-		{08A39DE4-7CA2-3BDA-95B8-9E2C093E5F0B}.Debug|x86.Build.0 = Debug|x64
-		{08A39DE4-7CA2-3BDA-95B8-9E2C093E5F0B}.Release|x64.ActiveCfg = Release|x64
-		{08A39DE4-7CA2-3BDA-95B8-9E2C093E5F0B}.Release|x64.Build.0 = Release|x64
-		{08A39DE4-7CA2-3BDA-95B8-9E2C093E5F0B}.Release|x86.ActiveCfg = Release|x64
-		{08A39DE4-7CA2-3BDA-95B8-9E2C093E5F0B}.Release|x86.Build.0 = Release|x64
+		{8BA81720-167E-3195-8564-8734EB53E82C}.Debug|x64.ActiveCfg = Debug|x64
+		{8BA81720-167E-3195-8564-8734EB53E82C}.Debug|x64.Build.0 = Debug|x64
+		{8BA81720-167E-3195-8564-8734EB53E82C}.Debug|x86.ActiveCfg = Debug|x64
+		{8BA81720-167E-3195-8564-8734EB53E82C}.Debug|x86.Build.0 = Debug|x64
+		{8BA81720-167E-3195-8564-8734EB53E82C}.Release|x64.ActiveCfg = Release|x64
+		{8BA81720-167E-3195-8564-8734EB53E82C}.Release|x64.Build.0 = Release|x64
+		{8BA81720-167E-3195-8564-8734EB53E82C}.Release|x86.ActiveCfg = Release|x64
+		{8BA81720-167E-3195-8564-8734EB53E82C}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

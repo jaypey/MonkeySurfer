@@ -8,6 +8,8 @@
 #include "joueur.h"
 #include "jsonserial.h"
 #include "skin.h"
+#include "skinshop.h"
+
 
 #define NB_SKINS 9
 
@@ -47,6 +49,7 @@ public:
     void choisirSkin(int index);
     void updateSkinDataFile();
     Skin getSkin(int index);
+    Skin* getSkins() { return _skins; }
 
 private:
     int _choixMenu;
