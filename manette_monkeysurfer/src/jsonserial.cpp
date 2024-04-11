@@ -33,8 +33,17 @@ void JsonSerial::recvJson() {
   if (doc["delV"] == true) _info->delV->allumer(); else _info->delV->eteindre();
 
   // BAR GRAPH
-  if (doc["bar"] == true) _info->bar->allumer(); else _info->bar->eteindre();
 
+  int nbDeLumieres = doc["bar"];
+  for (int i = 9; i >=0; i--){
+    if (i < nbDeLumieres) {
+      _info->bar->allumer(i);
+    }
+    else {
+      _info->bar->eteindre(i);
+    }
+  }
+  
   // LCD
   _info->lcd->begin(16, 2);
   _info->lcd->print((const char*) doc["lcd"][0]);
@@ -55,7 +64,7 @@ void JsonSerial::sendJson() {
     return;
   _lastsend = millis();
 
-  StaticJsonDocument<JSON_BUFFER_SIZE> doc;
+  StaticJsonDocument <JSON_BUFFER_SIZE> doc;
 
   // BOUTONS
   for (int i = 0; i < 4; i++) {

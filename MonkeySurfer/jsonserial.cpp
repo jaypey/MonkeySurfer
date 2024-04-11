@@ -62,13 +62,6 @@ void JsonSerial::sendJson() {
         return;
     _lastsend = std::chrono::steady_clock::now();
 
-    // test
-    _sendjson["delR"] = true;
-    _sendjson["delJ"] = true;
-    _sendjson["delV"] = true;
-    _sendjson["bar"] = true;
-    _sendjson["motvib"] = true;
-
     std::string msg = START_MARKER + _sendjson.dump() + END_MARKER;
 
     send(msg.c_str());
@@ -165,6 +158,38 @@ int JsonSerial::muons(RandomGenerator* random, int borneinf, int bornesup) {
 void JsonSerial::lcd(const char* msg_row_1, const char* msg_row_2) {
     _sendjson["lcd"][0] = msg_row_1;
     _sendjson["lcd"][1] = msg_row_2;
+}
+
+//1 a 10 bargraph, 11 rouge, 12 jaune, 13 vert
+void JsonSerial::led(int numero)
+{
+    if (numero == 11) {
+        _sendjson["delR"] = true;
+        _sendjson["delJ"] = false;
+        _sendjson["delV"] = false;
+    }
+    if (numero == 12) {
+        _sendjson["delJ"] = true;
+        _sendjson["delR"] = false;
+        _sendjson["delV"] = false;
+    }
+    if (numero == 13) {
+        _sendjson["delV"] = true;
+        _sendjson["delJ"] = false;
+        _sendjson["delR"] = false;
+    }
+}
+
+void JsonSerial::bar(int numero)
+{
+    if(numero<=10 && numero>=0)
+    { _sendjson["bar"] = numero; }
+    else { _sendjson["bar"] = 'mort'; }
+}
+
+void JsonSerial::vibration(bool vibre)
+{
+    _sendjson["motvib"] = vibre;
 }
 
 void JsonSerial::recv() {
