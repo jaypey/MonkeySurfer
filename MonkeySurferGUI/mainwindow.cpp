@@ -120,7 +120,9 @@ void MonkeySurferMainWindow::updateMenuSelection()
 
 void MonkeySurferMainWindow::handleRetourMenu()
 {
-	this->show();
+	show();
+	m_updateTimer->start(1000 / FPS);
+	qDebug() << "Active? : " << m_updateTimer->isActive();
 	m_menu->setEtat(Menu::EtatMenu::PRINCIPAL);
 }
 

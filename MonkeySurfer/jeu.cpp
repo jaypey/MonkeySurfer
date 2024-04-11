@@ -392,12 +392,14 @@ void Jeu::updateGameOver() {
     _jsonserial->lcd("GAME OVER", info.c_str());
 
     // MANETTE
-    if (_jsonserial->boutonAppuye(0)) {
-        _isQuitting = true;
-    }
-    else if (_jsonserial->boutonAppuye(1))
-    {
-        _isStarted = true;
+    if (_jsonserial->boutonAppuye(2)) {
+        if (_gameOverOption == 0) {
+            _isQuitting = true;
+        }
+        else if (_gameOverOption == 1) {
+            _isStarted = true;
+            _restarting = true;
+        }
     }
 
     if (_jsonserial->joystickMaintenu(GAUCHE, true)) {
