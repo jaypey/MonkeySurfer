@@ -66,7 +66,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 
 	m_updateTimer = new QTimer;
 	QObject::connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateMenuSelection()));
-	m_updateTimer->start(1);
+	m_updateTimer->start(1000 / FPS);
 }
 
 void MonkeySurferMainWindow::updateMenuSelection()
@@ -122,7 +122,6 @@ void MonkeySurferMainWindow::handleRetourMenu()
 {
 	this->show();
 	m_menu->setEtat(Menu::EtatMenu::PRINCIPAL);
-	
 }
 
 void MonkeySurferMainWindow::demarrerPartie() {
