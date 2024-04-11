@@ -289,6 +289,9 @@
     <None Include="sprites\Skins\Monkey\Monkey_Climb\4_4.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\Background\Background\5386360.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\Skins\Monkey\Monkey_Climb\5_1.png">
       <Filter>Resource Files</Filter>
     </None>
