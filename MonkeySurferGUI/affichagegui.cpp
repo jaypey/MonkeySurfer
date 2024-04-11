@@ -1,13 +1,10 @@
 #include "affichagegui.h"
 #include <QDebug>
 
-
 AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     // Scene du jeu
     _scene = new QGraphicsScene;
     _scene->setSceneRect(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y);
-    _scene->setBackgroundBrush(Qt::white);
-    
 
     // View du jeu
     setScene(_scene);
@@ -16,17 +13,14 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     setFixedSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
     _background = new QGraphicsPixmapItem;
     _background->setPixmap(QPixmap(":\\sprites\\Background\\Background\\Background.png"));
-    _background->setPos(0, (-_background->boundingRect().height() + WINDOW_SIZE_Y));
     _scene->addItem(_background);
 
     _backgroundLoop1 = new QGraphicsPixmapItem;
     _backgroundLoop1->setPixmap(QPixmap(":\\sprites\\Background\\Background\\Repeatable_space.png"));
-    _backgroundLoop1->setPos(0, _background->y() - _backgroundLoop1->boundingRect().height());
     _scene->addItem(_backgroundLoop1);
 
     _backgroundLoop2 = new QGraphicsPixmapItem;
     _backgroundLoop2->setPixmap(QPixmap(":\\sprites\\Background\\Background\\Repeatable_space.png"));
-    _backgroundLoop2->setPos(0, _backgroundLoop1->y() - _backgroundLoop2->boundingRect().height());
     _scene->addItem(_backgroundLoop2);
 
     // Menu pause
@@ -59,12 +53,10 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     // Fleches direction joueur
     _flecheGauche = new QGraphicsPixmapItem;
     _flecheGauche->setPixmap(QPixmap(":/sprites/UI/flecheGauche.png"));
-    _flecheGauche->setVisible(false);
     _scene->addItem(_flecheGauche);
 
     _flecheDroite = new QGraphicsPixmapItem;
     _flecheDroite->setPixmap(QPixmap(":/sprites/UI/flecheDroite.png"));
-    _flecheDroite->setVisible(false);
     _scene->addItem(_flecheDroite);
     for (int j = 0; j < 3; j++)
     {
@@ -84,7 +76,6 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _effetBanane = new QGraphicsPixmapItem;
     _effetBanane->setPixmap(QPixmap(":/sprites/Objets/Banane/effetBanana.png"));
     _effetBanane->setTransformOriginPoint(_effetBanane->boundingRect().width() / 2, _effetBanane->boundingRect().height() / 2);
-    _effetBanane->setVisible(false);
     _effetBanane->setScale(0.5);
     _effetBanane->setOpacity(0.9);
     _scene->addItem(_effetBanane);
@@ -101,13 +92,11 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     // Bouclier du joueur
     _bouclierJoueur = new QGraphicsPixmapItem;
     _bouclierJoueur->setPixmap(QPixmap(":/sprites/Objets/Bouclier/playerBubble.png"));
-    _bouclierJoueur->setVisible(false);
     _scene->addItem(_bouclierJoueur);
 
     // Serpent autour du singe
     _serpentAutourJoueur = new QGraphicsPixmapItem;
     _serpentAutourJoueur->setPixmap(QPixmap(":/sprites/Objets/Serpent/snakeAroundMonkey.png"));
-    _serpentAutourJoueur->setVisible(false);
     _scene->addItem(_serpentAutourJoueur);
 
     // Items du joueur
@@ -158,6 +147,25 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
 
     // Quand le singe bouge on part l'animation
     QObject::connect(_jeu->getJoueur(), SIGNAL(mouvementSinge()), this, SLOT(mouvementSinge()));
+}
+
+void AffichageGUI::reset() {
+    _background->setPos(0, (-_background->boundingRect().height() + WINDOW_SIZE_Y));
+    _backgroundLoop1->setPos(0, _background->y() - _backgroundLoop1->boundingRect().height());
+    _backgroundLoop2->setPos(0, _backgroundLoop1->y() - _backgroundLoop2->boundingRect().height());
+
+    _piece->setVisible(true);
+    _score->setVisible(true);
+    _item->setVisible(true);
+    _itemCadre1->setVisible(true);
+    _itemCadre2->setVisible(true);
+    _flecheGauche->setVisible(false);
+    _flecheDroite->setVisible(false);
+    _effetBanane->setVisible(false);
+    _bouclierJoueur->setVisible(false);
+    _serpentAutourJoueur->setVisible(false);
+    _menuGameover->setVisible(false);
+    _menuPause->setVisible(false);
 }
 
 void AffichageGUI::afficherJeu() {
@@ -319,12 +327,12 @@ void AffichageGUI::afficherIU() {
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE)) {
         _flecheDroite->setVisible(true);
         _flecheGauche->setVisible(false);
-        _flecheDroite->setPos(_singe->x() + 75 - _singe->boundingRect().width(), _singe->y() - 2);
+        _flecheDroite->setPos(_singe->x() + 100, _singe->y() + 20);
     }
     else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE)) {
         _flecheGauche->setVisible(true);
         _flecheDroite->setVisible(false);
-        _flecheGauche->setPos(_singe->x() - 75, _singe->y() - 2);
+        _flecheGauche->setPos(_singe->x() - 75, _singe->y() + 20);
     }
     else {
         _flecheGauche->setVisible(false);
@@ -348,14 +356,16 @@ void AffichageGUI::afficherGameOver() {
 
         int choix = _jeu->getGameOverOption();
         _menuGameover->setChoixOption(choix);
-        if (choix == -1)
+        if (_jeu->isQuitting() && isVisible())
         {
-        #ifdef USE_QT
             emit retourMenu();
-        #endif
-            this->hide();
+            hide();
         }
-
+        else if (_jeu->isRestarting()) {
+            reset();
+            _jeu->getJoueur()->reset();
+            _jeu->restartJeu(_jeu->getJoueur());
+        }
     }
     else
     {
@@ -367,6 +377,11 @@ void AffichageGUI::afficherPause() {
     if (_jeu->isPaused()) {
         _menuPause->setVisible(true);
         _menuPause->setChoixOption(_jeu->getPauseOption());
+        if (_jeu->isQuitting() && isVisible())
+        {
+            emit retourMenu();
+            hide();
+        }
     }
     else
         _menuPause->setVisible(false);

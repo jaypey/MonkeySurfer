@@ -8,8 +8,11 @@ HEADERS     += \
 			itemgui.h \
 			pausemenugui.h \
 			mainwindow.h \
+			GameOverMenuGui.h \
 			menubutton.h \
 			skinshop.h \
+			multijoueurlobby.h \
+			../MonkeySurfer/networking.h \
 			../MonkeySurfer/affichage.h \
 			../MonkeySurfer/aleatoire.h \
 			../MonkeySurfer/banane.h \
@@ -40,6 +43,8 @@ SOURCES     += \
 			mainwindow.cpp \
 			GameOverMenuGui.cpp \
 			skinshop.cpp \
+			multijoueurlobby.cpp \
+			../MonkeySurfer/networking.cpp \
 			../MonkeySurfer/affichage.cpp \
 			../MonkeySurfer/aleatoire.cpp \
 			../MonkeySurfer/banane.cpp \

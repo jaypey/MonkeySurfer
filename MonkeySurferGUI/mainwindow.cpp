@@ -10,12 +10,16 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_skinShop = new SkinShop(m_jeu->getjeu()->getJoueur(), skins);
 
 
+	
+	m_multijoueurLobby = new MultijoueurLobby(menu);
+	m_multijoueurLobby->hide();
 	this->setCentralWidget(m_centralWidget);
 	m_layout = new QGridLayout(this);
 	m_layout->setContentsMargins(200, 0, 200, 0);
 	m_mainWidget->setLayout(m_layout);
 	m_centralWidget->addWidget(m_mainWidget);
 	m_centralWidget->addWidget(m_skinShop);
+	m_centralWidget->addWidget(m_multijoueurLobby);
 	m_centralWidget->setCurrentIndex(0);
 
 	QPixmap bkgnd(":\\sprites\\Background\\Background\\5386360.jpg");
@@ -67,7 +71,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 
 	m_updateTimer = new QTimer;
 	QObject::connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateMenuSelection()));
-	m_updateTimer->start(1);
+	m_updateTimer->start(1000 / FPS);
 }
 
 void MonkeySurferMainWindow::updateMenuSelection()
@@ -84,43 +88,69 @@ void MonkeySurferMainWindow::updateMenuSelection()
 	case 0:
 		m_btnDemarrer->setText("> Jouer");
 		m_btnDemarrer->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::JEU) {
+			m_btnDemarrer->click();
+		}
 		break;
 	case 1:
 		m_btnDemarrerMulti->setText("> Multijoueur");
 		m_btnDemarrerMulti->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
+			m_btnDemarrerMulti->click();
+		}
 		break;
 	case 2:
 		m_btnAfficherSkins->setText("> Skins");
 		m_btnAfficherSkins->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::SKINS) {
+			m_btnAfficherSkins->animateClick();
+		}
 		break;
 	case 3:
 		m_btnAfficherAide->setText("> Aide");
 		m_btnAfficherAide->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::AIDE) {
+			m_btnAfficherAide->animateClick();
+		}
 		break;
 	case 4:
 		m_btnQuitter->setText("> Quitter");
 		m_btnQuitter->setFocus(Qt::FocusReason::MouseFocusReason);
+		if (m_menu->getEtat() == Menu::EtatMenu::QUITTER) {
+			m_btnQuitter->animateClick();
+		}
 		break;
 	}
 }
 
 void MonkeySurferMainWindow::handleRetourMenu()
 {
-	this->show();
+	show();
+	m_updateTimer->start(1000 / FPS);
+	qDebug() << "Active? : " << m_updateTimer->isActive();
 	m_menu->setEtat(Menu::EtatMenu::PRINCIPAL);
-	
 }
 
 void MonkeySurferMainWindow::demarrerPartie() {
 	m_updateTimer->stop();
 	m_menu->setEtat(Menu::EtatMenu::JEU);
-	this->m_jeu->showFullScreen();
-	this->hide();
+
+	// Reset + afficher jeu
+	m_jeu->reset();
+	m_jeu->getjeu()->getJoueur()->reset();
+	m_jeu->getjeu()->restartJeu(m_jeu->getjeu()->getJoueur());
+	m_jeu->showFullScreen();
+	hide();
 }
 
 void MonkeySurferMainWindow::demarrerPartieMulti()
 {
-	m_menu->setEtat(Menu::EtatMenu::MULTIJOUEUR);
+	std::string ipAddress;
+	std::cout << "Adresse du serveur: " << std::endl;
+	std::cin >> ipAddress;
+	m_menu->connectNetwork(ipAddress);
+	m_centralWidget->setCurrentIndex(2);
+	m_multijoueurLobby->startUpdateLoop();
 }
 
 void MonkeySurferMainWindow::afficherSkins()

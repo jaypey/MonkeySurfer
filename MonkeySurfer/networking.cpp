@@ -49,7 +49,6 @@ void Networking::Connect(std::string adresse, int port)
         }
         else {
             enet_peer_reset(_host);
-            throw("Connection interrompue");
         }
     }
     catch (const std::exception& e)

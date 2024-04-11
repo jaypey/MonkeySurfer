@@ -4,10 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonkeySurfer", "MonkeySurfer.vcxproj", "{B4F29F55-DEB6-4B1A-B06F-6E25FC92FB62}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9D0726CF-C289-40F8-8263-6ECA469194CC} = {9D0726CF-C289-40F8-8263-6ECA469194CC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MSServer", "..\MSServer\MSServer.vcxproj", "{9D0726CF-C289-40F8-8263-6ECA469194CC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "monkeysurfergui", "..\MonkeySurferGUI\monkeysurfergui.vcxproj", "{8BA81720-167E-3195-8564-8734EB53E82C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9D0726CF-C289-40F8-8263-6ECA469194CC} = {9D0726CF-C289-40F8-8263-6ECA469194CC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
