@@ -265,6 +265,17 @@ void Jeu::updateJoueur()
         _modePause = true;
     }
 
+    if (_jsonserial->boutonAppuye(0))
+    {
+        _joueur->echangerInventaire();
+    }
+
+    if (_jsonserial->boutonAppuye(3))
+    {
+        _joueur->useObjet();
+    }
+
+
     // CLAVIER
     if (_kbhit())
     {
