@@ -62,9 +62,12 @@
 		<file>font\junglefever.ttf</file>	
 		<file>sprites\Objets\Banane\banana.png</file>
 		<file>sprites\Objets\Banane\bigBanana.png</file>
+		<file>sprites\Objets\Banane\effetBanana.png</file>
 		<file>sprites\Objets\Bouclier\bubble.png</file>
 		<file>sprites\Objets\Bouclier\bigBubble.png</file>
+		<file>sprites\Objets\Bouclier\playerBubble.png</file>
 		<file>sprites\Objets\Serpent\snake.png</file>
+		<file>sprites\Objets\Serpent\snakeAroundMonkey.png</file>
 		<file>sprites\Objets\Piece\coin.png</file>
 		<file>sprites\Objets\Harpie\harpie.png</file>
 		<file>sprites\Objets\Ruche\ruche.png</file>

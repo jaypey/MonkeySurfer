@@ -89,6 +89,10 @@ private:
     QGraphicsPixmapItem* _itemCadre1;
     QGraphicsPixmapItem* _itemCadre2;
 
+    QGraphicsPixmapItem* _bouclierJoueur;
+    QGraphicsPixmapItem* _serpentAutourJoueur;
+    QGraphicsPixmapItem* _effetBanane;
+
     std::vector<ItemGui> _itemsGui;
 
     std::vector<DustPuff> _dustPuffs;
