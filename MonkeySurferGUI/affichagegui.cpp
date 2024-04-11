@@ -191,9 +191,7 @@ void AffichageGUI::afficherLianes() {
             _lianes[NB_LIANES * j + i]->setPos(x, (WINDOW_SIZE_Y - _lianes[i]->boundingRect().height()*(j + 1) +(WINDOW_SIZE_Y / COORD_MAX_Y) * tickCount));
             if (_lianes[NB_LIANES * j + i]->y() > WINDOW_SIZE_Y)
             {
-                std::cout << "Avant: " << _lianes[NB_LIANES * j + i]->y() << std::endl;
                 _lianes[NB_LIANES * j + i]->setPos(x, WINDOW_SIZE_Y - _lianes[i]->boundingRect().height() * 3);
-                std::cout << "Apres: " << _lianes[NB_LIANES * j + i]->y() << std::endl;
 
             }
         }
