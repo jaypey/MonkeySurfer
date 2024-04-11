@@ -10,6 +10,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_jeu = jeu;
 	m_skinShop = new SkinShop(m_jeu->getjeu()->getJoueur());
 	m_multijoueurLobby = new MultijoueurLobby(menu);
+	m_multijoueurLobby->hide();
 	this->setCentralWidget(m_centralWidget);
 	m_layout = new QGridLayout(this);
 	m_layout->setContentsMargins(200, 0, 200, 0);
@@ -70,7 +71,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 
 	m_updateTimer = new QTimer;
 	QObject::connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateMenuSelection()));
-	m_updateTimer->start(1);
+	m_updateTimer->start(1000 / FPS);
 }
 
 void MonkeySurferMainWindow::updateMenuSelection()
@@ -124,9 +125,10 @@ void MonkeySurferMainWindow::updateMenuSelection()
 
 void MonkeySurferMainWindow::handleRetourMenu()
 {
-	this->show();
+	show();
+	m_updateTimer->start(1000 / FPS);
+	qDebug() << "Active? : " << m_updateTimer->isActive();
 	m_menu->setEtat(Menu::EtatMenu::PRINCIPAL);
-	
 }
 
 void MonkeySurferMainWindow::demarrerPartie() {
@@ -148,6 +150,7 @@ void MonkeySurferMainWindow::demarrerPartieMulti()
 	std::cin >> ipAddress;
 	m_menu->connectNetwork(ipAddress);
 	m_centralWidget->setCurrentIndex(2);
+	m_multijoueurLobby->startUpdateLoop();
 }
 
 void MonkeySurferMainWindow::afficherSkins()

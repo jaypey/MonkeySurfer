@@ -1,7 +1,6 @@
 #include "affichagegui.h"
 #include <QDebug>
 
-
 AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     // Scene du jeu
     _scene = new QGraphicsScene;
@@ -158,6 +157,8 @@ void AffichageGUI::reset() {
     _piece->setVisible(true);
     _score->setVisible(true);
     _item->setVisible(true);
+    _itemCadre1->setVisible(true);
+    _itemCadre2->setVisible(true);
     _flecheGauche->setVisible(false);
     _flecheDroite->setVisible(false);
     _effetBanane->setVisible(false);
@@ -326,12 +327,12 @@ void AffichageGUI::afficherIU() {
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE)) {
         _flecheDroite->setVisible(true);
         _flecheGauche->setVisible(false);
-        _flecheDroite->setPos(_singe->x() + 75 - _singe->boundingRect().width(), _singe->y() - 2);
+        _flecheDroite->setPos(_singe->x() + 100, _singe->y() + 20);
     }
     else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE)) {
         _flecheGauche->setVisible(true);
         _flecheDroite->setVisible(false);
-        _flecheGauche->setPos(_singe->x() - 75, _singe->y() - 2);
+        _flecheGauche->setPos(_singe->x() - 75, _singe->y() + 20);
     }
     else {
         _flecheGauche->setVisible(false);
@@ -355,7 +356,7 @@ void AffichageGUI::afficherGameOver() {
 
         int choix = _jeu->getGameOverOption();
         _menuGameover->setChoixOption(choix);
-        if (_jeu->isQuitting())
+        if (_jeu->isQuitting() && isVisible())
         {
             emit retourMenu();
             hide();
@@ -376,6 +377,11 @@ void AffichageGUI::afficherPause() {
     if (_jeu->isPaused()) {
         _menuPause->setVisible(true);
         _menuPause->setChoixOption(_jeu->getPauseOption());
+        if (_jeu->isQuitting() && isVisible())
+        {
+            emit retourMenu();
+            hide();
+        }
     }
     else
         _menuPause->setVisible(false);
