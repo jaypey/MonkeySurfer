@@ -10,6 +10,7 @@
 #include "del.h"
 #include "joystick.h"
 #include "moteurvibrant.h"
+#include "muons.h"
 
 #define BAUD_RATE 112500
 #define START_MARKER '>'
@@ -27,6 +28,7 @@ struct InfoComposantes {
   Joystick* joy;
   LiquidCrystal* lcd;
   MoteurVibrant* motvib;
+  DetecteurMuons* muons;
 };
 
 class JsonSerial {
