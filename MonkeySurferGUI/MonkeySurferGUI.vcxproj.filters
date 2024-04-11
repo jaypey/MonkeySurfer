@@ -121,9 +121,6 @@
     <ClCompile Include="skinshop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="multijoueurlobby.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\MonkeySurfer\affichage.h">
@@ -216,9 +213,6 @@
     <CustomBuild Include="skinshop.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="multijoueurlobby.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_affichagegui.cpp">

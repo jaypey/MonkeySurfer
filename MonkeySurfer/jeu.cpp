@@ -76,6 +76,11 @@ void Jeu::setPause(bool pause) {
     _pauseOption = 0;
 }
 
+void Jeu::setQuit(bool quit)
+{
+    _isQuitting = quit;
+}
+
 void Jeu::restartJeu(Joueur* j)
 {
     _joueur = j;
@@ -339,7 +344,18 @@ void Jeu::updateGameOver() {
         }
         else if (c == 80 || c == 72 || c == 77 || c == 75) {
             _gameOverOption = ++_gameOverOption%2;
-            qDebug() << _gameOverOption;
+        }
+        else if(c == ' ')
+        {
+            if (_gameOverOption == 0)
+            {
+                _isQuitting = true;
+                _gameOverOption = -1;
+            }
+            else
+            {
+                _isQuitting = false;
+            }
         }
     }
 }

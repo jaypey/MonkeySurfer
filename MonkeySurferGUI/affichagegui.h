@@ -42,12 +42,14 @@ class AffichageGUI : public Affichage {
     Q_OBJECT
 public:
     AffichageGUI(Jeu* j, Menu* m);
-
     void afficherJeu();
     void afficherMenu();
 public slots:
     void update();
     void mouvementSinge();
+signals:
+    void retourMenu();
+
 private:
     void afficherArrierePlan();
     void afficherLianes();
@@ -55,6 +57,7 @@ private:
     void afficherItems();
     void afficherIU();
     void afficherGameOver();
+    //void retourMenuPrincipal();
     void afficherPause();
 
     void updateJeu();
@@ -68,6 +71,8 @@ private:
     // Transpose les position du jeu de base a l'interface GUI
     Coordonnee transposerCoord(const Coordonnee& coord, QGraphicsItem* item);
 
+
+
     QGraphicsScene* _scene;
     AnimatedPixmap* _singe;
     QGraphicsPixmapItem* _lianes[NB_LIANES * 3];
@@ -75,7 +80,8 @@ private:
     QGraphicsPixmapItem* _backgroundLoop1;
     QGraphicsPixmapItem* _backgroundLoop2;
     PauseMenuGui* _menuPause;
-    GameOverMenuGui* _menuGameover;
+
+    GameOverMenuGui *_menuGameover;
 
     QGraphicsTextItem* _score;
     QGraphicsTextItem* _piece;

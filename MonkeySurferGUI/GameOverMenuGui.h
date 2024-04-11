@@ -24,7 +24,6 @@ public:
 
 	void setScore();
 	void setPiece();
-
 	void btnMenu();
 	void btnRejouer();
 
@@ -39,7 +38,6 @@ private:
 	QPushButton* _rejouerBtn;
 	QWidget* _widgetBtns;
 	QHBoxLayout* _layout;
-
 	Jeu* _j;
 
 };
