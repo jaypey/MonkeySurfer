@@ -400,12 +400,12 @@ void Jeu::updateGameOver() {
         _isStarted = true;
     }
 
-    if (_jsonserial->joystickMaintenu(BAS, true)) {
+    if (_jsonserial->joystickMaintenu(GAUCHE, true)) {
         _gameOverOption--;
         if (_gameOverOption < 0)
             _gameOverOption = 1;
     }
-    else if (_jsonserial->joystickMaintenu(HAUT, true)) {
+    else if (_jsonserial->joystickMaintenu(DROITE, true)) {
         _gameOverOption++;
         if (_gameOverOption > 1)
             _gameOverOption = 0;

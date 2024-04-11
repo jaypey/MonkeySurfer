@@ -326,12 +326,12 @@ void AffichageGUI::afficherIU() {
     if (_jeu->getJsonSerial()->joystickMaintenu(DROITE)) {
         _flecheDroite->setVisible(true);
         _flecheGauche->setVisible(false);
-        _flecheDroite->setPos(_singe->x() + 75 - _singe->boundingRect().width(), _singe->y() - 2);
+        _flecheDroite->setPos(_singe->x() + 100, _singe->y() + 20);
     }
     else if (_jeu->getJsonSerial()->joystickMaintenu(GAUCHE)) {
         _flecheGauche->setVisible(true);
         _flecheDroite->setVisible(false);
-        _flecheGauche->setPos(_singe->x() - 75, _singe->y() - 2);
+        _flecheGauche->setPos(_singe->x() - 75, _singe->y() + 20);
     }
     else {
         _flecheGauche->setVisible(false);
