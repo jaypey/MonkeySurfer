@@ -21,7 +21,7 @@ PauseMenuGui::PauseMenuGui() {
     _cadre->setPos(cadreX, cadreY);
 
     _choix = new QGraphicsRectItem;
-    _choix->setBrush(Qt::white);
+    _choix->setBrush(QColor("#32a150"));
     _choix->setPen(QPen(Qt::transparent));
 
     short w = 0; // Taille des textes, pour les positionner exactement au milieu
@@ -36,12 +36,14 @@ PauseMenuGui::PauseMenuGui() {
     _texteContinuer = new QGraphicsTextItem;
     _texteContinuer->setPlainText("Continuer");
     _texteContinuer->setFont(QFont("Jungle Fever NF", cadreRect.height() * 0.04));
+    _texteContinuer->setDefaultTextColor(QColor("#32a150"));
     w = _texteContinuer->boundingRect().width();
     _texteContinuer->setPos((cadreX + (cadreRect.width() / 2)) - (w / 2), (cadreY + (cadreRect.height() * 0.5)));
 
     _texteRetourMenu = new QGraphicsTextItem;
     _texteRetourMenu->setPlainText("Retour au menu");
     _texteRetourMenu->setFont(QFont("Jungle Fever NF", cadreRect.height() * 0.04));
+    _texteRetourMenu->setDefaultTextColor(QColor("#32a150"));
     w = _texteRetourMenu->boundingRect().width();
     _texteRetourMenu->setPos((cadreX + (cadreRect.width() / 2)) - (w / 2), (cadreY + (cadreRect.height() * 0.6)));
 

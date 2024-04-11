@@ -358,11 +358,31 @@ void Jeu::updatePause() {
     // CLAVIER
     if (_kbhit()) {
         char c = _getch();
+        if (c == 224) c = _getch();
+
         if (c == '1') {
             _modePause = false;
         }
         else if (c == '2') {
             _isQuitting = true;
+        }
+        else if (c == 72) { // up
+            _pauseOption++;
+            if (_pauseOption > 1)
+                _pauseOption = 0;
+        }
+        else if (c == 80) { // down
+            _pauseOption--;
+            if (_pauseOption < 0)
+                _pauseOption = 1;
+        }
+        else if (c == ' ') {
+            if (_pauseOption == 0) {
+                _modePause = false;
+            }
+            else if (_pauseOption == 1) {
+                _isQuitting = true;
+            }
         }
     }
 }

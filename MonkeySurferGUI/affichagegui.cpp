@@ -376,6 +376,11 @@ void AffichageGUI::afficherPause() {
     if (_jeu->isPaused()) {
         _menuPause->setVisible(true);
         _menuPause->setChoixOption(_jeu->getPauseOption());
+        if (_jeu->isQuitting())
+        {
+            emit retourMenu();
+            hide();
+        }
     }
     else
         _menuPause->setVisible(false);
