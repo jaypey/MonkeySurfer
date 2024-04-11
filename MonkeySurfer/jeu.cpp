@@ -16,6 +16,7 @@ Jeu::Jeu(Joueur* j, JsonSerial* js)
     _isMultijoueur = false;
     _gameOverOption = 0;
     _pauseOption = 0;
+    _generateur = new GenerateurItem(_jsonserial);
 }
 
 Jeu::~Jeu() {}
@@ -448,7 +449,7 @@ void Jeu::avancerCase()
     courant.y++;
     _joueur->setPosition(courant);
 
-    ElementJeu* element = _generateur.getRandomElement();
+    ElementJeu* element = _generateur->getRandomElement();
     if (rand() % 4 == 2)
     {
         ElementJeu* piece = new Piece();

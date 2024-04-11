@@ -58,7 +58,7 @@ private:
     bool _isMultijoueur;
     Networking *_network;
     std::map<int, PlayerData *> _joueurs;
-    GenerateurItem _generateur;
+    GenerateurItem* _generateur;
     std::vector<ElementJeu *> _elements;
     bool _gameOver;
     int _vitesse;
