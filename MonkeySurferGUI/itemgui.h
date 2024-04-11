@@ -6,7 +6,7 @@
 
 struct ItemGui {
 	ElementJeu* item;
-	QGraphicsRectItem* gui;
+	QGraphicsPixmapItem* gui;
 };
 
 #endif // !ITEMGUI_H

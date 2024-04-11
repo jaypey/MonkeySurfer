@@ -28,5 +28,13 @@
 		<file>sprites\Background\GameOver\cadre_bambou.png</file>
 		<file>sprites\Background\GameOver\gameover.png</file>
 		<file>font\junglefever.ttf</file>	
+		<file>sprites\Objets\Banane\banana.png</file>
+		<file>sprites\Objets\Banane\bigBanana.png</file>
+		<file>sprites\Objets\Bouclier\bubble.png</file>
+		<file>sprites\Objets\Bouclier\bigBubble.png</file>
+		<file>sprites\Objets\Serpent\snake.png</file>
+		<file>sprites\Objets\Piece\coin.png</file>
+		<file>sprites\Objets\Harpie\harpie.png</file>
+		<file>sprites\Objets\Ruche\ruche.png</file>
     </qresource>
 </RCC>
