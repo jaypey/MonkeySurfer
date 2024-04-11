@@ -177,6 +177,11 @@ void Menu::update()
     }
 }
 
+void Menu::updateMultijoueur()
+{
+    _networking->ReceiveData();
+}
+
 void Menu::modifierChoixMenu(int val)
 {
     _choixMenu = (_choixMenu + val) % 5;
@@ -229,6 +234,11 @@ int Menu::getChoixMenu()
 int Menu::getIndexSkin()
 {
     return _indexSkin;
+}
+
+JsonSerial* Menu::getJsonSerial()
+{
+    return _jsonserial;
 }
 
 void Menu::connectNetwork(std::string ipAddress)

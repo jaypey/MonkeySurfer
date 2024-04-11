@@ -8,6 +8,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_jeu = jeu;
 	m_skinShop = new SkinShop(m_jeu->getjeu()->getJoueur());
 	m_multijoueurLobby = new MultijoueurLobby(menu);
+	m_multijoueurLobby->hide();
 	this->setCentralWidget(m_centralWidget);
 	m_layout = new QGridLayout(this);
 	m_layout->setContentsMargins(200, 0, 200, 0);
@@ -145,6 +146,7 @@ void MonkeySurferMainWindow::demarrerPartieMulti()
 	std::cin >> ipAddress;
 	m_menu->connectNetwork(ipAddress);
 	m_centralWidget->setCurrentIndex(2);
+	m_multijoueurLobby->startUpdateLoop();
 }
 
 void MonkeySurferMainWindow::afficherSkins()

@@ -8,11 +8,28 @@ MultijoueurLobby::MultijoueurLobby(Menu* m)
 {
     _menu = m;
     setupUI();
+    _timer = new QTimer;
+    QObject::connect(_timer, SIGNAL(timeout()), this, SLOT(updateNetwork()));
 }
 MultijoueurLobby::~MultijoueurLobby() {}
 
-void MultijoueurLobby::updateConnectedPlayers(int playerCount) {
-    m_playerCount = playerCount;
+void MultijoueurLobby::startUpdateLoop()
+{
+    _timer->start(1000 / 60);
+}
+
+void MultijoueurLobby::updateNetwork()
+{
+    _menu->updateMultijoueur();
+    if (_menu->getJsonSerial()->boutonAppuye(0)) {
+        _menu->updateEtatReady();
+        messagePretOui->setPlainText(QString("Vous etes pret"));
+    }
+    updateConnectedPlayers();
+}
+
+void MultijoueurLobby::updateConnectedPlayers() {
+    messagePret->setPlainText(QString("Veuillez appuyer sur 'R' lorsque vous etes pret! \n Joueurs : " + QString::number(_menu->getNbMultijoueurReady()) + "/" + QString::number(_menu->getNbMultijoueurConnectes())));
 }
 
 
