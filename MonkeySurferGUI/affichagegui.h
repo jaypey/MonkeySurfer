@@ -45,6 +45,7 @@ public:
 
     void afficherJeu();
     void afficherMenu();
+    Jeu* getjeu();
 public slots:
     void update();
     void mouvementSinge();
