@@ -372,6 +372,9 @@ void Jeu::validerCollision()
 void Jeu::avancerCase()
 {
     Coordonnee courant;
+    if (_tickMoveCount > 21) {
+        _tickMoveCount = 0;
+    }
     _tickMoveCount++;
     for (int i = _elements.size()-1; i >= 0; i--)
     {

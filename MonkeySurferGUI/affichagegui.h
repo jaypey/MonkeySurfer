@@ -26,6 +26,7 @@
 #define NB_LIANES 5
 #define ESPACEMENT_LIANES 200
 #define LARGEUR_LIANES 20
+#define HAUTEUR_LIANES 300
 
 #define PADDING_ITEM1_JOUEUR 48.0
 #define PADDING_ITEM2_JOUEUR 48.0
@@ -69,7 +70,7 @@ private:
 
     QGraphicsScene* _scene;
     AnimatedPixmap* _singe;
-    QGraphicsPixmapItem* _lianes[NB_LIANES];
+    QGraphicsPixmapItem* _lianes[NB_LIANES * 3];
     QGraphicsPixmapItem* _background;
     QGraphicsPixmapItem* _backgroundLoop1;
     QGraphicsPixmapItem* _backgroundLoop2;

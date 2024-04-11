@@ -73,8 +73,10 @@ public:
     bool down();
     bool Right();
     bool Left();
+#ifdef USE_QT
 signals:
     void mouvementSinge();
+#endif
 private:
     Coordonnee position;
     bool bouclierActif;
