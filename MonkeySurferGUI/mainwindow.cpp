@@ -7,12 +7,14 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_menu = menu;
 	m_jeu = jeu;
 	m_skinShop = new SkinShop(m_jeu->getjeu()->getJoueur());
+	m_multijoueurLobby = new MultijoueurLobby(m_jeu->getjeu()->getJoueur());
 	this->setCentralWidget(m_centralWidget);
 	m_layout = new QGridLayout(this);
 	m_layout->setContentsMargins(200, 0, 200, 0);
 	m_mainWidget->setLayout(m_layout);
 	m_centralWidget->addWidget(m_mainWidget);
 	m_centralWidget->addWidget(m_skinShop);
+	m_centralWidget->addWidget(m_multijoueurLobby);
 	m_centralWidget->setCurrentIndex(0);
 
 	QPixmap bkgnd(":\\sprites\\Background\\Background\\5386360.jpg");
@@ -132,6 +134,7 @@ void MonkeySurferMainWindow::demarrerPartie() {
 
 void MonkeySurferMainWindow::demarrerPartieMulti()
 {
+	m_centralWidget->setCurrentIndex(2);
 	m_menu->setEtat(Menu::EtatMenu::MULTIJOUEUR);
 }
 
