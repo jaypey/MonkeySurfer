@@ -6,6 +6,7 @@ Jeu::Jeu(Joueur* j, JsonSerial* js)
 {
     _joueur = j;
     _vitesse = 1000;
+    _restarting = false;
     _isStarted = false;
     _gameOver = false;
     _jsonserial = js;
@@ -23,6 +24,7 @@ Jeu::~Jeu() {}
 
 void Jeu::debuterPartie()
 {
+
     _isStarted = true;
     updateJeu();
 }
@@ -87,7 +89,9 @@ void Jeu::restartJeu(Joueur* j)
     _joueur = j;
     _vitesse = 1000;
     _isStarted = false;
+    _restarting = false;
     _gameOver = false;
+    _gameOverOption = 0;
     _modePause = false;
     _isQuitting = false;
     _elements.clear();
@@ -101,6 +105,10 @@ bool Jeu::isGameOver()
 bool Jeu::isStarted()
 {
     return _isStarted;
+}
+
+bool Jeu::isRestarting() {
+    return _restarting;
 }
 
 bool Jeu::isPaused() {
@@ -392,6 +400,7 @@ void Jeu::updateGameOver() {
         else if (c == 'r')
         {
             _isStarted = true;
+            _restarting = true;
         }
         else if (c == 80 || c == 72 || c == 77 || c == 75) {
             _gameOverOption = ++_gameOverOption%2;
@@ -401,11 +410,11 @@ void Jeu::updateGameOver() {
             if (_gameOverOption == 0)
             {
                 _isQuitting = true;
-                _gameOverOption = -1;
             }
             else
             {
                 _isQuitting = false;
+                _restarting = true;
             }
         }
     }

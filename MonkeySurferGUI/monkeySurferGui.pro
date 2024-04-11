@@ -8,6 +8,7 @@ HEADERS     += \
 			itemgui.h \
 			pausemenugui.h \
 			mainwindow.h \
+			GameOverMenuGui.h \
 			menubutton.h \
 			skinshop.h \
 			multijoueurlobby.h \
