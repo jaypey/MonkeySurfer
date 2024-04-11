@@ -31,8 +31,6 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _backgroundLoop2->setPos(0, _backgroundLoop1->y() - _backgroundLoop2->boundingRect().height());
     _scene->addItem(_backgroundLoop2);
 
-    
-
     // Menu pause
     _menuPause = new PauseMenuGui;
     _menuPause->sceneAjouter(_scene);
@@ -83,6 +81,16 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
             _scene->addItem(_lianes[NB_LIANES * j + i]);
         }
     }
+
+    // Effet banane
+    _effetBanane = new QGraphicsPixmapItem;
+    _effetBanane->setPixmap(QPixmap(":/sprites/Objets/Banane/effetBanana.png"));
+    _effetBanane->setTransformOriginPoint(_effetBanane->boundingRect().width() / 2, _effetBanane->boundingRect().height() / 2);
+    _effetBanane->setVisible(false);
+    _effetBanane->setScale(0.5);
+    _effetBanane->setOpacity(0.9);
+    _scene->addItem(_effetBanane);
+
     // Sprite du joueur
     _singe = new AnimatedPixmap(150);
     _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_1.png");
@@ -92,6 +100,17 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _singe->setFrame(0);
     _scene->addItem(_singe);
 
+    // Bouclier du joueur
+    _bouclierJoueur = new QGraphicsPixmapItem;
+    _bouclierJoueur->setPixmap(QPixmap(":/sprites/Objets/Bouclier/playerBubble.png"));
+    _bouclierJoueur->setVisible(false);
+    _scene->addItem(_bouclierJoueur);
+
+    // Serpent autour du singe
+    _serpentAutourJoueur = new QGraphicsPixmapItem;
+    _serpentAutourJoueur->setPixmap(QPixmap(":/sprites/Objets/Serpent/snakeAroundMonkey.png"));
+    _serpentAutourJoueur->setVisible(false);
+    _scene->addItem(_serpentAutourJoueur);
 
     // Items du joueur
     _itemCadre1 = new QGraphicsPixmapItem;
@@ -204,6 +223,35 @@ void AffichageGUI::afficherJoueur() {
     Coordonnee coord = transposerCoord(_jeu->getPositionJoueur(), _singe);
     _singe->setPos(coord.x, coord.y);
     _singe->animate();
+
+    // Bouclier singe
+    if (_jeu->getJoueur()->getEtatBouclier() == true) {
+        _bouclierJoueur->setVisible(true);
+        _bouclierJoueur->setPos(_singe->x() - 50, _singe->y() - 40);
+    }
+    else {
+        _bouclierJoueur->setVisible(false);
+    }
+
+    // Serpent autour du singe
+    if (_jeu->getJoueur()->getSerpent() != NULL) {
+        _serpentAutourJoueur->setVisible(true);
+        _serpentAutourJoueur->setPos(_singe->x() - 27, _singe->y() + 15);
+        _singe->setLoops(2);
+    }
+    else {
+        _serpentAutourJoueur->setVisible(false);
+    }
+
+    // Effet banane
+    if (_jeu->getJoueur()->getEtatEffetBanane() == true) {
+        _effetBanane->setVisible(true);
+        _effetBanane->setPos(_singe->x() - 150, _singe->y() - 150);
+        _effetBanane->setRotation(_effetBanane->rotation() + 1);
+    }
+    else {
+        _effetBanane->setVisible(false);
+    }
 
     // Nuages de poussiere (serpent)
     if (_jeu->getJsonSerial()->accShake() && canSpawnDustPuff())
