@@ -1,7 +1,6 @@
 #include "affichagegui.h"
 #include <QDebug>
 
-
 AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     // Scene du jeu
     _scene = new QGraphicsScene;
@@ -158,6 +157,8 @@ void AffichageGUI::reset() {
     _piece->setVisible(true);
     _score->setVisible(true);
     _item->setVisible(true);
+    _itemCadre1->setVisible(true);
+    _itemCadre2->setVisible(true);
     _flecheGauche->setVisible(false);
     _flecheDroite->setVisible(false);
     _effetBanane->setVisible(false);
