@@ -3,6 +3,8 @@
 MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 {
 	m_centralWidget = new QStackedWidget(this);
+	m_skinShop = new SkinShop(jeu->getjeu()->getJoueur());
+	m_aide = new MenuAide();
 	m_mainWidget = new QWidget(m_centralWidget);
 	m_menu = menu;
 	m_jeu = jeu;
@@ -15,6 +17,8 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_centralWidget->addWidget(m_mainWidget);
 	m_centralWidget->addWidget(m_skinShop);
 	m_centralWidget->addWidget(m_multijoueurLobby);
+	m_centralWidget->addWidget(m_aide);
+
 	m_centralWidget->setCurrentIndex(0);
 
 	QPixmap bkgnd(":\\sprites\\Background\\Background\\5386360.jpg");
@@ -151,6 +155,7 @@ void MonkeySurferMainWindow::afficherSkins()
 
 void MonkeySurferMainWindow::afficherAide()
 {
+	m_centralWidget->setCurrentIndex(3);
 	m_menu->setEtat(Menu::EtatMenu::AIDE);
 }
 
