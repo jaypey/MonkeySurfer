@@ -1,4 +1,4 @@
-M sprites/Skins/skin1.png 0
+M :/sprites/Skins/skin1.png 0
 # sprites/Skins/skin2.png 5
 W sprites/Skins/skin3.png 10
 O sprites/Skins/skin4.png 10

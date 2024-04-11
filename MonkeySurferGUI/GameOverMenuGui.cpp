@@ -4,11 +4,6 @@ GameOverMenuGui::GameOverMenuGui(Jeu* j)
 {
     _j = j;
 
-    //_menu = menu;
-    _widgetBtns = new QWidget;
-    _layout = new QHBoxLayout(_widgetBtns);
-    _widgetBtns->setLayout(_layout);
-
     QFont junglefever(":/font/junglefever.ttf");
     QFontDatabase::addApplicationFont(":/font/junglefever.ttf");
 
@@ -51,13 +46,17 @@ GameOverMenuGui::GameOverMenuGui(Jeu* j)
     w = _pieces->boundingRect().width();
     _pieces->setPos((cadreX + (cadreRect.width() / 2)) - (w / 2), (cadreY + (cadreRect.height() * 0.5)));
 
-    _retourMenuBtn = new QPushButton("Menu");
-    connect(_retourMenuBtn, &QPushButton::released, this, &GameOverMenuGui::btnMenu);
-    _layout->addWidget(_retourMenuBtn);
+    _menu = new QGraphicsTextItem;
+    _menu->setPlainText("Menu");
+    _menu->setFont(QFont("junglefever", cadreRect.height() * 0.04));
+    _menu->setDefaultTextColor(QColor("#32a150"));
+    _menu->setPos(cadreX + (cadreRect.width() / 2) - 175, cadreY + cadreRect.height() - 250);
 
-    _rejouerBtn = new QPushButton("Rejouer");
-    connect(_rejouerBtn, &QPushButton::released, this, &GameOverMenuGui::btnRejouer);
-    _layout->addWidget(_rejouerBtn);
+    _rejouer = new QGraphicsTextItem;
+    _rejouer->setPlainText("Rejouer");
+    _rejouer->setFont(QFont("junglefever", cadreRect.height() * 0.04));
+    _rejouer->setDefaultTextColor(QColor("#32a150"));
+    _rejouer->setPos(cadreX + (cadreRect.width() / 2) + 25, cadreY + cadreRect.height() - 250);
 
     _choix = new QGraphicsRectItem;
     _choix->setBrush(QColor("#32a150"));
@@ -68,6 +67,8 @@ GameOverMenuGui::GameOverMenuGui(Jeu* j)
     _pieces->setZValue(202);
     _score->setZValue(203);
     _gameOverTxt->setZValue(204);
+    _menu->setZValue(205);
+    _rejouer->setZValue(206);
 
 }
 
@@ -79,31 +80,8 @@ void GameOverMenuGui::sceneAjouter(QGraphicsScene* scene)
     scene->addItem(_score);
     scene->addItem(_pieces);
     scene->addItem(_choix);
-
-    // Set background color of widgetBtns to be transparent
-    _widgetBtns->setStyleSheet("background-color: transparent; color: #32a150");
-
-    // Calculate the position to center the layout on the screen
-    qreal screenWidth = scene->sceneRect().width();
-    qreal screenHeight = scene->sceneRect().height();
-    qreal layoutWidth = _widgetBtns->width();
-    qreal layoutHeight = _widgetBtns->height();
-    qreal layoutX = (screenWidth - layoutWidth) / 2;
-    qreal layoutY = (screenHeight - layoutHeight) / 2;
- 
-    // Increase spacing between buttons in the layout
-    _layout->setSpacing(100);// Adjust spacing as needed
-    // Add container widget to scene and set its position
-    QGraphicsProxyWidget* proxyWidget = scene->addWidget(_widgetBtns);
-    proxyWidget->setPos(_cadre->pos().x()+(_cadre->boundingRect().width()/2)-(_layout->geometry().width() / 2)-40, 
-        _cadre->pos().y()+(_cadre->boundingRect().height()*0.65));
-    proxyWidget->setZValue(205); // Ensure it's displayed on top of _cadre
-
-    // Set font size for buttons
-    QFont buttonFont("junglefever", _cadre->sceneBoundingRect().height() * 0.04); // Adjust font size as needed
-    for (QPushButton* button : _widgetBtns->findChildren<QPushButton*>()) {
-        button->setFont(buttonFont);
-    }
+    scene->addItem(_menu);
+    scene->addItem(_rejouer);
 }
 
 void GameOverMenuGui::setVisible(bool visible)
@@ -113,36 +91,17 @@ void GameOverMenuGui::setVisible(bool visible)
     _cadre->setVisible(visible);
     _gameOverTxt->setVisible(visible);
     _choix->setVisible(visible);
-    
-    for (QWidget* widget : _widgetBtns->findChildren<QPushButton*>()) {
-        widget->setVisible(visible);
-    }
-    
+    _menu->setVisible(visible);
+    _rejouer->setVisible(visible);
 }
 
-void GameOverMenuGui::setChoixOption(int choix)
-{
-    switch (choix)
-    {
-    case 0://menu
-        _choix->setRect(_widgetBtns->pos().x(), _widgetBtns->pos().y() + 65, _retourMenuBtn->geometry().width()+20, 6);
-        break;
-    case 1://rejouer
-        _choix->setRect(_widgetBtns->pos().x()-4 + _rejouerBtn->geometry().width() + 50, _widgetBtns->pos().y() + 65, _rejouerBtn->geometry().width()+15, 6);
-        break;
-    case -1:
-        if (_choix->pos().x() == _widgetBtns->pos().x())
-        {
-            setVisible(false);
-        }
-        else
-        {
-            btnRejouer();
-        }
-    default:
-        break;
+void GameOverMenuGui::setChoixOption(int choix) {
+    if (choix == 0) {
+        _choix->setRect(_menu->x(), _menu->y() + _menu->boundingRect().height(), _menu->boundingRect().width(), 5);
     }
-    
+    else if (choix == 1) {
+        _choix->setRect(_rejouer->x(), _rejouer->y() + _rejouer->boundingRect().height(), _rejouer->boundingRect().width(), 5);
+    }
 }
 
 void GameOverMenuGui::setScore()
@@ -153,13 +112,4 @@ void GameOverMenuGui::setScore()
 void GameOverMenuGui::setPiece()
 {
     _pieces->setPlainText(QString::fromUtf8("Total des pièces : ") + QString::number(_j->getPiecesJoueur()));
-}
-
-void GameOverMenuGui::btnMenu()
-{
-    setVisible(false);
-}
-
-void GameOverMenuGui::btnRejouer()
-{
 }

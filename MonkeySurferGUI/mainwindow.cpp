@@ -111,6 +111,11 @@ void MonkeySurferMainWindow::handleRetourMenu()
 void MonkeySurferMainWindow::demarrerPartie() {
 	m_updateTimer->stop();
 	m_menu->setEtat(Menu::EtatMenu::JEU);
+
+	// Reset + afficher jeu
+	m_jeu->reset();
+	m_jeu->getjeu()->getJoueur()->reset();
+	m_jeu->getjeu()->restartJeu(m_jeu->getjeu()->getJoueur());
 	m_jeu->showFullScreen();
 	hide();
 }

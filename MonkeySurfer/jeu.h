@@ -20,6 +20,7 @@ public:
     std::map<int, PlayerData*> getPositionsJoueurs();
     bool isGameOver();
     bool isStarted();
+    bool isRestarting();
     bool isPaused();
     bool isQuitting(); //Requete du jeu, lue par le menu pour afficher le menu
     bool isStuck();
@@ -62,6 +63,7 @@ private:
     GenerateurItem* _generateur;
     std::vector<ElementJeu *> _elements;
     bool _gameOver;
+    bool _restarting;
     int _vitesse;
     bool _isStarted;
     bool _isQuitting;

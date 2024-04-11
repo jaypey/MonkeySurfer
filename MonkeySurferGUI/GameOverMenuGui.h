@@ -24,22 +24,16 @@ public:
 
 	void setScore();
 	void setPiece();
-	void btnMenu();
-	void btnRejouer();
-
 private:
 	QWidget* _centralWidget;
 	QGraphicsTextItem* _score;
 	QGraphicsTextItem* _pieces;
+	QGraphicsTextItem* _menu;
+	QGraphicsTextItem* _rejouer;
 	QGraphicsRectItem* _choix;
 	QGraphicsPixmapItem* _cadre;
 	QGraphicsTextItem* _gameOverTxt;
-	QPushButton* _retourMenuBtn;
-	QPushButton* _rejouerBtn;
-	QWidget* _widgetBtns;
-	QHBoxLayout* _layout;
 	Jeu* _j;
-
 };
 
 #endif // GAMEOVERMENUHUI_H
