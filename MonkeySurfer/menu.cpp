@@ -67,7 +67,7 @@ void Menu::update()
         {
             if (_choixMenu == 0)
             {
-                _etat = EtatMenu::CHARGEMENT;
+                _etat = EtatMenu::JEU;
                 _timer = std::chrono::steady_clock::now();
             }
             else if (_choixMenu == 1)

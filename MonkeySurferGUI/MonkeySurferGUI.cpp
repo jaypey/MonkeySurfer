@@ -22,7 +22,7 @@ int main(int argv, char** args)
     app.setFont(defaultFont);
 
     JsonSerial jsonSerial;
-    jsonSerial.openSerialPort("COM3");
+    jsonSerial.openSerialPort("COM4");
 
     Joueur joueur;
     Jeu jeu(&joueur, &jsonSerial);
