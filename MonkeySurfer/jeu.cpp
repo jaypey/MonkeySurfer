@@ -203,6 +203,45 @@ void Jeu::updateJoueur()
                 _joueur->Right();
             }
         }
+    }
+
+	//LUMIERES POSITIONS (SI VOUS M'HAISSEZ D'AVOIR MIS CA LA JE MEXCUSE)
+	if (_joueur->getPosition().y > 18 || _joueur->getPosition().y <= 3)
+	{
+		_jsonserial->led(11);
+	}
+	if ((_joueur->getPosition().y <= 18 && _joueur->getPosition().y > 15) || (_joueur->getPosition().y >= 3 && _joueur->getPosition().y < 6))
+	{
+		_jsonserial->led(12);
+	}
+	if (_joueur->getPosition().y <= 15 && _joueur->getPosition().y >= 6)
+	{
+		_jsonserial->led(13);
+	}
+	
+	//Moteur
+	if (_joueur->getSerpent() != NULL)
+	{
+		_jsonserial->vibration(true);
+		int vie = _joueur->getSerpent()->getHp();
+		_jsonserial->bar(vie);
+	}
+	else {
+		_jsonserial->vibration(false);
+		_jsonserial->bar(666);
+	}
+
+	// MANETTE
+	if(_joueur->isFree())
+	{
+		if (_jsonserial->boutonAppuye(2)) {
+			if (_jsonserial->joystickMaintenu(GAUCHE)) {
+				_joueur->Left();
+			}
+			else if (_jsonserial->joystickMaintenu(DROITE)) {
+				_joueur->Right();
+			}
+		}
 
         if (_jsonserial->joystickMaintenu(HAUT, true)) {
             _joueur->up();

@@ -8,8 +8,8 @@
 int main()
 {
     JsonSerial js;
-    js.openSerialPort("COM4");
-
+    js.openSerialPort("COM3");
+    RandomGenerator random;
     Joueur p1;
     Networking n;
     Jeu j(&p1, &js);
@@ -19,38 +19,40 @@ int main()
 
     while (m.getEtat() != Menu::EtatMenu::QUITTER)
     {
-        if (m.getEtat() == Menu::EtatMenu::MULTIJOUEUR || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
+      /*  if (m.getEtat() == Menu::EtatMenu::MULTIJOUEUR || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
         {
             n.ReceiveData();
-        }
+        }*/
         // Communication avec l'arduino
         js.sendJson();
         js.recvJson();
+        js.muons(&random, 0, 20);
 
-        // Gestion jeu
-        if (m.getEtat() == Menu::EtatMenu::JEU || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
-        {
-            if (m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
-            {
-                j.debuterPartieMultijoueur(&n);
-            }
-            else
-            {
-                j.debuterPartie();
-            }
-            a.afficherJeu();
-            if (j.isQuitting())
-            {
-                m.setEtat(Menu::EtatMenu::PRINCIPAL);
-                p1.reset();
-                j.restartJeu(&p1);
-            }
-        }
-        else
-        {
-            m.update();
-            a.afficherMenu();
-        }
+        //// Gestion jeu
+        //if (m.getEtat() == Menu::EtatMenu::JEU || m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
+        //{
+        //    if (m.getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
+        //    {
+        //        j.debuterPartieMultijoueur(&n);
+        //    }
+        //    else
+        //    {
+        //        j.debuterPartie();
+        //    }
+        //    a.afficherJeu();
+        //    if (j.isQuitting())
+        //    {
+        //        m.setEtat(Menu::EtatMenu::PRINCIPAL);
+        //        p1.reset();
+        //        j.restartJeu(&p1);
+        //    }
+        //}
+        //else
+        //{
+        //    m.update();
+        //    a.afficherMenu();
+        //}
+        
     }
 
     exit(0);
