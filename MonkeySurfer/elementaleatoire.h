@@ -9,11 +9,12 @@
 #include "serpent.h"
 #include "harpieferoce.h"
 #include <random>
+#include <jsonserial.h>
 
 class GenerateurItem
 {
 public:
-    GenerateurItem();
+    GenerateurItem(JsonSerial* json);
     ~GenerateurItem();
 
     ElementJeu* getRandomElement();
@@ -22,6 +23,7 @@ public:
 
 private:
     RandomGenerator rand;
+    JsonSerial* _jsonSerial;
 };
 
 #endif // !ELEMENTALEATOIRE_H

@@ -343,7 +343,17 @@ void AffichageGUI::afficherGameOver() {
         _itemCadre1->setVisible(false);
         _itemCadre2->setVisible(false);
         _item->setVisible(false);
-        _menuGameover->setChoixOption(_jeu->getGameOverOption());
+
+        int choix = _jeu->getGameOverOption();
+        _menuGameover->setChoixOption(choix);
+        if (choix == -1)
+        {
+        #ifdef USE_QT
+            emit retourMenu();
+        #endif
+            this->hide();
+        }
+
     }
     else
     {

@@ -1,6 +1,9 @@
 #ifndef PAUSEMENUGUI_H
 #define PAUSEMENUGUI_H
 
+#include <QScreen>
+#include <QPixmap>
+#include <QGuiApplication>
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
@@ -15,7 +18,7 @@ public:
     void setVisible(bool visible);
     void setChoixOption(int choix);
 private:
-    QGraphicsRectItem* _cadre;
+    QGraphicsPixmapItem* _cadre;
     QGraphicsRectItem* _choix;
     QGraphicsTextItem* _textePause;
     QGraphicsTextItem* _texteContinuer;

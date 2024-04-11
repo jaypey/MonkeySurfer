@@ -26,6 +26,8 @@ private slots:
 	void afficherSkins();
 	void afficherAide();
 	void updateMenuSelection();
+public slots:
+	void handleRetourMenu();
 
 private:
 	Menu* m_menu;

@@ -22,7 +22,7 @@ int main(int argv, char** args)
     app.setFont(defaultFont);
 
     JsonSerial jsonSerial;
-    jsonSerial.openSerialPort("COM4");
+    jsonSerial.openSerialPort("COM3");
 
     Joueur joueur;
     Jeu jeu(&joueur, &jsonSerial);
@@ -32,6 +32,9 @@ int main(int argv, char** args)
     AffichageGUI affichage(&jeu, &menu);
 
     MonkeySurferMainWindow mainwindow(&affichage, &menu);
+
+    QObject::connect(&affichage, &AffichageGUI::retourMenu, &mainwindow, &MonkeySurferMainWindow::handleRetourMenu);
+
     mainwindow.showFullScreen();
 
     app.exec();

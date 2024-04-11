@@ -3,6 +3,8 @@
 GameOverMenuGui::GameOverMenuGui(Jeu* j)
 {
     _j = j;
+
+    //_menu = menu;
     _widgetBtns = new QWidget;
     _layout = new QHBoxLayout(_widgetBtns);
     _widgetBtns->setLayout(_layout);
@@ -27,9 +29,6 @@ GameOverMenuGui::GameOverMenuGui(Jeu* j)
     qreal cadreX = (screenGeometry.width() - cadreRect.width()) / 2;
     qreal cadreY = (screenGeometry.height() - cadreRect.height()) / 2;
     _cadre->setPos(cadreX, cadreY);
-
-
-    _choix = new QGraphicsRectItem;
 
     short w = 0; // Taille des textes, pour les positionner exactement au milieu
 
@@ -61,10 +60,11 @@ GameOverMenuGui::GameOverMenuGui(Jeu* j)
     _layout->addWidget(_rejouerBtn);
 
     _choix = new QGraphicsRectItem;
-
+    _choix->setBrush(QColor("#32a150"));
+    _choix->setPen(QPen(Qt::transparent));
 
     _cadre->setZValue(200);
-    _choix->setZValue(201);
+    _choix->setZValue(206);
     _pieces->setZValue(202);
     _score->setZValue(203);
     _gameOverTxt->setZValue(204);
@@ -78,6 +78,7 @@ void GameOverMenuGui::sceneAjouter(QGraphicsScene* scene)
     scene->addItem(_gameOverTxt);
     scene->addItem(_score);
     scene->addItem(_pieces);
+    scene->addItem(_choix);
 
     // Set background color of widgetBtns to be transparent
     _widgetBtns->setStyleSheet("background-color: transparent; color: #32a150");
@@ -123,12 +124,21 @@ void GameOverMenuGui::setChoixOption(int choix)
 {
     switch (choix)
     {
-    case 0:
-        _choix->setPos(_rejouerBtn->pos());
-        _choix->setRect(_rejouerBtn->geometry());
-    case 1:
-        _choix->setPos(_retourMenuBtn->pos());
-        _choix->setRect(_retourMenuBtn->geometry());
+    case 0://menu
+        _choix->setRect(_widgetBtns->pos().x(), _widgetBtns->pos().y() + 65, _retourMenuBtn->geometry().width()+20, 6);
+        break;
+    case 1://rejouer
+        _choix->setRect(_widgetBtns->pos().x()-4 + _rejouerBtn->geometry().width() + 50, _widgetBtns->pos().y() + 65, _rejouerBtn->geometry().width()+15, 6);
+        break;
+    case -1:
+        if (_choix->pos().x() == _widgetBtns->pos().x())
+        {
+            setVisible(false);
+        }
+        else
+        {
+            btnRejouer();
+        }
     default:
         break;
     }
@@ -147,10 +157,9 @@ void GameOverMenuGui::setPiece()
 
 void GameOverMenuGui::btnMenu()
 {
-    qDebug() << "Menu";
+    setVisible(false);
 }
 
 void GameOverMenuGui::btnRejouer()
 {
-    qDebug() << "Rejouer";
 }
