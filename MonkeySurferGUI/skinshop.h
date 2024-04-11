@@ -11,6 +11,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsProxyWidget>
 #include <QVector>
+#include "joueur.h"
 
 
 class SkinShop : public QWidget
@@ -18,7 +19,7 @@ class SkinShop : public QWidget
     Q_OBJECT
     
 public:
-    explicit SkinShop();
+    explicit SkinShop(Joueur* joueur);
     ~SkinShop();
     
 
@@ -26,9 +27,12 @@ public:
 private:
     int m_selectedSkinIndex;
     int w;
+    Joueur* joueur;
     QGraphicsPixmapItem* cadre;
     QGraphicsTextItem* titre;
     QGraphicsTextItem* pieces;
+    
+    QGraphicsPixmapItem* imgpiece;
     QVBoxLayout* layout;
     QGraphicsView* view;
     QGraphicsScene* scene;

@@ -45,6 +45,7 @@
 		<file>sprites\Skins\Monkey\Monkey_Climb\9_4.png</file>
 		<file>sprites\Background\Vines\Vine.png</file>
 		<file>sprites\Background\Background\Background.png</file>
+		<file>sprites\Background\Background\Repeatable_space.png</file>
 		<file>sprites\Background\Background\5386360.jpg</file>
 		<file>sprites\Skins\SkinShop\skin1.png</file>
 		<file>sprites\Skins\SkinShop\skin2.png</file>
@@ -62,12 +63,9 @@
 		<file>font\junglefever.ttf</file>	
 		<file>sprites\Objets\Banane\banana.png</file>
 		<file>sprites\Objets\Banane\bigBanana.png</file>
-		<file>sprites\Objets\Banane\effetBanana.png</file>
 		<file>sprites\Objets\Bouclier\bubble.png</file>
 		<file>sprites\Objets\Bouclier\bigBubble.png</file>
-		<file>sprites\Objets\Bouclier\playerBubble.png</file>
 		<file>sprites\Objets\Serpent\snake.png</file>
-		<file>sprites\Objets\Serpent\snakeAroundMonkey.png</file>
 		<file>sprites\Objets\Piece\coin.png</file>
 		<file>sprites\Objets\Harpie\harpie.png</file>
 		<file>sprites\Objets\Ruche\ruche.png</file>

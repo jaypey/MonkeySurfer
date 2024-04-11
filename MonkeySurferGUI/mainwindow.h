@@ -18,7 +18,7 @@ class MonkeySurferMainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	explicit MonkeySurferMainWindow(QGraphicsView* jeu, Menu* menu);
+	explicit MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu);
 
 private slots:
 	void demarrerPartie();
@@ -35,7 +35,7 @@ private:
 	QStackedWidget* m_centralWidget;
 	SkinShop* m_skinShop;
 	QWidget* m_mainWidget;
-	QGraphicsView* m_jeu;
+	AffichageGUI* m_jeu;
 	QGridLayout* m_layout;
 	QLabel* m_titre;
 	QPushButton* m_btnDemarrer;

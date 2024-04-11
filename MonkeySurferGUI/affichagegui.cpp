@@ -7,9 +7,7 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _scene = new QGraphicsScene;
     _scene->setSceneRect(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y);
     _scene->setBackgroundBrush(Qt::white);
-    //QGraphicsPixmapItem* pixmap = new QGraphicsPixmapItem;
-    //pixmap->setPixmap(QPixmap(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png"));
-    //_scene->addItem(pixmap);
+    
 
     // View du jeu
     setScene(_scene);
@@ -93,10 +91,10 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
 
     // Sprite du joueur
     _singe = new AnimatedPixmap(150);
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_1.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_2.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_3.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_4.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_1.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_2.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_3.png");
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_4.png");
     _singe->setFrame(0);
     _scene->addItem(_singe);
 
@@ -173,6 +171,10 @@ void AffichageGUI::afficherJeu() {
 }
 
 void AffichageGUI::afficherMenu() {
+
+}
+Jeu* AffichageGUI::getjeu() {
+    return _jeu;
 
 }
 

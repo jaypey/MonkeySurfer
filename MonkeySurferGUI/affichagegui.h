@@ -44,6 +44,7 @@ public:
     AffichageGUI(Jeu* j, Menu* m);
     void afficherJeu();
     void afficherMenu();
+    Jeu* getjeu();
 public slots:
     void update();
     void mouvementSinge();
