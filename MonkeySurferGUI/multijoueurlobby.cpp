@@ -1,12 +1,12 @@
 #include "multijoueurlobby.h"
 #include "jeu.h"
-#include "joueur.h"
+#include "menu.h"
 
 #include <QGraphicsGridLayout>
 
-MultijoueurLobby::MultijoueurLobby(Joueur* _j)
+MultijoueurLobby::MultijoueurLobby(Menu* m)
 {
-    joueur = _j;
+    _menu = m;
     setupUI();
 }
 MultijoueurLobby::~MultijoueurLobby() {}
@@ -51,17 +51,19 @@ void MultijoueurLobby::setupUI() {
     titre->setPos(1920 / 2 - ((titre->boundingRect().width()) / 2), 0);
     scene->addItem(titre);
 
-    //pieces du joueur
+    messagePret = new QGraphicsTextItem;
+    messagePret->setPlainText(QString("Veuillez appuyer sur 'R' lorsque vous etes pret! \n Joueurs : " + QString::number(_menu->getNbMultijoueurReady()) + "/" + QString::number(_menu->getNbMultijoueurConnectes())));
+    messagePret->setFont(QFont("Jungle Fever NF", 25));
+    messagePret->setDefaultTextColor(Qt::white);
+    messagePret->setPos(1920/2 - messagePret->boundingRect().width(), 1080 / 2);
+    scene->addItem(messagePret);
 
+    messagePretOui = new QGraphicsTextItem;
+    messagePretOui->setFont(QFont("Jungle Fever NF", 25));
+    messagePretOui->setDefaultTextColor(Qt::white);
+    messagePretOui->setPos(messagePret->pos().x(), messagePret->pos().y() - messagePret->boundingRect().height());
+    scene->addItem(messagePretOui);
 
-    pieces = new QGraphicsTextItem;
-    pieces->setPlainText(QString("Joueurs connectés: "));
-    pieces->setFont(QFont("Jungle Fever NF", 25));
-    pieces->setDefaultTextColor(Qt::white);
-    pieces->setPos(1920 - 50, 1080 - 50);
-    scene->addItem(pieces);
-
-    imgpiece = new QGraphicsPixmapItem;
 
 
 
@@ -69,7 +71,6 @@ void MultijoueurLobby::setupUI() {
     exitButton = new QPushButton("Retour");
     connect(exitButton, &QPushButton::clicked, this, [this] {
         this->hide();
-
         });
 
     buttonContainer = new QWidget;

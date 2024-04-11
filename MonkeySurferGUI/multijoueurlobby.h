@@ -11,7 +11,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsProxyWidget>
 #include <QVector>
-#include "joueur.h"
+#include "menu.h"
 
 
 class MultijoueurLobby : public QWidget
@@ -19,7 +19,7 @@ class MultijoueurLobby : public QWidget
     Q_OBJECT
 
 public:
-    explicit MultijoueurLobby(Joueur* joueur);
+    explicit MultijoueurLobby(Menu* menu);
     ~MultijoueurLobby();
 
 public slots:
@@ -28,10 +28,11 @@ public slots:
 private:
     int m_selectedSkinIndex;
     int m_playerCount;
-    Joueur* joueur;
+    Menu* _menu;
     QGraphicsPixmapItem* cadre;
     QGraphicsTextItem* titre;
-    QGraphicsTextItem* pieces;
+    QGraphicsTextItem* messagePret;
+    QGraphicsTextItem* messagePretOui;
 
     QGraphicsPixmapItem* imgpiece;
     QVBoxLayout* layout;
@@ -42,11 +43,19 @@ private:
     QPushButton* exitButton;
     QWidget* buttonContainer;
     QHBoxLayout* buttonLayout;
-    QVector<QGraphicsPixmapItem*> skinItems;
-
-
 
     void setupUI();
+protected:
+    void keyPressEvent(QKeyEvent* event) override
+    {
+        if (event->key() == Qt::Key_R)
+        {
+            _menu->updateEtatReady();
+            messagePretOui->setPlainText(QString("Vous etes pret"));
+        }
+    }
+
+
 
 
 };

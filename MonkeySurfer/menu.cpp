@@ -231,6 +231,12 @@ int Menu::getIndexSkin()
     return _indexSkin;
 }
 
+void Menu::connectNetwork(std::string ipAddress)
+{
+    _etat = EtatMenu::MULTIJOUEUR;
+    _networking->Connect(ipAddress, 7777);
+}
+
 int Menu::getIndexSkinPreview()
 {
     return _indexSkinPreview;
