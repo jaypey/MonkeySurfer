@@ -36,6 +36,7 @@ public:
     int getPauseOption();
     int getVitesse();
     void setPause(bool pause);
+    void setQuit(bool quit);
     void restartJeu(Joueur *j);
 
     std::vector<ElementJeu *> getElements() const;
@@ -58,7 +59,7 @@ private:
     bool _isMultijoueur;
     Networking *_network;
     std::map<int, PlayerData *> _joueurs;
-    GenerateurItem _generateur;
+    GenerateurItem* _generateur;
     std::vector<ElementJeu *> _elements;
     bool _gameOver;
     int _vitesse;

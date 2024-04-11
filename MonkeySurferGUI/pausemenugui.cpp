@@ -2,34 +2,48 @@
 #include <QDebug>
 
 PauseMenuGui::PauseMenuGui() {
-    _cadre = new QGraphicsRectItem;
-    _cadre->setRect(100, 100, 600, 400);
-    _cadre->setBrush(Qt::white);
+    QPixmap cadrePixMap(":/sprites/Background/GameOver/cadre_bambou.png");
+    if (cadrePixMap.isNull()) {
+        qDebug() << "Failed to load game over image!";
+        return;
+    }
+
+    //Trouver le centre l'écran pour y mettre le cadre avec le bon format
+    QScreen* primaryScreen = QGuiApplication::primaryScreen();
+    QRect screenGeometry = primaryScreen->geometry();
+    cadrePixMap = cadrePixMap.scaled(screenGeometry.width() * 0.7, screenGeometry.height() * 0.7, Qt::KeepAspectRatio);
+
+    _cadre = new QGraphicsPixmapItem(cadrePixMap);
+
+    QRectF cadreRect = _cadre->boundingRect();
+    qreal cadreX = (screenGeometry.width() - cadreRect.width()) / 2;
+    qreal cadreY = (screenGeometry.height() - cadreRect.height()) / 2;
+    _cadre->setPos(cadreX, cadreY);
 
     _choix = new QGraphicsRectItem;
+    _choix->setBrush(Qt::white);
+    _choix->setPen(QPen(Qt::transparent));
 
     short w = 0; // Taille des textes, pour les positionner exactement au milieu
 
     _textePause = new QGraphicsTextItem;
     _textePause->setPlainText("PAUSE");
-    _textePause->setFont(QFont("Arial", 40));
-    _textePause->setDefaultTextColor(Qt::black);
+    _textePause->setFont(QFont("Jungle Fever NF", cadreRect.height() * 0.08));
+    _textePause->setDefaultTextColor(Qt::white);
     w = _textePause->boundingRect().width();
-    _textePause->setPos(400 - (w / 2.0), 150);
+    _textePause->setPos((cadreX + (cadreRect.width() / 2)) - (w / 2), (cadreY + (cadreRect.height() * 0.25)));
 
     _texteContinuer = new QGraphicsTextItem;
     _texteContinuer->setPlainText("Continuer");
-    _texteContinuer->setFont(QFont("Arial", 20));
-    _texteContinuer->setDefaultTextColor(Qt::black);
+    _texteContinuer->setFont(QFont("Jungle Fever NF", cadreRect.height() * 0.04));
     w = _texteContinuer->boundingRect().width();
-    _texteContinuer->setPos(400 - (w / 2.0), 325);
+    _texteContinuer->setPos((cadreX + (cadreRect.width() / 2)) - (w / 2), (cadreY + (cadreRect.height() * 0.5)));
 
     _texteRetourMenu = new QGraphicsTextItem;
     _texteRetourMenu->setPlainText("Retour au menu");
-    _texteRetourMenu->setFont(QFont("Arial", 20));
-    _texteRetourMenu->setDefaultTextColor(Qt::black);
+    _texteRetourMenu->setFont(QFont("Jungle Fever NF", cadreRect.height() * 0.04));
     w = _texteRetourMenu->boundingRect().width();
-    _texteRetourMenu->setPos(400 - (w / 2.0), 400);
+    _texteRetourMenu->setPos((cadreX + (cadreRect.width() / 2)) - (w / 2), (cadreY + (cadreRect.height() * 0.6)));
 
     _cadre->setZValue(100);
     _choix->setZValue(101);
@@ -62,10 +76,6 @@ void PauseMenuGui::setChoixOption(int choix) {
         default: qDebug() << "Choix d'option dans le menu pause invalide!"; return;
     }
 
-    int x = texte->x() - PADDING_RECT_CHOIX;
-    int y = texte->y() - PADDING_RECT_CHOIX;
-    int w = texte->boundingRect().width() + (PADDING_RECT_CHOIX * 2);
-    int h = texte->boundingRect().height() + (PADDING_RECT_CHOIX * 2);
-    
-    _choix->setRect(x, y, w, h);
+    _choix->setRect(texte->pos().x()- PADDING_RECT_CHOIX, texte->pos().y() + texte->boundingRect().height()+PADDING_RECT_CHOIX,
+        texte->boundingRect().width() + (2*PADDING_RECT_CHOIX), 6);
 }

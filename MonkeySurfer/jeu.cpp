@@ -16,6 +16,7 @@ Jeu::Jeu(Joueur* j, JsonSerial* js)
     _isMultijoueur = false;
     _gameOverOption = 0;
     _pauseOption = 0;
+    _generateur = new GenerateurItem(_jsonserial);
 }
 
 Jeu::~Jeu() {}
@@ -74,6 +75,11 @@ int Jeu::getVitesse() {
 void Jeu::setPause(bool pause) {
     _modePause = pause;
     _pauseOption = 0;
+}
+
+void Jeu::setQuit(bool quit)
+{
+    _isQuitting = quit;
 }
 
 void Jeu::restartJeu(Joueur* j)
@@ -260,6 +266,17 @@ void Jeu::updateJoueur()
         _modePause = true;
     }
 
+    if (_jsonserial->boutonAppuye(0))
+    {
+        _joueur->echangerInventaire();
+    }
+
+    if (_jsonserial->boutonAppuye(3))
+    {
+        _joueur->useObjet();
+    }
+
+
     // CLAVIER
     if (_kbhit())
     {
@@ -378,7 +395,18 @@ void Jeu::updateGameOver() {
         }
         else if (c == 80 || c == 72 || c == 77 || c == 75) {
             _gameOverOption = ++_gameOverOption%2;
-            qDebug() << _gameOverOption;
+        }
+        else if(c == ' ')
+        {
+            if (_gameOverOption == 0)
+            {
+                _isQuitting = true;
+                _gameOverOption = -1;
+            }
+            else
+            {
+                _isQuitting = false;
+            }
         }
     }
 }
@@ -448,7 +476,7 @@ void Jeu::avancerCase()
     courant.y++;
     _joueur->setPosition(courant);
 
-    ElementJeu* element = _generateur.getRandomElement();
+    ElementJeu* element = _generateur->getRandomElement();
     if (rand() % 4 == 2)
     {
         ElementJeu* piece = new Piece();

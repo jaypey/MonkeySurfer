@@ -101,6 +101,13 @@ void MonkeySurferMainWindow::updateMenuSelection()
 	}
 }
 
+void MonkeySurferMainWindow::handleRetourMenu()
+{
+	this->show();
+	m_menu->setEtat(Menu::EtatMenu::PRINCIPAL);
+	
+}
+
 void MonkeySurferMainWindow::demarrerPartie() {
 	m_updateTimer->stop();
 	m_menu->setEtat(Menu::EtatMenu::JEU);
