@@ -16,6 +16,7 @@
 #include "skinshop.h"
 #include "menu.h"
 #include <multijoueurlobby.h>
+#include <menuaide.h>
 
 class MonkeySurferMainWindow : public QMainWindow
 {
@@ -38,6 +39,7 @@ private:
 	QStackedWidget* m_centralWidget;
 	SkinShop* m_skinShop;
 	MultijoueurLobby* m_multijoueurLobby;
+	MenuAide* m_aide;
 	QWidget* m_mainWidget;
 	AffichageGUI* m_jeu;
 	QGridLayout* m_layout;

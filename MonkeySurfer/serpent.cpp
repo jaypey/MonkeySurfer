@@ -3,10 +3,9 @@
 Serpent::Serpent()
 {
     setID(SERPENT);
-    hp = generateur.random(6, 10, rand() % 1000);
-
+    hp = generateur.random(60, 100, rand() % 1000);
+    hpmax = hp;
     setPosition({ generateur.random(0, 4, rand() % 1000) , getPosition().y });
-
 }
 
 Serpent::~Serpent()
@@ -35,6 +34,10 @@ void Serpent::attraperJoueur(Joueur& p_joueur)
 int Serpent::getHp()
 {
     return hp;
+}
+
+int Serpent::getHpMax() {
+    return hpmax;
 }
 
 void Serpent::recoitCoup(Joueur& p_joueur)
