@@ -330,6 +330,7 @@ void AffichageGUI::afficherJoueur() {
 
 void AffichageGUI::afficherJoueurs()
 {
+    int i = 0;
     _menu->getNetworking()->GetMutex()->lock();
     std::map<int, PlayerData*> cs = _jeu->getPositionsJoueurs();
     _menu->getNetworking()->GetMutex()->unlock();
@@ -338,13 +339,14 @@ void AffichageGUI::afficherJoueurs()
         updateJoueurs();
         hasLoaded = true;
     }
-    for(int i = 0; i < cs.size(); i++)
+    for(auto c : cs)
     {
         _menu->getNetworking()->GetMutex()->lock();
-        Coordonnee coord = transposerCoord(cs[i]->GetPosition(), _singesJoueurs[i]);
+        Coordonnee coord = transposerCoord(c.second->GetPosition(), _singesJoueurs[i]);
         _menu->getNetworking()->GetMutex()->unlock();
         _singesJoueurs[i]->setPos(coord.x, coord.y);
         _singesJoueurs[i]->animate();
+        i++;
     }
 }
 void AffichageGUI::updateJoueurs() {
