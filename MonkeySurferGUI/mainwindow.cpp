@@ -8,7 +8,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_menu = menu;
 	m_jeu = jeu;
 	Skin* skins = menu->getSkins();
-	m_skinShop = new SkinShop(m_jeu->getjeu()->getJoueur(), skins);
+	m_skinShop = new SkinShop(m_jeu->getjeu()->getJoueur(), skins, m_menu);
 
 
 	
@@ -160,11 +160,13 @@ void MonkeySurferMainWindow::afficherSkins()
 {
 	m_centralWidget->setCurrentIndex(1);
 	m_menu->setEtat(Menu::EtatMenu::SKINS);
+	m_updateTimer->stop();
+	m_skinShop->startTimer();
 }
 
 void MonkeySurferMainWindow::afficherAide()
 {
 	m_centralWidget->setCurrentIndex(3);
-	m_menu->setEtat(Menu::EtatMenu::AIDE);
+	m_menu->setEtat(Menu::EtatMenu::AIDE); 
 }
 
