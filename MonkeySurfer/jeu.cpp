@@ -177,7 +177,8 @@ void Jeu::updateJeu()
         _joueur->compteurPointage();
 
         // Joueur
-        _vitesse = 1000 - (pow(_joueur->getScore(), 2) / 1000);
+        _vitesse = std::max(250.0, 1000 - (pow(_joueur->getScore(), 2) / 1000));
+        qDebug() << _vitesse;
         validerCollision();  
         if (_isMultijoueur)
         {
@@ -233,7 +234,8 @@ void Jeu::updateJoueur()
 	{
 		_jsonserial->vibration(true);
 		int vie = _joueur->getSerpent()->getHp();
-		_jsonserial->bar(vie);
+        int vieMax = _joueur->getSerpent()->getHpMax();
+		_jsonserial->bar((vie * 10) / vieMax);
 	}
 	else {
 		_jsonserial->vibration(false);

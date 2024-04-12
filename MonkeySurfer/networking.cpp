@@ -137,7 +137,7 @@ void Networking::ReceiveData()
 {
     ENetEvent event;
 
-    while (enet_host_service(_client, &event, 100) > 0)
+    while (enet_host_service(_client, &event, 1000) > 0)
     {
         switch (event.type)
         {
