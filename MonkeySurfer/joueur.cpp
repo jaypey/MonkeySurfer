@@ -99,6 +99,11 @@ bool Joueur::ajouterInventaire(Collectible* powerUp)
         inventaire[nbObjets++] = powerUp; // Objet ajoute a la pos 1 de l'inventaire
         return true;
     }
+    else if (nbObjets == 2) {
+        delete inventaire[1];
+        inventaire[1] = powerUp;
+        return true;
+    }
     return false;
     // Si inventaire plein, objet nest pas recupere, on pourra discuter de ce scenario en equipe
 }
