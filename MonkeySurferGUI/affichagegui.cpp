@@ -330,7 +330,9 @@ void AffichageGUI::afficherJoueur() {
 
 void AffichageGUI::afficherJoueurs()
 {
+    _menu->getNetworking()->GetMutex()->lock();
     std::map<int, PlayerData*> cs = _jeu->getPositionsJoueurs();
+    _menu->getNetworking()->GetMutex()->unlock();
     if (_singesJoueurs.empty() && !hasLoaded)
     {
         updateJoueurs();
@@ -484,8 +486,11 @@ void AffichageGUI::updateJeu() {
     _jeu->getJsonSerial()->sendJson();
     _jeu->getJsonSerial()->recvJson();
 
-    if (_menu->getEtat() == Menu::EtatMenu::JEU || _menu->getEtat() == Menu::EtatMenu::MULTIJOUEURJEU) {
+    if (_menu->getEtat() == Menu::EtatMenu::JEU) {
         _jeu->debuterPartie();
+    }
+    if (_menu->getEtat() == Menu::EtatMenu::MULTIJOUEURJEU) {
+        _jeu->debuterPartieMultijoueur(_menu->getNetworking());
     }
 }
 
