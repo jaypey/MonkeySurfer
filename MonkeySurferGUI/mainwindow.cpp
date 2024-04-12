@@ -107,7 +107,8 @@ void MonkeySurferMainWindow::updateMenuSelection()
 	case 1:
 		m_btnDemarrerMulti->setText("> Multijoueur");
 		m_btnDemarrerMulti->setFocus(Qt::FocusReason::MouseFocusReason);
-		if (m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
+		if (m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR)
+		{
 			m_btnDemarrerMulti->click();
 		}
 		break;
@@ -134,16 +135,6 @@ void MonkeySurferMainWindow::updateMenuSelection()
 		break;
 	}
 
-	if (m_menu->getEtat() == Menu::EtatMenu::SKINS) {
-		afficherSkins();
-	}
-	else if (m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
-		demarrerPartieMulti();
-	}
-	else if (m_menu->getEtat() == Menu::EtatMenu::AIDE)
-	{
-		afficherAide();
-	}
 }
 
 void MonkeySurferMainWindow::handleRetourMenu()
