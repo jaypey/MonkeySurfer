@@ -56,6 +56,7 @@ private:
     void afficherArrierePlan();
     void afficherLianes();
     void afficherJoueur();
+    void afficherJoueurs();
     void afficherItems();
     void afficherIU();
     void afficherGameOver();
@@ -65,6 +66,7 @@ private:
     void updateJeu();
     void updateGUI();
     void updateItemGUI();
+    void updateJoueurs();
 
     void createDustPuff();
     void updateDustPuff(int vecIndex);
@@ -98,6 +100,8 @@ private:
     QGraphicsPixmapItem* _bouclierJoueur;
     QGraphicsPixmapItem* _serpentAutourJoueur;
     QGraphicsPixmapItem* _effetBanane;
+
+    std::vector<AnimatedPixmap*> _singesJoueurs;
 
     std::vector<ItemGui> _itemsGui;
 

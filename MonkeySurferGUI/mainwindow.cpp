@@ -7,7 +7,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_menu = menu;
 	m_jeu = jeu;
 	m_skinShop = new SkinShop(m_jeu->getjeu()->getJoueur());
-	m_multijoueurLobby = new MultijoueurLobby(menu);
+	m_multijoueurLobby = new MultijoueurLobby(menu, jeu);
 	m_multijoueurLobby->hide();
 	this->setCentralWidget(m_centralWidget);
 	m_layout = new QGridLayout(this);

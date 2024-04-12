@@ -172,6 +172,10 @@ void AffichageGUI::afficherJeu() {
     afficherArrierePlan();
     afficherLianes();
     afficherJoueur();
+    if (_menu->getEtat() == Menu::EtatMenu::MULTIJOUEURJEU)
+    {
+        afficherJoueurs();
+    }
     afficherItems();
     afficherIU();
     afficherGameOver();
@@ -267,6 +271,35 @@ void AffichageGUI::afficherJoueur() {
 
     for (int i = _dustPuffs.size() - 1; i >= 0; i--)
         updateDustPuff(i);
+}
+
+void AffichageGUI::afficherJoueurs()
+{
+    std::map<int, PlayerData*> cs = _jeu->getPositionsJoueurs();
+    if (_singesJoueurs.empty())
+    {
+        updateJoueurs();
+    }
+    for(int i = 0; i < cs.size(); i++)
+    {
+        Coordonnee coord = transposerCoord(cs[i]->GetPosition(), _singesJoueurs[i]);
+        _singesJoueurs[i]->setPos(coord.x, coord.y);
+        _singesJoueurs[i]->animate();
+    }
+}
+void AffichageGUI::updateJoueurs() {
+    std::map<int, PlayerData*> cs = _jeu->getPositionsJoueurs();
+    for (auto i : cs)
+    {
+        AnimatedPixmap* singes = new AnimatedPixmap(150);
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_1.png");
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_2.png");
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_3.png");
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_4.png");
+        singes->setFrame(0);
+        _scene->addItem(singes);
+        _singesJoueurs.push_back(singes);
+    }
 }
 
 void AffichageGUI::afficherItems() {

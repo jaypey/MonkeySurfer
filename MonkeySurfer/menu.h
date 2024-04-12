@@ -50,6 +50,7 @@ public:
     void choisirSkin(int index);
     void updateSkinDataFile();
     Skin getSkin(int index);
+    Networking* getNetworking();
 
 private:
     int _choixMenu;
