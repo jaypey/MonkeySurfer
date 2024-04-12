@@ -116,8 +116,10 @@ void MultijoueurLobby::setupUI() {
     //Bouton retour au menu
     exitButton = new QPushButton("Retour");
     connect(exitButton, &QPushButton::clicked, this, [this] {
-        this->hide();
-        });
+        emit retourMenu();
+        hide();
+        _timer->stop();
+    });
 
     buttonContainer = new QWidget;
     buttonLayout = new QHBoxLayout(buttonContainer);

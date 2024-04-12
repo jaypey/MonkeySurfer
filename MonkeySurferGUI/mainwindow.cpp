@@ -79,7 +79,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 
 	connect(m_skinShop, SIGNAL(retourMenu()), this, SLOT(handleRetourMenu()));
 	connect(m_multijoueurLobby, SIGNAL(retourMenu()), this, SLOT(handleRetourMenu()));
-	connect(m_aide, SIGNAL(retourVersMenu()), this, SLOT(handleRetourMenuFromAide()));
+	connect(m_aide, SIGNAL(retourVersMenu()), this, SLOT(handleRetourMenu()));
 
 	m_updateTimer = new QTimer;
 	QObject::connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateMenuSelection()));
@@ -144,13 +144,6 @@ void MonkeySurferMainWindow::updateMenuSelection()
 	{
 		afficherAide();
 	}
-}
-
-void MonkeySurferMainWindow::handleRetourMenuFromAide()
-{
-	m_centralWidget->setCurrentIndex(0);
-	show();
-	m_menu->setEtat(Menu::EtatMenu::PRINCIPAL);
 }
 
 void MonkeySurferMainWindow::handleRetourMenu()
