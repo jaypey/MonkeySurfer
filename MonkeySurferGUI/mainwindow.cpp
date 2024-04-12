@@ -134,16 +134,16 @@ void MonkeySurferMainWindow::updateMenuSelection()
 		break;
 	}
 
-	if (m_menu->getEtat() == Menu::EtatMenu::SKINS) {
-		afficherSkins();
-	}
-	else if (m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
-		demarrerPartieMulti();
-	}
-	else if (m_menu->getEtat() == Menu::EtatMenu::AIDE)
-	{
-		afficherAide();
-	}
+	//if (m_menu->getEtat() == Menu::EtatMenu::SKINS) {
+	//	afficherSkins();
+	//}
+	//else if (m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
+	//	demarrerPartieMulti();
+	//}
+	//else if (m_menu->getEtat() == Menu::EtatMenu::AIDE)
+	//{
+	//	afficherAide();
+	//}
 }
 
 void MonkeySurferMainWindow::handleRetourMenu()
