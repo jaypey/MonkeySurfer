@@ -178,7 +178,6 @@ void Jeu::updateJeu()
 
         // Joueur
         _vitesse = std::max(250.0, 1000 - (pow(_joueur->getScore(), 2) / 1000));
-        qDebug() << _vitesse;
         validerCollision();  
         if (_isMultijoueur)
         {

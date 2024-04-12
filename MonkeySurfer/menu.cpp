@@ -168,7 +168,9 @@ void Menu::update()
         {
             char c = _getch();
             if (c == 'q')
+            {
                 _etat = EtatMenu::PRINCIPAL;
+            }
         }
     }
     else if (_etat == EtatMenu::CHARGEMENT)

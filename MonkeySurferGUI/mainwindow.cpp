@@ -3,7 +3,7 @@
 MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 {
 	m_centralWidget = new QStackedWidget(this);
-	m_aide = new MenuAide();
+	m_aide = new MenuAide(menu);
 	m_mainWidget = new QWidget(m_centralWidget);
 	m_menu = menu;
 	m_jeu = jeu;
@@ -79,6 +79,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 
 	connect(m_skinShop, SIGNAL(retourMenu()), this, SLOT(handleRetourMenu()));
 	connect(m_multijoueurLobby, SIGNAL(retourMenu()), this, SLOT(handleRetourMenu()));
+	connect(m_aide, SIGNAL(retourVersMenu()), this, SLOT(handleRetourMenuFromAide()));
 
 	m_updateTimer = new QTimer;
 	QObject::connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateMenuSelection()));
@@ -139,6 +140,17 @@ void MonkeySurferMainWindow::updateMenuSelection()
 	else if (m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
 		demarrerPartieMulti();
 	}
+	else if (m_menu->getEtat() == Menu::EtatMenu::AIDE)
+	{
+		afficherAide();
+	}
+}
+
+void MonkeySurferMainWindow::handleRetourMenuFromAide()
+{
+	m_centralWidget->setCurrentIndex(0);
+	show();
+	m_menu->setEtat(Menu::EtatMenu::PRINCIPAL);
 }
 
 void MonkeySurferMainWindow::handleRetourMenu()
@@ -181,6 +193,8 @@ void MonkeySurferMainWindow::afficherSkins()
 void MonkeySurferMainWindow::afficherAide()
 {
 	m_centralWidget->setCurrentIndex(3);
-	m_menu->setEtat(Menu::EtatMenu::AIDE); 
+	m_menu->setEtat(Menu::EtatMenu::AIDE);
+	m_updateTimer->stop();
+	m_aide->startTimer();
 }
 

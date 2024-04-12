@@ -1,7 +1,9 @@
 #include "menuaide.h"
+#include "menu.h"
 
-MenuAide::MenuAide()
+MenuAide::MenuAide(Menu* m)
 {
+    _m = m;
 	_scene = new QGraphicsScene(this);
     _scene->setSceneRect(0, 0, 1920, 1080);
 	_view = new QGraphicsView(_scene, this);
@@ -72,7 +74,7 @@ MenuAide::MenuAide()
     //serpent
     _serpentTxt = new QGraphicsTextItem;
     _serpentTxt->setTextWidth(550);
-    _serpentTxt->setPlainText("Si un serpent vous attrape, secouez la manette pour le frapper");
+    _serpentTxt->setPlainText("Si un serpent vous attrape, secouez la manette pour le frapper!");
     _serpentTxt->setFont(QFont("Jungle Fever NF", 20));
     _serpentTxt->setPos(675, 600);
     _scene->addItem(_serpentTxt);
@@ -86,7 +88,7 @@ MenuAide::MenuAide()
     //bouclier
     _bouclierTxt = new QGraphicsTextItem;
     _bouclierTxt->setTextWidth(550);
-    _bouclierTxt->setPlainText("Activer le bouclier pour vous proteger dans la jungle sauvage");
+    _bouclierTxt->setPlainText("Activer le bouclier pour vous proteger dans la jungle sauvage!");
     _bouclierTxt->setFont(QFont("Jungle Fever NF", 20));
     _bouclierTxt->setPos(675, 680);
     _scene->addItem(_bouclierTxt);
@@ -100,7 +102,7 @@ MenuAide::MenuAide()
     //banane
     _bananeTxt = new QGraphicsTextItem;
     _bananeTxt->setTextWidth(550);
-    _bananeTxt->setPlainText("Mangez une banane pour faire de plus grands sauts");
+    _bananeTxt->setPlainText("Mangez une banane pour faire de plus grands sauts!");
     _bananeTxt->setFont(QFont("Jungle Fever NF", 20));
     _bananeTxt->setPos(675, 760);
     _scene->addItem(_bananeTxt);
@@ -110,8 +112,49 @@ MenuAide::MenuAide()
     _banane = new QGraphicsPixmapItem(bananePix);
     _banane->setPos(600, 750);
     _scene->addItem(_banane);
+
+    //texte pour quitter
+    setupUI();
+
+    _timer = new QTimer;
+    connect(_timer, SIGNAL(timeout()), this, SLOT(update()));
 }
 
 MenuAide::~MenuAide()
 {
+}
+
+void MenuAide::startTimer()
+{
+    _timer->start(1000/60);
+}
+
+void MenuAide::update()
+{
+    _m->update();
+    if (_m->getEtat() == Menu::EtatMenu::PRINCIPAL) {
+        emit retourVersMenu();
+        hide();
+        _timer->stop();
+    }
+}
+
+void MenuAide::setupUI()
+{
+    //Bouton retour au menu
+    _exitButton = new QPushButton("Retour");
+    connect(_exitButton, &QPushButton::clicked, this, [this] {
+        emit retourVersMenu();
+        this->hide();
+        });
+
+    buttonContainer = new QWidget;
+    buttonLayout = new QHBoxLayout(buttonContainer);
+    buttonLayout->addWidget(_exitButton);
+    buttonContainer->setLayout(buttonLayout);
+
+
+    QGraphicsProxyWidget* proxyWidget = _scene->addWidget(buttonContainer);
+    proxyWidget->setPos(30, 1000);
+
 }

@@ -32,6 +32,7 @@ private slots:
 	void afficherAide();
 	void updateMenuSelection();
 public slots:
+	void handleRetourMenuFromAide();
 	void handleRetourMenu();
 
 private:

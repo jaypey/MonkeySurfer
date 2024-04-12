@@ -8,7 +8,6 @@
 #include "joueur.h"
 #include "jsonserial.h"
 #include "skin.h"
-#include "skinshop.h"
 
 
 #define NB_SKINS 9
