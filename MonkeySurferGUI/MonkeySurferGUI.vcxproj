@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6C1F395C-9C53-3217-9E38-4EA9722E73EC}</ProjectGuid>
+    <ProjectGuid>{8BA81720-167E-3195-8564-8734EB53E82C}</ProjectGuid>
     <RootNamespace>monkeysurfergui</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>

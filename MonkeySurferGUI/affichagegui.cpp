@@ -138,7 +138,7 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_3.png", 8);
     _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_4.png", 8);
 
-    _singe->selectedSet(4);
+    _singe->selectedSet(0);
     _singe->setFrame(0);
     _scene->addItem(_singe);
 
@@ -219,6 +219,8 @@ void AffichageGUI::reset() {
     _serpentAutourJoueur->setVisible(false);
     _menuGameover->setVisible(false);
     _menuPause->setVisible(false);
+
+    _singe->selectedSet(_menu->getIndexSkin());
 }
 
 void AffichageGUI::afficherJeu() {

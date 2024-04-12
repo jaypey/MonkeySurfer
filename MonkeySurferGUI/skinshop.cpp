@@ -55,7 +55,12 @@ void SkinShop::update()
             _details[i]->setPlainText(details);
         }
     }
-    
+
+    if (_m->getEtat() == Menu::EtatMenu::PRINCIPAL) {
+        emit retourMenu();
+        hide();
+        update_timer->stop();
+    }
 }
 
 void SkinShop::setupUI() {

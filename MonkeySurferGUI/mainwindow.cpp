@@ -11,9 +11,6 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	Skin* skins = menu->getSkins();
 	m_skinShop = new SkinShop(m_jeu->getjeu()->getJoueur(), skins, m_menu);
 
-
-	
-												    
 	m_multijoueurLobby->hide();
 	this->setCentralWidget(m_centralWidget);
 	m_layout = new QGridLayout(this);
@@ -134,6 +131,10 @@ void MonkeySurferMainWindow::updateMenuSelection()
 		}
 		break;
 	}
+
+	if (m_menu->getEtat() == Menu::EtatMenu::SKINS) {
+		afficherSkins();
+	}
 }
 
 void MonkeySurferMainWindow::handleRetourMenu()
@@ -141,7 +142,6 @@ void MonkeySurferMainWindow::handleRetourMenu()
 	m_centralWidget->setCurrentIndex(0);
 	show();
 	m_updateTimer->start(1000 / FPS);
-	qDebug() << "Active? : " << m_updateTimer->isActive();
 	m_menu->setEtat(Menu::EtatMenu::PRINCIPAL);
 }
 
