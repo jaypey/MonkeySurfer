@@ -126,6 +126,7 @@ void SkinShop::setupUI() {
     exitButton = new QPushButton("Retour");
     connect(exitButton, &QPushButton::clicked, this, [this]  {
         emit retourMenu();
+        this->hide();
         });
 
     buttonContainer = new QWidget;

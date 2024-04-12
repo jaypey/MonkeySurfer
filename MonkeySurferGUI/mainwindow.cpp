@@ -13,7 +13,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 
 
 	
-	m_multijoueurLobby = new MultijoueurLobby(menu);
+												    
 	m_multijoueurLobby->hide();
 	this->setCentralWidget(m_centralWidget);
 	m_layout = new QGridLayout(this);
@@ -80,6 +80,8 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	connect(m_btnQuitter, &QPushButton::released, this, &QApplication::quit);
 	m_layout->addWidget(m_btnQuitter, 5, 0, Qt::AlignCenter);
 
+	connect(m_skinShop, SIGNAL(retourMenu()), this, SLOT(handleRetourMenu()));
+
 	m_updateTimer = new QTimer;
 	QObject::connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateMenuSelection()));
 	m_updateTimer->start(1000 / FPS);
@@ -136,6 +138,7 @@ void MonkeySurferMainWindow::updateMenuSelection()
 
 void MonkeySurferMainWindow::handleRetourMenu()
 {
+	m_centralWidget->setCurrentIndex(0);
 	show();
 	m_updateTimer->start(1000 / FPS);
 	qDebug() << "Active? : " << m_updateTimer->isActive();
