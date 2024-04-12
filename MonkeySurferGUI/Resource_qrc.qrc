@@ -2,6 +2,7 @@
     <qresource>
 		<file>music\monkeyClimb.mp3</file>
 		<file>sprites\UI\cadrevigne.png</file>
+		<file>sprites\UI\cadre_vine_gros.png</file>
 		<file>sprites\UI\flecheGauche.png</file>
 		<file>sprites\UI\flecheDroite.png</file>
 		<file>sprites\Effets\dustpuff1.png</file>

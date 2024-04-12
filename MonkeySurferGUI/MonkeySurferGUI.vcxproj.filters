@@ -409,6 +409,9 @@
     <None Include="sprites\Background\GameOver\cadre_bambou.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="sprites\UI\cadre_vine_gros.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\UI\cadrevigne.png">
       <Filter>Resource Files</Filter>
     </None>

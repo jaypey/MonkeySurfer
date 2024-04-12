@@ -14,8 +14,6 @@ SkinShop::SkinShop(Joueur* _j, Skin* skins)
 }
 SkinShop::~SkinShop() {}
 
-
-
 void SkinShop::setupUI() {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     scene = new QGraphicsScene(this);
@@ -52,6 +50,16 @@ void SkinShop::setupUI() {
     titre->setPos(1920/2 - ((titre->boundingRect().width())/2) , 0);
     scene->addItem(titre);
 
+
+    //cadre de selection
+    _cadre = new QGraphicsPixmapItem;
+    _cadre->setPixmap(QPixmap(":\\sprites\\UI\\cadre_vine_gros.png"));
+    _cadre->setPos((330-92), (180-92));
+    scene->addItem(_cadre);
+
+
+
+
     //pieces du joueur
     
 
@@ -72,9 +80,9 @@ void SkinShop::setupUI() {
     //Bouton retour au menu
     exitButton = new QPushButton("Retour");
     connect(exitButton, &QPushButton::clicked, this, [this]  {
-        this->hide();
-
+        emit retourMenu();
         });
+
 
     buttonContainer = new QWidget;
     buttonLayout = new QHBoxLayout(buttonContainer);
@@ -110,7 +118,6 @@ void SkinShop::displaySkins() {
         const Skin& skin = skins[i];
         auto* skinItem = new QGraphicsPixmapItem(QPixmap(skin.getFile()));
         skinItem->setPos(xPos, yPos); 
-        skinItem->setScale(200.0 / skinItem->boundingRect().width()); 
         scene->addItem(skinItem);
 
         // Display skin name and price or ownership status
@@ -137,7 +144,5 @@ void SkinShop::displaySkins() {
             xPos = startXPos;
             yPos += 280;  
         }
-    }
-   
-  
+    } 
 }

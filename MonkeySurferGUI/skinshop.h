@@ -31,6 +31,7 @@ private:
     int m_selectedSkinIndex;
     int w;
     Joueur* joueur;
+    QGraphicsPixmapItem* _cadre;
     QGraphicsTextItem* titre;
     QGraphicsTextItem* pieces;
     QGraphicsPixmapItem* imgpiece;
@@ -43,14 +44,15 @@ private:
     QWidget* buttonContainer;
     QHBoxLayout* buttonLayout;
     QVector<QGraphicsPixmapItem*> skinItems;
-    
-    
 
     void setupUI();
     void loadSkins();
     void displaySkins();
 
-   
+
+signals:
+    void retourMenu();
+
 
 };
 #endif // SKINSHOP_H
