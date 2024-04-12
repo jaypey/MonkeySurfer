@@ -4,8 +4,9 @@
 
 #include <QGraphicsGridLayout>
 
-MultijoueurLobby::MultijoueurLobby(Menu* m)
+MultijoueurLobby::MultijoueurLobby(Menu* m, AffichageGUI* affi)
 {
+    _affichage = affi;
     _menu = m;
     setupUI();
     _timer = new QTimer;
@@ -26,6 +27,17 @@ void MultijoueurLobby::updateNetwork()
         messagePretOui->setPlainText(QString("Vous etes pret"));
     }
     updateConnectedPlayers();
+    if (_menu->getNetworking()->IsGameStarted())
+    {
+        _timer->stop();
+        _menu->setEtat(Menu::EtatMenu::MULTIJOUEURJEU);
+        _affichage->reset();
+        _affichage->getjeu()->getJoueur()->reset();
+        _affichage->getjeu()->restartJeu(_affichage->getjeu()->getJoueur());
+        _affichage->showFullScreen();
+        hide();
+
+    }
 }
 
 void MultijoueurLobby::updateConnectedPlayers() {

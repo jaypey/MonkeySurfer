@@ -111,5 +111,5 @@ void GameOverMenuGui::setScore()
 
 void GameOverMenuGui::setPiece()
 {
-    _pieces->setPlainText(QString::fromUtf8("Total des pièces : ") + QString::number(_j->getPiecesJoueur()));
+    _pieces->setPlainText(QString::fromUtf8("Total des pieces : ") + QString::number(_j->getPiecesJoueur()));
 }

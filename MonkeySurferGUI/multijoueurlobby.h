@@ -13,6 +13,7 @@
 #include <QVector>
 #include "menu.h"
 #include <QTimer>
+#include "affichagegui.h"
 
 
 class MultijoueurLobby : public QWidget
@@ -20,7 +21,7 @@ class MultijoueurLobby : public QWidget
     Q_OBJECT
 
 public:
-    explicit MultijoueurLobby(Menu* menu);
+    explicit MultijoueurLobby(Menu* menu, AffichageGUI* affi);
     ~MultijoueurLobby();
 
 public slots:
@@ -31,6 +32,7 @@ public slots:
 private:
     int m_selectedSkinIndex;
     int m_playerCount;
+    AffichageGUI* _affichage;
     Menu* _menu;
     QTimer* _timer;
     QGraphicsPixmapItem* cadre;

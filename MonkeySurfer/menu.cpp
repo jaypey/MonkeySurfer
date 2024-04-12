@@ -279,3 +279,7 @@ Skin Menu::getSkin(int index) {
     return _skins[index];
 }
 
+Networking* Menu::getNetworking()
+{
+    return _networking;
+}

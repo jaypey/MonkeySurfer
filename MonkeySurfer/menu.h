@@ -52,6 +52,7 @@ public:
     void choisirSkin(int index);
     void updateSkinDataFile();
     Skin getSkin(int index);
+    Networking* getNetworking();
     Skin* getSkins() { return _skins; }
 
 private:

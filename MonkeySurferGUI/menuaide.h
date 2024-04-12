@@ -1,6 +1,7 @@
 #ifndef MENUAIDE_H
 #define MENUAIDE_H
 
+#include <QPixmap>
 #include <QGuiApplication>
 #include <QScreen>
 #include <QGraphicsTextItem>
@@ -28,12 +29,15 @@ private:
 	QGraphicsPixmapItem* _harpie;
 	QGraphicsPixmapItem* _bouclier;
 	QGraphicsPixmapItem* _banane;
+	QGraphicsPixmapItem* _piece;
 	QGraphicsTextItem* _singeTxt;
 	QGraphicsTextItem* _rucheTxt;
 	QGraphicsTextItem* _serpentTxt;
 	QGraphicsTextItem* _harpieTxt;
 	QGraphicsTextItem* _bouclierTxt;
 	QGraphicsTextItem* _bananeTxt;
+	QGraphicsTextItem* _pieceTxt;
+
 };
 
 #endif // !MENUAIDE_H
