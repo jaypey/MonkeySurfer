@@ -13,6 +13,7 @@ HEADERS     += \
 			skinshop.h \
 			multijoueurlobby.h \
 			../MonkeySurfer/networking.h \
+			menuaide.h \
 			../MonkeySurfer/affichage.h \
 			../MonkeySurfer/aleatoire.h \
 			../MonkeySurfer/banane.h \
@@ -45,6 +46,7 @@ SOURCES     += \
 			skinshop.cpp \
 			multijoueurlobby.cpp \
 			../MonkeySurfer/networking.cpp \
+			menuaide.cpp \
 			../MonkeySurfer/affichage.cpp \
 			../MonkeySurfer/aleatoire.cpp \
 			../MonkeySurfer/banane.cpp \

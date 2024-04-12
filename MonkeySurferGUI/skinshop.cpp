@@ -4,16 +4,15 @@
 
 #include <QGraphicsGridLayout>
 
-SkinShop::SkinShop(Joueur* _j)
+SkinShop::SkinShop(Joueur* _j, Skin* skins) 
 {
+    this->skins = skins;
     joueur = _j;
 	setupUI();
 	loadSkins();
 	displaySkins();
 }
 SkinShop::~SkinShop() {}
-
-
 
 void SkinShop::setupUI() {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
@@ -51,6 +50,16 @@ void SkinShop::setupUI() {
     titre->setPos(1920/2 - ((titre->boundingRect().width())/2) , 0);
     scene->addItem(titre);
 
+
+    //cadre de selection
+    _cadre = new QGraphicsPixmapItem;
+    _cadre->setPixmap(QPixmap(":\\sprites\\UI\\cadre_vine_gros.png"));
+    _cadre->setPos((330-92), (180-92));
+    scene->addItem(_cadre);
+
+
+
+
     //pieces du joueur
     
 
@@ -62,15 +71,18 @@ void SkinShop::setupUI() {
     scene->addItem(pieces);
 
     imgpiece = new QGraphicsPixmapItem;
+    imgpiece->setPixmap(QPixmap(":/sprites/Objets/Piece/coin.png"));
+    imgpiece->setPos((80 + pieces->boundingRect().width()), 40);
+    scene->addItem(imgpiece);
     
 
 
     //Bouton retour au menu
     exitButton = new QPushButton("Retour");
     connect(exitButton, &QPushButton::clicked, this, [this]  {
-        this->hide();
-
+        emit retourMenu();
         });
+
 
     buttonContainer = new QWidget;
     buttonLayout = new QHBoxLayout(buttonContainer);
@@ -94,22 +106,43 @@ void SkinShop::loadSkins() {
 }
 
 void SkinShop::displaySkins() {
+   
     int startXPos = 330;
     int startYPos = 180;
     int xPos = startXPos;
     int yPos = startYPos;
     int column = 0;
 
-    for (auto& item : skinItems) {
-        item->setPos(xPos, yPos);
-        scene->addItem(item);
+    for (int i = 0; i < 9; ++i) {
+        // Display the skins
+        const Skin& skin = skins[i];
+        auto* skinItem = new QGraphicsPixmapItem(QPixmap(skin.getFile()));
+        skinItem->setPos(xPos, yPos); 
+        scene->addItem(skinItem);
 
-        xPos += 530; // Horizontal spacing
+        // Display skin name and price or ownership status
+        QString details = QString::fromStdString(skin.getId() + std::string(" $") + std::to_string(skin.getPrix()));
+        if (skin.isDebloque()) {
+            details += "\n(OBTENU)";
+        }
+        auto* detailsItem = new QGraphicsTextItem(details);
+        detailsItem->setDefaultTextColor(Qt::white);
+        QFont font = detailsItem->font();
+        font.setPointSize(20);  
+        detailsItem->setFont(font);
+
+        // Calculate width of the text and adjust position to center it under the image
+        QRectF textRect = detailsItem->boundingRect();
+        qreal textStartPos = xPos + (200 - textRect.width()) / 2;  
+        detailsItem->setPos(textStartPos, yPos + 200);  
+        scene->addItem(detailsItem);
+
+        xPos += 500;  
         column++;
 
         if (column % 3 == 0) {
             xPos = startXPos;
-            yPos += 280; // Move down after every third skin
+            yPos += 280;  
         }
-    }
+    } 
 }

@@ -82,10 +82,63 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
 
     // Sprite du joueur
     _singe = new AnimatedPixmap(150);
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_1.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_2.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_3.png");
-    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_4.png");
+    _singe->setFrameSetsSize(9);
+
+    // Banjo
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb1.png", 0);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb2.png", 0);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb3.png", 0);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\Monkey_Climb4.png", 0);
+
+    // Skin monkey mauve
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\2_1.png", 1);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\2_2.png", 1);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\2_3.png", 1);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\2_4.png", 1);
+
+    // Skin monkey de feu
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\3_1.png", 2);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\3_2.png", 2);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\3_3.png", 2);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\3_4.png", 2);
+
+    // Skin monkey de glace
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\4_1.png", 3);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\4_2.png", 3);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\4_3.png", 3);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\4_4.png", 3);
+
+    // Skin monkey radioactif
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\5_1.png", 4);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\5_2.png", 4);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\5_3.png", 4);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\5_4.png", 4);
+
+    // Skin 6
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\6_1.png", 5);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\6_2.png", 5);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\6_3.png", 5);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\6_4.png", 5);
+
+    // Skin 7
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\7_1.png", 6);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\7_2.png", 6);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\7_3.png", 6);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\7_4.png", 6);
+
+    // Skin 8
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_1.png", 7);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_2.png", 7);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_3.png", 7);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\8_4.png", 7);
+
+    // Skin 9
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_1.png", 8);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_2.png", 8);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_3.png", 8);
+    _singe->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_4.png", 8);
+
+    _singe->selectedSet(4);
     _singe->setFrame(0);
     _scene->addItem(_singe);
 
