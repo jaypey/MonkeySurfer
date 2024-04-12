@@ -82,6 +82,7 @@ private:
     QGraphicsPixmapItem* _backgroundLoop1;
     QGraphicsPixmapItem* _backgroundLoop2;
     PauseMenuGui* _menuPause;
+    bool hasLoaded;
 
     GameOverMenuGui *_menuGameover;
 

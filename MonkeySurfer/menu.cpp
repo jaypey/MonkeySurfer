@@ -6,6 +6,7 @@ Menu::Menu(Joueur *joueur, JsonSerial *jsonserial, Networking *n)
     : _choixMenu(0), _indexSkin(0), _indexSkinPreview(0), _etat(EtatMenu::PRINCIPAL), _joueur(joueur), _jsonserial(jsonserial), _networking(n)
 {
     initialiserSkins();
+    thread = QThread::create(([this] {_networking->ReceiveData(); }));
 }
 
 Menu::~Menu() {}
@@ -179,7 +180,7 @@ void Menu::update()
 
 void Menu::updateMultijoueur()
 {
-    _networking->ReceiveData();
+    thread->start(QThread::HighestPriority);
 }
 
 void Menu::modifierChoixMenu(int val)
