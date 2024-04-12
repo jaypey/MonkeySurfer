@@ -88,6 +88,9 @@
     <ClCompile Include="..\MonkeySurfer\menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="menuaide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="multijoueurlobby.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -183,6 +186,9 @@
     <ClInclude Include="..\MonkeySurfer\menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <CustomBuild Include="menuaide.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <ClInclude Include="menubutton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -240,6 +246,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_mainwindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_menuaide.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_menuaide.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_multijoueurlobby.cpp">
@@ -392,6 +404,9 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <None Include="sprites\Background\Vines\Vine.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Background\Background\aide_bg.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Objets\Banane\banana.png">

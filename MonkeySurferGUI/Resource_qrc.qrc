@@ -72,5 +72,6 @@
 		<file>sprites\Objets\Piece\coin.png</file>
 		<file>sprites\Objets\Harpie\harpie.png</file>
 		<file>sprites\Objets\Ruche\ruche.png</file>
+		<file>sprites\Background\Background\aide_bg.png</file>
     </qresource>
 </RCC>
