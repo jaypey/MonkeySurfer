@@ -64,6 +64,7 @@ private:
     std::chrono::steady_clock::time_point _timer;
     Joueur *_joueur;
     JsonSerial *_jsonserial;
+    QThread* thread;
     Skin _skins[NB_SKINS];
 };
 

@@ -145,9 +145,8 @@ void MonkeySurferMainWindow::demarrerPartie() {
 
 void MonkeySurferMainWindow::demarrerPartieMulti()
 {
-	std::string ipAddress;
-	std::cout << "Adresse du serveur: " << std::endl;
-	std::cin >> ipAddress;
+	m_updateTimer->stop();
+	std::string ipAddress = (QInputDialog::getText(nullptr, "Connexion multijoueur", "Veuillez entrer l'adresse du serveur")).toStdString();
 	m_menu->connectNetwork(ipAddress);
 	m_centralWidget->setCurrentIndex(2);
 	m_multijoueurLobby->startUpdateLoop();

@@ -5,7 +5,7 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
     // Scene du jeu
     _scene = new QGraphicsScene;
     _scene->setSceneRect(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y);
-
+    hasLoaded = false;
     // View du jeu
     setScene(_scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -329,19 +329,23 @@ void AffichageGUI::afficherJoueur() {
 void AffichageGUI::afficherJoueurs()
 {
     std::map<int, PlayerData*> cs = _jeu->getPositionsJoueurs();
-    if (_singesJoueurs.empty())
+    if (_singesJoueurs.empty() && !hasLoaded)
     {
         updateJoueurs();
+        hasLoaded = true;
     }
     for(int i = 0; i < cs.size(); i++)
     {
+        _menu->getNetworking()->GetMutex()->lock();
         Coordonnee coord = transposerCoord(cs[i]->GetPosition(), _singesJoueurs[i]);
+        _menu->getNetworking()->GetMutex()->unlock();
         _singesJoueurs[i]->setPos(coord.x, coord.y);
         _singesJoueurs[i]->animate();
     }
 }
 void AffichageGUI::updateJoueurs() {
     std::map<int, PlayerData*> cs = _jeu->getPositionsJoueurs();
+    _menu->getNetworking()->GetMutex()->lock();
     for (auto i : cs)
     {
         AnimatedPixmap* singes = new AnimatedPixmap(150);
@@ -353,6 +357,7 @@ void AffichageGUI::updateJoueurs() {
         _scene->addItem(singes);
         _singesJoueurs.push_back(singes);
     }
+    _menu->getNetworking()->GetMutex()->unlock();
 }
 
 void AffichageGUI::afficherItems() {
@@ -477,7 +482,7 @@ void AffichageGUI::updateJeu() {
     _jeu->getJsonSerial()->sendJson();
     _jeu->getJsonSerial()->recvJson();
 
-    if (_menu->getEtat() == Menu::EtatMenu::JEU) {
+    if (_menu->getEtat() == Menu::EtatMenu::JEU || _menu->getEtat() == Menu::EtatMenu::MULTIJOUEURJEU) {
         _jeu->debuterPartie();
     }
 }

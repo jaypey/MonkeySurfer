@@ -17,6 +17,7 @@
 #include "menu.h"
 #include <multijoueurlobby.h>
 #include <menuaide.h>
+#include <QInputDialog>
 
 class MonkeySurferMainWindow : public QMainWindow
 {
@@ -49,6 +50,15 @@ private:
 	QPushButton* m_btnAfficherSkins;
 	QPushButton* m_btnAfficherAide;
 	QPushButton* m_btnQuitter;
+
+protected:
+	void keyPressEvent(QKeyEvent* event) override
+	{
+		if (event->key() == Qt::Key_R && m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR)
+		{
+			m_menu->updateEtatReady();
+		}
+	}
 };
 
 
