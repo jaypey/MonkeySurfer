@@ -3,7 +3,6 @@
 MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 {
 	m_centralWidget = new QStackedWidget(this);
-	m_skinShop = new SkinShop(jeu->getjeu()->getJoueur());
 	m_aide = new MenuAide();
 	m_mainWidget = new QWidget(m_centralWidget);
 	m_menu = menu;
