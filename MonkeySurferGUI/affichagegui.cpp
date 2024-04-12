@@ -330,19 +330,23 @@ void AffichageGUI::afficherJoueur() {
 
 void AffichageGUI::afficherJoueurs()
 {
+    int i = 0;
+    _menu->getNetworking()->GetMutex()->lock();
     std::map<int, PlayerData*> cs = _jeu->getPositionsJoueurs();
+    _menu->getNetworking()->GetMutex()->unlock();
     if (_singesJoueurs.empty() && !hasLoaded)
     {
         updateJoueurs();
         hasLoaded = true;
     }
-    for(int i = 0; i < cs.size(); i++)
+    for(auto c : cs)
     {
         _menu->getNetworking()->GetMutex()->lock();
-        Coordonnee coord = transposerCoord(cs[i]->GetPosition(), _singesJoueurs[i]);
+        Coordonnee coord = transposerCoord(c.second->GetPosition(), _singesJoueurs[i]);
         _menu->getNetworking()->GetMutex()->unlock();
         _singesJoueurs[i]->setPos(coord.x, coord.y);
         _singesJoueurs[i]->animate();
+        i++;
     }
 }
 void AffichageGUI::updateJoueurs() {
@@ -351,10 +355,11 @@ void AffichageGUI::updateJoueurs() {
     for (auto i : cs)
     {
         AnimatedPixmap* singes = new AnimatedPixmap(150);
-        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_1.png", 0);
-        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_2.png", 0);
-        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_3.png", 0);
-        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_4.png", 0);
+        singes->setFrameSetsSize(1);
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\10_1.png", 0);
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\10_2.png", 0);
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\10_3.png", 0);
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\10_4.png", 0);
         singes->setFrame(0);
         _scene->addItem(singes);
         _singesJoueurs.push_back(singes);
@@ -484,8 +489,11 @@ void AffichageGUI::updateJeu() {
     _jeu->getJsonSerial()->sendJson();
     _jeu->getJsonSerial()->recvJson();
 
-    if (_menu->getEtat() == Menu::EtatMenu::JEU || _menu->getEtat() == Menu::EtatMenu::MULTIJOUEURJEU) {
+    if (_menu->getEtat() == Menu::EtatMenu::JEU) {
         _jeu->debuterPartie();
+    }
+    if (_menu->getEtat() == Menu::EtatMenu::MULTIJOUEURJEU) {
+        _jeu->debuterPartieMultijoueur(_menu->getNetworking());
     }
 }
 

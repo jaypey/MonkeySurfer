@@ -28,10 +28,10 @@ ElementJeu* GenerateurItem::getRandomElement()
 Collectible* GenerateurItem::getRandomCollectible()
 {
     int valeurAleatoire = _jsonSerial->muons(&rand, 0, 1);
-    //if (valeurAleatoire == -1)
-    //{
-    //    valeurAleatoire = rand.random(0, 1, std::rand()%500);
-    //}
+    if (valeurAleatoire == -1)
+    {
+        valeurAleatoire = rand.random(0, 1, std::rand()%500);
+    }
     switch (valeurAleatoire)
     {
     case 0:
@@ -50,10 +50,10 @@ Collectible* GenerateurItem::getRandomCollectible()
 Obstacle* GenerateurItem::getRandomObstacle()
 {
     int valeurAleatoire = _jsonSerial->muons(&rand, 0, 2);
-    //if (valeurAleatoire == -1)
-    //{
-    //    valeurAleatoire = rand.random(0, 2, std::rand() % 500);
-    //}
+    if (valeurAleatoire == -1)
+    {
+        valeurAleatoire = rand.random(0, 2, std::rand() % 500);
+    }
 
     switch (valeurAleatoire)
     {
