@@ -29,6 +29,7 @@ void MultijoueurLobby::updateNetwork()
     updateConnectedPlayers();
     if (_menu->getNetworking()->IsGameStarted())
     {
+        _timer->stop();
         _menu->setEtat(Menu::EtatMenu::MULTIJOUEURJEU);
         _affichage->reset();
         _affichage->getjeu()->getJoueur()->reset();
