@@ -353,10 +353,11 @@ void AffichageGUI::updateJoueurs() {
     for (auto i : cs)
     {
         AnimatedPixmap* singes = new AnimatedPixmap(150);
-        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_1.png", 0);
-        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_2.png", 0);
-        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_3.png", 0);
-        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\9_4.png", 0);
+        singes->setFrameSetsSize(1);
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\10_1.png", 0);
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\10_2.png", 0);
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\10_3.png", 0);
+        singes->addFrame(":\\sprites\\Skins\\Monkey\\Monkey_Climb\\10_4.png", 0);
         singes->setFrame(0);
         _scene->addItem(singes);
         _singesJoueurs.push_back(singes);

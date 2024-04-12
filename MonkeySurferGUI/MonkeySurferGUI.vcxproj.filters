@@ -280,6 +280,18 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\10_1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\10_2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\10_3.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Skins\Monkey\Monkey_Climb\10_4.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="sprites\Skins\Monkey\Monkey_Climb\2_1.png">
       <Filter>Resource Files</Filter>
     </None>
@@ -404,6 +416,9 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <None Include="sprites\Background\Vines\Vine.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sprites\Background\Background\aide_bg.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sprites\Objets\Banane\banana.png">
