@@ -135,10 +135,10 @@ bool JsonSerial::accShake() {
     return !_recvjson["acc"];
 }
 int JsonSerial::muons(RandomGenerator* random, int borneinf, int bornesup) {
-    int rand = 0;
+    int rand = -1;
     if (!_recvjson.contains("muons")) {
         errout << "La cle \"muons\" ne se retrouve pas dans le document json." << std::endl;
-        return NEUTRE;
+        return -1;
     }
     else
     {

@@ -406,9 +406,6 @@
     <None Include="sprites\Background\Vines\Vine.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="sprites\Background\Background\aide_bg.png">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="sprites\Objets\Banane\banana.png">
       <Filter>Resource Files</Filter>
     </None>
