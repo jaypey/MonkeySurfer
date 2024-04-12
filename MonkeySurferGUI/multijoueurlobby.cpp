@@ -22,6 +22,8 @@ void MultijoueurLobby::startUpdateLoop()
 
 void MultijoueurLobby::updateNetwork()
 {
+    _menu->update();
+
     if (_affichage->isHidden()) {
         if (_kbhit())
         {
@@ -46,6 +48,12 @@ void MultijoueurLobby::updateNetwork()
             hide();
 
         }
+    }
+
+    if (_menu->getEtat() == Menu::EtatMenu::PRINCIPAL) {
+        emit retourMenu();
+        hide();
+        _timer->stop();
     }
 }
 

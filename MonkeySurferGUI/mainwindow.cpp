@@ -78,6 +78,7 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_layout->addWidget(m_btnQuitter, 5, 0, Qt::AlignCenter);
 
 	connect(m_skinShop, SIGNAL(retourMenu()), this, SLOT(handleRetourMenu()));
+	connect(m_multijoueurLobby, SIGNAL(retourMenu()), this, SLOT(handleRetourMenu()));
 
 	m_updateTimer = new QTimer;
 	QObject::connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateMenuSelection()));
@@ -134,6 +135,9 @@ void MonkeySurferMainWindow::updateMenuSelection()
 
 	if (m_menu->getEtat() == Menu::EtatMenu::SKINS) {
 		afficherSkins();
+	}
+	else if (m_menu->getEtat() == Menu::EtatMenu::MULTIJOUEUR) {
+		demarrerPartieMulti();
 	}
 }
 

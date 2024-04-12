@@ -29,6 +29,9 @@ public slots:
     void startUpdateLoop();
     void updateNetwork();
 
+signals:
+    void retourMenu();
+
 private:
     int m_selectedSkinIndex;
     int m_playerCount;
@@ -51,9 +54,5 @@ private:
     QHBoxLayout* buttonLayout;
 
     void setupUI();
-
-
-
-
 };
 #endif // MultijoueurLobby_H

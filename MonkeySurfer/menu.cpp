@@ -49,14 +49,16 @@ void Menu::update()
 {
     if (_etat == EtatMenu::MULTIJOUEUR)
     {
+        if (_jsonserial->boutonAppuye(1)) {
+            _etat = EtatMenu::PRINCIPAL;
+        }
+
         if (_networking->IsGameStarted())
         {
             _etat = EtatMenu::MULTIJOUEURJEU;
         }
-        return;
     }
-
-    if (_etat == EtatMenu::PRINCIPAL)
+    else if (_etat == EtatMenu::PRINCIPAL)
     {
         // MANETTE
         if (_jsonserial->joystickMaintenu(BAS, true))
@@ -76,7 +78,7 @@ void Menu::update()
                 //std::string ipAddress;
                 //std::cout << "Adresse du serveur: " << std::endl;
                 //std::cin >> ipAddress;
-                //_etat = EtatMenu::MULTIJOUEUR;
+                _etat = EtatMenu::MULTIJOUEUR;
                 //_networking->Connect(ipAddress, 7777);
             }
             else if (_choixMenu == 2)
