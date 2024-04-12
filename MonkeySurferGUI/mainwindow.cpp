@@ -22,7 +22,14 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 
 	m_centralWidget->setCurrentIndex(0);
 
-	QPixmap bkgnd(":\\sprites\\Background\\Background\\5386360.jpg");
+	QPixmap bkgnd(":\\sprites\\Background\\Background\\Background.png");
+	int width = bkgnd.width();
+	int height = bkgnd.height();
+	int cropHeight = 1080;
+
+	// Calculate the y-coordinate to start cropping from
+	int startY = height - cropHeight;
+	bkgnd = bkgnd.copy(0, startY, width, cropHeight);
 	QPalette palette;
 	bkgnd = bkgnd.scaledToWidth(WINDOW_SIZE_X);
 	bkgnd = bkgnd.scaledToHeight(WINDOW_SIZE_Y);
