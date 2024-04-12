@@ -95,20 +95,26 @@ void Networking::ParseData(char* data)
             int x;
             int y;
             sscanf_s(data, "%*d|%*d|%dx%dy", &x, &y);
+            _mutex.lock();
             _joueurs[id]->SetPosition({ x, y });
+            _mutex.unlock();
         }
         break;
     }
     case 2: {
         int nbReadyJoueur;
         sscanf_s(data, "%*d|%*d|%dx", &nbReadyJoueur);
+        _mutex.lock();
         _readyPlayerCount = nbReadyJoueur;
+        _mutex.unlock();
     }
     case 3: //Reception connexion autre user
     {
         if (id != _idJoueur)
         {
+            _mutex.lock();
             _joueurs[id] = new PlayerData(id);
+            _mutex.unlock();
             std::cout << "Nouveau joueur connecté: " << id << std::endl;
         }
         break;
@@ -122,7 +128,9 @@ void Networking::ParseData(char* data)
     {
         if (id != _idJoueur)
         {
+            _mutex.lock();
             _joueurs.erase(id);
+            _mutex.unlock();
         }
 
     }
@@ -135,17 +143,19 @@ void Networking::ParseData(char* data)
 
 void Networking::ReceiveData()
 {
-    ENetEvent event;
+    while (TRUE) {
+        ENetEvent event;
 
-    while (enet_host_service(_client, &event, 1000) > 0)
-    {
-        switch (event.type)
+        while (enet_host_service(_client, &event, 100000) > 0)
         {
-        case ENET_EVENT_TYPE_RECEIVE:
-            std::cout << "Message recu: " << (char*)event.packet->data << std::endl;
-            ParseData((char*)event.packet->data);
-            enet_packet_destroy(event.packet);
-            break;
+            switch (event.type)
+            {
+            case ENET_EVENT_TYPE_RECEIVE:
+                std::cout << "Message recu: " << (char*)event.packet->data << std::endl;
+                ParseData((char*)event.packet->data);
+                enet_packet_destroy(event.packet);
+                break;
+            }
         }
     }
 }
@@ -169,7 +179,12 @@ std::map<int, PlayerData*> Networking::GetJoueurs()
     return _joueurs;
 }
 
+
 int Networking::GetJoueurCount()
 {
     return _joueurs.size();
+}
+
+QMutex* Networking::GetMutex() {
+    return &_mutex;
 }

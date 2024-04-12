@@ -51,15 +51,6 @@ private:
     QHBoxLayout* buttonLayout;
 
     void setupUI();
-protected:
-    void keyPressEvent(QKeyEvent* event) override
-    {
-        if (event->key() == Qt::Key_R)
-        {
-            _menu->updateEtatReady();
-            messagePretOui->setPlainText(QString("Vous etes pret"));
-        }
-    }
 
 
 

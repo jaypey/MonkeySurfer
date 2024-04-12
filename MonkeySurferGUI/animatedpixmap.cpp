@@ -11,6 +11,7 @@ void AnimatedPixmap::setFrameSetsSize(size_t capacity) {
 
 void AnimatedPixmap::selectedSet(size_t setIndex) {
 	_selectedSet = setIndex;
+	setPixmap(QPixmap(_sets[_selectedSet][_frameIndex]));
 }
 
 void AnimatedPixmap::addFrame(QString filename, size_t setIndex) {

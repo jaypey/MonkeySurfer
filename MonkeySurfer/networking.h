@@ -4,9 +4,12 @@
 #include <map>
 #include <string>
 #include "playerdata.h"
+#include <QThread>
+#include <QMutex>
 
 class Networking
 {
+
 public:
     Networking();
     ~Networking();
@@ -22,8 +25,11 @@ public:
     void SendLocalPosition(Coordonnee c);
     int GetJoueurCount();
     int GetReadyPlayerCount();
+    QMutex* GetMutex();
     std::map<int, PlayerData*> GetJoueurs();
+
 private:
+    QMutex _mutex;
     int _idJoueur;
     int _readyPlayerCount;
     bool _isPlayerReady;

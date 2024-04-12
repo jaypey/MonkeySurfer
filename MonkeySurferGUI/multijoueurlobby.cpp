@@ -17,26 +17,35 @@ MultijoueurLobby::~MultijoueurLobby() {}
 void MultijoueurLobby::startUpdateLoop()
 {
     _timer->start(1000 / 60);
+    _menu->updateMultijoueur();
 }
 
 void MultijoueurLobby::updateNetwork()
 {
-    _menu->updateMultijoueur();
-    if (_menu->getJsonSerial()->boutonAppuye(0)) {
-        _menu->updateEtatReady();
-        messagePretOui->setPlainText(QString("Vous etes pret"));
-    }
-    updateConnectedPlayers();
-    if (_menu->getNetworking()->IsGameStarted())
-    {
-        _timer->stop();
-        _menu->setEtat(Menu::EtatMenu::MULTIJOUEURJEU);
-        _affichage->reset();
-        _affichage->getjeu()->getJoueur()->reset();
-        _affichage->getjeu()->restartJeu(_affichage->getjeu()->getJoueur());
-        _affichage->showFullScreen();
-        hide();
+    if (_affichage->isHidden()) {
+        if (_kbhit())
+        {
+             char c = _getch();
+            if(c == 'r'){
+                _menu->updateEtatReady();
+                messagePretOui->setPlainText(QString("Vous etes pret"));
+            }
+        }
+        if (_menu->getJsonSerial()->boutonAppuye(0)) {
+            _menu->updateEtatReady();
+            messagePretOui->setPlainText(QString("Vous etes pret"));
+        }
+        updateConnectedPlayers();
+        if (_menu->getNetworking()->IsGameStarted())
+        {
+            _menu->setEtat(Menu::EtatMenu::MULTIJOUEURJEU);
+            _affichage->reset();
+            _affichage->getjeu()->getJoueur()->reset();
+            _affichage->getjeu()->restartJeu(_affichage->getjeu()->getJoueur());
+            _affichage->showFullScreen();
+            hide();
 
+        }
     }
 }
 
