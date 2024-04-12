@@ -7,31 +7,40 @@
 #include <QGraphicsView>
 #include <QPushButton>
 #include <QHBoxLayout>
+#include <QTimer>
 #include <QGraphicsTextItem>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsProxyWidget>
 #include <QVector>
 #include "joueur.h"
-#include "menu.h"
 #include "skin.h"
 
+// Forward declarations
+class Menu;
 
 class SkinShop : public QWidget
 {
     Q_OBJECT
     
 public:
-    explicit SkinShop(Joueur* joueur, Skin* skins);
+    SkinShop(Joueur* joueur, Skin* skins, Menu* menu);
     ~SkinShop();
-    
+    void startTimer();
+    void quitter();
 
+public slots:
+    void update();
 
+   
 private:
+    QTimer* update_timer;
     Skin* skins;
     int m_selectedSkinIndex;
     int w;
+    Menu* _m;
     Joueur* joueur;
     QGraphicsPixmapItem* _cadre;
+    QGraphicsPixmapItem* _glow;
     QGraphicsTextItem* titre;
     QGraphicsTextItem* pieces;
     QGraphicsPixmapItem* imgpiece;
@@ -44,9 +53,9 @@ private:
     QWidget* buttonContainer;
     QHBoxLayout* buttonLayout;
     QVector<QGraphicsPixmapItem*> skinItems;
+    QVector<QGraphicsTextItem*> _details;
 
     void setupUI();
-    void loadSkins();
     void displaySkins();
 
 
