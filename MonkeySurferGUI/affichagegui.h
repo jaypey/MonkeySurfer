@@ -49,6 +49,9 @@ public:
 public slots:
     void update();
     void mouvementSinge();
+    void modifierVolume(int volume);
+    int getVolume();
+    void couperSon(bool couper);
 signals:
     void retourMenu();
 

@@ -186,7 +186,7 @@ AffichageGUI::AffichageGUI(Jeu* j, Menu* m) : Affichage(j, m) {
 
     _mediaPlayer->setAudioOutput(_audioOutput);
     _mediaPlayer->setSource(QUrl("qrc:/music/monkeyClimb.mp3"));
-    _audioOutput->setVolume(50);
+    _audioOutput->setVolume(1.0);
     _mediaPlayer->setLoops(QMediaPlayer::Infinite);
     _mediaPlayer->play();
 
@@ -252,6 +252,18 @@ void AffichageGUI::update() {
 
 void AffichageGUI::mouvementSinge() {
     _singe->setLoops(1);
+}
+
+void AffichageGUI::modifierVolume(int volume) {
+    _audioOutput->setVolume(volume / 100.0);
+}
+
+int AffichageGUI::getVolume() {
+    return _audioOutput->volume() * 100.0;
+}
+
+void AffichageGUI::couperSon(bool couper) {
+    _audioOutput->setMuted(couper);
 }
 
 void AffichageGUI::afficherArrierePlan() {

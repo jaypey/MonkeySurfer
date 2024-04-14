@@ -31,9 +31,11 @@ private slots:
 	void afficherSkins();
 	void afficherAide();
 	void updateMenuSelection();
+	void modifierVolumeDialog();
 public slots:
 	void handleRetourMenu();
-
+signals:
+	void modifierVolume(int volume);
 private:
 	Menu* m_menu;
 	QTimer* m_updateTimer;

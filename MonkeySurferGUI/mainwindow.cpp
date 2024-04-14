@@ -1,5 +1,10 @@
 #include "mainwindow.h"
 
+#include <QAction>
+#include <QInputDialog>
+#include <QMenu>
+#include <QMenuBar>
+
 MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 {
 	m_centralWidget = new QStackedWidget(this);
@@ -84,6 +89,19 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_updateTimer = new QTimer;
 	QObject::connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateMenuSelection()));
 	m_updateTimer->start(1000 / FPS);
+
+	// Menu pour le son (modifier volume + couper le son)
+	QMenu* menuSon = new QMenu("&Son");
+	QAction* modifVolume = new QAction("Modifier Volume");
+	QAction* couperSon = new QAction("Couper son");
+	couperSon->setCheckable(true);
+	menuSon->addAction(modifVolume);
+	menuSon->addAction(couperSon);
+	menuBar()->addMenu(menuSon);
+
+	connect(modifVolume, SIGNAL(triggered()), this, SLOT(modifierVolumeDialog()));		// Dialog box pour modifier volume
+	connect(this, SIGNAL(modifierVolume(int)), m_jeu, SLOT(modifierVolume(int)));	// Volume voulu envoye a AffichageGUI
+	connect(couperSon, SIGNAL(toggled(bool)), m_jeu, SLOT(couperSon(bool)));			// Couper son completement
 }
 
 void MonkeySurferMainWindow::updateMenuSelection()
@@ -145,6 +163,15 @@ void MonkeySurferMainWindow::updateMenuSelection()
 	//{
 	//	afficherAide();
 	//}
+}
+
+void MonkeySurferMainWindow::modifierVolumeDialog() {
+	bool ok;
+	int volume = QInputDialog::getInt(this, "Choisir le volume", "Volume:", m_jeu->getVolume(), 0, 100, 0, &ok);
+
+	// Volume de 0 a 100, convertit en float de 0.0 a 1.0
+	if (ok)
+		emit modifierVolume(volume);
 }
 
 void MonkeySurferMainWindow::handleRetourMenu()
