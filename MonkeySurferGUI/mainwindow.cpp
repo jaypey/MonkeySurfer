@@ -95,7 +95,10 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	m_updateTimer->start(1000 / FPS);
 
 	// Menu pour le son (modifier volume + couper le son)
+	QString qssMenu = "QMenu, QMenuBar {font-size: 20px; color: #ceb597;}";
 	QMenu* menuSon = new QMenu("&Son");
+	menuSon->setStyleSheet(qssMenu);
+	menuBar()->setStyleSheet(qssMenu);
 	QAction* modifVolume = new QAction("Modifier Volume");
 	QAction* couperSon = new QAction("Couper son");
 	couperSon->setCheckable(true);
