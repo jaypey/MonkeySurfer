@@ -42,14 +42,14 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 	palette.setBrush(QPalette::Window, bkgnd);
 	this->setPalette(palette);
 
-	QString str = "QPushButton:focus{color: #c1ccba;} QPushButton:hover{color: #32a150; background: none; border: none;}"
+	QString str = "QPushButton:focus{color: #344f3e;} QPushButton:hover{color: #344f3e; background: none; border: none;}"
 		"QPushButton {"
 		"font-size: 40px;"
 		"background: none; border: none;"
-		"color: #32a852;"
+		"color: #ceb597;"
 		" height: 30px;}"
 		"QPushButton:pressed {background: none; border: none;"
-		"color: #1f472a;}";
+		"color: #32a852;}";
 
 
 	QPixmap image(":/images/monkeysurfer.png");
@@ -67,18 +67,22 @@ MonkeySurferMainWindow::MonkeySurferMainWindow(AffichageGUI* jeu, Menu* menu)
 
 
 	m_btnDemarrerMulti = new MenuButton("Multijoueur", this);
+	m_btnDemarrerMulti->setStyleSheet(str);
 	connect(m_btnDemarrerMulti, &QPushButton::released, this, &MonkeySurferMainWindow::demarrerPartieMulti);
 	m_layout->addWidget(m_btnDemarrerMulti, 2, 0, Qt::AlignCenter);
 
 	m_btnAfficherSkins = new MenuButton("Skins", this);
+	m_btnAfficherSkins->setStyleSheet(str);
 	connect(m_btnAfficherSkins, &QPushButton::released, this, &MonkeySurferMainWindow::afficherSkins);
 	m_layout->addWidget(m_btnAfficherSkins, 3, 0, Qt::AlignCenter);
 
 	m_btnAfficherAide = new MenuButton("Aide", this);
+	m_btnAfficherAide->setStyleSheet(str);
 	connect(m_btnAfficherAide, &QPushButton::released, this, &MonkeySurferMainWindow::afficherAide);
 	m_layout->addWidget(m_btnAfficherAide, 4, 0, Qt::AlignCenter);
 
 	m_btnQuitter = new MenuButton("Quitter", this);
+	m_btnQuitter->setStyleSheet(str);
 	connect(m_btnQuitter, &QPushButton::released, this, &QApplication::quit);
 	m_layout->addWidget(m_btnQuitter, 5, 0, Qt::AlignCenter);
 
